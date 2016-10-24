@@ -21,7 +21,7 @@ function testSolve(equationString, comparator, debug=false) {
   return steps[steps.length -1];
 }
 
-describe('solveEquation', function () {
+describe('solveEquation for =', function () {
   it('x = 1 -> x = 1', function () {
     assert.equal(
       testSolve('x = 1', '='),
@@ -146,6 +146,29 @@ describe('solveEquation', function () {
   //     testSolve('2(x+3)/3 = 2', '=').asciimath,
   //     'x = 0');
   // });
+});
+
+describe('solveEquation for non = comparators', function() {
+  it('x + 2 > 3 -> x > 1', function () {
+    assert.equal(
+      testSolve('x + 2 > 3', '>').asciimath,
+      'x > 1');
+  });
+  it('2x < 6 -> x < 3', function () {
+    assert.equal(
+      testSolve('2x < 6', '<').asciimath,
+      'x < 3');
+  });
+  it('-x > 1 -> x < -1', function () {
+    assert.equal(
+      testSolve('-x > 1', '>').asciimath,
+      'x < -1');
+  });
+  it('2 - x < 3 -> x > -1', function () {
+    assert.equal(
+      testSolve('2 - x < 3', '<').asciimath,
+      'x > -1');
+  });
 });
 
 describe('constant comparison support', function () {
