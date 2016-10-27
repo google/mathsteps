@@ -34,6 +34,11 @@ describe('prettyPrint latex', function () {
       prettyPrint(math.parse('2 + (4 - x) + - 4'), true),
       '2 + \\left(4 - x\\right) - 4');
   });
+  it('2 * 3', function () {
+    assert.deepEqual(
+      prettyPrint(math.parse('2 * 3'), true),
+      '2 \\cdot 3');
+  });
   it('2/3 x^2', function () {
     assert.deepEqual(
       prettyPrint(math.parse('2/3 x^2'), true),
