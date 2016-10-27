@@ -132,6 +132,17 @@ describe('solveEquation for =', function () {
       testSolve('-9/4v + 4/5 = 7/8 ', '=').asciimath,
       'v = -1/30');
   });
+  it('y - x - 2 = 3*2 -> y = 8 + x', function () {
+    assert.equal(
+      testSolve('y - x - 2 = 3*2', '=').asciimath,
+      'y = 8 + x');
+  });
+  // TODO: update test once we fix simplifying fractions (should be y = x + 1)
+  it('2y - x - 2 = x -> y = (2x + 2)/2', function () {
+    assert.equal(
+      testSolve('2y - x - 2 = x', '=').asciimath,
+      'y = (2x + 2) / 2');
+  });
   // TODO: update test once we have root support
   it('x^2 - 2 = 0 -> x^2 = 2', function () {
     assert.equal(
