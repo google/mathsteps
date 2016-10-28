@@ -21,6 +21,11 @@ describe('prettyPrint asciimath', function () {
       prettyPrint(math.parse('2/3 x^2')),
       '2/3 x^2');
   });
+  it('-2/3', function () {
+    assert.deepEqual(
+      prettyPrint(math.parse('-2/3')),
+      '-2/3');
+  });
 });
 
 describe('prettyPrint latex', function () {

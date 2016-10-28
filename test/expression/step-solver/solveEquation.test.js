@@ -24,7 +24,7 @@ function testSolve(equationString, comparator, debug=false) {
 describe('solveEquation for =', function () {
   it('x = 1 -> x = 1', function () {
     assert.equal(
-      testSolve('x = 1', '='),
+      testSolve('x = 1', '='), // no asciimath because no steps
       'x = 1');
   });
   it('2 = x -> x = 2', function () {
@@ -121,6 +121,16 @@ describe('solveEquation for =', function () {
     assert.equal(
       testSolve('2x/3 = 2x - 4 ', '=').asciimath,
       'x = 3');
+  });
+  it('(-2/3)x + 3/7 = 1/2 -> x = -3/28', function() {
+    assert.equal(
+      testSolve('(-2/3)x + 3/7 = 1/2', '=').asciimath,
+      'x = -3/28');
+  });
+  it('-9/4v + 4/5 = 7/8  -> v = -1/30', function() {
+    assert.equal(
+      testSolve('-9/4v + 4/5 = 7/8 ', '=').asciimath,
+      'v = -1/30');
   });
   it('y - x - 2 = 3*2 -> y = 8 + x', function () {
     assert.equal(
