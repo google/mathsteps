@@ -382,3 +382,12 @@ describe('floating point', function() {
       flatten(math.parse('19.83')));
   });
 });
+
+describe('cancelling out', function() {
+  it('(x^3*y)/x^2 + 5 -> x*y', function () {
+    assert.deepEqual(
+      simplify(math.parse('(x^3*y)/x^2 + 5')),
+      flatten(math.parse('x*y + 5')));
+  });
+});
+
