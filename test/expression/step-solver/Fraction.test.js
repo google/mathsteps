@@ -109,11 +109,28 @@ function testMultiplyByInverse(exprStr, outputStr) {
   });
 }
 
-describe('simplifyFraction', function() {
+describe('multiplyByInverse', function() {
   const tests = [
     ['x/(2/3)', 'x * 3/2'],
     ['x / (y/(z+a))', 'x * (z+a)/y'],
     ['x/((2+z)/(3/y))', 'x * (3/y)/(2+z)'],
   ]
   tests.forEach(t => testMultiplyByInverse(t[0], t[1]));
+});
+
+function testBreakUpNumerator(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    assert.deepEqual(
+      flatten(Fraction.breakUpNumeratorDFS(flatten(math.parse(exprStr)))).node,
+      flatten(math.parse(outputStr)));
+  });
+}
+
+describe('breakUpNumerator', function() {
+  const tests = [
+    ['(x+3+y)/3', '(x/3 + 3/3 + y/3)'],
+    ['(2+x)/4', '(2/4 + x/4)'],
+    ['2(x+3)/3', '2(x/3 + 3/3)'],
+  ]
+  tests.forEach(t => testBreakUpNumerator(t[0], t[1]));
 });
