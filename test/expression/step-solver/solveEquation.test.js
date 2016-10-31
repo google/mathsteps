@@ -149,12 +149,11 @@ describe('solveEquation for =', function () {
       testSolve('x^2 - 2 = 0', '=').asciimath,
       'x^2 = 2');
   });
-  // TODO(bug): x/(2/3) is not the same as (x/2)/3 or x/2/3
-  // it('x/(2/3) = 1 -> x = 3/2', function () {
-  //   assert.equal(
-  //     testSolve('x/(2/3) = 1', '=').asciimath,
-  //     'x = 3/2');
-  // });
+  it('x/(2/3) = 1 -> x = 2/3', function () {
+    assert.equal(
+      testSolve('x/(2/3) = 1', '=').asciimath,
+      'x = 2/3');
+  });
   // TODO(bug): add test once we fix parens/fraction issue, or support () here
   // it('(x+1)/3 = 4 -> x = 3', function () {
   //   assert.equal(
