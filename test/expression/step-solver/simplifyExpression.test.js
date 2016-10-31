@@ -387,3 +387,21 @@ describe('floating point', function() {
       flatten(math.parse('19.83')));
   });
 });
+
+describe('keeping parens in important places, on printing', function() {
+  it('2 / (2x^2) + 5', function () {
+    assert.deepEqual(
+      flatten(math.parse(print(simplify(math.parse('2 / (2x^2) + 5'))))),
+      flatten(math.parse('2 / (2x^2) + 5')));
+  });
+  it('2 / (x / 2) + 5', function () {
+    assert.deepEqual(
+      flatten(math.parse(print(simplify(math.parse('2 / (x / 2) + 5'))))),
+      flatten(math.parse('2 / (x / 2) + 5')));
+  });
+  it('-(x + y) + 5+3', function () {
+    assert.deepEqual(
+      flatten(math.parse(print(testStep('-(x + y) + 5+3')))),
+      flatten(math.parse('(5+3) -(x + y)')));
+  });
+});
