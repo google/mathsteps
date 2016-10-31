@@ -373,6 +373,11 @@ describe('simplifying fractions', function() {
       simplify(math.parse('9/18-5/18')),
       flatten(math.parse('2/9')));
   });
+  it('2(x+3)/3 -> 2/3 x + 2', function () {
+    assert.deepEqual(
+      simplify(math.parse('2(x+3)/3')),
+      flatten(math.parse('2/3 x + 2')));
+  });
 });
 
 describe('floating point', function() {
