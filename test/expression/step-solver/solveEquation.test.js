@@ -137,11 +137,10 @@ describe('solveEquation for =', function () {
       testSolve('y - x - 2 = 3*2', '=').asciimath,
       'y = 8 + x');
   });
-  // TODO: update test once we fix simplifying fractions (should be y = x + 1)
-  it('2y - x - 2 = x -> y = (2x + 2)/2', function () {
+  it('2y - x - 2 = x -> y = x + 1', function () {
     assert.equal(
       testSolve('2y - x - 2 = x', '=').asciimath,
-      'y = (2x + 2) / 2');
+      'y = x + 1');
   });
   // TODO: update test once we have root support
   it('x^2 - 2 = 0 -> x^2 = 2', function () {
@@ -154,18 +153,16 @@ describe('solveEquation for =', function () {
       testSolve('x/(2/3) = 1', '=').asciimath,
       'x = 2/3');
   });
-  // TODO(bug): add test once we fix parens/fraction issue, or support () here
-  // it('(x+1)/3 = 4 -> x = 3', function () {
-  //   assert.equal(
-  //     testSolve('(x+1)/3 = 4', '=').asciimath,
-  //     'x = 3');
-  // });
-  // TODO(bug): add test once we fix parens/fraction issue
-  // it('2(x+3)/3 = 2 -> x = 0', function () {
-  //   assert.equal(
-  //     testSolve('2(x+3)/3 = 2', '=').asciimath,
-  //     'x = 0');
-  // });
+  it('(x+1)/3 = 4 -> x = 11', function () {
+    assert.equal(
+      testSolve('(x+1)/3 = 4', '=').asciimath,
+      'x = 11');
+  });
+  it('2(x+3)/3 = 2 -> x = 0', function () {
+    assert.equal(
+      testSolve('2(x+3)/3 = 2', '=').asciimath,
+      'x = 0');
+  });
 });
 
 describe('solveEquation for non = comparators', function() {
