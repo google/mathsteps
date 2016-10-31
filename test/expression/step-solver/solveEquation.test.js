@@ -21,7 +21,7 @@ function testSolve(equationString, comparator, debug=false) {
   return steps[steps.length -1];
 }
 
-describe('solveEquation for =', function () {/*
+describe('solveEquation for =', function () {
   it('x = 1 -> x = 1', function () {
     assert.equal(
       testSolve('x = 1', '='), // no asciimath because no steps
@@ -101,12 +101,12 @@ describe('solveEquation for =', function () {/*
     assert.equal(
       testSolve('9x + 4 - 3 = -2x', '=').asciimath,
       'x = -1/11');
-  });*/
+  });
   it('(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0 -> 2x^6 - x^4 - 50x^2 = -25', function () {
     assert.equal(
       testSolve('(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '=').asciimath,
       '2x^6 - x^4 - 50x^2 = -25');
-  });/*
+  });
   it('(-x^2 - 4x + 2)(-3x^2 - 6x + 3) = 0 -> 3x^4 + 18x^3 + 15x^2 − 24x = -6', function () {
     assert.equal(
       testSolve('(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '=').asciimath,
@@ -278,5 +278,5 @@ describe('constant comparison support', function () {
     assert.equal(
       testSolve('1 <= 2', '<=').explanation,
       MathChangeTypes.STATEMENT_IS_TRUE);
-  });*/
+  });
 });
