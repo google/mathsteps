@@ -373,6 +373,11 @@ describe('simplifying fractions', function() {
       simplify(math.parse('9/18-5/18')),
       flatten(math.parse('2/9')));
   });
+  it('2(x+3)/3 -> 2/3 x + 2', function () {
+    assert.deepEqual(
+      simplify(math.parse('2(x+3)/3')),
+      flatten(math.parse('2/3 x + 2')));
+  });
 });
 
 describe('floating point', function() {
@@ -391,3 +396,20 @@ describe('cancelling out', function() {
   });
 });
 
+describe('keeping parens in important places, on printing', function() {
+  it('2 / (2x^2) + 5', function () {
+    assert.deepEqual(
+      flatten(math.parse(print(simplify(math.parse('2 / (2x^2) + 5'))))),
+      flatten(math.parse('2 / (2x^2) + 5')));
+  });
+  it('5 + (3*6) + 2 / (x / y)', function () {
+    assert.deepEqual(
+      flatten(math.parse(print(testStep('5 + (3*6) + 2 / (x / y)')))),
+      flatten(math.parse('5 + 18 + 2 / (x / y)')));
+  });
+  it('-(x + y) + 5+3', function () {
+    assert.deepEqual(
+      flatten(math.parse(print(testStep('-(x + y) + 5+3')))),
+      flatten(math.parse('(5+3) -(x + y)')));
+  });
+});
