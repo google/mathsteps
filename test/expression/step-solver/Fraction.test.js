@@ -3,36 +3,14 @@
 const assert = require('assert');
 const math = require('../../../index');
 
+const ConstantFraction = require('../../../lib/expression/step-solver/ConstantFraction');
 const Fraction = require('../../../lib/expression/step-solver/Fraction');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-
-describe('isIntegerFraction', function () {
-  it('4/5 true', function () {
-    assert.deepEqual(
-      Fraction.isIntegerFraction(math.parse('4/5')),
-      true);
-  });
-  it('4.3/5 false', function () {
-    assert.deepEqual(
-      Fraction.isIntegerFraction(math.parse('4.3/5')),
-      false);
-  });
-  it('4x/5 false', function () {
-    assert.deepEqual(
-      Fraction.isIntegerFraction(math.parse('4x/5')),
-      false);
-  });
-  it('5 false', function () {
-    assert.deepEqual(
-      Fraction.isIntegerFraction(math.parse('5')),
-      false);
-  });
-});
 
 function testAddConstantFractions(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      Fraction.addConstantFractions(math.parse(exprString)).node,
+      ConstantFraction.addConstantFractions(math.parse(exprString)).node,
       flatten(math.parse(outputStr)));
   });
 }
@@ -49,7 +27,7 @@ describe('addConstantFractions', function () {
 function testAddConstantAndFraction(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      Fraction.addConstantAndFraction(math.parse(exprString)).node,
+      ConstantFraction.addConstantAndFraction(math.parse(exprString)).node,
       flatten(math.parse(outputStr)));
   });
 }
@@ -68,7 +46,7 @@ function testMultiplyConstantsAndFractions(exprString, outputStr) {
   const node = flatten(math.parse(exprString));
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      flatten(Fraction.multiplyConstantsAndFractions(node).node),
+      flatten(ConstantFraction.multiplyConstantsAndFractions(node).node),
       flatten(math.parse(outputStr)));
   });
 }

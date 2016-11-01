@@ -387,15 +387,19 @@ describe('floating point', function() {
       flatten(math.parse('19.83')));
   });
 });
-
 describe('cancelling out', function() {
   it('(x^3*y)/x^2 + 5 -> x*y', function () {
     assert.deepEqual(
       simplify(math.parse('(x^3*y)/x^2 + 5')),
       flatten(math.parse('x*y + 5')));
   });
+  it('(x^(2)+y^(2))/(5x-6x) -> -x - y^2/x', function() {
+    // have to print because the - is actually wrapped around y^2 / x in the tree
+    assert.deepEqual(
+      print(simplify(math.parse('(x^(2)+y^(2))/(5x-6x)'))),
+      '-x - y^2 / x');
+  });
 });
-
 describe('keeping parens in important places, on printing', function() {
   it('2 / (2x^2) + 5', function () {
     assert.deepEqual(
