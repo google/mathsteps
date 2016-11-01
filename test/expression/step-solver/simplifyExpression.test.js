@@ -388,16 +388,24 @@ describe('floating point', function() {
   });
 });
 
+describe('cancelling out', function() {
+  it('(x^3*y)/x^2 + 5 -> x*y', function () {
+    assert.deepEqual(
+      simplify(math.parse('(x^3*y)/x^2 + 5')),
+      flatten(math.parse('x*y + 5')));
+  });
+});
+
 describe('keeping parens in important places, on printing', function() {
   it('2 / (2x^2) + 5', function () {
     assert.deepEqual(
       flatten(math.parse(print(simplify(math.parse('2 / (2x^2) + 5'))))),
       flatten(math.parse('2 / (2x^2) + 5')));
   });
-  it('2 / (x / 2) + 5', function () {
+  it('5 + (3*6) + 2 / (x / y)', function () {
     assert.deepEqual(
-      flatten(math.parse(print(simplify(math.parse('2 / (x / 2) + 5'))))),
-      flatten(math.parse('2 / (x / 2) + 5')));
+      flatten(math.parse(print(testStep('5 + (3*6) + 2 / (x / y)')))),
+      flatten(math.parse('5 + 18 + 2 / (x / y)')));
   });
   it('-(x + y) + 5+3', function () {
     assert.deepEqual(

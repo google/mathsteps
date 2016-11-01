@@ -56,4 +56,9 @@ describe('removeUnnecessaryParens', function () {
       removeUnnecessaryParens(math.parse('((4+5)) + ((2^3))')),
       flatten(math.parse('(4+5) + 2^3')));
   });
+  it('(2x^6 + -50 x^2) - (x^4)', function () {
+    assert.deepEqual(
+      removeUnnecessaryParens(flatten(math.parse('(2x^6 + -50 x^2) - (x^4)')), true),
+      flatten(math.parse('2 x^6 + -50 x^2 - x^4')));
+  });
 });
