@@ -75,6 +75,8 @@ describe('simplifyFraction', function() {
     ['-3/-2', '3/2'],
     ['-1/-1', '1'],
     ['12/27', '4/9'],
+    ['-12x / -27', '12x / 27'],
+    ['x / -y', '-x / y'],
   ]
   tests.forEach(t => testSimplifyFraction(t[0], t[1]));
 });

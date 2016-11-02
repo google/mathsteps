@@ -387,6 +387,7 @@ describe('floating point', function() {
       flatten(math.parse('19.83')));
   });
 });
+
 describe('cancelling out', function() {
   it('(x^3*y)/x^2 + 5 -> x*y', function () {
     assert.deepEqual(
@@ -399,7 +400,28 @@ describe('cancelling out', function() {
       print(simplify(math.parse('(x^(2)+y^(2))/(5x-6x)'))),
       '-x - y^2 / x');
   });
+  it('( p ^ ( 2) + 1)/( p ^ ( 2) + 1) -> 1', function () {
+    assert.deepEqual(
+      simplify(math.parse('( p ^ ( 2) + 1)/( p ^ ( 2) + 1)')),
+      flatten(math.parse('1')));
+  });
+  it('(-x)/(x) -> -1', function () {
+    assert.deepEqual(
+      simplify(math.parse('(-x)/(x)')),
+      flatten(math.parse('-1')));
+  });
+  it('(x)/(-x) -> -1', function () {
+    assert.deepEqual(
+      simplify(math.parse('(x)/(-x)')),
+      flatten(math.parse('-1')));
+  });
+  it('(x)/(-x) -> -1', function () {
+    assert.deepEqual(
+      simplify(math.parse('((2x^3 y^2)/(-x^2 y^5))^(-2)')),
+      flatten(math.parse('(-2x y^-3)^-2')));
+  });
 });
+
 describe('keeping parens in important places, on printing', function() {
   it('2 / (2x^2) + 5', function () {
     assert.deepEqual(
@@ -417,3 +439,4 @@ describe('keeping parens in important places, on printing', function() {
       flatten(math.parse('(5+3) -(x + y)')));
   });
 });
+
