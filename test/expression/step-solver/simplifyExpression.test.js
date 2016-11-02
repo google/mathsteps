@@ -58,11 +58,10 @@ describe('handles + - -> - on first step', function() {
     const steps = stepThrough(math.parse('2 + (-3)'));
     assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
   });
-  it('22 + (-26) - (-7) - x - x -> 22 - 26 + 7 - x - x', function () {
-    const steps = stepThrough(math.parse('22 + (-26) - (-7) - x - x'), true);
+  it('22 + (-26) - x - x -> 22 - 26 - x - x', function () {
+    const steps = stepThrough(math.parse('22 + (-26) - (-7) - x - x'));
     assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
   });
-
 })
 
 describe('handles unnecessary parens at root level', function() {
