@@ -440,3 +440,31 @@ describe('keeping parens in important places, on printing', function() {
   });
 });
 
+describe('absolute value support', function() {
+  it('(x^3*y)/x^2 + abs(-5) -> x*y', function () {
+    assert.deepEqual(
+      simplify(math.parse('(x^3*y)/x^2 + abs(-5)')),
+      flatten(math.parse('x*y + 5')));
+  });
+  it('-6 + -5 - abs(-4) + -10 - 3 abs(-4) -> -37', function () {
+    assert.deepEqual(
+      simplify(math.parse('-6 + -5 - abs(-4) + -10 - 3 abs(-4)')),
+      flatten(math.parse('-37')));
+  });
+  it('5*abs((2+2))*10 = 200', function () {
+    assert.deepEqual(
+      simplify(math.parse('5*abs((2+2))*10')),
+      math.parse('200'));
+  });
+  it('5x + (1/abs(-2))x -> 11/2', function () {
+    assert.deepEqual(
+      simplify(math.parse('5x + (1/abs(-2))x')),
+      flatten(math.parse('11/2 x')));
+  });
+  it('abs(5/18-abs(9/-18)) -> 4/18', function () {
+    assert.deepEqual(
+      simplify(math.parse('abs(5/18-abs(9/-18))')),
+      flatten(math.parse('2/9')));
+  });
+});
+
