@@ -415,7 +415,7 @@ describe('cancelling out', function() {
       simplify(math.parse('(x)/(-x)')),
       flatten(math.parse('-1')));
   });
-  it('(x)/(-x) -> -1', function () {
+  it('((2x^3 y^2)/(-x^2 y^5))^(-2)', function () {
     assert.deepEqual(
       simplify(math.parse('((2x^3 y^2)/(-x^2 y^5))^(-2)')),
       flatten(math.parse('(-2x y^-3)^-2')));
