@@ -279,4 +279,21 @@ describe('constant comparison support', function () {
       testSolve('1 <= 2', '<=').explanation,
       MathChangeTypes.STATEMENT_IS_TRUE);
   });
+  // TODO: when we support fancy exponent and sqrt things
+  // it('(1/64)^(-5/6) = 32 -> True', function () {
+  //  assert.equal(
+  //    testSolve('(1/64)^(-5/6) = 32', '=', true).explanation,
+  //    MathChangeTypes.STATEMENT_IS_TRUE);
+  // });
+  // With variables that cancel
+  it('5+ (x - 5) = x -> True', function () {
+    assert.equal(
+      testSolve('5 + (x - 5) = x', '=').explanation,
+      MathChangeTypes.STATEMENT_IS_TRUE);
+  });
+  it('4x - 4= 4x -> True', function () {
+    assert.equal(
+      testSolve('4x - 4= 4x', '=').explanation,
+      MathChangeTypes.STATEMENT_IS_FALSE);
+  });
 });
