@@ -9,6 +9,7 @@ const stepThrough = stepper.stepThrough;
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const print = require('./../../../lib/expression/step-solver/prettyPrint');
 const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
+const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
 
 // to create nodes, for testing
 let opNode = NodeCreator.operator;
@@ -51,6 +52,18 @@ describe('arithmetic stepping', function () {
       math.parse('2*4 + 2^3'));
   });
 });
+
+describe('handles + - -> - on first step', function() {
+  it('2 + (-3) -> 2 - 3', function () {
+    const steps = stepThrough(math.parse('2 + (-3)'));
+    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
+  });
+  it('22 + (-26) - (-7) - x - x -> 22 - 26 + 7 - x - x', function () {
+    const steps = stepThrough(math.parse('22 + (-26) - (-7) - x - x'), true);
+    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
+  });
+
+})
 
 describe('handles unnecessary parens at root level', function() {
   it('(x+(y)) -> x+y', function () {
