@@ -113,4 +113,14 @@ describe('simplifies', function () {
       simplify('(x+3)^0'),
       math.parse('1'));
   });
+  it('abs(4) -> 4', function () {
+    assert.deepEqual(
+      simplify('abs(4)'),
+      math.parse('4'));
+  });
+  it('abs(-5) -> 5', function () {
+    assert.deepEqual(
+      simplify('abs(-5)'),
+      math.parse('5'));
+  });
 });

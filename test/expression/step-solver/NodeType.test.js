@@ -43,6 +43,16 @@ describe('NodeType works', function () {
       NodeType.isSymbol(math.parse('y')),
       true);
   });
+  it('abs(5) is abs function', function () {
+    assert.deepEqual(
+      NodeType.isFunction(math.parse('abs(5)'), 'abs'),
+      true);
+  });
+  it('sqrt(5) is not abs function', function () {
+    assert.deepEqual(
+      NodeType.isFunction(math.parse('sqrt(5)'), 'abs'),
+      false);
+  });
 });
 
 describe('isConstantOrConstantFraction', function () {
