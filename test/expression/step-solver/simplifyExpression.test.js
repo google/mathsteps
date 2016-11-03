@@ -406,6 +406,32 @@ describe('cancelling out', function() {
       simplify(math.parse('(x^3*y)/x^2 + 5')),
       flatten(math.parse('x*y + 5')));
   });
+  it('(x^(2)+y^(2))/(5x-6x) -> -x - y^2/x', function() {
+    // have to print because the - is actually wrapped around y^2 / x in the tree
+    assert.deepEqual(
+      print(simplify(math.parse('(x^(2)+y^(2))/(5x-6x)'))),
+      '-x - y^2 / x');
+  });
+  it('( p ^ ( 2) + 1)/( p ^ ( 2) + 1) -> 1', function () {
+    assert.deepEqual(
+      simplify(math.parse('( p ^ ( 2) + 1)/( p ^ ( 2) + 1)')),
+      flatten(math.parse('1')));
+  });
+  it('(-x)/(x) -> -1', function () {
+    assert.deepEqual(
+      simplify(math.parse('(-x)/(x)')),
+      flatten(math.parse('-1')));
+  });
+  it('(x)/(-x) -> -1', function () {
+    assert.deepEqual(
+      simplify(math.parse('(x)/(-x)')),
+      flatten(math.parse('-1')));
+  });
+  it('((2x^3 y^2)/(-x^2 y^5))^(-2)', function () {
+    assert.deepEqual(
+      simplify(math.parse('((2x^3 y^2)/(-x^2 y^5))^(-2)')),
+      flatten(math.parse('(-2x y^-3)^-2')));
+  });
 });
 
 describe('keeping parens in important places, on printing', function() {
@@ -425,3 +451,4 @@ describe('keeping parens in important places, on printing', function() {
       flatten(math.parse('(5+3) -(x + y)')));
   });
 });
+

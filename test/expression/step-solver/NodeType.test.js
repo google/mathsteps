@@ -62,3 +62,26 @@ describe('isConstantOrConstantFraction', function () {
       false);
   });
 });
+
+describe('isIntegerFraction', function () {
+  it('4/5 true', function () {
+    assert.deepEqual(
+      NodeType.isIntegerFraction(math.parse('4/5')),
+      true);
+  });
+  it('4.3/5 false', function () {
+    assert.deepEqual(
+      NodeType.isIntegerFraction(math.parse('4.3/5')),
+      false);
+  });
+  it('4x/5 false', function () {
+    assert.deepEqual(
+      NodeType.isIntegerFraction(math.parse('4x/5')),
+      false);
+  });
+  it('5 false', function () {
+    assert.deepEqual(
+      NodeType.isIntegerFraction(math.parse('5')),
+      false);
+  });
+});
