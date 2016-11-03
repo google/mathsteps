@@ -4,6 +4,7 @@ const assert = require('assert');
 const math = require('../../../index');
 
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
+const Negative = require('../../../lib/expression/step-solver/Negative.js');
 const PolynomialTermNode = require('../../../lib/expression/step-solver/PolynomialTermNode.js');
 const PolynomialTermOperations = require('../../../lib/expression/step-solver/PolynomialTermOperations.js');
 
@@ -196,7 +197,7 @@ describe('simplifyPolynomialFraction', function() {
 });
 
 function negatePolynomialTerm(exprString) {
-  return PolynomialTermOperations.negatePolynomialTerm(
+  return Negative.negatePolynomialTerm(
     flatten(math.parse(exprString)));
 }
 
