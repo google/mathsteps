@@ -466,5 +466,10 @@ describe('absolute value support', function() {
       simplify(math.parse('abs(5/18-abs(9/-18))')),
       flatten(math.parse('2/9')));
   });
+  it('( abs( -3) )/(3) -> 1', function () { // handle parens around abs()
+    assert.deepEqual(
+      simplify(math.parse('( abs( -3) )/(3)')),
+      flatten(math.parse('1')));
+  });
 });
 
