@@ -6,7 +6,7 @@ const flatten = require('../../../lib/expression/step-solver/flattenOperands.js'
 const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
 
 function testDistribute(exprStr) {
-  return distribute(flatten(math.parse(exprStr))).node;
+  return flatten(distribute(flatten(math.parse(exprStr))).node);
 }
 
 describe('distribute - into paren with addition', function () {

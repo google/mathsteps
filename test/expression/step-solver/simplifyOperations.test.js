@@ -5,6 +5,9 @@ const math = require('../../../index');
 
 const simplifyOperations = require('../../../lib/expression/step-solver/simplifyOperations.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
+const stepper = require('../../../lib/expression/step-solver/simplifyExpression.js');
+const stepThrough = stepper.stepThrough;
+const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
 
 function simplify(exprString) {
   return simplifyOperations(flatten(math.parse(exprString))).node;
@@ -93,6 +96,11 @@ describe('simplifies', function () {
       simplify('-(-(2+x))'),
       math.parse('((2+x))'));
   });
+  it('simplifyDoubleUnaryMinus step actually happens: 22 - (-7) -> 22 + 7', function () {
+    const steps = stepThrough(math.parse('22 - (-7)'));
+    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_DOUBLE_UNARY_MINUS);
+  });
+
   it('removeAdditionByZero 2+0+x -> 2+x', function () {
     assert.deepEqual(
       simplify('2+0+x'),
