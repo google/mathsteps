@@ -42,21 +42,21 @@ describe('addConstantAndFraction', function () {
   tests.forEach(t => testAddConstantAndFraction(t[0], t[1]));
 });
 
-function testMultiplyConstantsAndFractions(exprString, outputStr) {
+function testMultiplyFractions(exprString, outputStr) {
   const node = flatten(math.parse(exprString));
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      flatten(ConstantFraction.multiplyConstantsAndFractions(node).node),
+      flatten(Fraction.multiplyFractionsDFS(node).node),
       flatten(math.parse(outputStr)));
   });
 }
 
-describe('multiplyConstantsAndFractions', function () {
+describe('multiplyFractions', function () {
   const tests = [
     ['3 * 1/5 * 5/9', '(3*1*5)/(5*9)'],
     ['3/7 * 10/11', '(3*10)/(7*11)'],
   ];
-  tests.forEach(t => testMultiplyConstantsAndFractions(t[0], t[1]));
+  tests.forEach(t => testMultiplyFractions(t[0], t[1]));
 });
 
 function testSimplifyFraction(exprStr, outputStr) {
