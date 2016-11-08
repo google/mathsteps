@@ -390,6 +390,11 @@ describe('simplifying fractions', function() {
       simplify(math.parse('2(x+3)/3')),
       flatten(math.parse('2/3 x + 2')));
   });
+  it('(5/18 - 9/18 -> -4/18', function () {
+    assert.deepEqual(
+      simplify(math.parse('5/18 - 9/18')),
+      flatten(math.parse('-2/9')));
+  });
 });
 
 describe('floating point', function() {
@@ -482,6 +487,11 @@ describe('absolute value support', function() {
     assert.deepEqual(
       simplify(math.parse('( abs( -3) )/(3)')),
       flatten(math.parse('1')));
+  });
+  it('- abs( -40) -> -40', function () {
+    assert.deepEqual(
+      simplify(math.parse('- abs( -40)')),
+      flatten(math.parse('-40')));
   });
 });
 
