@@ -30,6 +30,14 @@ function testStep(exprString, debug=false) {
   return nodeStatus.node;
 }
 
+function testSimplify(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    assert.deepEqual(
+      print(simplify(flatten(math.parse(exprStr)))),
+      outputStr);
+  });
+}
+
 describe('arithmetic stepping', function () {
   it('(2+2) -> 4', function () {
     assert.deepEqual(
@@ -207,34 +215,18 @@ describe('collects and combines like terms', function() {
 });
 
 describe('can simplify with division', function () {
-  it('2 * 4 / 5 * 10 + 3 -> 19', function () {
-    assert.deepEqual(
-      simplify(math.parse('2 * 4 / 5 * 10 + 3')),
-      math.parse('19'));
-  });
-  it('2x * 5x / 2 -> 5x^2', function () {
-    assert.deepEqual(
-      simplify(math.parse('2x * 5x / 2')),
-      math.parse('5x^2'));
-  });
-  it('2x * 4x / 5 * 10 + 3 -> 16x^2 + 3', function () {
-    assert.deepEqual(
-      simplify(math.parse('2x * 4x / 5 * 10 + 3')),
-      math.parse('16x^2 + 3'));
-  });
-  it('2x * 4x / 2 / 4 -> x^2', function () {
-    assert.deepEqual(
-      simplify(math.parse('2x * 4x / 2 / 4')),
-      math.parse('x^2'));
-  });
-  it('2x * y / z * 10 -> 20 * x * y / z', function () {
-    assert.deepEqual(
-      simplify(math.parse('2x * y / z * 10')),
-      flatten(math.parse('20 * x * y / z')));
-  });
-  // TODO in the future: '2x * 4x / 5 * 10 + 3' and '2x/x' (division with
-  // polynomials) - also 2x * 3/x should probably simplify and get rid of
-  // the x's and probably a bunch more rules
+  const tests = [
+    ['2 * 4 / 5 * 10 + 3', '19'],
+    ['2x * 5x / 2', '5x^2'],
+    ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
+    ['2x * 4x / 2 / 4', 'x^2'],
+    ['2x * y / z * 10', '20 * x * y / z'],
+    ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
+    ['2x/x', '2'],
+  ];
+  tests.forEach(t => testSimplify(t[0], t[1]));
+  // TODO: factor the numerator to cancel out with denominator
+  // e.g. (x^2 - 3 + 2)/(x-2) -> (x-1)
 });
 
 describe('subtraction support', function() {
@@ -286,26 +278,13 @@ describe('subtraction support', function() {
 });
 
 describe('support for more * and ( that come from latex conversion', function () {
-  it('(3*x)*(4*x) -> 12x^2', function () {
-    assert.deepEqual(
-      simplify(math.parse('(3*x)*(4*x)')),
-      flatten(math.parse('12x^2')));
-  });
-  it('(12*z^(2))/27 -> 4/9 z^2', function () {
-    assert.deepEqual(
-      simplify(math.parse('(12*z^(2))/27')),
-      flatten(math.parse('4/9 z^2')));
-  });
-  it('x^2 - 12x^2 + 5x^2 - 7 -> 6x^2 - 7', function () {
-    assert.deepEqual(
-      simplify(math.parse('x^2 - 12x^2 + 5x^2 - 7')),
-      flatten(math.parse('-6x^2 -7')));
-  });
-  it('-(12 x ^ 2) -> -12 x^2', function () {
-    assert.deepEqual(
-      simplify(math.parse('-(12 x ^ 2)')),
-      flatten(math.parse('-12 x^2')));
-  });
+  const tests = [
+    ['(3*x)*(4*x)', '12x^2'],
+    ['(12*z^(2))/27', '4/9 z^2'],
+    ['x^2 - 12x^2 + 5x^2 - 7', '-6x^2 - 7'],
+    ['-(12 x ^ 2)', '-12x^2']
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1]));
 });
 
 describe('distribution', function () {
@@ -355,50 +334,23 @@ describe('stepThrough returning no steps', function() {
 });
 
 describe('simplifying fractions', function() {
-  it('5x + (1/2)x -> 11/2', function () {
-    assert.deepEqual(
-      simplify(math.parse('5x + (1/2)x')),
-      flatten(math.parse('11/2 x')));
-  });
-  it('x + x/2 -> 3/2 x', function () {
-    assert.deepEqual(
-      simplify(math.parse('x + x/2')),
-      flatten(math.parse('3/2 x')));
-  });
-  it('1 + 1/2 -> 3/2', function () {
-    assert.deepEqual(
-      simplify(math.parse('1 + 1/2')),
-      flatten(math.parse('3/2')));
-  });
+  const tests = [
+    ['5x + (1/2)x', '11/2 x'],
+    ['x + x/2', '3/2 x'],
+    ['1 + 1/2', '3/2'],
+    ['2 + 5/2 + 3', '15/2'],
+    ['9/18-5/18', '2/9'],
+    ['2(x+3)/3', '2/3 x + 2'],
+    ['5/18 - 9/18', '-2/9'],
+    ['9/18', '1/2']
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1]));
+
+  // single steps
   it('2 + 5/2 + 3 -> one step -> (2+3) + 5/2', function () {
     assert.deepEqual(
       testStep('2 + 5/2 + 3'),
       flatten(math.parse('(2+3) + 5/2')));
-  });
-  it('2 + 5/2 + 3 -> simplify -> 15/2', function () {
-    assert.deepEqual(
-      simplify(math.parse('2 + 5/2 + 3')),
-      flatten(math.parse('15/2')));
-  });
-  it('9/18-5/18 -> 4/18', function () {
-    assert.deepEqual(
-      simplify(math.parse('9/18-5/18')),
-      flatten(math.parse('2/9')));
-  });
-  it('2(x+3)/3 -> 2/3 x + 2', function () {
-    assert.deepEqual(
-      simplify(math.parse('2(x+3)/3')),
-      flatten(math.parse('2/3 x + 2')));
-  });
-  it('5/18 - 9/18 -> -4/18', function () {
-    assert.deepEqual(
-      simplify(math.parse('5/18 - 9/18')),
-      flatten(math.parse('-2/9')));
-  });
-  it('9/18 -> 1/2', function () {
-    assert.deepEqual(
-      simplify(math.parse('9/18')),
-      flatten(math.parse('1/2')));
   });
 });
 

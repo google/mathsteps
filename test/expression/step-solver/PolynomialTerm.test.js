@@ -6,6 +6,7 @@ const math = require('../../../index');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const PolynomialTermNode = require('../../../lib/expression/step-solver/PolynomialTermNode.js');
 const PolynomialTermOperations = require('../../../lib/expression/step-solver/PolynomialTermOperations.js');
+const print = require('./../../../lib/expression/step-solver/prettyPrint');
 
 function isPolynomialTerm(exprString) {
   return PolynomialTermNode.isPolynomialTerm(flatten(math.parse(exprString)));
@@ -157,40 +158,23 @@ describe('multiplyConstantAndPolynomialTerm', function() {
   });
 });
 
-function simplifyPolynomialFraction(exprString) {
-  return PolynomialTermOperations.simplifyPolynomialFraction(
-    flatten(math.parse(exprString))).node;
+function testSimplifyPolynomialFraction(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    const inputNode = flatten(math.parse(exprStr));
+    assert.deepEqual(
+      print(PolynomialTermOperations.simplifyPolynomialFraction(inputNode).node),
+      outputStr);
+  });
 }
 
 describe('simplifyPolynomialFraction', function() {
-  it('2x/4 -> 1/2 x', function () {
-    assert.deepEqual(
-      simplifyPolynomialFraction('2x/4'),
-      flatten(math.parse('1/2 x')));
-  });
-  it('9y/3 -> 3y', function () {
-    assert.deepEqual(
-      simplifyPolynomialFraction('9y/3'),
-      flatten(math.parse('3y')));
-  });
-  it('y/-3 -> -1/3 y', function () {
-    assert.deepEqual(
-      simplifyPolynomialFraction('y/-3'),
-      flatten(math.parse('-1/3 y')));
-  });
-  it('-3y/-2 -> 3/2 y', function () {
-    assert.deepEqual(
-      simplifyPolynomialFraction('-3y/-2'),
-      flatten(math.parse('3/2 y')));
-  });
-  it('-y/-1 -> y', function () {
-    assert.deepEqual(
-      simplifyPolynomialFraction('-y/-1'),
-      flatten(math.parse('y')));
-  });
-  it('12z^2/27 -> 4/9 z^2', function () {
-    assert.deepEqual(
-      simplifyPolynomialFraction('12z^2/27'),
-      flatten(math.parse('4/9 z^2')));
-  });
+  const tests = [
+    ['2x/4', '1/2 x'],
+    ['9y/3', '3y'],
+    ['y/-3', '-1/3 y'],
+    ['-3y/-2', '3/2 y'],
+    ['-y/-1', 'y'],
+    ['12z^2/27', '4/9 z^2'],
+  ];
+  tests.forEach(t => testSimplifyPolynomialFraction(t[0], t[1]));
 });
