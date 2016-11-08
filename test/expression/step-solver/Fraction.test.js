@@ -6,6 +6,7 @@ const math = require('../../../index');
 const ConstantFraction = require('../../../lib/expression/step-solver/ConstantFraction');
 const Fraction = require('../../../lib/expression/step-solver/Fraction');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
+const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 
 function testAddConstantFractions(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
@@ -63,8 +64,8 @@ describe('multiplyFractions', function () {
 function testSimplifyFraction(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      flatten(Fraction.simplifyFraction(flatten(math.parse(exprStr)))).node,
-      flatten(math.parse(outputStr)));
+      print(Fraction.simplifyFraction(flatten(math.parse(exprStr))).node),
+      outputStr);
   });
 }
 

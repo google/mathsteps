@@ -390,10 +390,15 @@ describe('simplifying fractions', function() {
       simplify(math.parse('2(x+3)/3')),
       flatten(math.parse('2/3 x + 2')));
   });
-  it('(5/18 - 9/18 -> -4/18', function () {
+  it('5/18 - 9/18 -> -4/18', function () {
     assert.deepEqual(
       simplify(math.parse('5/18 - 9/18')),
       flatten(math.parse('-2/9')));
+  });
+  it('9/18 -> 1/2', function () {
+    assert.deepEqual(
+      simplify(math.parse('9/18')),
+      flatten(math.parse('1/2')));
   });
 });
 
@@ -414,8 +419,8 @@ describe('cancelling out', function() {
   it('(x^(2)+y^(2))/(5x-6x) -> -x - y^2/x', function() {
     // have to print because the - is actually wrapped around y^2 / x in the tree
     assert.deepEqual(
-      print(simplify(math.parse('(x^(2)+y^(2))/(5x-6x)'))),
-      '-x - y^2 / x');
+      print(simplify(math.parse('(x^(2)+y^(2))/(5x-6x) + 5'))),
+      '-x - y^2 / x + 5');
   });
   it('( p ^ ( 2) + 1)/( p ^ ( 2) + 1) -> 1', function () {
     assert.deepEqual(
