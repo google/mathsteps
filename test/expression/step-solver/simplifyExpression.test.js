@@ -333,7 +333,7 @@ describe('stepThrough returning no steps', function() {
   });
 });
 
-describe('simplifying fractions', function() {
+describe('fractions', function() {
   const tests = [
     ['5x + (1/2)x', '11/2 x'],
     ['x + x/2', '3/2 x'],
@@ -342,7 +342,9 @@ describe('simplifying fractions', function() {
     ['9/18-5/18', '2/9'],
     ['2(x+3)/3', '2/3 x + 2'],
     ['5/18 - 9/18', '-2/9'],
-    ['9/18', '1/2']
+    ['9/18', '1/2'],
+    ['x/(2/3) + 5', '3/2 x + 5'],
+    ['(2+x)/6', '1/3 + x / 6']
   ]
   tests.forEach(t => testSimplify(t[0], t[1]));
 
@@ -368,7 +370,7 @@ describe('cancelling out', function() {
       simplify(math.parse('(x^3*y)/x^2 + 5')),
       flatten(math.parse('x*y + 5')));
   });
-  it('(x^(2)+y^(2))/(5x-6x) -> -x - y^2/x', function() {
+  it('(x^(2)+y^(2))/(5x-6x) -> -x - y^2/x + 5', function() {
     // have to print because the - is actually wrapped around y^2 / x in the tree
     assert.deepEqual(
       print(simplify(math.parse('(x^(2)+y^(2))/(5x-6x) + 5'))),
@@ -451,4 +453,3 @@ describe('absolute value support', function() {
       flatten(math.parse('-40')));
   });
 });
-
