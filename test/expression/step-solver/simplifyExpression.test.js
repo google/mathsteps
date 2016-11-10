@@ -173,8 +173,8 @@ describe('collects and combines like terms', function() {
   });
   it('2x^2 * y * x * y^3 = 2 * x^3 * y^4', function () {
     assert.deepEqual(
-      simplify(math.parse('2x^2 * y * x * y^3')),
-      flatten(math.parse('2 * x^3 * y^4')));
+      print(simplify(math.parse('2x^2 * y * x * y^3'))),
+      '2 * x^3 * y^4');
   });
   it('x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6 = 5x^3 - 8x^2 + 6', function () {
     assert.deepEqual(
@@ -199,8 +199,8 @@ describe('collects and combines like terms', function() {
   });
   it('y * 2x * 10 -> 20 * x * y', function () {
     assert.deepEqual(
-      simplify(math.parse('y * 2x * 10')),
-      flatten(math.parse('20 * x * y')));
+      print(simplify(math.parse('y * 2x * 10'))),
+      '20 * x * y');
   });
   it('x^y * x^z -> x^(y+z)', function () {
     assert.deepEqual(
