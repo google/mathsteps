@@ -223,6 +223,7 @@ describe('can simplify with division', function () {
     ['2x * y / z * 10', '20 * x * y / z'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x/x', '2'],
+    ['2x/4/3', '1/6 x'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1]));
   // TODO: factor the numerator to cancel out with denominator
