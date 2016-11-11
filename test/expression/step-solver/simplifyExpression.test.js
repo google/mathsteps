@@ -25,14 +25,14 @@ function testStep(exprStr, outputStr, debug=false) {
       throw Error('missing or bad change type');
     }
     console.log(nodeStatus.changeType);
-    console.log(print(nodeStatus.node));
+    console.log(print(nodeStatus.newNode));
   }
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(nodeStatus.node),
+      print(nodeStatus.newNode),
       outputStr);
   });
-  return nodeStatus.node;
+  return nodeStatus.newNode;
 }
 
 function testSimplify(exprStr, outputStr, debug=false) {

@@ -14,7 +14,7 @@ function testCollectLikeTerms(exprStr, outputStr, explanation="", debug=false) {
   }
   it(description, function () {
     const exprTree = flatten(math.parse(exprStr));
-    const collected = print(LikeTermCollector.collectLikeTermsDFS(exprTree).node);
+    const collected = print(LikeTermCollector.collectLikeTermsDFS(exprTree).newNode);
     if (debug) {
       console.log(collected);
     }

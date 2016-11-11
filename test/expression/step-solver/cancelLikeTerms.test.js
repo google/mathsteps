@@ -8,7 +8,7 @@ const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 // TODO: set up more test files like this one
 
 function testCancelLikeTerms(exprStr, expectedStr) {
-  const evaluted = cancelLikeTerms(flatten(math.parse(exprStr))).node;
+  const evaluted = cancelLikeTerms(flatten(math.parse(exprStr))).newNode;
   assert.deepEqual(
     print(evaluted),
     expectedStr);

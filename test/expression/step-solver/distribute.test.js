@@ -9,7 +9,7 @@ const print = require('./../../../lib/expression/step-solver/prettyPrint');
 function testDistribute(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(flatten(distribute(flatten(math.parse(exprStr))).node)),
+      print(flatten(distribute(flatten(math.parse(exprStr))).newNode)),
       outputStr);
   });
 }

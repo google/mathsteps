@@ -11,7 +11,7 @@ const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 function testAddConstantFractions(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(ConstantFraction.addConstantFractions(math.parse(exprString)).node),
+      print(ConstantFraction.addConstantFractions(math.parse(exprString)).newNode),
       outputStr);
   });
 }
@@ -28,7 +28,7 @@ describe('addConstantFractions', function () {
 function testAddConstantAndFraction(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(ConstantFraction.addConstantAndFraction(math.parse(exprString)).node),
+      print(ConstantFraction.addConstantAndFraction(math.parse(exprString)).newNode),
       outputStr);
   });
 }
@@ -47,7 +47,7 @@ function testMultiplyFractions(exprString, outputStr) {
   const node = flatten(math.parse(exprString));
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.multiplyFractionsDFS(node).node),
+      print(Fraction.multiplyFractionsDFS(node).newNode),
       outputStr);
   });
 }
@@ -64,7 +64,7 @@ describe('multiplyFractions', function () {
 function testSimplifyFraction(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.simplifyFraction(flatten(math.parse(exprStr))).node),
+      print(Fraction.simplifyFraction(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
@@ -86,7 +86,7 @@ describe('simplifyFraction', function() {
 function testMultiplyByInverse(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.multiplyByInverse(flatten(math.parse(exprStr))).node),
+      print(Fraction.multiplyByInverse(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
@@ -103,7 +103,7 @@ describe('multiplyByInverse', function() {
 function testBreakUpNumerator(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.breakUpNumeratorDFS(flatten(math.parse(exprStr))).node),
+      print(Fraction.breakUpNumeratorDFS(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }

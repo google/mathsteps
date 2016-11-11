@@ -13,7 +13,7 @@ const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeT
 function testSimplify(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplifyOperations(flatten(math.parse(exprStr))).node),
+      print(simplifyOperations(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }

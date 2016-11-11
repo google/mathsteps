@@ -10,7 +10,7 @@ const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 function testSimplifyDivision(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplifyDivision(flatten(math.parse(exprStr))).node),
+      print(simplifyDivision(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }

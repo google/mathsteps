@@ -36,7 +36,7 @@ describe('classifies symbol terms correctly', function() {
 function testCombinePolynomialTerms(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = flatten(math.parse(exprStr));
-    const combinedNode = PolynomialTermOperations.combinePolynomialTerms(inputNode).node;
+    const combinedNode = PolynomialTermOperations.combinePolynomialTerms(inputNode).newNode;
     assert.equal(
       print(combinedNode),
       outputStr);
@@ -95,7 +95,7 @@ describe('combinePolynomialTerms addition', function() {
 function testMultiplyConstantAndPolynomialTerm(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = flatten(math.parse(exprStr));
-    const newNode = PolynomialTermOperations.multiplyConstantAndPolynomialTerm(inputNode).node;
+    const newNode = PolynomialTermOperations.multiplyConstantAndPolynomialTerm(inputNode).newNode;
     assert.equal(
       print(newNode),
       outputStr);
@@ -114,7 +114,7 @@ function testSimplifyPolynomialFraction(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = flatten(math.parse(exprStr));
     assert.deepEqual(
-      print(PolynomialTermOperations.simplifyPolynomialFraction(inputNode).node),
+      print(PolynomialTermOperations.simplifyPolynomialFraction(inputNode).newNode),
       outputStr);
   });
 }
