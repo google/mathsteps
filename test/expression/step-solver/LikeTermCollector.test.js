@@ -5,14 +5,21 @@ const math = require('../../../index');
 
 const LikeTermCollector = require('../../../lib/expression/step-solver/LikeTermCollector.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
+const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 
-function collectLikeTerms(expression, debug=false) {
-  const exprTree = flatten(math.parse(expression));
-  const collected = LikeTermCollector.collectLikeTermsDFS(exprTree).node;
-  if (debug) {
-    console.log(collected.toString());
+function testCollectLikeTerms(exprStr, outputStr, explanation="", debug=false) {
+  let description = `${exprStr} -> ${outputStr}`;
+  if (explanation) {
+    description += ` (${explanation})`;
   }
-  return collected;
+  it(description, function () {
+    const exprTree = flatten(math.parse(exprStr));
+    const collected = print(LikeTermCollector.collectLikeTermsDFS(exprTree).node);
+    if (debug) {
+      console.log(collected);
+    }
+    assert.equal(collected, outputStr);
+  });
 }
 
 function canCollectLikeTerms(expression) {
@@ -20,152 +27,74 @@ function canCollectLikeTerms(expression) {
     return LikeTermCollector.canCollectLikeTerms(exprTree);
 }
 
-describe('can collect like terms for addition', function () {
-  it('2+2 --> false (only one type)', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('2+2'),
-      false);
+function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
+  let description = `${exprStr} -> ${canCollect}`;
+  if (explanation) {
+    description += ` (${explanation})`;
+  }
+  it(description , function () {
+    const exprTree = flatten(math.parse(exprStr));
+    assert.equal(
+      LikeTermCollector.canCollectLikeTerms(exprTree),
+      canCollect);
   });
-  it('x^2 + x^2 --> false (only one type)', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('x^2+x^2'),
-      false);
-  });
-  it('x+2 --> false (all types have only one)', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('x+2'),
-      false);
-  });
-  it('x+2+x --> true', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('x+2+x'),
-      true);
-  });
-  it('(x+2+x) --> false, because parenthesis', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('(x+2+x)'),
-      false);
-  });
-  it('x^2 + 5 + x + x^2 --> true', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('x^2 + 5 + x + x^2'),
-      true);
-  });
+}
 
+describe('can collect like terms for addition', function () {
+  const tests = [
+    ['2+2', false, "because only one type"],
+    ['x^2+x^2', false, "because only one type"],
+    ['x+2', false, "because all types have only one"],
+    ['(x+2+x)', false, "because in parenthesis, need to be collected first"],
+    ['x+2+x', true],
+    ['x^2 + 5 + x + x^2', true],
+  ];
+  tests.forEach(t => testCanCollectLikeTerms(t[0], t[1], t[2]));
 });
 
 describe('can collect like terms for multiplication', function () {
-  it('2*2 --> false (only one type)', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('2*2'),
-      false);
-  });
-  it('x^2 * 2x^2 --> true', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('x^2 * 2x^2'),
-      true);
-  });
-  it('x * 2 --> false (all types have only one)', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('x * 2'),
-      false);
-  });
-  it('((2x^2)) * y * x * y^3 --> true', function () {
-    assert.deepEqual(
-      canCollectLikeTerms('((2x^2)) * y * x * y^3'),
-      true);
-  });
+  const tests = [
+    ['2*2', false, "because only one type"],
+    ['x^2 * 2x^2', true],
+    ['x * 2', false, "because all types have only one"],
+    ['((2x^2)) * y * x * y^3', true],
+  ];
+  tests.forEach(t => testCanCollectLikeTerms(t[0], t[1], t[2]));
 });
 
 describe('basic addition collect like terms, no exponents or coefficients',
   function() {
-    it('2+x+7 -> x + (2+7)', function () {
-      assert.deepEqual(
-        collectLikeTerms('2+x+7'),
-        math.parse('x+(2+7)'));
-    });
-    it('x + 4 + x + 5 -> (x + x) + (4 + 5)', function () {
-      assert.deepEqual(
-        collectLikeTerms('x + 4 + x + 5'),
-        math.parse('(x + x) + (4 + 5)'));
-    });
-    it('no change for x + 4 + y', function () {
-      assert.deepEqual(
-        collectLikeTerms('x + 4 + y'),
-        flatten(math.parse('x + 4 + y')));
-    });
-    it('x + 4 + x + 4/9 + y + 5/7 -> (x + x) + y + 4 + (4/9 + 5/7)', function () {
-      assert.deepEqual(
-        collectLikeTerms('x + 4 + x + 4/9 + y + 5/7'),
-        flatten(math.parse('(x + x) + y + 4 + (4/9 + 5/7)')));
-    });
-    // 2^x is an 'other'
-    it('x + 4 + x + 2^x + 5 -> (x + x) + (4 + 5) + 2^x', function () {
-      assert.deepEqual(
-        collectLikeTerms('x + 4 + x + 2^x + 5'),
-        flatten(math.parse('(x + x) + (4 + 5) + 2^x')));
-    });
-    // 2*(y + x) is an 'other' cause it has parens
-    it('z + 2*(y + x) + 4 + z  -> (z + z) + 4 + (2(y+x))', function () {
-      assert.deepEqual(
-        collectLikeTerms('z + 2*(y + x) + 4 + z'),
-        flatten(math.parse('(z + z) + 4 + 2*(y+x)')));
-    });
-  }
-);
+  const tests = [
+    ['2+x+7', 'x + (2 + 7)'],
+    ['x + 4 + x + 5', '(x + x) + (4 + 5)'],
+    ['x + 4 + y', 'x + 4 + y'],
+    ['x + 4 + x + 4/9 + y + 5/7', '(x + x) + y + 4 + (4/9 + 5/7)'],
+    ['x + 4 + x + 2^x + 5', '(x + x) + (4 + 5) + 2^x',
+      "because 2^x is an 'other'"],
+    ['z + 2*(y + x) + 4 + z', '(z + z) + 4 + 2 * (y + x)',
+      "2*(y + x) is an 'other' cause it has parens"],
+  ];
+  tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
+});
 
 describe('collect like terms with exponents and coefficients', function() {
-  it('x^2 + x + x^2 + x -> (x^2 + x^2) + (x + x)', function () {
-    assert.deepEqual(
-      collectLikeTerms('x^2 + x + x^2 + x'),
-      flatten(math.parse('(x^2 + x^2) + (x + x)')));
-  });
-  it('y^2 + 5 + y^2 + 5 -> (y^2 + y^2) + (5 + 5)', function () {
-    assert.deepEqual(
-      collectLikeTerms('y^2 + 5 + y^2 + 5'),
-      flatten(math.parse('(y^2 + y^2) + (5 + 5)')));
-  });
-  it('y + 5 + z^2 no change', function () {
-    assert.deepEqual(
-      collectLikeTerms('y + 5 + z^2'),
-      flatten(math.parse('y + 5 + z^2')));
-  });
-  it('2x^2 + x + x^2 + 3x -> (2x^2 + x^2) + (x + 3x)', function () {
-    assert.deepEqual(
-      collectLikeTerms('2x^2 + x + x^2 + 3x'),
-      flatten(math.parse('(2x^2 + x^2) + (x + 3x)')));
-  });
+  const tests = [
+    ['x^2 + x + x^2 + x', '(x^2 + x^2) + (x + x)'],
+    ['y^2 + 5 + y^2 + 5', '(y^2 + y^2) + (5 + 5)'],
+    ['y + 5 + z^2', 'y + 5 + z^2'],
+    ['2x^2 + x + x^2 + 3x', '(2x^2 + x^2) + (x + 3x)'],
+  ];
+  tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
 });
 
 describe('collect like terms for multiplication', function() {
-  it('2x^2 * y * x * y^3 -> 2 * (x^2 * x) * (y * y^3)', function () {
-    assert.deepEqual(
-      collectLikeTerms('2x^2 * y * x * y^3'),
-      flatten(math.parse('2 * (x^2 * x) * (y * y^3)')));
-  });
-  it('y^2 * 5 * y * 9 -> (5 * 9)*(y^2 * y)', function () {
-    assert.deepEqual(
-      collectLikeTerms('y^2 * 5 * y * 9'),
-      flatten(math.parse('(5 * 9)*(y^2 * y)')));
-  });
-  it('5y^2 * -4y * 9 -> (5 * -4 * 9)*(y^2 * y)', function () {
-    assert.deepEqual(
-      collectLikeTerms('5y^2 * -4y * 9'),
-      flatten(math.parse('(5 * -4 * 9)*(y^2 * y)')));
-  });
-  it('5y^2 * -y * 9 -> (5 * -1 * 9)*(y^2 * y)', function () {
-    assert.deepEqual(
-      collectLikeTerms('5y^2 * -y * 9'),
-      flatten(math.parse('(5 * -1 * 9)*(y^2 * y)')));
-  });
-  it('y * 5 * z^2 no change', function () {
-    assert.deepEqual(
-      collectLikeTerms('y * 5 * z^2'),
-      flatten(math.parse('y * 5 * z^2')));
-  });
-  it('y * 5 * (2+x) * y^2 * 1/3 -> (5 * 1/3) * (y*y^2) * (2+x)', function () {
-    assert.deepEqual(
-      collectLikeTerms('y * 5 * (2+x) * y^2 * 1/3'),
-      flatten(math.parse('(5 * 1/3) * (y*y^2) * (2+x)')));
-  });
+  const tests = [
+    ['2x^2 * y * x * y^3', '2 * (x^2 * x) * (y * y^3)'],
+    ['y^2 * 5 * y * 9', '(5 * 9) * (y^2 * y)'],
+    ['5y^2 * -4y * 9', '(5 * -4 * 9) * (y^2 * y)'],
+    ['5y^2 * -y * 9', '(5 * -1 * 9) * (y^2 * y)'],
+    ['y * 5 * z^2', 'y * 5 * z^2'],
+    ['y * 5 * (2+x) * y^2 * 1/3', '(5 * 1/3) * (y * y^2) * (2 + x)'],
+  ];
+  tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
 });
