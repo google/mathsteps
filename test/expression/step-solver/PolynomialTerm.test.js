@@ -8,154 +8,106 @@ const PolynomialTermNode = require('../../../lib/expression/step-solver/Polynomi
 const PolynomialTermOperations = require('../../../lib/expression/step-solver/PolynomialTermOperations.js');
 const print = require('./../../../lib/expression/step-solver/prettyPrint');
 
-function isPolynomialTerm(exprString) {
-  return PolynomialTermNode.isPolynomialTerm(flatten(math.parse(exprString)));
+function testIsPolynomialTerm(exprStr, isTerm) {
+  it(exprStr + ' ' + isTerm, function () {
+    assert.equal(
+      PolynomialTermNode.isPolynomialTerm(flatten(math.parse(exprStr))),
+      isTerm);
+  });
 }
 
 describe('classifies symbol terms correctly', function() {
-  it('x', function () {
-    assert.equal(isPolynomialTerm('x'), true);
-  });
-  it('-x', function () {
-    assert.equal(isPolynomialTerm('x'), true);
-  });
-  it('x^2', function () {
-    assert.equal(isPolynomialTerm('x^2'), true);
-  });
-  it('y^55', function () {
-    assert.equal(isPolynomialTerm('y^55'), true);
-  });
-  it('-y^(4+3)/4', function () {
-    assert.equal(isPolynomialTerm('y^4/4'), true);
-  });
-  it('5y/3', function () {
-    assert.equal(isPolynomialTerm('5y/3'), true);
-  });
-  it('x^y', function () {
-    assert.equal(isPolynomialTerm('x^y'), true);
-  });
-  it('3', function () {
-    assert.equal(isPolynomialTerm('3'), false);
-  });
-  it('2^5', function () {
-    assert.equal(isPolynomialTerm('2^5'), false);
-  });
-  it('x*y^5', function () {
-    assert.equal(isPolynomialTerm('x*y^5'), false);
-  });
-  it('-12y^5/-3', function () {
-    assert.equal(isPolynomialTerm('-12y^5/-3'), true);
-  });
+  const tests = [
+    ['x', true],
+    ['x', true],
+    ['x^2', true],
+    ['y^55', true],
+    ['y^4/4', true],
+    ['5y/3', true],
+    ['x^y', true],
+    ['3', false],
+    ['2^5', false],
+    ['x*y^5', false],
+    ['-12y^5/-3', true],
+  ];
+  tests.forEach(t => testIsPolynomialTerm(t[0], t[1]));
 });
 
-function combinePolynomialTerms(exprString) {
-  return PolynomialTermOperations.combinePolynomialTerms(
-    flatten(math.parse(exprString))).node;
-}
+function testCombinePolynomialTerms(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    const inputNode = flatten(math.parse(exprStr));
+    const combinedNode = PolynomialTermOperations.combinePolynomialTerms(inputNode).node;
+    assert.equal(
+      print(combinedNode),
+      outputStr);
+  });
+};
 
-function canCombine(exprString) {
-  return PolynomialTermOperations.canCombinePolynomialTerms(
-    flatten(math.parse(exprString)));
-}
+function testCanCombine(exprStr, canCombine) {
+  it(exprStr + ' ' + canCombine, function () {
+    const inputNode = flatten(math.parse(exprStr));
+    assert.equal(
+      PolynomialTermOperations.canCombinePolynomialTerms(inputNode),
+      canCombine);
+  });
+};
 
 describe('canCombinePolynomialTerms multiplication', function() {
-  it('x^2 * x * x', function () {
-    assert.deepEqual(
-      canCombine('x^2 * x * x'),
-      true);
-  });
-  it('x^2 * 3x * x false b/c coefficient', function () {
-    assert.deepEqual(
-      canCombine('x^2 * 3x * x'),
-      false);
-  });
-  it('y * y^3', function () {
-    assert.deepEqual(
-      canCombine('y * y^3'),
-      true);
-  });
-  it('5 * y^3', function () { // makes it implicit
-    assert.deepEqual(
-      canCombine('5 * y^3'),
-      true);
-  });
-  it('5/7 * x', function () { // makes it implicit
-    assert.deepEqual(
-      canCombine('5/7 * x'),
-      true);
-  });
-  it('5/7*9 * x', function () { // makes it implicit
-    assert.deepEqual(
-      canCombine('5/7*9 * x'),
-      false);
-  });
+  const tests = [
+    ['x^2 * x * x', true],
+    // false b/c coefficient
+    ['x^2 * 3x * x', false],
+    ['y * y^3', true],
+    // next 3: test that it makes it implicit
+    ['5 * y^3', true],
+    ['5/7 * x', true],
+    ['5/7*9 * x', false],
+  ];
+  tests.forEach(t => testCanCombine(t[0], t[1]));
 });
 
 describe('combinePolynomialTerms multiplication', function() {
-  it('x^2 * x * x -> x^(2+1+1)', function () {
-    assert.deepEqual(
-      combinePolynomialTerms('x^2 * x * x'),
-      flatten(math.parse('x^(2+1+1)')));
-  });
-  it('y * y^3 -> y^(1+3)', function () {
-    assert.deepEqual(
-      combinePolynomialTerms('y * y^3'),
-      math.parse('y^(1+3)'));
-  });
+  const tests = [
+    ['x^2 * x * x', 'x^(2 + 1 + 1)'],
+    ['y * y^3', 'y^(1 + 3)'],
+  ];
+  tests.forEach(t => testCombinePolynomialTerms(t[0], t[1]));
 });
 
 describe('canCombinePolynomialTerms addition', function() {
-  it('x + x', function () {
-    assert.deepEqual(
-      canCombine('x + x'),
-      true);
-  });
-  it('4y^2 + 7y^2 + y^2', function () {
-    assert.deepEqual(
-      canCombine('4y^2 + 7y^2 + y^2'),
-      true);
-  });
-  it('4y^2 + 7y^2 + y^2 + y no because diff exponents', function () {
-    assert.deepEqual(
-      canCombine('4y^2 + 7y^2 + y^2 + y'),
-      false);
-  });
-  it('y no because only one term', function () {
-    assert.deepEqual(
-      canCombine('y'),
-      false);
-  });
+  const tests = [
+    ['x + x',  true],
+    ['4y^2 + 7y^2 + y^2',  true],
+    ['4y^2 + 7y^2 + y^2 + y',  false],
+    ['y',  false],
+  ];
+  tests.forEach(t => testCanCombine(t[0], t[1]));
 });
 
 describe('combinePolynomialTerms addition', function() {
-  it('x + x -> (1+1)x', function () {
-    assert.deepEqual(
-      flatten(combinePolynomialTerms('x+x')),
-      flatten(math.parse('(1 + 1)x')));
-  });
-  it('4y^2 + 7y^2 + y^2 -> (4+7+1)y^2', function () {
-    assert.deepEqual(
-      flatten(combinePolynomialTerms('4y^2 + 7y^2 + y^2')),
-      flatten(math.parse('(4+7+1)y^2')));
-  });
+  const tests = [
+    ['x+x', '(1 + 1)x'],
+    ['4y^2 + 7y^2 + y^2', '(4 + 7 + 1)y^2'],
+  ];
+  tests.forEach(t => testCombinePolynomialTerms(t[0], t[1]));
 });
 
-function multiplyConstantAndPolynomialTerm(exprString) {
-  return PolynomialTermOperations.multiplyConstantAndPolynomialTerm(
-    flatten(math.parse(exprString))).node;
+function testMultiplyConstantAndPolynomialTerm(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    const inputNode = flatten(math.parse(exprStr));
+    const newNode = PolynomialTermOperations.multiplyConstantAndPolynomialTerm(inputNode).node;
+    assert.equal(
+      print(newNode),
+      outputStr);
+  });
 }
 
 describe('multiplyConstantAndPolynomialTerm', function() {
-  it('2 * x^2 -> 2x^2', function () {
-    assert.deepEqual(
-      multiplyConstantAndPolynomialTerm('2 * x^2'),
-      flatten(math.parse('2x^2')));
-  });
-  it('y^3 * 5-> 30y^3', function () {
-    assert.deepEqual(
-      multiplyConstantAndPolynomialTerm('y^3 * 5'),
-      flatten(math.parse('5y^3')));
-  });
+  const tests = [
+    ['2 * x^2', '2x^2'],
+    ['y^3 * 5', '5y^3'],
+  ];
+  tests.forEach(t => testMultiplyConstantAndPolynomialTerm(t[0], t[1]));
 });
 
 function testSimplifyPolynomialFraction(exprStr, outputStr) {
