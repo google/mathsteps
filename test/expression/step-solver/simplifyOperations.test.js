@@ -3,127 +3,61 @@
 const assert = require('assert');
 const math = require('../../../index');
 
-const simplifyOperations = require('../../../lib/expression/step-solver/simplifyOperations.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
+const print = require('./../../../lib/expression/step-solver/prettyPrint');
 const stepper = require('../../../lib/expression/step-solver/simplifyExpression.js');
+const simplifyOperations = require('../../../lib/expression/step-solver/simplifyOperations.js');
 const stepThrough = stepper.stepThrough;
 const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
 
-function simplify(exprString) {
-  return simplifyOperations(flatten(math.parse(exprString))).node;
+function testSimplify(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    assert.deepEqual(
+      print(simplifyOperations(flatten(math.parse(exprStr))).node),
+      outputStr);
+  });
 }
-
 describe('simplifies', function () {
-  it('performArithmetic 2+2 -> 4', function () {
-    assert.deepEqual(
-      simplify('2+2'),
-      math.parse('4'));
-  });
-  it('performArithmetic 2*3*5 -> 30', function () {
-    assert.deepEqual(
-      simplify('2*3*5'),
-      math.parse('30'));
-  });
-  it('performArithmetic does not divide 9/4', function () {
-    assert.deepEqual(
-      simplify('9/4'),
-      math.parse('9/4'));
-  });
-  it('removes multiplication by 1 x*1 -> x', function () {
-    assert.deepEqual(
-      simplify('x*1'),
-      math.parse('x'));
-  });
-  it('removes multiplication by 1 1*z^2 -> z^2', function () {
-    assert.deepEqual(
-      simplify('1*z^2'),
-      math.parse('z^2'));
-  });
-  it('removes multiplication by 1 2*1*z^2 -> 2*z^2', function () {
-    assert.deepEqual(
-      simplify('2*1*z^2'),
-      math.parse('2*z^2'));
-  });
-  it('removes multiplication by 0: 0x -> 0', function () {
-    assert.deepEqual(
-      simplify('0x'),
-      math.parse('0'));
-  });
-  it('removes multiplication by 0: 2*0*z^2 -> 0', function () {
-    assert.deepEqual(
-      simplify('2*0*z^2'),
-      math.parse('0'));
-  });
-  it('removes multiplication by -1 -1*x -> -x', function () {
-    assert.deepEqual(
-      simplify('-1*x'),
-      flatten(math.parse('-x')));
-  });
-  it('removes multiplication by -1 x^2*-1 -> -x^2', function () {
-    assert.deepEqual(
-      simplify('x^2*-1'),
-      flatten(math.parse('-x^2')));
-  });
-  it('does not remove multiplication by -1 for 2*x*2*-1 ', function () {
-    assert.deepEqual(
-      simplify('2*x*2*-1'),
-      flatten(math.parse('2*x*2*-1')));
-  });
-  it('removeExponentByOne x^1 -> x', function () {
-    assert.deepEqual(
-      simplify('x^1'),
-      math.parse('x'));
-  });
-  it('simplifyDoubleUnaryMinus --5 -> 5', function () {
-    assert.deepEqual(
-      simplify('--5'),
-      math.parse('5'));
-  });
-  it('simplifyDoubleUnaryMinus --x -> x', function () {
-    assert.deepEqual(
-      simplify('--x'),
-      math.parse('x'));
-  });
-  // note the double parens are handled in simplifyExpression.js with a final
-  // call to remove unnecessary parens
-  it('simplifyDoubleUnaryMinus -(-(2+x)) -> ((2+x))', function () {
-    assert.deepEqual(
-      simplify('-(-(2+x))'),
-      math.parse('((2+x))'));
-  });
+  const tests = [
+    //performArithmetic
+    ['2+2', '4'],
+    ['2*3*5', '30'],
+    ['9/4', '9/4'], //  does not divide
+    ['x*1', 'x'],
+    // removes multiplication by 1
+    ['1*z^2', 'z^2'],
+    ['2*1*z^2', '2 * z^2'],
+    // removes multiplication by 0
+    ['0x', '0'],
+    ['2*0*z^2','0'],
+    // removes multiplication by -1
+    ['-1*x', '-x'],
+    ['x^2*-1', '-x^2'],
+    ['2*x*2*-1', '2 * x * 2 * -1'], // does not remove multiplication by -1
+    // removeExponentByOne
+    ['x^1', 'x'],
+    // simplifyDoubleUnaryMinus
+    ['--5', '5'],
+    ['--x', 'x'],
+    // note the double parens are handled in simplifyExpression.js with a final
+    // call to remove unnecessary parens
+    ['-(-(2+x))', '((2 + x))'],
+    // removeAdditionByZero
+    ['2+0+x', '2 + x'],
+    // divide by 1
+    ['x/1', 'x'],
+    // divide by -1
+    ['(x+3)/-1', '-(x + 3)'],
+    // exponent to 0 -> 1
+    ['(x+3)^0', '1'],
+    // abs
+    ['abs(4)', '4'],
+    ['abs(-5)', '5'],
+  ];
+  tests.forEach(t => testSimplify(t[0], t[1]));
+
   it('simplifyDoubleUnaryMinus step actually happens: 22 - (-7) -> 22 + 7', function () {
     const steps = stepThrough(math.parse('22 - (-7)'));
     assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_DOUBLE_UNARY_MINUS);
-  });
-
-  it('removeAdditionByZero 2+0+x -> 2+x', function () {
-    assert.deepEqual(
-      simplify('2+0+x'),
-      math.parse('2+x'));
-  });
-  it('x/1 -> x', function () {
-    assert.deepEqual(
-      simplify('x/1'),
-      (math.parse('x')));
-  });
-  it('(x+3)/-1 -> -(x+3)', function () {
-    assert.deepEqual(
-      simplify('(x+3)/-1'),
-      math.parse('-(x+3)'));
-  });
-  it('(x+3)^0 -> 1', function () {
-    assert.deepEqual(
-      simplify('(x+3)^0'),
-      math.parse('1'));
-  });
-  it('abs(4) -> 4', function () {
-    assert.deepEqual(
-      simplify('abs(4)'),
-      math.parse('4'));
-  });
-  it('abs(-5) -> 5', function () {
-    assert.deepEqual(
-      simplify('abs(-5)'),
-      math.parse('5'));
   });
 });
