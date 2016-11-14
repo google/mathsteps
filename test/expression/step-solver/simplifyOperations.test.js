@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('../../../index');
 
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('./../../../lib/expression/step-solver/prettyPrint');
+const print = require('./../../../lib/expression/step-solver/print');
 const stepper = require('../../../lib/expression/step-solver/simplifyExpression.js');
 const simplifyOperations = require('../../../lib/expression/step-solver/simplifyOperations.js');
 const stepThrough = stepper.stepThrough;

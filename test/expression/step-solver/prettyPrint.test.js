@@ -2,18 +2,18 @@
 
 const assert = require('assert');
 const math = require('../../../index');
-const prettyPrint = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 
 function testPrint(exprStr, outputStr, latex=false) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      prettyPrint(math.parse(exprStr), latex),
+      print(math.parse(exprStr), latex),
       outputStr);
   });
 }
 
-describe('prettyPrint asciimath', function () {
+describe('print asciimath', function () {
   const tests = [
     ['2+3+4', '2 + 3 + 4'],
     ['2 + (4 - x) + - 4', '2 + (4 - x) - 4'],
@@ -23,7 +23,7 @@ describe('prettyPrint asciimath', function () {
   tests.forEach(t => testPrint(t[0], t[1]));
 });
 
-describe('prettyPrint latex', function () {
+describe('print latex', function () {
   const tests = [
     ['2+3+4', '2 + 3 + 4'],
     ['2 + (4 - x) + - 4', '2 + \\left(4 - x\\right) - 4'],

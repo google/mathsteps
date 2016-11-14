@@ -5,7 +5,7 @@ const math = require('../../../index');
 
 const LikeTermCollector = require('../../../lib/expression/step-solver/LikeTermCollector.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 
 function testCollectLikeTerms(exprStr, outputStr, explanation="", debug=false) {
   let description = `${exprStr} -> ${outputStr}`;

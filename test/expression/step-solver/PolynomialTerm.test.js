@@ -6,7 +6,7 @@ const math = require('../../../index');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const PolynomialTermNode = require('../../../lib/expression/step-solver/PolynomialTermNode.js');
 const PolynomialTermOperations = require('../../../lib/expression/step-solver/PolynomialTermOperations.js');
-const print = require('./../../../lib/expression/step-solver/prettyPrint');
+const print = require('./../../../lib/expression/step-solver/print');
 
 function testIsPolynomialTerm(exprStr, isTerm) {
   it(exprStr + ' ' + isTerm, function () {

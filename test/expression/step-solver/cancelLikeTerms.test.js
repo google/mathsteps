@@ -3,7 +3,7 @@ const math = require('../../../index');
 
 const cancelLikeTerms = require('../../../lib/expression/step-solver/cancelLikeTerms.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 
 function testCancelLikeTerms(exprStr, expectedStr) {
   const evaluted = cancelLikeTerms(flatten(math.parse(exprStr))).newNode;
