@@ -9,291 +9,107 @@ const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeT
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const solveEquation = require('../../../lib/expression/step-solver/solveEquation.js');
 
-function testSolve(equationString, comparator, debug=false) {
+function testSolve(equationString, comparator, outputStr, debug=false) {
   const sides = equationString.split(comparator);
   const leftNode = math.parse(sides[0]);
   const rightNode = math.parse(sides[1]);
 
   const steps = solveEquation(leftNode, rightNode, comparator, debug);
+  let lastStep;
   if (steps.length === 0) {
-    return equationString;
+    lastStep = equationString;
   }
-  return steps[steps.length -1];
+  else {
+    lastStep = steps[steps.length -1].asciimath;
+  }
+  it(equationString + ' -> ' + outputStr, function () {
+    assert.equal(lastStep, outputStr);
+  });
 }
 
 describe('solveEquation for =', function () {
-  it('x = 1 -> x = 1', function () {
-    assert.equal(
-      testSolve('x = 1', '='), // no asciimath because no steps
-      'x = 1');
-  });
-  it('2 = x -> x = 2', function () {
-    assert.equal(
-      testSolve('2 = x', '=').asciimath,
-      'x = 2');
-  });
-  it('2 + -3 = x -> x = -1', function () {
-    assert.equal(
-      testSolve('2 + -3 = x', '=').asciimath,
-      'x = -1');
-  });
-  it('x + 3 = 4 -> x = 1', function () {
-    assert.equal(
-      testSolve('x + 3 = 4', '=').asciimath,
-      'x = 1');
-  });
-  it('2x - 3 = 0 -> x = 3 / 2', function () {
-    assert.equal(
-      testSolve('2x - 3 = 0', '=').asciimath,
-      'x = 3/2');
-  });
-  it('x/3 - 2 = -1 -> x = 3', function () {
-    assert.equal(
-      testSolve('x/3 - 2 = -1', '=').asciimath,
-      'x = 3');
-  });
-  it('5x/2 + 2 = 3x/2 + 10 -> x = 8', function () {
-    assert.equal(
-      testSolve('5x/2 + 2 = 3x/2 + 10', '=').asciimath,
-      'x = 8');
-  });
-  it('2x - 1 = -x -> x = 1/3', function () {
-    assert.equal(
-      testSolve('2x - 1 = -x', '=').asciimath,
-      'x = 1/3');
-  });
-  it('2 - x = -4 + x -> x = 3', function () {
-    assert.equal(
-      testSolve('2 - x = -4 + x', '=').asciimath,
-      'x = 3');
-  });
-  it('2x/3 = 2 -> x = 3', function () {
-    assert.equal(
-      testSolve('2x/3 = 2', '=').asciimath,
-      'x = 3');
-  });
-  it('2x - 3 = x -> x = 3', function () {
-    assert.equal(
-      testSolve('2x - 3 = x', '=').asciimath,
-      'x = 3');
-  });
-  it('8 - 2a = a + 3 - 1 -> a = 3', function () {
-    assert.equal(
-      testSolve('8 - 2a = a + 3 - 1', '=').asciimath,
-      'a = 2');
-  });
-  it('2 - x = 4 -> x = -2', function () {
-    assert.equal(
-      testSolve('2 - x = 4', '=').asciimath,
-      'x = -2');
-  });
-  it('2 - 4x = x -> x = 2/5', function () {
-    assert.equal(
-      testSolve('2 - 4x = x', '=').asciimath,
-      'x = 2/5');
-  });
-  it('9x + 4 - 3 = 2x -> x = -1/7', function () {
-    assert.equal(
-      testSolve('9x + 4 - 3 = 2x', '=').asciimath,
-      'x = -1/7');
-  });
-  it('9x + 4 - 3 = -2x -> x = -1/11', function () {
-    assert.equal(
-      testSolve('9x + 4 - 3 = -2x', '=').asciimath,
-      'x = -1/11');
-  });
-  it('(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0 -> 2x^6 - x^4 - 50x^2 = -25', function () {
-    assert.equal(
-      testSolve('(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '=').asciimath,
-      '2x^6 - x^4 - 50x^2 = -25');
-  });
-  it('(-x^2 - 4x + 2)(-3x^2 - 6x + 3) = 0 -> 3x^4 + 18x^3 + 15x^2 − 24x = -6', function () {
-    assert.equal(
-      testSolve('(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '=').asciimath,
-      '3x^4 + 18x^3 + 15x^2 - 24x = -6');
-  });
-  it('5x + (1/2)x = 27 -> x = 1', function () {
-    assert.equal(
-      testSolve('5x + (1/2)x = 27 ', '=').asciimath,
-      'x = 54/11');
-  });
-  it('2x/3 = 2x - 4 -> x = 3', function () {
-    assert.equal(
-      testSolve('2x/3 = 2x - 4 ', '=').asciimath,
-      'x = 3');
-  });
-  it('(-2/3)x + 3/7 = 1/2 -> x = -3/28', function() {
-    assert.equal(
-      testSolve('(-2/3)x + 3/7 = 1/2', '=').asciimath,
-      'x = -3/28');
-  });
-  it('-9/4v + 4/5 = 7/8  -> v = -1/30', function() {
-    assert.equal(
-      testSolve('-9/4v + 4/5 = 7/8 ', '=').asciimath,
-      'v = -1/30');
-  });
-  it('y - x - 2 = 3*2 -> y = 8 + x', function () {
-    assert.equal(
-      testSolve('y - x - 2 = 3*2', '=').asciimath,
-      'y = 8 + x');
-  });
-  it('2y - x - 2 = x -> y = x + 1', function () {
-    assert.equal(
-      testSolve('2y - x - 2 = x', '=').asciimath,
-      'y = x + 1');
-  });
-  // TODO: update test once we have root support
-  it('x^2 - 2 = 0 -> x^2 = 2', function () {
-    assert.equal(
-      testSolve('x^2 - 2 = 0', '=').asciimath,
-      'x^2 = 2');
-  });
-  it('x/(2/3) = 1 -> x = 2/3', function () {
-    assert.equal(
-      testSolve('x/(2/3) = 1', '=').asciimath,
-      'x = 2/3');
-  });
-  it('(x+1)/3 = 4 -> x = 11', function () {
-    assert.equal(
-      testSolve('(x+1)/3 = 4', '=').asciimath,
-      'x = 11');
-  });
-  it('2(x+3)/3 = 2 -> x = 0', function () {
-    assert.equal(
-      testSolve('2(x+3)/3 = 2', '=').asciimath,
-      'x = 0');
-  });
+  const tests = [
+    ['x = 1', '=', 'x = 1'],
+    ['2 = x', '=', 'x = 2'],
+    ['2 + -3 = x', '=', 'x = -1'],
+    ['x + 3 = 4', '=', 'x = 1'],
+    ['2x - 3 = 0', '=', 'x = 3/2'],
+    ['x/3 - 2 = -1', '=', 'x = 3'],
+    ['5x/2 + 2 = 3x/2 + 10', '=', 'x = 8'],
+    ['2x - 1 = -x', '=', 'x = 1/3'],
+    ['2 - x = -4 + x', '=', 'x = 3'],
+    ['2x/3 = 2', '=', 'x = 3'],
+    ['2x - 3 = x', '=', 'x = 3'],
+    ['8 - 2a = a + 3 - 1', '=', 'a = 2'],
+    ['2 - x = 4', '=', 'x = -2'],
+    ['2 - 4x = x', '=', 'x = 2/5'],
+    ['9x + 4 - 3 = 2x', '=', 'x = -1/7'],
+    ['9x + 4 - 3 = -2x', '=', 'x = -1/11'],
+    ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '=', '2x^6 - x^4 - 50x^2 = -25'],
+    ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '=', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
+    ['5x + (1/2)x = 27 ', '=', 'x = 54/11'],
+    ['2x/3 = 2x - 4 ', '=', 'x = 3'],
+    ['(-2/3)x + 3/7 = 1/2', '=', 'x = -3/28'],
+    ['-9/4v + 4/5 = 7/8 ', '=', 'v = -1/30'],
+    ['y - x - 2 = 3*2', '=', 'y = 8 + x'],
+    ['2y - x - 2 = x', '=', 'y = x + 1'],
+    // TODO: update test once we have root support
+    ['x^2 - 2 = 0', '=', 'x^2 = 2'],
+    ['x/(2/3) = 1', '=', 'x = 2/3'],
+    ['(x+1)/3 = 4', '=', 'x = 11'],
+    ['2(x+3)/3 = 2', '=', 'x = 0'],
+  ];
+  tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
 
 describe('solveEquation for non = comparators', function() {
-  it('x + 2 > 3 -> x > 1', function () {
-    assert.equal(
-      testSolve('x + 2 > 3', '>').asciimath,
-      'x > 1');
-  });
-  it('2x < 6 -> x < 3', function () {
-    assert.equal(
-      testSolve('2x < 6', '<').asciimath,
-      'x < 3');
-  });
-  it('-x > 1 -> x < -1', function () {
-    assert.equal(
-      testSolve('-x > 1', '>').asciimath,
-      'x < -1');
-  });
-  it('2 - x < 3 -> x > -1', function () {
-    assert.equal(
-      testSolve('2 - x < 3', '<').asciimath,
-      'x > -1');
-  });
+  const tests = [
+    ['x + 2 > 3', '>', 'x > 1'],
+    ['2x < 6', '<', 'x < 3'],
+    ['-x > 1', '>', 'x < -1'],
+    ['2 - x < 3', '<', 'x > -1'],
+  ];
+  tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
 
+function testSolveConstantEquation(
+  equationString, comparator, expectedExplanation, debug=false) {
+  const sides = equationString.split(comparator);
+  const leftNode = math.parse(sides[0]);
+  const rightNode = math.parse(sides[1]);
+
+  const steps = solveEquation(leftNode, rightNode, comparator, debug);
+  const acualExplanation = steps[steps.length -1].explanation;
+  it(equationString + ' -> ' + expectedExplanation, function () {
+    assert.equal(acualExplanation, expectedExplanation);
+  });
+}
+
 describe('constant comparison support', function () {
-  it('1 = 2 -> False', function () {
-    assert.equal(
-      testSolve('1 = 2', '=').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('3 + 5 = 8 -> True', function () {
-    assert.equal(
-      testSolve('3 + 5 = 8', '=').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('1/2 = 1/2 -> True', function () {
-    assert.equal(
-      testSolve('1 = 2', '=').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('2 - 3 = 5 -> True', function () {
-    assert.equal(
-      testSolve('2 - 3 = 5', '=').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('2 > 1 -> True', function () {
-    assert.equal(
-      testSolve('2 > 1', '>').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('2/3 > 1/3 -> True', function () {
-    assert.equal(
-      testSolve('2/3 > 1/3', '>').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('1 > 2 -> False', function () {
-    assert.equal(
-      testSolve('1 > 2', '>').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('1/3 > 2/3 -> False', function () {
-    assert.equal(
-      testSolve('1/3 > 2/3', '>').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('1 >= 1 -> True', function () {
-    assert.equal(
-      testSolve('1 >= 1', '>=').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('2 >= 1 -> True', function () {
-    assert.equal(
-      testSolve('2 >= 1', '>=').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('1 >= 2 -> False', function () {
-    assert.equal(
-      testSolve('1 >= 2', '>=').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('2 < 1 -> False', function () {
-    assert.equal(
-      testSolve('2 < 1', '<').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('2/3 < 1/3 -> False', function () {
-    assert.equal(
-      testSolve('2/3 < 1/3', '<').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('1 < 2 -> True', function () {
-    assert.equal(
-      testSolve('1 < 2', '<').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('1/3 < 2/3 -> True', function () {
-    assert.equal(
-      testSolve('1/3 < 2/3', '<').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('1 <= 1 -> True', function () {
-    assert.equal(
-      testSolve('1 <= 1', '<=').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('2 <= 1 -> False', function () {
-    assert.equal(
-      testSolve('2 <= 1', '<=').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
-  it('1 <= 2 -> True', function () {
-    assert.equal(
-      testSolve('1 <= 2', '<=').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  // TODO: when we support fancy exponent and sqrt things
-  // it('(1/64)^(-5/6) = 32 -> True', function () {
-  //  assert.equal(
-  //    testSolve('(1/64)^(-5/6) = 32', '=', true).explanation,
-  //    MathChangeTypes.STATEMENT_IS_TRUE);
-  // });
-  // With variables that cancel
-  it('5+ (x - 5) = x -> True', function () {
-    assert.equal(
-      testSolve('5 + (x - 5) = x', '=').explanation,
-      MathChangeTypes.STATEMENT_IS_TRUE);
-  });
-  it('4x - 4= 4x -> True', function () {
-    assert.equal(
-      testSolve('4x - 4= 4x', '=').explanation,
-      MathChangeTypes.STATEMENT_IS_FALSE);
-  });
+  const tests = [
+    ['1 = 2', '=', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['3 + 5 = 8', '=', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['1 = 2', '=', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['2 - 3 = 5', '=', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['2 > 1', '>', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['2/3 > 1/3', '>', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['1 > 2', '>', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['1/3 > 2/3', '>', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['1 >= 1', '>=', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['2 >= 1', '>=', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['1 >= 2', '>=', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['2 < 1', '<', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['2/3 < 1/3', '<', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['1 < 2', '<', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['1/3 < 2/3', '<', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['1 <= 1', '<=', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['2 <= 1', '<=', MathChangeTypes.STATEMENT_IS_FALSE],
+    ['1 <= 2', '<=', MathChangeTypes.STATEMENT_IS_TRUE],
+    // TODO: when we support fancy exponent and sqrt things
+    // ['(1/64)^(-5/6) = 32', '=', MathChangeTypes.STATEMENT_IS_TRUE],
+    // With variables that cancel
+    ['5 + (x - 5) = x', '=', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['4x - 4= 4x', '=', MathChangeTypes.STATEMENT_IS_FALSE],
+  ];
+  tests.forEach(t => testSolveConstantEquation(t[0], t[1], t[2]));
 });

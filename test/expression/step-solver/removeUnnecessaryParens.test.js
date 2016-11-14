@@ -5,65 +5,35 @@ const math = require('../../../index');
 
 const removeUnnecessaryParens = require('../../../lib/expression/step-solver/removeUnnecessaryParens.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
+const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 
-// to create nodes, for testing
-let opNode = NodeCreator.operator;
+it('(x+4) + 12 -> x + 4 + 12', function () {
+  assert.deepEqual(
+    removeUnnecessaryParens(math.parse('(x+4) + 12')),
+    math.parse('x+4+12'));
+});
+
+function testRemoveUnnecessaryParens(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    assert.deepEqual(
+      print(removeUnnecessaryParens(math.parse(exprStr))),
+      outputStr);
+  });
+}
 
 describe('removeUnnecessaryParens', function () {
-  it('(x+4) + 12 -> x + 4 + 12', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('(x+4) + 12')),
-      math.parse('x+4+12'));
-  });
-  it('-(x+4x) + 12 no change', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('-(x+4x) + 12')),
-      math.parse('-(x+4x) + 12'));
-  });
-  it('x + (12) -> x + 12', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('x + (12)')),
-      math.parse('x + 12'));
-  });
-  it('x + (y) -> x + y', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('x + (y)')),
-      math.parse('x + y'));
-  });
-  it('x + -(y) -> x + y', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('x + -(y)')),
-      math.parse('x + -y'));
-  });
-  it('((3 - 5)) * x -> (3 - 5) * x', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('((3 - 5)) * x')),
-      math.parse('(3 - 5) * x'));
-  });
-  it('((3 - 5)) * x -> (3 - 5) * x', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('((3 - 5)) * x')),
-      math.parse('(3 - 5) * x'));
-  });
-  it('(((-5))) -> -5', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('(((-5)))')),
-      math.parse('-5'));
-  });
-  it('((4+5)) + ((2^3)) -> (4+5) + 2^3 ', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('((4+5)) + ((2^3))')),
-      math.parse('(4+5) + 2^3'));
-  });
-  it('(2x^6 + -50 x^2) - (x^4)', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('(2x^6 + -50 x^2) - (x^4)'), true),
-      math.parse('2 x^6 + -50 x^2 - x^4'));
-  });
-  it('(x+4) - (12 + x)', function () {
-    assert.deepEqual(
-      removeUnnecessaryParens(math.parse('(x+4) - (12 + x)'), true),
-      math.parse('x + 4 - (12 + x)'));
-  });
+  const tests = [
+    ['(x+4) + 12', 'x + 4 + 12'],
+    ['-(x+4x) + 12', '-(x + 4x) + 12'],
+    ['x + (12)', 'x + 12'],
+    ['x + (y)', 'x + y'],
+    ['x + -(y)', 'x - y'],
+    ['((3 - 5)) * x', '(3 - 5) * x'],
+    ['((3 - 5)) * x', '(3 - 5) * x'],
+    ['(((-5)))', '-5'],
+    ['((4+5)) + ((2^3))', '(4 + 5) + 2^3'],
+    ['(2x^6 + -50 x^2) - (x^4)', '2x^6 - 50x^2 - x^4'],
+    ['(x+4) - (12 + x)', 'x + 4 - (12 + x)'],
+  ];
+  tests.forEach(t => testRemoveUnnecessaryParens(t[0], t[1]));
 });

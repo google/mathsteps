@@ -96,11 +96,8 @@ Testing
 
 FUTURE THINGS:
 
-- distribution
-- equation support (e.g. x+3 = 3x-5, solve for x)
-- fraction support
 - factoring
-- polynomial division
+- polynomial division (with factoring)
 - collect like terms for 'other' terms (e.g. 2^x + 2^x -> 2*2^x)
 - add support for function nodes like sqrt(x)
 - log rules and polynomial exponents (e.g. 2*2^x -> 2^(x+1))
@@ -190,3 +187,12 @@ REFACTOR #3
 - abstract polynomial terms into its own class, shouldn't have to deal with any
   args or other node attributes outside of the class (coefficient, exponent,
   symbol, nodes, constants, etc)
+
+MORE SUPPORT
+
+- distribution
+- equation support (e.g. x+3 = 3x-5, solve for x)
+- fraction support
+- absolute value support
+
+REFACTOR #4: pedagogy
