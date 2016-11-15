@@ -111,13 +111,6 @@ describe('collects and combines like terms', function() {
   ];
   stepTests.forEach(t => testStep(t[0], t[1]));
 
-  it('x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6 = 5x^3 - 8x^2 + 6', function () {
-    assert.deepEqual(
-      simplify(math.parse('x^2 + 3x * (-4x) + 5x^3 + 3x^2 + 6')),
-      opNode('+', [
-        math.parse('5x^3'), flatten(math.parse('-8x^2')), constNode(6)]));
-  });
-
   const simplifyTests = [
     ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],
     ['4y*3*5', '60y'],
@@ -126,6 +119,7 @@ describe('collects and combines like terms', function() {
     ['y * 2x * 10', '20 * x * y'],
     ['x^y * x^z', 'x^(y + z)'],
     ['x^(3+y) + x^(3+y)+ 4', '2x^(3 + y) + 4'],
+    ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
   ];
   simplifyTests.forEach(t => testSimplify(t[0], t[1]));
 });
