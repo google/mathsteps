@@ -8,7 +8,7 @@ const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js'
 function flatten(node, debug=false) {
   let flattened = flattenOperands(node);
   if (debug) {
-    console.log(flattened.toString());
+    console.log(print(flattened));
   }
   return flattened;
 }
