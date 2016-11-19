@@ -41,7 +41,7 @@ function testCombinePolynomialTerms(exprStr, outputStr) {
       print(combinedNode),
       outputStr);
   });
-};
+}
 
 function testCanCombine(exprStr, canCombine) {
   it(exprStr + ' ' + canCombine, function () {
@@ -50,7 +50,7 @@ function testCanCombine(exprStr, canCombine) {
       PolynomialTermOperations.canCombinePolynomialTerms(inputNode),
       canCombine);
   });
-};
+}
 
 describe('canCombinePolynomialTerms multiplication', function() {
   const tests = [

@@ -10,7 +10,7 @@ function testCancelLikeTerms(exprStr, expectedStr) {
   assert.deepEqual(
     print(evaluted),
     expectedStr);
-  return
+  return;
 }
 
 describe('cancel like terms', function () {

@@ -3,7 +3,6 @@
 const assert = require('assert');
 const math = require('../../../index');
 const prettyPrint = require('../../../lib/expression/step-solver/prettyPrint.js');
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 
 function testPrint(exprStr, outputStr, latex=false) {
   it(exprStr + ' -> ' + outputStr, function () {
