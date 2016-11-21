@@ -1,2 +1,2 @@
 # mathsteps
-Step by steps math solutions for everyone
+Step by step math solutions for everyone

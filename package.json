@@ -1,0 +1,28 @@
+{
+  "name": "mathsteps",
+  "version": "0.1.0",
+  "description": "Step by step math solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socraticorg/mathsteps.git"
+  },
+  "keywords": [
+    "math",
+    "steps",
+    "algebra",
+    "cas",
+    "computer",
+    "algebra",
+    "system"
+  ],
+  "author": "Evy Kassirer",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/socraticorg/mathsteps/issues"
+  },
+  "homepage": "https://github.com/socraticorg/mathsteps#readme"
+}
