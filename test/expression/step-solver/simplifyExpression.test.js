@@ -7,7 +7,7 @@ const step = stepper.step;
 const simplify = stepper.simplify;
 const stepThrough = stepper.stepThrough;
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('./../../../lib/expression/step-solver/prettyPrint');
+const print = require('./../../../lib/expression/step-solver/print');
 const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
 
 function testStep(exprStr, outputStr, debug=false) {

@@ -5,7 +5,7 @@ const math = require('../../../index');
 
 const simplifyDivision = require('../../../lib/expression/step-solver/simplifyDivision.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 
 function testSimplifyDivision(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {

@@ -6,7 +6,7 @@ const math = require('../../../index');
 const ConstantFraction = require('../../../lib/expression/step-solver/ConstantFraction');
 const Fraction = require('../../../lib/expression/step-solver/Fraction');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 
 function testAddConstantFractions(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {

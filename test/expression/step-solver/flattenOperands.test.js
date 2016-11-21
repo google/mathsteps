@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('../../../index');
 const flattenOperands = require('../../../lib/expression/step-solver/flattenOperands.js');
 const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
-const print = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 
 function testFlatten(exprStr, afterNode, debug=false) {
   let flattened = flattenOperands(math.parse(exprStr));

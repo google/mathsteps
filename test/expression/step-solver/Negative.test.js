@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('../../../index');
 
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 const Negative = require('../../../lib/expression/step-solver/Negative.js');
 
 function testNegate(exprString, outputStr) {

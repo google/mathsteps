@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('../../../index');
 
 const removeUnnecessaryParens = require('../../../lib/expression/step-solver/removeUnnecessaryParens.js');
-const print = require('../../../lib/expression/step-solver/prettyPrint.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 
 it('(x+4) + 12 -> x + 4 + 12', function () {
   assert.deepEqual(
