@@ -3,8 +3,19 @@
   "version": "0.1.0",
   "description": "Step by step math solutions",
   "main": "index.js",
+  "dependencies": {
+    "clone": "2.0.0",
+    "mathjs": "3.8.0",
+    "mocha": "^2.4.5",
+  },
+  "devDependencies": {
+    "eslint": "^3.10.2",
+    "eslint-config-google": "^0.7.0",
+    "mocha": "2.4.5",
+  },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha"
+    "lint": "node_modules/.bin/eslint",
+    "test": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
