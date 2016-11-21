@@ -1,10 +1,10 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const NodeType = require('../../../lib/expression/step-solver/NodeType.js');
-const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
+const NodeType = require('../lib/NodeType.js');
+const NodeCreator = require('../lib/NodeCreator.js');
 let constNode = NodeCreator.constant;
 
 describe('NodeType works', function () {

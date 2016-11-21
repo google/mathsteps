@@ -1,6 +1,6 @@
 const assert = require('assert');
-const math = require('../../../index');
-const hasUnsupportedNodes = require('../../../lib/expression/step-solver/hasUnsupportedNodes.js');
+const math = require('mathjs');
+const hasUnsupportedNodes = require('../lib/hasUnsupportedNodes.js');
 
 describe('arithmetic stepping', function () {
   it('4 + sqrt(16) no support for sqrt', function () {

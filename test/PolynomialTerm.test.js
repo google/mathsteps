@@ -1,12 +1,12 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const PolynomialTermNode = require('../../../lib/expression/step-solver/PolynomialTermNode.js');
-const PolynomialTermOperations = require('../../../lib/expression/step-solver/PolynomialTermOperations.js');
-const print = require('./../../../lib/expression/step-solver/print');
+const flatten = require('../lib/flattenOperands.js');
+const PolynomialTermNode = require('../lib/PolynomialTermNode.js');
+const PolynomialTermOperations = require('../lib/PolynomialTermOperations.js');
+const print = require('./../lib/print');
 
 function testIsPolynomialTerm(exprStr, isTerm) {
   it(exprStr + ' ' + isTerm, function () {

@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const Util = require('../../../lib/expression/step-solver/Util.js');
+const Util = require('../lib/Util.js');
 
 describe('appendToArrayInObject', function () {
   it('creates empty array', function () {

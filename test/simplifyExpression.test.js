@@ -1,14 +1,14 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
-const stepper = require('../../../lib/expression/step-solver/simplifyExpression.js');
+const math = require('mathjs');
+const stepper = require('../lib/simplifyExpression.js');
 const step = stepper.step;
 const simplify = stepper.simplify;
 const stepThrough = stepper.stepThrough;
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('./../../../lib/expression/step-solver/print');
-const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
+const flatten = require('../lib/flattenOperands.js');
+const print = require('./../lib/print');
+const MathChangeTypes = require('../lib/MathChangeTypes');
 
 function testStep(exprStr, outputStr, debug=false) {
   let expr = math.parse(exprStr);

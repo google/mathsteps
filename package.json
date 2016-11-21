@@ -5,17 +5,16 @@
   "main": "index.js",
   "dependencies": {
     "clone": "2.0.0",
-    "mathjs": "3.8.0",
-    "mocha": "^2.4.5",
+    "mathjs": "3.8.0"
   },
   "devDependencies": {
     "eslint": "^3.10.2",
     "eslint-config-google": "^0.7.0",
-    "mocha": "2.4.5",
+    "mocha": "2.4.5"
   },
   "scripts": {
-    "lint": "node_modules/.bin/eslint",
-    "test": "node_modules/.bin/mocha"
+    "lint": "node_modules/eslint/bin/eslint.js",
+    "test": "node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",

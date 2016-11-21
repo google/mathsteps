@@ -1,9 +1,9 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const MathResolveChecks = require('../../../lib/expression/step-solver/MathResolveChecks.js');
+const MathResolveChecks = require('../lib/MathResolveChecks.js');
 
 function testResolvesToConstant(exprString, resolves) {
   it(exprString  + ' ' + resolves, function () {

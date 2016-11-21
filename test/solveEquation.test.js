@@ -1,9 +1,9 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
-const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
-const solveEquation = require('../../../lib/expression/step-solver/solveEquation.js');
+const math = require('mathjs');
+const MathChangeTypes = require('../lib/MathChangeTypes');
+const solveEquation = require('../lib/solveEquation.js');
 
 function testSolve(equationString, comparator, outputStr, debug=false) {
   const sides = equationString.split(comparator);

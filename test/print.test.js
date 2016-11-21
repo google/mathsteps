@@ -1,8 +1,8 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
-const print = require('../../../lib/expression/step-solver/print.js');
+const math = require('mathjs');
+const print = require('../lib/print.js');
 
 function testPrint(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {

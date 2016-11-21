@@ -1,10 +1,10 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const removeUnnecessaryParens = require('../../../lib/expression/step-solver/removeUnnecessaryParens.js');
-const print = require('../../../lib/expression/step-solver/print.js');
+const removeUnnecessaryParens = require('../lib/removeUnnecessaryParens.js');
+const print = require('../lib/print.js');
 
 it('(x+4) + 12 -> x + 4 + 12', function () {
   assert.deepEqual(

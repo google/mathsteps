@@ -1,11 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/print.js');
-const Negative = require('../../../lib/expression/step-solver/Negative.js');
+const flatten = require('../lib/flattenOperands.js');
+const print = require('../lib/print.js');
+const Negative = require('../lib/Negative.js');
 
 function testNegate(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {

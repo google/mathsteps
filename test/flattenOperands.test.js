@@ -1,10 +1,10 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
-const flattenOperands = require('../../../lib/expression/step-solver/flattenOperands.js');
-const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
-const print = require('../../../lib/expression/step-solver/print.js');
+const math = require('mathjs');
+const flattenOperands = require('../lib/flattenOperands.js');
+const NodeCreator = require('../lib/NodeCreator.js');
+const print = require('../lib/print.js');
 
 function testFlatten(exprStr, afterNode, debug=false) {
   let flattened = flattenOperands(math.parse(exprStr));

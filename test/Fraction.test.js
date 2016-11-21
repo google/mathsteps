@@ -1,12 +1,12 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const ConstantFraction = require('../../../lib/expression/step-solver/ConstantFraction');
-const Fraction = require('../../../lib/expression/step-solver/Fraction');
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/print.js');
+const ConstantFraction = require('../lib/ConstantFraction');
+const Fraction = require('../lib/Fraction');
+const flatten = require('../lib/flattenOperands.js');
+const print = require('../lib/print.js');
 
 function testAddConstantFractions(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {

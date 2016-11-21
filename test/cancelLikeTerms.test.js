@@ -1,9 +1,9 @@
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const cancelLikeTerms = require('../../../lib/expression/step-solver/cancelLikeTerms.js');
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('../../../lib/expression/step-solver/print.js');
+const cancelLikeTerms = require('../lib/cancelLikeTerms.js');
+const flatten = require('../lib/flattenOperands.js');
+const print = require('../lib/print.js');
 
 function testCancelLikeTerms(exprStr, expectedStr) {
   const evaluted = cancelLikeTerms(flatten(math.parse(exprStr))).newNode;

@@ -1,9 +1,9 @@
 const assert = require('assert');
-const math = require('../../../index');
+const math = require('mathjs');
 
-const distribute = require('../../../lib/expression/step-solver/distribute.js');
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const print = require('./../../../lib/expression/step-solver/print');
+const distribute = require('../lib/distribute.js');
+const flatten = require('../lib/flattenOperands.js');
+const print = require('./../lib/print');
 
 function testDistribute(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
