@@ -3,7 +3,6 @@ const math = require('../../../index');
 
 const distribute = require('../../../lib/expression/step-solver/distribute.js');
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
 const print = require('./../../../lib/expression/step-solver/print');
 
 function testDistribute(exprStr, outputStr) {

@@ -8,14 +8,7 @@ const simplify = stepper.simplify;
 const stepThrough = stepper.stepThrough;
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const print = require('./../../../lib/expression/step-solver/print');
-const NodeCreator = require('../../../lib/expression/step-solver/NodeCreator.js');
 const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
-
-// to create nodes, for testing
-let opNode = NodeCreator.operator;
-let constNode = NodeCreator.constant;
-let symbolNode = NodeCreator.symbol;
-let parenNode = NodeCreator.parenthesis;
 
 function testStep(exprStr, outputStr, debug=false) {
   let expr = math.parse(exprStr);
@@ -24,7 +17,9 @@ function testStep(exprStr, outputStr, debug=false) {
     if (!nodeStatus.changeType) {
       throw Error('missing or bad change type');
     }
+    // eslint-disable-next-line
     console.log(nodeStatus.changeType);
+    // eslint-disable-next-line
     console.log(print(nodeStatus.newNode));
   }
   it(exprStr + ' -> ' + outputStr, function () {
@@ -62,7 +57,7 @@ describe('handles + - -> - on first step', function() {
     const steps = stepThrough(math.parse('22 + (-26) - (-7) - x - x'));
     assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
   });
-})
+});
 
 describe('handles unnecessary parens at root level', function() {
   const tests = [
@@ -112,6 +107,7 @@ describe('collects and combines like terms', function() {
   stepTests.forEach(t => testStep(t[0], t[1]));
 
   const simplifyTests = [
+    ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
     ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],
     ['4y*3*5', '60y'],
     ['(2x^2 - 4) + (4x^2 + 3)', '6x^2 - 1'],
@@ -161,7 +157,7 @@ describe('support for more * and ( that come from latex conversion', function ()
     ['(12*z^(2))/27', '4/9 z^2'],
     ['x^2 - 12x^2 + 5x^2 - 7', '-6x^2 - 7'],
     ['-(12 x ^ 2)', '-12x^2']
-  ]
+  ];
   tests.forEach(t => testSimplify(t[0], t[1]));
 });
 

@@ -4,14 +4,14 @@ const assert = require('assert');
 const math = require('../../../index');
 
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
-const PolynomialTermNode = require('../../../lib/expression/step-solver/PolynomialTermNode.js');
+const print = require('../../../lib/expression/step-solver/print.js');
 const Negative = require('../../../lib/expression/step-solver/Negative.js');
 
 function testNegate(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      Negative.negate(flatten(math.parse(exprString))),
-      flatten(math.parse(outputStr)));
+      print(Negative.negate(flatten(math.parse(exprString)))),
+      outputStr);
   });
 }
 
@@ -20,7 +20,7 @@ describe('negatePolynomialTerm', function() {
     ['1', '-1'],
     ['-1', '1'],
     ['1/2', '-1/2'],
-    ['(x+2)', '-(x+2)'],
+    ['(x+2)', '-(x + 2)'],
     ['x', '-x'],
     ['x^2', '-x^2'],
     ['-y^3', 'y^3'],

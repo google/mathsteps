@@ -2,11 +2,7 @@
 
 const assert = require('assert');
 const math = require('../../../index');
-
-const Equation = require('../../../lib/expression/step-solver/Equation.js');
 const MathChangeTypes = require('../../../lib/expression/step-solver/MathChangeTypes');
-
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const solveEquation = require('../../../lib/expression/step-solver/solveEquation.js');
 
 function testSolve(equationString, comparator, outputStr, debug=false) {
