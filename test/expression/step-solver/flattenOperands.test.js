@@ -10,7 +10,7 @@ function testFlatten(exprStr, afterNode, debug=false) {
   let flattened = flattenOperands(math.parse(exprStr));
   if (debug) {
     // eslint-disable-next-line
-    console.log(flattened.toString());
+    console.log(print(flattened));
   }
   removeComments(flattened);
   removeComments(afterNode);
