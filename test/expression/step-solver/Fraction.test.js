@@ -79,7 +79,7 @@ describe('simplifyFraction', function() {
     ['12/27', '4/9'],
     ['-12x / -27', '12x / 27'],
     ['x / -y', '-x / y'],
-  ]
+  ];
   tests.forEach(t => testSimplifyFraction(t[0], t[1]));
 });
 
@@ -96,7 +96,7 @@ describe('multiplyByInverse', function() {
     ['x/(2/3)', 'x * 3/2'],
     ['x / (y/(z+a))', 'x * (z + a) / y'],
     ['x/((2+z)/(3/y))', 'x * (3 / y) / (2 + z)'],
-  ]
+  ];
   tests.forEach(t => testMultiplyByInverse(t[0], t[1]));
 });
 
@@ -113,6 +113,6 @@ describe('breakUpNumerator', function() {
     ['(x+3+y)/3', '(x / 3 + 3/3 + y / 3)'],
     ['(2+x)/4', '(2/4 + x / 4)'],
     ['2(x+3)/3', '2 * (x / 3 + 3/3)'],
-  ]
+  ];
   tests.forEach(t => testBreakUpNumerator(t[0], t[1]));
 });

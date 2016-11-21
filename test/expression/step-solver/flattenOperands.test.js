@@ -9,6 +9,7 @@ const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 function testFlatten(exprStr, afterNode, debug=false) {
   let flattened = flattenOperands(math.parse(exprStr));
   if (debug) {
+    // eslint-disable-next-line
     console.log(flattened.toString());
   }
   removeComments(flattened);
@@ -56,8 +57,8 @@ describe('flattens + and *', function () {
         opNode('*', [constNode(2),
           opNode('^', [symbolNode('x'), parenNode(
             opNode('+', [constNode(2), constNode(1), constNode(2)]))]),
-          ], true),
-        symbolNode('y')])],
+        ], true), symbolNode('y')])
+    ],
     ['3x*4x', opNode('*', [math.parse('3x'), math.parse('4x')])]
   ];
   tests.forEach(t => testFlatten(t[0], t[1]));
@@ -67,15 +68,15 @@ describe('flattens division', function () {
   const tests = [
     // groups x/4 and continues to flatten *
     ['2 * x / 4 * 6 ',
-        opNode('*', [constNode(2), math.parse('x/4'), constNode(6)])],
+      opNode('*', [constNode(2), math.parse('x/4'), constNode(6)])],
     ['2*3/4/5*6',
-        opNode('*', [constNode(2), math.parse('3/4/5'), constNode(6)])],
+      opNode('*', [constNode(2), math.parse('3/4/5'), constNode(6)])],
     // no change
     ['x / (4 * x) / 8',
-        math.parse('x / (4 * x) / 8')],
+      math.parse('x / (4 * x) / 8')],
     ['2 x * 4 x / 8',
-        opNode('*', [math.parse('2x'), opNode(
-          '/', [math.parse('4x'), constNode(8)])])],
+      opNode('*', [math.parse('2x'), opNode(
+        '/', [math.parse('4x'), constNode(8)])])],
   ];
   tests.forEach(t => testFlatten(t[0], t[1]));
 });
@@ -83,11 +84,11 @@ describe('flattens division', function () {
 describe('subtraction', function () {
   const tests = [
     ['1 + 2 - 3 - 4 + 5',
-        opNode('+', [
-          constNode(1), constNode(2), constNode(-3), constNode(-4), constNode(5)])],
+      opNode('+', [
+        constNode(1), constNode(2), constNode(-3), constNode(-4), constNode(5)])],
     ['x - 3', opNode('+', [symbolNode('x'), constNode(-3)])],
     ['x + 4 - (y+4)',
-        opNode('+', [symbolNode('x'), constNode(4), math.parse('-(y+4)')])],
+      opNode('+', [symbolNode('x'), constNode(4), math.parse('-(y+4)')])],
   ];
   tests.forEach(t => testFlatten(t[0], t[1]));
 });
