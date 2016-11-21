@@ -7,7 +7,7 @@ const LikeTermCollector = require('../../../lib/expression/step-solver/LikeTermC
 const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 
-function testCollectLikeTerms(exprStr, outputStr, explanation="", debug=false) {
+function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
   let description = `${exprStr} -> ${outputStr}`;
   if (explanation) {
     description += ` (${explanation})`;
@@ -16,15 +16,11 @@ function testCollectLikeTerms(exprStr, outputStr, explanation="", debug=false) {
     const exprTree = flatten(math.parse(exprStr));
     const collected = print(LikeTermCollector.collectLikeTermsDFS(exprTree).newNode);
     if (debug) {
+      // eslint-disable-next-line
       console.log(collected);
     }
     assert.equal(collected, outputStr);
   });
-}
-
-function canCollectLikeTerms(expression) {
-    const exprTree = flatten(math.parse(expression));
-    return LikeTermCollector.canCollectLikeTerms(exprTree);
 }
 
 function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
@@ -42,10 +38,10 @@ function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
 
 describe('can collect like terms for addition', function () {
   const tests = [
-    ['2+2', false, "because only one type"],
-    ['x^2+x^2', false, "because only one type"],
-    ['x+2', false, "because all types have only one"],
-    ['(x+2+x)', false, "because in parenthesis, need to be collected first"],
+    ['2+2', false, 'because only one type'],
+    ['x^2+x^2', false, 'because only one type'],
+    ['x+2', false, 'because all types have only one'],
+    ['(x+2+x)', false, 'because in parenthesis, need to be collected first'],
     ['x+2+x', true],
     ['x^2 + 5 + x + x^2', true],
   ];
@@ -54,25 +50,24 @@ describe('can collect like terms for addition', function () {
 
 describe('can collect like terms for multiplication', function () {
   const tests = [
-    ['2*2', false, "because only one type"],
+    ['2*2', false, 'because only one type'],
     ['x^2 * 2x^2', true],
-    ['x * 2', false, "because all types have only one"],
+    ['x * 2', false, 'because all types have only one'],
     ['((2x^2)) * y * x * y^3', true],
   ];
   tests.forEach(t => testCanCollectLikeTerms(t[0], t[1], t[2]));
 });
 
-describe('basic addition collect like terms, no exponents or coefficients',
-  function() {
+describe('basic addition collect like terms, no exponents or coefficients', function() {
   const tests = [
     ['2+x+7', 'x + (2 + 7)'],
     ['x + 4 + x + 5', '(x + x) + (4 + 5)'],
     ['x + 4 + y', 'x + 4 + y'],
     ['x + 4 + x + 4/9 + y + 5/7', '(x + x) + y + 4 + (4/9 + 5/7)'],
     ['x + 4 + x + 2^x + 5', '(x + x) + (4 + 5) + 2^x',
-      "because 2^x is an 'other'"],
+      'because 2^x is an \'other\''],
     ['z + 2*(y + x) + 4 + z', '(z + z) + 4 + 2 * (y + x)',
-      "2*(y + x) is an 'other' cause it has parens"],
+      '2*(y + x) is an \'other\' cause it has parens'],
   ];
   tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
 });

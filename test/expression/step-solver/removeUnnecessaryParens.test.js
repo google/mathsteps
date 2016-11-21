@@ -4,7 +4,6 @@ const assert = require('assert');
 const math = require('../../../index');
 
 const removeUnnecessaryParens = require('../../../lib/expression/step-solver/removeUnnecessaryParens.js');
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 const print = require('../../../lib/expression/step-solver/prettyPrint.js');
 
 it('(x+4) + 12 -> x + 4 + 12', function () {

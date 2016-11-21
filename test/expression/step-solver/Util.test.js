@@ -1,9 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('../../../index');
 const Util = require('../../../lib/expression/step-solver/Util.js');
-const flatten = require('../../../lib/expression/step-solver/flattenOperands.js');
 
 describe('appendToArrayInObject', function () {
   it('creates empty array', function () {
