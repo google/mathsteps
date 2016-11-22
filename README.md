@@ -87,4 +87,4 @@ Testing
 
 Linting
 
-- TODO
+- `npm run lint .`
