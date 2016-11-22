@@ -3,7 +3,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const MathResolveChecks = require('../lib/MathResolveChecks.js');
+const MathResolveChecks = require('../lib/MathResolveChecks');
 
 function testResolvesToConstant(exprString, resolves) {
   it(exprString  + ' ' + resolves, function () {

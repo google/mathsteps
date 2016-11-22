@@ -1,8 +1,8 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const distribute = require('../lib/distribute.js');
-const flatten = require('../lib/flattenOperands.js');
+const distribute = require('../lib/distribute');
+const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/print');
 
 function testDistribute(exprStr, outputStr) {

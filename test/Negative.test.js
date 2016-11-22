@@ -3,9 +3,9 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../lib/flattenOperands.js');
-const print = require('../lib/print.js');
-const Negative = require('../lib/Negative.js');
+const flatten = require('../lib/flattenOperands');
+const print = require('../lib/print');
+const Negative = require('../lib/Negative');
 
 function testNegate(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {

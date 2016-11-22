@@ -3,7 +3,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 const MathChangeTypes = require('../lib/MathChangeTypes');
-const solveEquation = require('../lib/solveEquation.js');
+const solveEquation = require('../lib/solveEquation');
 
 function testSolve(equationString, comparator, outputStr, debug=false) {
   const sides = equationString.split(comparator);
