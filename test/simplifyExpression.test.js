@@ -64,7 +64,7 @@ describe('handles unnecessary parens at root level', function() {
     ['(x+(y))', 'x + y'],
     ['((x+y) + ((z^3)))', 'x + y + z^3'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('simplify (arithmetic)', function () {
@@ -75,7 +75,7 @@ describe('simplify (arithmetic)', function () {
     ['(2+(2)+7)', '11'],
     ['(8-2) * 2^2 * (1+1) / (4 /2) / 5', '24/5'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('adding symbols without breaking things', function() {
@@ -117,7 +117,7 @@ describe('collects and combines like terms', function() {
     ['x^(3+y) + x^(3+y)+ 4', '2x^(3 + y) + 4'],
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
   ];
-  simplifyTests.forEach(t => testSimplify(t[0], t[1]));
+  simplifyTests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('can simplify with division', function () {
@@ -131,7 +131,7 @@ describe('can simplify with division', function () {
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
   // TODO: factor the numerator to cancel out with denominator
   // e.g. (x^2 - 3 + 2)/(x-2) -> (x-1)
 });
@@ -148,7 +148,7 @@ describe('subtraction support', function() {
     ['(x-4)-5', 'x - 9'],
     ['5-x-4', '-x + 1'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('support for more * and ( that come from latex conversion', function () {
@@ -158,7 +158,7 @@ describe('support for more * and ( that come from latex conversion', function ()
     ['x^2 - 12x^2 + 5x^2 - 7', '-6x^2 - 7'],
     ['-(12 x ^ 2)', '-12x^2']
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('distribution', function () {
@@ -170,7 +170,7 @@ describe('distribution', function () {
     ['(5+x)*(x+3)', 'x^2 + 8x + 15'],
     ['(x-2)(x-4)', 'x^2 - 6x + 8'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('stepThrough returning no steps', function() {
@@ -199,7 +199,7 @@ describe('fractions', function() {
     ['x/(2/3) + 5', '3/2 x + 5'],
     ['(2+x)/6', '1/3 + x / 6']
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 
   // single steps
   testStep('2 + 5/2 + 3', '(2 + 3) + 5/2');
@@ -218,7 +218,7 @@ describe('cancelling out', function() {
     ['(x)/(-x)', '-1'],
     ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('keeping parens in important places, on printing', function() {
@@ -238,5 +238,5 @@ describe('absolute value support', function() {
     ['( abs( -3) )/(3)', '1'],
     ['- abs( -40)', '-40'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
