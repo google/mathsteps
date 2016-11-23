@@ -5,9 +5,7 @@ const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/print');
-const stepper = require('../lib/simplifyExpression');
 const simplifyOperations = require('../lib/simplifyOperations');
-const stepThrough = stepper.stepThrough;
 
 function testSimplify(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {

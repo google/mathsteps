@@ -5,7 +5,6 @@ const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/print');
-const stepper = require('../lib/simplifyExpression');
 const evaluateArithmetic = require('../lib/evaluateArithmetic');
 
 function testArithmetic(exprStr, outputStr) {
