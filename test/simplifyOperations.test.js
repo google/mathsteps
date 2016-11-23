@@ -8,7 +8,6 @@ const print = require('./../lib/print');
 const stepper = require('../lib/simplifyExpression');
 const simplifyOperations = require('../lib/simplifyOperations');
 const stepThrough = stepper.stepThrough;
-const MathChangeTypes = require('../lib/MathChangeTypes');
 
 function testSimplify(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
@@ -19,18 +18,9 @@ function testSimplify(exprStr, outputStr) {
 }
 describe('simplifies', function () {
   const tests = [
-    //performArithmetic
-    ['2+2', '4'],
-    ['2*3*5', '30'],
-    ['9/4', '9/4'], //  does not divide
     // abs
     ['abs(4)', '4'],
     ['abs(-5)', '5'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1]));
-
-  it('simplifyDoubleUnaryMinus step actually happens: 22 - (-7) -> 22 + 7', function () {
-    const steps = stepThrough(math.parse('22 - (-7)'));
-    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_DOUBLE_MINUS);
-  });
 });
