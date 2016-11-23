@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 const math = require('mathjs');
-const print = require('../lib/print.js');
+const print = require('../lib/print');
 
 function testPrint(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {

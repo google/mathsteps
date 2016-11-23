@@ -3,9 +3,9 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const LikeTermCollector = require('../lib/LikeTermCollector.js');
-const flatten = require('../lib/flattenOperands.js');
-const print = require('../lib/print.js');
+const LikeTermCollector = require('../lib/LikeTermCollector');
+const flatten = require('../lib/flattenOperands');
+const print = require('../lib/print');
 
 function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
   let description = `${exprStr} -> ${outputStr}`;

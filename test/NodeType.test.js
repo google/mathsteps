@@ -3,8 +3,8 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const NodeType = require('../lib/NodeType.js');
-const NodeCreator = require('../lib/NodeCreator.js');
+const NodeType = require('../lib/NodeType');
+const NodeCreator = require('../lib/NodeCreator');
 let constNode = NodeCreator.constant;
 
 describe('NodeType works', function () {

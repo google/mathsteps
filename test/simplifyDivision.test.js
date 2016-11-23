@@ -3,9 +3,9 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const simplifyDivision = require('../lib/simplifyDivision.js');
-const flatten = require('../lib/flattenOperands.js');
-const print = require('../lib/print.js');
+const simplifyDivision = require('../lib/simplifyDivision');
+const flatten = require('../lib/flattenOperands');
+const print = require('../lib/print');
 
 function testSimplifyDivision(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {

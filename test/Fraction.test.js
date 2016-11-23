@@ -5,8 +5,8 @@ const math = require('mathjs');
 
 const ConstantFraction = require('../lib/ConstantFraction');
 const Fraction = require('../lib/Fraction');
-const flatten = require('../lib/flattenOperands.js');
-const print = require('../lib/print.js');
+const flatten = require('../lib/flattenOperands');
+const print = require('../lib/print');
 
 function testAddConstantFractions(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];

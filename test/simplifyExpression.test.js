@@ -2,11 +2,11 @@
 
 const assert = require('assert');
 const math = require('mathjs');
-const stepper = require('../lib/simplifyExpression.js');
+const stepper = require('../lib/simplifyExpression');
 const step = stepper.step;
 const simplify = stepper.simplify;
 const stepThrough = stepper.stepThrough;
-const flatten = require('../lib/flattenOperands.js');
+const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/print');
 const MathChangeTypes = require('../lib/MathChangeTypes');
 
