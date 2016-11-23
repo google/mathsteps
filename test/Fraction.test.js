@@ -11,13 +11,16 @@ const print = require('../lib/print');
 function testAddConstantFractions(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprString + ' -> ' + lastString, function () {
-    const status = ConstantFraction.addConstantFractions(math.parse(exprString));
+    const status = ConstantFraction.addConstantFractions(flatten(math.parse(exprString)));
     const subSteps = status.subSteps;
+
+    assert.deepEqual(subSteps.length, outputList.length);
     subSteps.forEach((step, i) => {
       assert.deepEqual(
         print(step.newNode),
         outputList[i]);
     });
+
     assert.deepEqual(
       print(status.newNode),
       lastString);
@@ -44,6 +47,11 @@ describe('addConstantFractions', function () {
         '(20 + 27) / 45',
         '47/45']
     ],
+    ['4/5 - 4/5',
+      ['(4 - 4) / 5',
+        '0/5',
+        '0']
+    ],
   ];
   tests.forEach(t => testAddConstantFractions(t[0], t[1]));
 });
@@ -68,8 +76,8 @@ describe('addConstantAndFraction', function () {
   const tests = [
     ['7 + 1/2',
       ['14/2 + 1/2',
-       '(14 + 1) / 2',
-       '15/2']
+        '(14 + 1) / 2',
+        '15/2']
     ],
     ['5/6 + 3',
       ['5/6 + 18/6',
