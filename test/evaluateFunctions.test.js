@@ -5,20 +5,19 @@ const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/print');
-const simplifyOperations = require('../lib/simplifyOperations');
+const evaluateFunctions = require('../lib/evaluateFunctions');
 
-function testSimplify(exprStr, outputStr) {
+function testEvaluateFunctions(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplifyOperations(flatten(math.parse(exprStr))).newNode),
+      print(evaluateFunctions(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
-describe('simplifies', function () {
+describe('abs', function () {
   const tests = [
-    // abs
     ['abs(4)', '4'],
     ['abs(-5)', '5'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testEvaluateFunctions(t[0], t[1]));
 });
