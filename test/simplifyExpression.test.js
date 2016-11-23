@@ -223,7 +223,7 @@ describe('cancelling out', function() {
 
 describe('keeping parens in important places, on printing', function() {
   testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');
-  testStep('5 + (3*6) + 2 / (x / y)', '5 + 18 + 2 / (x / y)');
+  testStep('5 + (3*6) + 2 / (x / y)', '5 + (3 * 6) + 2 * y / x');
   testStep('-(x + y) + 5+3', '(5 + 3) - (x + y)');
 });
 
@@ -234,7 +234,7 @@ describe('absolute value support', function() {
     ['5*abs((2+2))*10', '200'],
     ['5x + (1/abs(-2))x', '11/2 x'],
     ['abs(5/18-abs(9/-18))', '2/9'],
-  // handle parens around abs()
+    // handle parens around abs()
     ['( abs( -3) )/(3)', '1'],
     ['- abs( -40)', '-40'],
   ];
