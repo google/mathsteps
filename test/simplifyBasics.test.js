@@ -46,6 +46,8 @@ describe('simplify basics', function () {
     ['(x+3)/-1', '-(x + 3)'],
     // exponent to 0 -> 1
     ['(x+3)^0', '1'],
+    // divide 0 by anything
+    ['0/(x+6+7+x^2+2^y)', '0']
   ];
   tests.forEach(t => testSimplify(t[0], t[1]));
 
