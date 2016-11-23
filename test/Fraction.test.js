@@ -117,7 +117,7 @@ describe('multiplyFractions', function () {
 function testSimplifyFraction(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.simplifyFraction(flatten(math.parse(exprStr))).newNode),
+      print(ConstantFraction.divideByGCD(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
@@ -126,14 +126,28 @@ describe('simplifyFraction', function() {
   const tests = [
     ['2/4', '1/2'],
     ['9/3', '3'],
+    ['12/27', '4/9'],
     ['1/-3', '-1/3'],
     ['-3/-2', '3/2'],
     ['-1/-1', '1'],
-    ['12/27', '4/9'],
+  ];
+  tests.forEach(t => testSimplifyFraction(t[0], t[1]));
+});
+
+function testSimplifySigns(exprStr, outputStr) {
+  it(exprStr + ' -> ' + outputStr, function () {
+    assert.deepEqual(
+      print(Fraction.simplifySigns(flatten(math.parse(exprStr))).newNode),
+      outputStr);
+  });
+}
+
+describe('simplify signs', function() {
+  const tests = [
     ['-12x / -27', '12x / 27'],
     ['x / -y', '-x / y'],
   ];
-  tests.forEach(t => testSimplifyFraction(t[0], t[1]));
+  tests.forEach(t => testSimplifySigns(t[0], t[1]));
 });
 
 function testMultiplyByInverse(exprStr, outputStr) {
