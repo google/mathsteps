@@ -31,6 +31,6 @@ describe('simplifies', function () {
 
   it('simplifyDoubleUnaryMinus step actually happens: 22 - (-7) -> 22 + 7', function () {
     const steps = stepThrough(math.parse('22 - (-7)'));
-    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_DOUBLE_UNARY_MINUS);
+    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_DOUBLE_MINUS);
   });
 });
