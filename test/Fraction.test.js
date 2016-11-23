@@ -146,7 +146,7 @@ describe('simplify signs', function() {
   const tests = [
     ['-12x / -27', '12x / 27'],
     ['x / -y', '-x / y'],
-  ]
+  ];
   tests.forEach(t => testSimplifySigns(t[0], t[1]));
 });
 
