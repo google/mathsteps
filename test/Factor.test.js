@@ -1,12 +1,12 @@
 'use strict';
 
 const assert = require('assert');
-const Factors = require('../lib/Factors');
+const Factor = require('../lib/Factor');
 
 function testPrimeFactors(input, output) {
   it(input + ' -> ' + output, function () {
     assert.deepEqual(
-      Factors.getPrimeFactors(input),
+      Factor.getPrimeFactors(input),
       output);
   });
 }
