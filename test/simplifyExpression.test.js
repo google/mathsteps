@@ -101,6 +101,7 @@ describe('collects and combines like terms', function() {
   const stepTests = [
     ['(x + x) + (x^2 + x^2)', '2x + (x^2 + x^2)'], // substeps not tested here
     ['10 + (y^2 + y^2)', '10 + 2y^2'],             // substeps not tested here
+    ['10y^2 + 1/2 y^2 + 3/2 y^2', '12y^2'],       // substeps not tested here
     ['x + y + y^2', 'x + y + y^2'],
     ['2x^(2+1)', '2x^3'],
   ];
