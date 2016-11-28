@@ -75,9 +75,9 @@ function testSolveConstantEquation(
   const rightNode = math.parse(sides[1]);
 
   const steps = solveEquation(leftNode, rightNode, comparator, debug);
-  const acualChange = steps[steps.length -1].changeType;
+  const actualChange = steps[steps.length -1].changeType;
   it(equationString + ' -> ' + expectedChange, function () {
-    assert.equal(acualChange, expectedChange);
+    assert.equal(actualChange, expectedChange);
   });
 }
 
