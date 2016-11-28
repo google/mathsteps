@@ -37,10 +37,6 @@ function testCombinePolynomialTerms(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = flatten(math.parse(exprStr));
     const combinedStatus = PolynomialTermOperations.combinePolynomialTerms(inputNode);
-    combinedStatus.subSteps.forEach(step => {
-      console.log(step.changeType);
-      console.log(print(step.newNode));
-    });
     const combinedNode = combinedStatus.newNode;
     assert.equal(
       print(combinedNode),
