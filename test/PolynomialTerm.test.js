@@ -36,10 +36,30 @@ describe('classifies symbol terms correctly', function() {
 function testCombinePolynomialTerms(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = flatten(math.parse(exprStr));
-    const combinedNode = PolynomialTermOperations.combinePolynomialTerms(inputNode).newNode;
+    const combinedStatus = PolynomialTermOperations.combinePolynomialTerms(inputNode);
+    const combinedNode = combinedStatus.newNode;
     assert.equal(
       print(combinedNode),
       outputStr);
+  });
+}
+
+function testCombinePolynomialTermsSteps(exprStr, outputList) {
+  const lastString = outputList[outputList.length - 1];
+  it(exprStr + ' -> ' + lastString, function () {
+    const inputNode = flatten(math.parse(exprStr));
+    const status = PolynomialTermOperations.combinePolynomialTerms(inputNode);
+    const subSteps = status.subSteps;
+    assert.deepEqual(subSteps.length, outputList.length);
+    subSteps.forEach((step, i) => {
+      assert.deepEqual(
+        print(step.newNode),
+        outputList[i]);
+    });
+
+    assert.deepEqual(
+      print(status.newNode),
+      lastString);
   });
 }
 
@@ -86,10 +106,18 @@ describe('canCombinePolynomialTerms addition', function() {
 
 describe('combinePolynomialTerms addition', function() {
   const tests = [
-    ['x+x', '(1 + 1)x'],
-    ['4y^2 + 7y^2 + y^2', '(4 + 7 + 1)y^2'],
+    ['x+x',
+      ['1x + 1x',
+        '(1 + 1)x',
+        '2x']
+    ],
+    ['4y^2 + 7y^2 + y^2',
+      ['4y^2 + 7y^2 + 1y^2',
+        '(4 + 7 + 1)y^2',
+        '12y^2']
+    ],
   ];
-  tests.forEach(t => testCombinePolynomialTerms(t[0], t[1]));
+  tests.forEach(t => testCombinePolynomialTermsSteps(t[0], t[1]));
 });
 
 function testMultiplyConstantAndPolynomialTerm(exprStr, outputStr) {
