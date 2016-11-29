@@ -14,7 +14,7 @@ function testArithmetic(exprStr, outputStr) {
       outputStr);
   });
 }
-describe('evalute arithmetic', function () {
+describe('evaluate arithmetic', function () {
   const tests = [
     ['2+2', '4'],
     ['2*3*5', '30'],
