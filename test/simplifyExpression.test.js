@@ -240,3 +240,11 @@ describe('absolute value support', function() {
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
+
+describe('nthRoot support', function() {
+  const tests = [
+    ['nthRoot(4x, 2)', '2 * nthRoot(x, 2)'],
+    // TODO(ael)...
+  ];
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
+});
