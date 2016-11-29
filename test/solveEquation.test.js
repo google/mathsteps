@@ -69,15 +69,15 @@ describe('solveEquation for non = comparators', function() {
 });
 
 function testSolveConstantEquation(
-  equationString, comparator, expectedExplanation, debug=false) {
+  equationString, comparator, expectedChange, debug=false) {
   const sides = equationString.split(comparator);
   const leftNode = math.parse(sides[0]);
   const rightNode = math.parse(sides[1]);
 
   const steps = solveEquation(leftNode, rightNode, comparator, debug);
-  const acualExplanation = steps[steps.length -1].explanation;
-  it(equationString + ' -> ' + expectedExplanation, function () {
-    assert.equal(acualExplanation, expectedExplanation);
+  const actualChange = steps[steps.length -1].changeType;
+  it(equationString + ' -> ' + expectedChange, function () {
+    assert.equal(actualChange, expectedChange);
   });
 }
 

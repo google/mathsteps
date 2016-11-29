@@ -51,11 +51,11 @@ describe('arithmetic stepping', function() {
 describe('handles + - -> - on first step', function() {
   it('2 + (-3) -> 2 - 3', function () {
     const steps = stepThrough(math.parse('2 + (-3)'));
-    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
+    assert.equal(steps[0].changeType, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
   });
   it('22 + (-26) - x - x -> 22 - 26 - x - x', function () {
     const steps = stepThrough(math.parse('22 + (-26) - (-7) - x - x'));
-    assert.equal(steps[0].explanation, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
+    assert.equal(steps[0].changeType, MathChangeTypes.RESOLVE_ADD_UNARY_MINUS);
   });
 });
 

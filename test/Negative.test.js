@@ -15,7 +15,7 @@ function testNegate(exprString, outputStr) {
   });
 }
 
-describe('negatePolynomialTerm', function() {
+describe('negate', function() {
   const tests = [
     ['1', '-1'],
     ['-1', '1'],
