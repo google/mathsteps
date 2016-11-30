@@ -14,7 +14,7 @@ function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
   }
   it(description, function () {
     const exprTree = flatten(math.parse(exprStr));
-    const collected = print(LikeTermCollector.collectLikeTermsDFS(exprTree).newNode);
+    const collected = print(LikeTermCollector.collectLikeTerms(exprTree).newNode);
     if (debug) {
       // eslint-disable-next-line
       console.log(collected);

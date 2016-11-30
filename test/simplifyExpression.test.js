@@ -90,9 +90,8 @@ describe('adding symbols without breaking things', function() {
 
 describe('collecting like terms within the context of the stepper', function() {
   const tests = [
-    ['2+x+7', 'x + (2 + 7)'],
-    ['2x^2 * y * x * y^3', '2 * (x^2 * x) * (y * y^3)'],
-    ['y * 5 * (2+3) * y^2', 'y * 5 * 5 * y^2'],
+    ['2+x+7', 'x + 9'],                           // substeps not tested here
+//    ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],      // substeps not tested here
   ];
   tests.forEach(t => testStep(t[0], t[1]));
 });
@@ -101,7 +100,7 @@ describe('collects and combines like terms', function() {
   const stepTests = [
     ['(x + x) + (x^2 + x^2)', '2x + (x^2 + x^2)'], // substeps not tested here
     ['10 + (y^2 + y^2)', '10 + 2y^2'],             // substeps not tested here
-    ['10y^2 + 1/2 y^2 + 3/2 y^2', '12y^2'],       // substeps not tested here
+    ['10y^2 + 1/2 y^2 + 3/2 y^2', '12y^2'],        // substeps not tested here
     ['x + y + y^2', 'x + y + y^2'],
     ['2x^(2+1)', '2x^3'],
   ];
@@ -203,7 +202,7 @@ describe('fractions', function() {
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 
   // single steps
-  testStep('2 + 5/2 + 3', '(2 + 3) + 5/2');
+  testStep('2 + 5/2 + 3', '5 + 5/2'); // collect and combine without substeps
 });
 
 describe('floating point', function() {
@@ -225,7 +224,7 @@ describe('cancelling out', function() {
 describe('keeping parens in important places, on printing', function() {
   testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');
   testStep('5 + (3*6) + 2 / (x / y)', '5 + (3 * 6) + 2 * y / x');
-  testStep('-(x + y) + 5+3', '(5 + 3) - (x + y)');
+  testStep('-(x + y) + 5+3', '8 - (x + y)');
 });
 
 describe('absolute value support', function() {

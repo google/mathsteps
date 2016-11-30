@@ -33,17 +33,6 @@ describe('classifies symbol terms correctly', function() {
   tests.forEach(t => testIsPolynomialTerm(t[0], t[1]));
 });
 
-function testCombinePolynomialTerms(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    const inputNode = flatten(math.parse(exprStr));
-    const combinedStatus = PolynomialTermOperations.combinePolynomialTerms(inputNode);
-    const combinedNode = combinedStatus.newNode;
-    assert.equal(
-      print(combinedNode),
-      outputStr);
-  });
-}
-
 function testCombinePolynomialTermsSteps(exprStr, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprStr + ' -> ' + lastString, function () {
@@ -88,10 +77,18 @@ describe('canCombinePolynomialTerms multiplication', function() {
 
 describe('combinePolynomialTerms multiplication', function() {
   const tests = [
-    ['x^2 * x * x', 'x^(2 + 1 + 1)'],
-    ['y * y^3', 'y^(1 + 3)'],
+    ['x^2 * x * x',
+      ['x^2 * x^1 * x^1',
+        'x^(2 + 1 + 1)',
+        'x^4']
+    ],
+    ['y * y^3',
+      ['y^1 * y^3',
+        'y^(1 + 3)',
+        'y^4']
+    ],
   ];
-  tests.forEach(t => testCombinePolynomialTerms(t[0], t[1]));
+  tests.forEach(t => testCombinePolynomialTermsSteps(t[0], t[1]));
 });
 
 describe('canCombinePolynomialTerms addition', function() {

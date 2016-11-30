@@ -6,9 +6,9 @@ const flatten = require('../lib/flattenOperands');
 const print = require('../lib/print');
 
 function testCancelLikeTerms(exprStr, expectedStr) {
-  const evaluted = cancelLikeTerms(flatten(math.parse(exprStr))).newNode;
+  const evaluated = cancelLikeTerms(flatten(math.parse(exprStr))).newNode;
   assert.deepEqual(
-    print(evaluted),
+    print(evaluated),
     expectedStr);
   return;
 }
