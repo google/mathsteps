@@ -244,7 +244,12 @@ describe('absolute value support', function() {
 describe('nthRoot support', function() {
   const tests = [
     ['nthRoot(4x, 2)', '2 * nthRoot(x, 2)'],
-    // TODO(ael)...
+    ['2 * nthRoot(4x, 2)', '4 * nthRoot(x, 2)'],
+    ['(x^3*y)/x^2 + nthRoot(4x, 2)', 'x * y + 2 * nthRoot(x, 2)'],
+    ['2 + nthRoot(4)', '4'],
+    ['x * nthRoot(x^4, 2)', 'x^3'],
+    ['x * nthRoot(2 + 2, 3)', 'x * nthRoot(4, 3)'],
+    ['x * nthRoot((2 + 2) * 2, 3)', '2x'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
