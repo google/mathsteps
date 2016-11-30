@@ -7,9 +7,8 @@ const collectAndCombine = require('../lib/collectAndCombine');
 const flatten = require('../lib/flattenOperands');
 const print = require('../lib/print');
 
-function testCollectAndCombineSubsteps(exprString, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  it(exprString + ' -> ' + lastString, function () {
+function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
+  it(exprString + ' -> ' + outputStr, function () {
     const status = collectAndCombine(flatten(math.parse(exprString)));
     const subSteps = status.subSteps;
 
@@ -22,7 +21,7 @@ function testCollectAndCombineSubsteps(exprString, outputList) {
 
     assert.deepEqual(
       print(status.newNode),
-      lastString);
+      outputStr);
   });
 }
 
@@ -39,15 +38,17 @@ describe('collectAndCombine with substeps', function () {
   const tests = [
     ['2x + 4x + y',
       ['(2x + 4x) + y',
-        '6x + y']
+        '6x + y'],
+      '6x + y'
     ],
     ['2x * x^2 * 5x',
       ['(2 * 5) * (x * x^2 * x)',
         '10 * (x * x^2 * x)',
-        '10 * x^4']
+        '10 * x^4'],
+      '10x^4'
     ],
   ];
-  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1]));
+  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
 });
 
 describe('simple collectAndCombine with no substeps', function () {
