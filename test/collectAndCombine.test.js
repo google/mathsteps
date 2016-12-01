@@ -11,10 +11,10 @@ function testCollectAndCombineSubsteps(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprString + ' -> ' + lastString, function () {
     const status = collectAndCombine(flatten(math.parse(exprString)));
-    const subSteps = status.subSteps;
+    const substeps = status.substeps;
 
-    assert.deepEqual(subSteps.length, outputList.length);
-    subSteps.forEach((step, i) => {
+    assert.deepEqual(substeps.length, outputList.length);
+    substeps.forEach((step, i) => {
       assert.deepEqual(
         print(step.newNode),
         outputList[i]);
