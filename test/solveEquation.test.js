@@ -6,6 +6,7 @@ const MathChangeTypes = require('../lib/MathChangeTypes');
 const solveEquation = require('../lib/solveEquation');
 
 function testSolve(equationString, comparator, outputStr, debug=false) {
+  debug = true;
   const sides = equationString.split(comparator);
   const leftNode = math.parse(sides[0]);
   const rightNode = math.parse(sides[1]);
