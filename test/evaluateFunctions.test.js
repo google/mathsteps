@@ -32,7 +32,8 @@ describe('nthRoot', function () {
     ['nthRoot(3 * 2 * 3 * 2, 2)', '2 * 3'],
     ['nthRoot(36*x)', '2 * 3 * nthRoot(x, 2)'],
     ['nthRoot(2 * 18 * x ^ 2, 2)', '2 * 3 * x'],
-    ['nthRoot(x * x, 2)', 'x']
+    ['nthRoot(x * x, 2)', 'x'],
+    ['nthRoot(x * x * (2 + 3), 2)', 'x * nthRoot((2 + 3), 2)'],
   ];
   tests.forEach(t => testEvaluateFunctions(t[0], t[1]));
 });
