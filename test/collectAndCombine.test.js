@@ -10,10 +10,10 @@ const print = require('../lib/print');
 function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     const status = collectAndCombine(flatten(math.parse(exprString)));
-    const subSteps = status.subSteps;
+    const substeps = status.substeps;
 
-    assert.deepEqual(subSteps.length, outputList.length);
-    subSteps.forEach((step, i) => {
+    assert.deepEqual(substeps.length, outputList.length);
+    substeps.forEach((step, i) => {
       assert.deepEqual(
         print(step.newNode),
         outputList[i]);
