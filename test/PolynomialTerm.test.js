@@ -117,22 +117,22 @@ describe('combinePolynomialTerms addition', function() {
   tests.forEach(t => testCombinePolynomialTermsSteps(t[0], t[1]));
 });
 
-function testMultiplyConstantAndPolynomialTerm(exprStr, outputStr) {
+function testRearrangeCoefficient(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = flatten(math.parse(exprStr));
-    const newNode = PolynomialTermOperations.multiplyConstantAndPolynomialTerm(inputNode).newNode;
+    const newNode = PolynomialTermOperations.rearrangeCoefficient(inputNode).newNode;
     assert.equal(
       print(newNode),
       outputStr);
   });
 }
 
-describe('multiplyConstantAndPolynomialTerm', function() {
+describe('rearrangeCoefficient', function() {
   const tests = [
     ['2 * x^2', '2x^2'],
     ['y^3 * 5', '5y^3'],
   ];
-  tests.forEach(t => testMultiplyConstantAndPolynomialTerm(t[0], t[1]));
+  tests.forEach(t => testRearrangeCoefficient(t[0], t[1]));
 });
 
 function testSimplifyPolynomialFraction(exprStr, outputStr) {

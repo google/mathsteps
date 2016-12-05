@@ -8,7 +8,6 @@ const simplify = stepper.simplify;
 const stepThrough = stepper.stepThrough;
 const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/print');
-const MathChangeTypes = require('../lib/MathChangeTypes');
 
 function testStep(exprStr, outputStr, debug=false) {
   let expr = math.parse(exprStr);
