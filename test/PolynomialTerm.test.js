@@ -38,9 +38,9 @@ function testCombinePolynomialTermsSteps(exprStr, outputList) {
   it(exprStr + ' -> ' + lastString, function () {
     const inputNode = flatten(math.parse(exprStr));
     const status = PolynomialTermOperations.combinePolynomialTerms(inputNode);
-    const subSteps = status.subSteps;
-    assert.deepEqual(subSteps.length, outputList.length);
-    subSteps.forEach((step, i) => {
+    const substeps = status.substeps;
+    assert.deepEqual(substeps.length, outputList.length);
+    substeps.forEach((step, i) => {
       assert.deepEqual(
         print(step.newNode),
         outputList[i]);
