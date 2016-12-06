@@ -4,6 +4,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
+const collectAndCombineLikeTerms = require('../lib/collectAndCombine');
 const PolynomialTermNode = require('../lib/PolynomialTermNode');
 const PolynomialTermOperations = require('../lib/PolynomialTermOperations');
 const print = require('./../lib/print');
@@ -33,11 +34,13 @@ describe('classifies symbol terms correctly', function() {
   tests.forEach(t => testIsPolynomialTerm(t[0], t[1]));
 });
 
+// TODO: move these tests to collect and combine during the file structure
+// refactor
 function testCombinePolynomialTermsSteps(exprStr, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprStr + ' -> ' + lastString, function () {
     const inputNode = flatten(math.parse(exprStr));
-    const status = PolynomialTermOperations.combinePolynomialTerms(inputNode);
+    const status = collectAndCombineLikeTerms(inputNode);
     const substeps = status.substeps;
     assert.deepEqual(substeps.length, outputList.length);
     substeps.forEach((step, i) => {
