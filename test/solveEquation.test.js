@@ -25,6 +25,11 @@ function testSolve(equationString, comparator, outputStr, debug=false) {
 
 describe('solveEquation for =', function () {
   const tests = [
+    // can't solve this because two symbols: g and x
+    ['g *( x ) = ( x - 4) ^ ( 2) - 3', '=', 'g *( x ) = ( x - 4) ^ ( 2) - 3'],
+    // TODO: build functionality to support the above equation so we can solve:
+    // ['y - x - 2 = 3*2', '=', 'y = 8 + x'],
+    // ['2y - x - 2 = x', '=', 'y = x + 1'],
     ['x = 1', '=', 'x = 1'],
     ['2 = x', '=', 'x = 2'],
     ['2 + -3 = x', '=', 'x = -1'],
@@ -47,8 +52,6 @@ describe('solveEquation for =', function () {
     ['2x/3 = 2x - 4 ', '=', 'x = 3'],
     ['(-2/3)x + 3/7 = 1/2', '=', 'x = -3/28'],
     ['-9/4v + 4/5 = 7/8 ', '=', 'v = -1/30'],
-    ['y - x - 2 = 3*2', '=', 'y = 8 + x'],
-    ['2y - x - 2 = x', '=', 'y = x + 1'],
     // TODO: update test once we have root support
     ['x^2 - 2 = 0', '=', 'x^2 = 2'],
     ['x/(2/3) = 1', '=', 'x = 2/3'],
