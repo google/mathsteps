@@ -5,6 +5,8 @@ const math = require('mathjs');
 const MathChangeTypes = require('../lib/MathChangeTypes');
 const solveEquation = require('../lib/solveEquation');
 
+const NO_STEPS = 'no-steps';
+
 function testSolve(equationString, comparator, outputStr, debug=false) {
   const sides = equationString.split(comparator);
   const leftNode = math.parse(sides[0]);
@@ -13,7 +15,7 @@ function testSolve(equationString, comparator, outputStr, debug=false) {
   const steps = solveEquation(leftNode, rightNode, comparator, debug);
   let lastStep;
   if (steps.length === 0) {
-    lastStep = equationString;
+    lastStep = NO_STEPS;
   }
   else {
     lastStep = steps[steps.length -1].asciimath;
@@ -25,12 +27,13 @@ function testSolve(equationString, comparator, outputStr, debug=false) {
 
 describe('solveEquation for =', function () {
   const tests = [
-    // can't solve this because two symbols: g and x
-    ['g *( x ) = ( x - 4) ^ ( 2) - 3', '=', 'g *( x ) = ( x - 4) ^ ( 2) - 3'],
-    // TODO: build functionality to support the above equation so we can solve:
-    // ['y - x - 2 = 3*2', '=', 'y = 8 + x'],
-    // ['2y - x - 2 = x', '=', 'y = x + 1'],
-    ['x = 1', '=', 'x = 1'],
+    // can't solve this because two symbols: g and x -- so there's no steps
+    ['g *( x ) = ( x - 4) ^ ( 2) - 3', '=', NO_STEPS],
+    // can't solve this because we don't deal with the complicated fraction yet
+    ['( x )/( 2x + 7) >= 4', '>=', NO_STEPS],
+    ['y - x - 2 = 3*2', '=', 'y = 8 + x'],
+    ['2y - x - 2 = x', '=', 'y = x + 1'],
+    ['x = 1', '=', NO_STEPS],
     ['2 = x', '=', 'x = 2'],
     ['2 + -3 = x', '=', 'x = -1'],
     ['x + 3 = 4', '=', 'x = 1'],
