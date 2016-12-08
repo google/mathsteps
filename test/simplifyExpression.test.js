@@ -157,6 +157,8 @@ describe('distribution', function () {
     ['x^2 - x^2*(12 + 5x) - 7', '-5x^3 - 11x^2 - 7'],
     ['(5+x)*(x+3)', 'x^2 + 8x + 15'],
     ['(x-2)(x-4)', 'x^2 - 6x + 8'],
+    ['- x*y^4 (6x * y^2 + 5x*y - 3x)',
+      '-6 * x^2 * y^6 - 5 * x^2 * y^5 + 3 * x^2 * y^4'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
