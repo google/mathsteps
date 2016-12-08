@@ -53,11 +53,11 @@ describe('NodeType works', function () {
       NodeType.isFunction(math.parse('sqrt(5)'), 'abs'),
       false);
   });
-  it('nthRoot(4) is an nthRoot function', function () {
-    assert.deepEqual(
-      NodeType.isFunction(math.parse('nthRoot(5)'), 'nthRoot'),
-      true);
-  });
+  // it('nthRoot(4) is an nthRoot function', function () {
+  //   assert.deepEqual(
+  //     NodeType.isFunction(math.parse('nthRoot(5)'), 'nthRoot'),
+  //     true);
+  // });
 });
 
 describe('isConstantOrConstantFraction', function () {
