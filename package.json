@@ -13,8 +13,8 @@
     "mocha": "2.4.5"
   },
   "scripts": {
-    "lint": "node_modules/eslint/bin/eslint.js",
-    "test": "node_modules/mocha/bin/mocha"
+    "lint": "node_modules/.bin/eslint .",
+    "test": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
