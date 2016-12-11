@@ -88,7 +88,6 @@ describe('collect like terms for multiplication', function() {
     ['y^2 * 5 * y * 9', '(5 * 9) * (y^2 * y)'],
     ['5y^2 * -4y * 9', '(5 * -4 * 9) * (y^2 * y)'],
     ['5y^2 * -y * 9', '(5 * -1 * 9) * (y^2 * y)'],
-    ['y * 5 * z^2', 'y * 5 * z^2'],
     ['y * 5 * (2+x) * y^2 * 1/3', '(5 * 1/3) * (y * y^2) * (2 + x)'],
   ];
   tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
