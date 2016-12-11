@@ -70,8 +70,8 @@ describe('adding symbols without breaking things', function() {
   // nothing old breaks
   const tests = [
     ['2+x', '2 + x'],
-    ['(2+2)*x', '4 * x'],
-    ['(2+2)*x+3', '4 * x + 3'],
+    ['(2+2)*x', '4x'],
+    ['(2+2)*x+3', '4x + 3'],
   ];
   tests.forEach(t => testStep(t[0], t[1]));
 });

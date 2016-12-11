@@ -70,10 +70,9 @@ describe('canCombinePolynomialTerms multiplication', function() {
     // false b/c coefficient
     ['x^2 * 3x * x', false],
     ['y * y^3', true],
-    // next 3: test that it makes it implicit
-    ['5 * y^3', true],
-    ['5/7 * x', true],
-    ['5/7*9 * x', false],
+    ['5 * y^3', false], // just needs flattening
+    ['5/7 * x', false], // just needs flattening
+    ['5/7 * 9 * x', false],
   ];
   tests.forEach(t => testCanCombine(t[0], t[1]));
 });
