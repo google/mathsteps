@@ -4,7 +4,6 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
-    "clone": "2.0.0",
     "mathjs": "3.8.0"
   },
   "devDependencies": {

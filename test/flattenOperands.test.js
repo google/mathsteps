@@ -68,8 +68,8 @@ describe('flattens division', function () {
   const tests = [
     // groups x/4 and continues to flatten *
     ['2 * x / 4 * 6 ',
-      opNode('*', [opNode('/', [math.parse('2x'), math.parse('4')]),
-                   constNode(6)])],
+      opNode('*', [opNode('/', [
+        math.parse('2x'), math.parse('4')]), constNode(6)])],
     ['2*3/4/5*6',
       opNode('*', [constNode(2), math.parse('3/4/5'), constNode(6)])],
     // combines coefficient with x
