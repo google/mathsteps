@@ -21,6 +21,7 @@ describe('simplify basics', function () {
   const tests = [
     // removes multiplication by 1
     ['x*1', 'x'],
+    ['1x', 'x'],
     ['1*z^2', 'z^2'],
     ['2*1*z^2', '2 * z^2'],
     // removes multiplication by 0
@@ -29,7 +30,7 @@ describe('simplify basics', function () {
     // removes multiplication by -1
     ['-1*x', '-x'],
     ['x^2*-1', '-x^2'],
-    ['2*x*2*-1', '2 * x * 2 * -1'], // does not remove multiplication by -1
+    ['2x*2*-1', '2x * 2 * -1'], // does not remove multiplication by -1
     // removeExponentByOne
     ['x^1', 'x'],
     // simplifyDoubleUnaryMinus
