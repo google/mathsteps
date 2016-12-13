@@ -56,15 +56,15 @@ Please report unacceptable behavior to *TODO: email*
 
 ### Ways to help out
 
-- You can spread the word! If you think mathsteps is cool, tell your friends!
+- **You can spread the word!** If you think mathsteps is cool, tell your friends!
   Let them know they can use this and that they can contribute
-- Suggest features! Have an idea for something mathsteps should solve or a way
+- **Suggest features!** Have an idea for something mathsteps should solve or a way
   for it to teach math better? If your idea is not an [existing issue](https://github.com/socraticorg/mathsteps/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), create a new issue with
   the label "enhancement"
-- Report bugs! If the bug is not an [existing issue](https://github.com/socraticorg/mathsteps/issues?q=is%3Aopen+is%3Aissue+label%3Abug),
+- **Report bugs!** If the bug is not an [existing issue](https://github.com/socraticorg/mathsteps/issues?q=is%3Aopen+is%3Aissue+label%3Abug),
   create a new issue with the label "bug" and as much detail as you can so
   someone else can reproduce it.
-- Contribute code! We'd love to have more contributors working on this. Check
+- **Contribute code!** We'd love to have more contributors working on this. Check
   out the section below with more information on how to contribute, and feel
   free to email *TODO: email* with any questions!
 
