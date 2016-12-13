@@ -4,8 +4,6 @@
 
 ### Table of contents
 
-TODO: link to sections below?
-
 What should I know before I get started?
 
 - Code of Conduct
@@ -26,11 +24,11 @@ Contributing
 
 This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code.
-Please report unacceptable behavior to * what email should we use ? TODO *
+Please report unacceptable behavior to *TODO: email*
 
 ### overview of how (and why) we built mathsteps
 
-- link to blog post TODO
+- *TODO: link to blog post*
 
 ### mathJS expression trees
 
@@ -68,7 +66,7 @@ Please report unacceptable behavior to * what email should we use ? TODO *
   someone else can reproduce it.
 - Contribute code! We'd love to have more contributors working on this. Check
   out the section below with more information on how to contribute, and feel
-  free to email * insert email to contact us TODO * with any questions!
+  free to email *TODO: email* with any questions!
 
 ### Creating a pull request
 
