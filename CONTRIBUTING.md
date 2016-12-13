@@ -76,8 +76,11 @@ Please report unacceptable behavior to *TODO: email*
   before you get started
 - if there is no existing issue for the change you'd like to make, you can make
   a [new one](https://github.com/socraticorg/mathsteps/issues/new)
-- make sure you all the unit tests pass (with `npm test`) before creating the
-  pull request, and please add your own tests for what you changed as well
+- make sure all the unit tests pass (with `npm test`) before creating the
+  pull request, and please add your own tests for what you changed as well.
+  If you're not sure how to add tests or are confused about why tests are
+  failing, it's also fine to create the pull request first and we'll help
+  you get things working.
 
 ### Testing
 
