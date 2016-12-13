@@ -6,9 +6,9 @@
 
 What should I know before I get started?
 
-- Code of Conduct
-- mathJS expression trees
+- code of conduct
 - decisions around how we built mathsteps
+- mathJS expression trees
 
 Contributing
 
@@ -20,7 +20,7 @@ Contributing
 
 ## What should I know before I get started?
 
-### Code of Conduct
+### code of conduct
 
 This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code.
