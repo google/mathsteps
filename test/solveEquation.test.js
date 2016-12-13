@@ -107,9 +107,11 @@ describe('constant comparison support', function () {
     ['1 <= 1', '<=', MathChangeTypes.STATEMENT_IS_TRUE],
     ['2 <= 1', '<=', MathChangeTypes.STATEMENT_IS_FALSE],
     ['1 <= 2', '<=', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['( 1) = ( 14)', '=', MathChangeTypes.STATEMENT_IS_FALSE],
     // TODO: when we support fancy exponent and sqrt things
     // ['(1/64)^(-5/6) = 32', '=', MathChangeTypes.STATEMENT_IS_TRUE],
     // With variables that cancel
+    ['( r )/( ( r ) ) = ( 1)/( 10)', '=', MathChangeTypes.STATEMENT_IS_FALSE],
     ['5 + (x - 5) = x', '=', MathChangeTypes.STATEMENT_IS_TRUE],
     ['4x - 4= 4x', '=', MathChangeTypes.STATEMENT_IS_FALSE],
   ];
