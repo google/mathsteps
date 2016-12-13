@@ -2,6 +2,14 @@
 
 https://www.youtube.com/watch?v=ay6GjmiJTPM
 
+## NOTE: not ready for contributers
+
+Be aware that this repo's file structure will be going through some changes to
+get ready for our release mid-January. At that point, we'll be publishing a blog
+post where you can learn more about how this repo works, and we'll be welcoming
+contributers! You're welcome to play around with this before then, but we won't
+be taking pull requests until after our release. Thanks!
+
 ### Using the expression stepper
 
 The main module is `simplifyExpression.js` which exports the following functions:
@@ -12,42 +20,13 @@ The main module is `simplifyExpression.js` which exports the following functions
   node for each step
 - step(expr) performs a single step on an expression node
 
-### Things to know to navigate the code
+### Contributing
 
-Hi! If you're interested in working on this, that would be super cool!
-Here are some things to know that will help make sense of the code:
+Hi! If you're interested in working on this, that would be super awesome!
+Learn more here: [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Expression trees
 
-- Expressions in mathJS are stored as trees. You can read more about that in
-  [the mathJS expresisons documentation
-  page](http://mathjs.org/docs/expressions/expression_trees.html)
-- There are a few different types of nodes that show up in the tree.
-  This stepper uses OperationNode, ParenthesisNode, ConstantNode, and
-  SymbolNode. You can read about them on [the mathJS expresisons documentation
-  page](http://mathjs.org/docs/expressions/expression_trees.html). **Being
-  familiar with these node types is essential for working in this code.**
-  In the future, it would be nice to add support for FunctionNode.
-- Keep in mind when dealing with node expressions that child nodes in the
-  tree are called different things depending on the parent node type.
-  Operation nodes have `args` as their children, and parenthesis nodes have a
-  single child called `content`.
-- One thing that's especially helpful to know is that operation nodes with op
-  `*` can be implicit. If you do `n = math.parse('2*x')`, the resulting
-  expression node is an operation node with `n.op` equal to `*`, and `n.args`
-  equal to constant node 2 and symbol node x. Contrastingly,
-  `n = math.parse(2x)` has the same `op` and `args`, but `n.implicit`
-  will be true - meaning there was no astrix between the operands in the input.
-  (This is used a lot for polynomial terms - ie 2x \* 5 should just be two
-   operands 2x and 5 instead of 3 operands 2, x, and 5)
-- TRICKY catch: any subtraction in the tree will be converted to adding the
-  negative, e.g. 2 - 3 would be 2 + -3 in the tree. This is so that all
-  addition and subtraction is flat (e.g. 2 + 3 - 5 + 8 would become one
-  addition operation with 2, 3, -5, and 8 as its child nodes). This is a common
-  strategy for computer algebra systems but can be confusing and easy to forget.
-  So at most points in the codebase, there should be no operators with sign `-`
-  If you're curious what the code that modifies subtraction looks like, you can
-  find it in 'flatten.js'
+----- to be moved to wiki later -----
 
 The code
 
@@ -75,16 +54,3 @@ The code
  - Note that polynomial terms right now are defined by only having one symbol.
    So 2x is grouped together as a polynomial node, but 2xy would be
    2x \* y (two operands)
-
-Testing
-
-- There are test files for almost every file in the stepper code.
-- Run tests with `npm test`
-- If you want to see what the expression tree looks like at any point
-  in the code, you can log `node` as an expression string (e.g. '2x + 5') with
-  `console.log(print(node))`, and you can log the full tree structure
-  with `console.log(JSON.stringify(node, null, 2))`
-
-Linting
-
-- `npm run lint .`
