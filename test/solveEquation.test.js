@@ -113,11 +113,32 @@ describe('constant comparison support', function () {
     ['1 <= 1', '<=', MathChangeTypes.STATEMENT_IS_TRUE],
     ['2 <= 1', '<=', MathChangeTypes.STATEMENT_IS_FALSE],
     ['1 <= 2', '<=', MathChangeTypes.STATEMENT_IS_TRUE],
+    ['( 1) = ( 14)', '=', MathChangeTypes.STATEMENT_IS_FALSE],
     // TODO: when we support fancy exponent and sqrt things
     // ['(1/64)^(-5/6) = 32', '=', MathChangeTypes.STATEMENT_IS_TRUE],
     // With variables that cancel
+    ['( r )/( ( r ) ) = ( 1)/( 10)', '=', MathChangeTypes.STATEMENT_IS_FALSE],
     ['5 + (x - 5) = x', '=', MathChangeTypes.STATEMENT_IS_TRUE],
     ['4x - 4= 4x', '=', MathChangeTypes.STATEMENT_IS_FALSE],
   ];
   tests.forEach(t => testSolveConstantEquation(t[0], t[1], t[2]));
+});
+
+function testEquationError(
+  equationString, comparator, debug=false) {
+  const sides = equationString.split(comparator);
+  const leftNode = math.parse(sides[0]);
+  const rightNode = math.parse(sides[1]);
+
+  it(equationString + ' throws error', function () {
+    assert.throws(() => solveEquation(leftNode, rightNode, comparator, debug),
+                  Error);
+  });
+}
+
+describe('solveEquation errors', function() {
+  const tests = [
+    ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)', '=']
+  ];
+  tests.forEach(t => testEquationError(t[0], t[1]));
 });
