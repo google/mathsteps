@@ -119,23 +119,20 @@ describe('constant comparison support', function () {
 });
 
 function testEquationError(
-  equationString, comparator, errorMessage, debug=false) {
+  equationString, comparator, debug=false) {
   const sides = equationString.split(comparator);
   const leftNode = math.parse(sides[0]);
   const rightNode = math.parse(sides[1]);
 
   it(equationString + ' throws error', function () {
     assert.throws(() => solveEquation(leftNode, rightNode, comparator, debug),
-                  errorMessage);
+                  Error);
   });
 }
 
 describe('solveEquation errors', function() {
   const tests = [
-    ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)', '=',
-      'Math error: Potential infinite loop for equation ' +
-      '(x + 2)^(2) - x^(2) = 4(x + 1). It reached over 300 characters long, ' +
-      'so returning no steps']
+    ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)', '=']
   ];
-  tests.forEach(t => testEquationError(t[0], t[1], t[2]));
+  tests.forEach(t => testEquationError(t[0], t[1]));
 });
