@@ -101,7 +101,7 @@ function testMultiplyFractions(exprString, outputStr) {
   const node = flatten(math.parse(exprString));
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.multiplyFractionsDFS(node).newNode),
+      print(Fraction.multiplyFractionsTreeSearch(node).newNode),
       outputStr);
   });
 }
@@ -151,27 +151,10 @@ describe('simplify signs', function() {
   tests.forEach(t => testSimplifySigns(t[0], t[1]));
 });
 
-function testMultiplyByInverse(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(Fraction.multiplyByInverse(flatten(math.parse(exprStr))).newNode),
-      outputStr);
-  });
-}
-
-describe('multiplyByInverse', function() {
-  const tests = [
-    ['x/(2/3)', 'x * 3/2'],
-    ['x / (y/(z+a))', 'x * (z + a) / y'],
-    ['x/((2+z)/(3/y))', 'x * (3 / y) / (2 + z)'],
-  ];
-  tests.forEach(t => testMultiplyByInverse(t[0], t[1]));
-});
-
 function testBreakUpNumerator(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.breakUpNumeratorDFS(flatten(math.parse(exprStr))).newNode),
+      print(Fraction.breakUpNumeratorTreeSearch(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
