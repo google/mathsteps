@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/util/print');
-const evaluateFunctions = require('../lib/evaluateFunctions');
+const evaluateFunctions = require('../lib/evaluateFunctions/evaluateFunctions');
 
 function testEvaluateFunctions(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
