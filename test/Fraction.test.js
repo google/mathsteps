@@ -101,7 +101,7 @@ function testMultiplyFractions(exprString, outputStr) {
   const node = flatten(math.parse(exprString));
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.multiplyFractionsDFS(node).newNode),
+      print(Fraction.multiplyFractionsTreeSearch(node).newNode),
       outputStr);
   });
 }
@@ -154,7 +154,7 @@ describe('simplify signs', function() {
 function testBreakUpNumerator(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.breakUpNumeratorDFS(flatten(math.parse(exprStr))).newNode),
+      print(Fraction.breakUpNumeratorTreeSearch(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
