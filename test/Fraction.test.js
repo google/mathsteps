@@ -3,16 +3,18 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const ConstantFraction = require('../lib/ConstantFraction');
 const Fraction = require('../lib/Fraction');
 const flatten = require('../lib/flattenOperands');
 const print = require('../lib/print');
 const simplifySigns = require('../lib/simplifyFractions/simplifyFractionSigns');
+const divideByGCD = require('../lib/simplifyFractions/divideByGCD');
+const addConstantFractions = require('../lib/simplifyFractions/addConstantFractions');
+const addConstantAndFraction = require('../lib/simplifyFractions/addConstantAndFraction');
 
 function testAddConstantFractions(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprString + ' -> ' + lastString, function () {
-    const status = ConstantFraction.addConstantFractions(flatten(math.parse(exprString)));
+    const status = addConstantFractions(flatten(math.parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);
@@ -61,7 +63,7 @@ describe('addConstantFractions', function () {
 function testAddConstantAndFraction(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprString + ' -> ' + lastString, function () {
-    const status = ConstantFraction.addConstantAndFraction(math.parse(exprString));
+    const status = addConstantAndFraction(math.parse(exprString));
     const substeps = status.substeps;
     substeps.forEach((step, i) => {
       assert.deepEqual(
@@ -119,7 +121,7 @@ describe('multiplyFractions', function () {
 function testSimplifyFraction(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(ConstantFraction.divideByGCD(flatten(math.parse(exprStr))).newNode),
+      print(divideByGCD(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
