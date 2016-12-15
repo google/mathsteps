@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const simplifyDivision = require('../lib/simplifyDivision');
 const flatten = require('../lib/flattenOperands');
-const print = require('../lib/print');
+const print = require('../lib/util/print');
 
 function testSimplifyDivision(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {

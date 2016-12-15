@@ -2,8 +2,9 @@
 
 const assert = require('assert');
 const math = require('mathjs');
+
 const MathChangeTypes = require('../lib/MathChangeTypes');
-const solveEquation = require('../lib/solveEquation');
+const solveEquation = require('../lib/equation/solveEquation');
 
 const NO_STEPS = 'no-steps';
 

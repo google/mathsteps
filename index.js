@@ -1,5 +1,5 @@
 const simplifyExpression = require('./lib/simplifyExpression');
-const solveEquation = require('./lib/solveEquation');
+const solveEquation = require('./lib/equation/solveEquation');
 
 module.exports = {
   expressionStepper: simplifyExpression.stepThrough,

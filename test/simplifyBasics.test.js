@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
 const MathChangeTypes = require('../lib/MathChangeTypes');
-const print = require('../lib/print');
+const print = require('../lib/util/print');
 const simplifyBasics = require('../lib/simplifyBasics');
 const stepper = require('../lib/simplifyExpression');
 const stepThrough = stepper.stepThrough;

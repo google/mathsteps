@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const collectAndCombine = require('../lib/collectAndCombine');
 const flatten = require('../lib/flattenOperands');
-const print = require('../lib/print');
+const print = require('../lib/util/print');
 
 function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {

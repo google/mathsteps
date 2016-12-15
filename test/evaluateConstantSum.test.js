@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const evaluateConstantSum = require('../lib/evaluateConstantSum');
 const flatten = require('../lib/flattenOperands');
-const print = require('../lib/print');
+const print = require('../lib/util/print');
 
 function testEvaluateConstantSum(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];

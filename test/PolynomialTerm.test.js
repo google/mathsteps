@@ -7,7 +7,7 @@ const flatten = require('../lib/flattenOperands');
 const collectAndCombineLikeTerms = require('../lib/collectAndCombine');
 const PolynomialTermNode = require('../lib/PolynomialTermNode');
 const PolynomialTermOperations = require('../lib/PolynomialTermOperations');
-const print = require('./../lib/print');
+const print = require('./../lib/util/print');
 const simplifyPolynomialFraction = require('./../lib/simplifyFractions/simplifyPolynomialFraction');
 
 function testIsPolynomialTerm(exprStr, isTerm) {

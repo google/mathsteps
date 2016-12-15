@@ -3,7 +3,7 @@ const math = require('mathjs');
 
 const distribute = require('../lib/distribute');
 const flatten = require('../lib/flattenOperands');
-const print = require('./../lib/print');
+const print = require('./../lib/util/print');
 
 function testDistributeMinus(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {

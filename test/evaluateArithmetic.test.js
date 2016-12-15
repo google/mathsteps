@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
-const print = require('./../lib/print');
+const print = require('./../lib/util/print');
 const evaluateArithmetic = require('../lib/evaluateArithmetic');
 
 function testArithmetic(exprStr, outputStr) {

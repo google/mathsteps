@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const Fraction = require('../lib/Fraction');
 const flatten = require('../lib/flattenOperands');
-const print = require('../lib/print');
+const print = require('../lib/util/print');
 const simplifySigns = require('../lib/simplifyFractions/simplifyFractionSigns');
 const divideByGCD = require('../lib/simplifyFractions/divideByGCD');
 const addConstantFractions = require('../lib/simplifyFractions/addConstantFractions');

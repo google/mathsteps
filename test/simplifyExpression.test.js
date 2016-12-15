@@ -7,7 +7,7 @@ const step = stepper.step;
 const simplify = stepper.simplify;
 const stepThrough = stepper.stepThrough;
 const flatten = require('../lib/flattenOperands');
-const print = require('./../lib/print');
+const print = require('./../lib/util/print');
 
 function testStep(exprStr, outputStr, debug=false) {
   let expr = math.parse(exprStr);
