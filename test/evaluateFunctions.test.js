@@ -5,12 +5,12 @@ const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/util/print');
-const evaluateFunctions = require('../lib/evaluateFunctions/evaluateFunctions');
+const evaluateFunctionsSearch = require('../lib/evaluateFunctions/evaluateFunctionsSearch');
 
 function testEvaluateFunctions(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(evaluateFunctions(flatten(math.parse(exprString))).newNode),
+      print(evaluateFunctionsSearch(flatten(math.parse(exprString))).newNode),
       outputStr);
   });
 }
@@ -51,7 +51,7 @@ describe('simplify nthRoot', function () {
 function testEvaluateSteps(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprString + ' -> ' + lastString, function () {
-    const status = evaluateFunctions(flatten(math.parse(exprString)));
+    const status = evaluateFunctionsSearch(flatten(math.parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);

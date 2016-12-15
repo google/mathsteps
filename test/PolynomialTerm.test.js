@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
-const collectAndCombineLikeTerms = require('../lib/collectAndCombine/collectAndCombine');
+const collectAndCombineSearch = require('../lib/collectAndCombine/collectAndCombineSearch');
 const PolynomialTermNode = require('../lib/PolynomialTermNode');
 const PolynomialTermOperations = require('../lib/PolynomialTermOperations');
 const print = require('./../lib/util/print');
@@ -41,7 +41,7 @@ function testCombinePolynomialTermsSteps(exprStr, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprStr + ' -> ' + lastString, function () {
     const inputNode = flatten(math.parse(exprStr));
-    const status = collectAndCombineLikeTerms(inputNode);
+    const status = collectAndCombineSearch(inputNode);
     const substeps = status.substeps;
     assert.deepEqual(substeps.length, outputList.length);
     substeps.forEach((step, i) => {

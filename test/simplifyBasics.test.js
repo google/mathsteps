@@ -6,14 +6,14 @@ const math = require('mathjs');
 const flatten = require('../lib/flattenOperands');
 const MathChangeTypes = require('../lib/MathChangeTypes');
 const print = require('../lib/util/print');
-const simplifyBasics = require('../lib/simplifyBasics');
+const simplifyBasicsSearch = require('../lib/simplifyBasicsSearch');
 const stepper = require('../lib/simplifyExpression');
 const stepThrough = stepper.stepThrough;
 
 function testSimplify(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplifyBasics(flatten(math.parse(exprStr))).newNode),
+      print(simplifyBasicsSearch(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }

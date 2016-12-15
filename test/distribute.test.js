@@ -1,14 +1,14 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const distribute = require('../lib/distribute');
+const distributeSearch = require('../lib/distributeSearch');
 const flatten = require('../lib/flattenOperands');
 const print = require('./../lib/util/print');
 
 function testDistributeMinus(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(flatten(distribute(flatten(math.parse(exprStr))).newNode)),
+      print(flatten(distributeSearch(flatten(math.parse(exprStr))).newNode)),
       outputStr);
   });
 }
@@ -34,7 +34,7 @@ describe('distribute - into paren with multiplication/division', function () {
 function testDistributeSteps(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprString + ' -> ' + lastString, function () {
-    const status = distribute(flatten(math.parse(exprString)));
+    const status = distributeSearch(flatten(math.parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);

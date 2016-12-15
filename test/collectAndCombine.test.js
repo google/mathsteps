@@ -3,13 +3,13 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const collectAndCombine = require('../lib/collectAndCombine/collectAndCombine');
+const collectAndCombineSearch = require('../lib/collectAndCombine/collectAndCombineSearch');
 const flatten = require('../lib/flattenOperands');
 const print = require('../lib/util/print');
 
 function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
-    const status = collectAndCombine(flatten(math.parse(exprString)));
+    const status = collectAndCombineSearch(flatten(math.parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);
@@ -27,7 +27,7 @@ function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
 
 function testSimpleCollectAndCombine(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
-    const status = collectAndCombine(flatten(math.parse(exprString)));
+    const status = collectAndCombineSearch(flatten(math.parse(exprString)));
     assert.deepEqual(
       print(status.newNode),
       outputStr);
