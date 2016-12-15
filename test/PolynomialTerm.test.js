@@ -8,6 +8,7 @@ const collectAndCombineLikeTerms = require('../lib/collectAndCombine');
 const PolynomialTermNode = require('../lib/PolynomialTermNode');
 const PolynomialTermOperations = require('../lib/PolynomialTermOperations');
 const print = require('./../lib/print');
+const simplifyPolynomialFraction = require('./../lib/simplifyFractions/simplifyPolynomialFraction');
 
 function testIsPolynomialTerm(exprStr, isTerm) {
   it(exprStr + ' ' + isTerm, function () {
@@ -141,7 +142,7 @@ function testSimplifyPolynomialFraction(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = flatten(math.parse(exprStr));
     assert.deepEqual(
-      print(PolynomialTermOperations.simplifyPolynomialFraction(inputNode).newNode),
+      print(simplifyPolynomialFraction(inputNode).newNode),
       outputStr);
   });
 }

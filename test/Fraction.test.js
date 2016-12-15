@@ -7,6 +7,7 @@ const ConstantFraction = require('../lib/ConstantFraction');
 const Fraction = require('../lib/Fraction');
 const flatten = require('../lib/flattenOperands');
 const print = require('../lib/print');
+const simplifySigns = require('../lib/simplifyFractions/simplifyFractionSigns');
 
 function testAddConstantFractions(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
@@ -138,7 +139,7 @@ describe('simplifyFraction', function() {
 function testSimplifySigns(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.simplifySigns(flatten(math.parse(exprStr))).newNode),
+      print(simplifySigns(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
