@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
-const collectAndCombineLikeTerms = require('../lib/collectAndCombine');
+const collectAndCombineLikeTerms = require('../lib/collectAndCombine/collectAndCombine');
 const PolynomialTermNode = require('../lib/PolynomialTermNode');
 const PolynomialTermOperations = require('../lib/PolynomialTermOperations');
 const print = require('./../lib/util/print');
@@ -60,12 +60,12 @@ function testCanCombine(exprStr, canCombine) {
   it(exprStr + ' ' + canCombine, function () {
     const inputNode = flatten(math.parse(exprStr));
     assert.equal(
-      PolynomialTermOperations.canCombinePolynomialTerms(inputNode),
+      PolynomialTermOperations.canSimplifyPolynomialTerms(inputNode),
       canCombine);
   });
 }
 
-describe('canCombinePolynomialTerms multiplication', function() {
+describe('canSimplifyPolynomialTerms multiplication', function() {
   const tests = [
     ['x^2 * x * x', true],
     // false b/c coefficient
@@ -94,7 +94,7 @@ describe('combinePolynomialTerms multiplication', function() {
   tests.forEach(t => testCombinePolynomialTermsSteps(t[0], t[1]));
 });
 
-describe('canCombinePolynomialTerms addition', function() {
+describe('canSimplifyPolynomialTerms addition', function() {
   const tests = [
     ['x + x',  true],
     ['4y^2 + 7y^2 + y^2',  true],

@@ -3,7 +3,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const collectAndCombine = require('../lib/collectAndCombine');
+const collectAndCombine = require('../lib/collectAndCombine/collectAndCombine');
 const flatten = require('../lib/flattenOperands');
 const print = require('../lib/util/print');
 
