@@ -3,8 +3,9 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const Fraction = require('../lib/Fraction');
+const breakUpNumeratorSearch = require('../lib/breakUpNumeratorSearch');
 const flatten = require('../lib/flattenOperands');
+const multiplyFractionsSearch = require('../lib/multiplyFractionsSearch');
 const print = require('../lib/util/print');
 const simplifySigns = require('../lib/simplifyFractions/simplifyFractionSigns');
 const divideByGCD = require('../lib/simplifyFractions/divideByGCD');
@@ -104,7 +105,7 @@ function testMultiplyFractions(exprString, outputStr) {
   const node = flatten(math.parse(exprString));
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.multiplyFractionsTreeSearch(node).newNode),
+      print(multiplyFractionsSearch(node).newNode),
       outputStr);
   });
 }
@@ -157,7 +158,7 @@ describe('simplify signs', function() {
 function testBreakUpNumerator(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(Fraction.breakUpNumeratorTreeSearch(flatten(math.parse(exprStr))).newNode),
+      print(breakUpNumeratorSearch(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
