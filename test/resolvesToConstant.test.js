@@ -3,12 +3,12 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const MathResolveChecks = require('../lib/MathResolveChecks');
+const resolvesToConstant = require('../lib/resolvesToConstant');
 
 function testResolvesToConstant(exprString, resolves) {
   it(exprString  + ' ' + resolves, function () {
     assert.deepEqual(
-      MathResolveChecks.resolvesToConstant(math.parse(exprString)),
+      resolvesToConstant(math.parse(exprString)),
       resolves);
   });
 }
