@@ -1,7 +1,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const cancelLikeTerms = require('../lib/cancelLikeTerms');
+const cancelLikeTerms = require('../lib/simplifyFractions/cancelLikeTerms');
 const flatten = require('../lib/flattenOperands');
 const print = require('../lib/print');
 
