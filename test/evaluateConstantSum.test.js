@@ -3,7 +3,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const evaluateConstantSum = require('../lib/evaluateConstantSum');
+const evaluateConstantSum = require('../lib/collectAndCombine/evaluateConstantSum');
 const flatten = require('../lib/flattenOperands');
 const print = require('../lib/util/print');
 
