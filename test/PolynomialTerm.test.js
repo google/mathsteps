@@ -4,11 +4,9 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const flatten = require('../lib/flattenOperands');
-const collectAndCombineSearch = require('../lib/collectAndCombine/collectAndCombineSearch');
 const PolynomialTermNode = require('../lib/PolynomialTermNode');
 const PolynomialTermOperations = require('../lib/PolynomialTermOperations');
 const print = require('./../lib/util/print');
-const simplifyPolynomialFraction = require('./../lib/simplifyFractions/simplifyPolynomialFraction');
 
 function testIsPolynomialTerm(exprStr, isTerm) {
   it(exprStr + ' ' + isTerm, function () {
@@ -35,27 +33,6 @@ describe('classifies symbol terms correctly', function() {
   tests.forEach(t => testIsPolynomialTerm(t[0], t[1]));
 });
 
-// TODO: move these tests to collect and combine during the file structure
-// refactor
-function testCombinePolynomialTermsSteps(exprStr, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  it(exprStr + ' -> ' + lastString, function () {
-    const inputNode = flatten(math.parse(exprStr));
-    const status = collectAndCombineSearch(inputNode);
-    const substeps = status.substeps;
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-
-    assert.deepEqual(
-      print(status.newNode),
-      lastString);
-  });
-}
-
 function testCanCombine(exprStr, canCombine) {
   it(exprStr + ' ' + canCombine, function () {
     const inputNode = flatten(math.parse(exprStr));
@@ -78,21 +55,6 @@ describe('canSimplifyPolynomialTerms multiplication', function() {
   tests.forEach(t => testCanCombine(t[0], t[1]));
 });
 
-describe('combinePolynomialTerms multiplication', function() {
-  const tests = [
-    ['x^2 * x * x',
-      ['x^2 * x^1 * x^1',
-        'x^(2 + 1 + 1)',
-        'x^4']
-    ],
-    ['y * y^3',
-      ['y^1 * y^3',
-        'y^(1 + 3)',
-        'y^4']
-    ],
-  ];
-  tests.forEach(t => testCombinePolynomialTermsSteps(t[0], t[1]));
-});
 
 describe('canSimplifyPolynomialTerms addition', function() {
   const tests = [
@@ -102,22 +64,6 @@ describe('canSimplifyPolynomialTerms addition', function() {
     ['y',  false],
   ];
   tests.forEach(t => testCanCombine(t[0], t[1]));
-});
-
-describe('combinePolynomialTerms addition', function() {
-  const tests = [
-    ['x+x',
-      ['1x + 1x',
-        '(1 + 1)x',
-        '2x']
-    ],
-    ['4y^2 + 7y^2 + y^2',
-      ['4y^2 + 7y^2 + 1y^2',
-        '(4 + 7 + 1)y^2',
-        '12y^2']
-    ],
-  ];
-  tests.forEach(t => testCombinePolynomialTermsSteps(t[0], t[1]));
 });
 
 function testRearrangeCoefficient(exprStr, outputStr) {
@@ -136,26 +82,4 @@ describe('rearrangeCoefficient', function() {
     ['y^3 * 5', '5y^3'],
   ];
   tests.forEach(t => testRearrangeCoefficient(t[0], t[1]));
-});
-
-function testSimplifyPolynomialFraction(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    const inputNode = flatten(math.parse(exprStr));
-    assert.deepEqual(
-      print(simplifyPolynomialFraction(inputNode).newNode),
-      outputStr);
-  });
-}
-
-describe('simplifyPolynomialFraction', function() {
-  const tests = [
-    ['2x/4', '1/2 x'],
-    ['9y/3', '3y'],
-    ['y/-3', '-1/3 y'],
-    ['-3y/-2', '3/2 y'],
-    ['-y/-1', 'y'],
-    ['12z^2/27', '4/9 z^2'],
-    ['1.6x / 1.6', 'x'],
-  ];
-  tests.forEach(t => testSimplifyPolynomialFraction(t[0], t[1]));
 });

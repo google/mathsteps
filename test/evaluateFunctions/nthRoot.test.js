@@ -3,25 +3,17 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../lib/flattenOperands');
-const print = require('./../lib/util/print');
-const evaluateFunctionsSearch = require('../lib/evaluateFunctions/evaluateFunctionsSearch');
+const flatten = require('../../lib/flattenOperands');
+const print = require('../../lib/util/print');
+const nthRoot = require('../../lib/evaluateFunctions/nthRoot');
 
-function testEvaluateFunctions(exprString, outputStr) {
+function testNthRoot(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(evaluateFunctionsSearch(flatten(math.parse(exprString))).newNode),
+      print(nthRoot(flatten(math.parse(exprString))).newNode),
       outputStr);
   });
 }
-
-describe('abs', function () {
-  const tests = [
-    ['abs(4)', '4'],
-    ['abs(-5)', '5'],
-  ];
-  tests.forEach(t => testEvaluateFunctions(t[0], t[1]));
-});
 
 describe('simplify nthRoot', function () {
   const tests = [
@@ -45,13 +37,13 @@ describe('simplify nthRoot', function () {
     ['nthRoot(x * x, 2)', 'x'],
     ['nthRoot(x * x * (2 + 3), 2)', 'x * nthRoot((2 + 3), 2)'],
   ];
-  tests.forEach(t => testEvaluateFunctions(t[0], t[1]));
+  tests.forEach(t => testNthRoot(t[0], t[1]));
 });
 
-function testEvaluateSteps(exprString, outputList) {
+function testNthRootSteps(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
   it(exprString + ' -> ' + lastString, function () {
-    const status = evaluateFunctionsSearch(flatten(math.parse(exprString)));
+    const status = nthRoot(flatten(math.parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);
@@ -99,5 +91,5 @@ describe('nthRoot steps', function () {
         '2 * 3 * x']
     ]
   ];
-  tests.forEach(t => testEvaluateSteps(t[0], t[1]));
+  tests.forEach(t => testNthRootSteps(t[0], t[1]));
 });

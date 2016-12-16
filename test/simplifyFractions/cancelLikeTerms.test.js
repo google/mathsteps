@@ -1,9 +1,9 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const cancelLikeTerms = require('../lib/simplifyFractions/cancelLikeTerms');
-const flatten = require('../lib/flattenOperands');
-const print = require('../lib/util/print');
+const cancelLikeTerms = require('../../lib/simplifyFractions/cancelLikeTerms');
+const flatten = require('../../lib/flattenOperands');
+const print = require('../../lib/util/print');
 
 function testCancelLikeTerms(exprStr, expectedStr) {
   const evaluated = cancelLikeTerms(flatten(math.parse(exprStr))).newNode;

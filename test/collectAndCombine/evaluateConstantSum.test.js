@@ -3,9 +3,9 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const evaluateConstantSum = require('../lib/collectAndCombine/evaluateConstantSum');
-const flatten = require('../lib/flattenOperands');
-const print = require('../lib/util/print');
+const evaluateConstantSum = require('../../lib/collectAndCombine/evaluateConstantSum');
+const flatten = require('../../lib/flattenOperands');
+const print = require('../../lib/util/print');
 
 function testEvaluateConstantSum(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];

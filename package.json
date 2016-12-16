@@ -13,7 +13,7 @@
   },
   "scripts": {
     "lint": "node_modules/.bin/eslint .",
-    "test": "node_modules/.bin/mocha"
+    "test": "node_modules/.bin/mocha --recursive"
   },
   "repository": {
     "type": "git",
