@@ -24,7 +24,7 @@ Contributing
 
 This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code.
-Please report unacceptable behavior to *TODO: email*
+Please report unacceptable behavior to mathsteps@socratic.org
 
 ### overview of how (and why) we built mathsteps
 
@@ -66,7 +66,7 @@ Please report unacceptable behavior to *TODO: email*
   someone else can reproduce it.
 - **Contribute code!** We'd love to have more contributors working on this. Check
   out the section below with more information on how to contribute, and feel
-  free to email *TODO: email* with any questions!
+  free to email mathsteps@socratic.org with any questions!
 
 ### Creating a pull request
 
