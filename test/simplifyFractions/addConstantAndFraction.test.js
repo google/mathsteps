@@ -4,7 +4,6 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const addConstantAndFraction = require('../../lib/simplifyFractions/addConstantAndFraction');
-const flatten = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 
 function testAddConstantAndFraction(exprString, outputList) {
