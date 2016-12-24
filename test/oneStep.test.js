@@ -1,7 +1,6 @@
 'use strict';
 
 const assert = require('assert');
-const math = require('mathjs');
 
 const MathChangeTypes = require('../lib/MathChangeTypes');
 const print = require('../lib/util/print');
