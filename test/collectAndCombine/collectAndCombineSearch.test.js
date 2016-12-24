@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const collectAndCombineSearch = require('../../lib/collectAndCombine/collectAndCombineSearch');
-const flatten = require('../../lib/flattenOperands');
+const flatten = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 
 function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {

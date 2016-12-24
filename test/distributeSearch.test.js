@@ -2,7 +2,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const distributeSearch = require('../lib/distributeSearch');
-const flatten = require('../lib/flattenOperands');
+const flatten = require('../lib/util/flattenOperands');
 const print = require('./../lib/util/print');
 
 function testDistributeMinus(exprStr, outputStr) {

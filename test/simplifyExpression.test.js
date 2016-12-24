@@ -6,7 +6,7 @@ const stepper = require('../lib/simplifyExpression');
 const step = stepper.step;
 const simplify = stepper.simplify;
 const stepThrough = stepper.stepThrough;
-const flatten = require('../lib/flattenOperands');
+const flatten = require('../lib/util/flattenOperands');
 const print = require('./../lib/util/print');
 
 function testStep(exprStr, outputStr, debug=false) {

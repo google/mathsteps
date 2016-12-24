@@ -3,7 +3,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../../lib/flattenOperands');
+const flatten = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 const absoluteValue = require('../../lib/evaluateFunctions/absoluteValue');
 

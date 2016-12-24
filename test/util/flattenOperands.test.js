@@ -2,9 +2,9 @@
 
 const assert = require('assert');
 const math = require('mathjs');
-const flattenOperands = require('../lib/flattenOperands');
-const NodeCreator = require('../lib/util/NodeCreator');
-const print = require('../lib/util/print');
+const flattenOperands = require('../../lib/util/flattenOperands');
+const NodeCreator = require('../../lib/util/NodeCreator');
+const print = require('../../lib/util/print');
 
 function testFlatten(exprStr, afterNode, debug=false) {
   let flattened = flattenOperands(math.parse(exprStr));

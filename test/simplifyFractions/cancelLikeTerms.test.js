@@ -2,7 +2,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const cancelLikeTerms = require('../../lib/simplifyFractions/cancelLikeTerms');
-const flatten = require('../../lib/flattenOperands');
+const flatten = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 
 function testCancelLikeTerms(exprStr, expectedStr) {

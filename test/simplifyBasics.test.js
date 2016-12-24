@@ -3,7 +3,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../lib/flattenOperands');
+const flatten = require('../lib/util/flattenOperands');
 const MathChangeTypes = require('../lib/MathChangeTypes');
 const print = require('../lib/util/print');
 const simplifyBasicsSearch = require('../lib/simplifyBasicsSearch');

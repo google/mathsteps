@@ -4,7 +4,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const LikeTermCollector = require('../../lib/collectAndCombine/LikeTermCollector');
-const flatten = require('../../lib/flattenOperands');
+const flatten = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 
 function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
