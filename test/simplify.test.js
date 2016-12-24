@@ -2,58 +2,16 @@
 
 const assert = require('assert');
 const math = require('mathjs');
-const stepper = require('../lib/simplifyExpression');
-const step = stepper.step;
-const simplify = stepper.simplify;
-const stepThrough = stepper.stepThrough;
-const flatten = require('../lib/util/flattenOperands');
 const print = require('./../lib/util/print');
-
-function testStep(exprStr, outputStr, debug=false) {
-  let expr = math.parse(exprStr);
-  let nodeStatus = step(expr);
-  if (debug) {
-    if (!nodeStatus.changeType) {
-      throw Error('missing or bad change type');
-    }
-    // eslint-disable-next-line
-    console.log(nodeStatus.changeType);
-    // eslint-disable-next-line
-    console.log(print(nodeStatus.newNode));
-  }
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(nodeStatus.newNode),
-      outputStr);
-  });
-  return nodeStatus.newNode;
-}
+const simplify = require('../lib/simplify');
 
 function testSimplify(exprStr, outputStr, debug=false) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplify(flatten(math.parse(exprStr)), debug)),
+      print(simplify(math.parse(exprStr), debug)),
       outputStr);
   });
 }
-
-describe('arithmetic stepping', function() {
-  const tests = [
-    ['(2+2)', '4'],
-    ['(2+2)*5', '4 * 5'],
-    ['5*(2+2)', '5 * 4'],
-    ['2*(2+2) + 2^3', '2 * 4 + 2^3'],
-  ];
-  tests.forEach(t => testStep(t[0], t[1]));
-});
-
-describe('handles unnecessary parens at root level', function() {
-  const tests = [
-    ['(x+(y))', 'x + y'],
-    ['((x+y) + ((z^3)))', 'x + y + z^3'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
 
 describe('simplify (arithmetic)', function () {
   const tests = [
@@ -66,35 +24,8 @@ describe('simplify (arithmetic)', function () {
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
-describe('adding symbols without breaking things', function() {
-  // nothing old breaks
-  const tests = [
-    ['2+x', '2 + x'],
-    ['(2+2)*x', '4x'],
-    ['(2+2)*x+3', '4x + 3'],
-  ];
-  tests.forEach(t => testStep(t[0], t[1]));
-});
-
-describe('collecting like terms within the context of the stepper', function() {
-  const tests = [
-    ['2+x+7', 'x + 9'],                           // substeps not tested here
-//    ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],      // substeps not tested here
-  ];
-  tests.forEach(t => testStep(t[0], t[1]));
-});
-
 describe('collects and combines like terms', function() {
-  const stepTests = [
-    ['(x + x) + (x^2 + x^2)', '2x + (x^2 + x^2)'], // substeps not tested here
-    ['10 + (y^2 + y^2)', '10 + 2y^2'],             // substeps not tested here
-    ['10y^2 + 1/2 y^2 + 3/2 y^2', '12y^2'],        // substeps not tested here
-    ['x + y + y^2', 'x + y + y^2'],
-    ['2x^(2+1)', '2x^3'],
-  ];
-  stepTests.forEach(t => testStep(t[0], t[1]));
-
-  const simplifyTests = [
+  const tests = [
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
     ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],
     ['4y*3*5', '60y'],
@@ -105,8 +36,9 @@ describe('collects and combines like terms', function() {
     ['x^(3+y) + x^(3+y)+ 4', '2x^(3 + y) + 4'],
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
   ];
-  simplifyTests.forEach(t => testSimplify(t[0], t[1], t[2]));
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
+
 
 describe('can simplify with division', function () {
   const tests = [
@@ -163,19 +95,6 @@ describe('distribution', function () {
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
-describe('stepThrough returning no steps', function() {
-  it('12x^2 already simplified', function () {
-    assert.deepEqual(
-      stepThrough(math.parse('12x^2')),
-      []);
-  });
-  it('2*5x^2 + sqrt(5) has unsupported sqrt', function () {
-    assert.deepEqual(
-      stepThrough(math.parse('2*5x^2 + sqrt(5)')),
-      []);
-  });
-});
-
 describe('fractions', function() {
   const tests = [
     ['5x + (1/2)x', '11/2 x'],
@@ -190,9 +109,6 @@ describe('fractions', function() {
     ['(2+x)/6', '1/3 + x / 6']
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-
-  // single steps
-  testStep('2 + 5/2 + 3', '5 + 5/2'); // collect and combine without substeps
 });
 
 describe('floating point', function() {
@@ -209,12 +125,6 @@ describe('cancelling out', function() {
     ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
-
-describe('keeping parens in important places, on printing', function() {
-  testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');
-  testStep('5 + (3*6) + 2 / (x / y)', '5 + (3 * 6) + 2 * y / x');
-  testStep('-(x + y) + 5+3', '8 - (x + y)');
 });
 
 describe('absolute value support', function() {
@@ -243,4 +153,16 @@ describe('nthRoot support', function() {
     ['nthRoot(x * (2 + 3) * x, 2)', 'x * nthRoot(5, 2)']
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
+});
+
+describe('handles unnecessary parens at root level', function() {
+  const tests = [
+    ['(x+(y))', 'x + y'],
+    ['((x+y) + ((z^3)))', 'x + y + z^3'],
+  ];
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
+});
+
+describe('keeping parens in important places, on printing', function() {
+  testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');
 });

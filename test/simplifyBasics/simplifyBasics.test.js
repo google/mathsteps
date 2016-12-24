@@ -3,12 +3,9 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../lib/util/flattenOperands');
-const MathChangeTypes = require('../lib/MathChangeTypes');
-const print = require('../lib/util/print');
-const simplifyBasicsSearch = require('../lib/simplifyBasicsSearch');
-const stepper = require('../lib/simplifyExpression');
-const stepThrough = stepper.stepThrough;
+const flatten = require('../../lib/util/flattenOperands');
+const print = require('../../lib/util/print');
+const simplifyBasicsSearch = require('../../lib/simplifyBasics/simplifyBasicsSearch');
 
 function testSimplify(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
@@ -24,9 +21,6 @@ describe('simplify basics', function () {
     ['1x', 'x'],
     ['1*z^2', 'z^2'],
     ['2*1*z^2', '2 * z^2'],
-    // removes multiplication by 0
-    ['0x', '0'],
-    ['2*0*z^2','0'],
     // removes multiplication by -1
     ['-1*x', '-x'],
     ['x^2*-1', '-x^2'],
@@ -47,13 +41,6 @@ describe('simplify basics', function () {
     ['(x+3)/-1', '-(x + 3)'],
     // exponent to 0 -> 1
     ['(x+3)^0', '1'],
-    // divide 0 by anything
-    ['0/(x+6+7+x^2+2^y)', '0']
   ];
   tests.forEach(t => testSimplify(t[0], t[1]));
-
-  it('simplifyDoubleUnaryMinus step actually happens: 22 - (-7) -> 22 + 7', function () {
-    const steps = stepThrough(math.parse('22 - (-7)'));
-    assert.equal(steps[0].changeType, MathChangeTypes.RESOLVE_DOUBLE_MINUS);
-  });
 });

@@ -38,8 +38,3 @@ describe('canSimplifyPolynomialTerms addition', function() {
   ];
   tests.forEach(t => testCanCombine(t[0], t[1]));
 });
-
-// TODO: test separately
-// --- canMultiplyLikeTermPolynomialNodes
-// --- canAddLikeTermPolynomialNodes
-// --- canRearrangeCoefficient
