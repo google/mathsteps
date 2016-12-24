@@ -49,8 +49,7 @@ The code
   use this in your tests, but nowhere else.
   - TODO: write something that abstracts this away in the tests
 - `PolynomialTermNode` describes and stores what counts as a polynomial term
-  (e.g. x, x^2, -4/5 x^y) and `PolynomialTermOperations` define all operations
-  that can happen with these polynomial terms
+  (e.g. x, x^2, -4/5 x^y)
  - Note that polynomial terms right now are defined by only having one symbol.
    So 2x is grouped together as a polynomial node, but 2xy would be
    2x \* y (two operands)

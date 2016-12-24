@@ -3,40 +3,14 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../lib/util/flattenOperands');
-const PolynomialTermNode = require('../lib/PolynomialTermNode');
-const PolynomialTermOperations = require('../lib/PolynomialTermOperations');
-
-function testIsPolynomialTerm(exprStr, isTerm) {
-  it(exprStr + ' ' + isTerm, function () {
-    assert.equal(
-      PolynomialTermNode.isPolynomialTerm(flatten(math.parse(exprStr))),
-      isTerm);
-  });
-}
-
-describe('classifies symbol terms correctly', function() {
-  const tests = [
-    ['x', true],
-    ['x', true],
-    ['x^2', true],
-    ['y^55', true],
-    ['y^4/4', true],
-    ['5y/3', true],
-    ['x^y', true],
-    ['3', false],
-    ['2^5', false],
-    ['x*y^5', false],
-    ['-12y^5/-3', true],
-  ];
-  tests.forEach(t => testIsPolynomialTerm(t[0], t[1]));
-});
+const flatten = require('../../lib/util/flattenOperands');
+const CombineChecks = require('../../lib/collectAndCombine/combineChecks');
 
 function testCanCombine(exprStr, canCombine) {
   it(exprStr + ' ' + canCombine, function () {
     const inputNode = flatten(math.parse(exprStr));
     assert.equal(
-      PolynomialTermOperations.canSimplifyPolynomialTerms(inputNode),
+      CombineChecks.canSimplifyPolynomialTerms(inputNode),
       canCombine);
   });
 }
@@ -65,3 +39,7 @@ describe('canSimplifyPolynomialTerms addition', function() {
   tests.forEach(t => testCanCombine(t[0], t[1]));
 });
 
+// TODO: test separately
+// --- canMultiplyLikeTermPolynomialNodes
+// --- canAddLikeTermPolynomialNodes
+// --- canRearrangeCoefficient
