@@ -12,13 +12,7 @@ be taking pull requests until after our release. Thanks!
 
 ### Using the expression stepper
 
-The main module is `simplifyExpression.js` which exports the following functions:
-
-- simplify(expr) returns a simplified expression node
-- stepThrough(expr) goes through step by step to simplify an expression and
-  returns a list of, for each step, what changed and the updated expression
-  node for each step
-- step(expr) performs a single step on an expression node
+TODO: show examples of usage
 
 ### Contributing
 
@@ -49,8 +43,7 @@ The code
   use this in your tests, but nowhere else.
   - TODO: write something that abstracts this away in the tests
 - `PolynomialTermNode` describes and stores what counts as a polynomial term
-  (e.g. x, x^2, -4/5 x^y) and `PolynomialTermOperations` define all operations
-  that can happen with these polynomial terms
+  (e.g. x, x^2, -4/5 x^y)
  - Note that polynomial terms right now are defined by only having one symbol.
    So 2x is grouped together as a polynomial node, but 2xy would be
    2x \* y (two operands)

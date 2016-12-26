@@ -3,14 +3,14 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const simplifyDivision = require('../lib/simplifyDivision');
-const flatten = require('../lib/flattenOperands');
-const print = require('../lib/print');
+const simplifyDivisionSearch = require('../lib/simplifyDivisionSearch');
+const flatten = require('../lib/util/flattenOperands');
+const print = require('../lib/util/print');
 
 function testSimplifyDivision(exprStr, outputStr) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplifyDivision(flatten(math.parse(exprStr))).newNode),
+      print(simplifyDivisionSearch(flatten(math.parse(exprStr))).newNode),
       outputStr);
   });
 }
