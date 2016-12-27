@@ -3,14 +3,14 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../lib/util/flattenOperands');
+const flatten = require('../../lib/util/flattenOperands');
 
-const PolynomialTermNode = require('../lib/PolynomialTermNode');
+const PolynomialTerm = require('../../lib/Node/PolynomialTerm');
 
 function testIsPolynomialTerm(exprStr, isTerm) {
   it(exprStr + ' ' + isTerm, function () {
     assert.equal(
-      PolynomialTermNode.isPolynomialTerm(flatten(math.parse(exprStr))),
+      PolynomialTerm.isPolynomialTerm(flatten(math.parse(exprStr))),
       isTerm);
   });
 }
