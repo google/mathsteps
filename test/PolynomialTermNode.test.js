@@ -4,6 +4,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const flatten = require('../lib/util/flattenOperands');
+
 const PolynomialTermNode = require('../lib/PolynomialTermNode');
 
 function testIsPolynomialTerm(exprStr, isTerm) {

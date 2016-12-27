@@ -2,9 +2,11 @@
 
 const assert = require('assert');
 const math = require('mathjs');
+
 const flattenOperands = require('../../lib/util/flattenOperands');
-const NodeCreator = require('../../lib/util/NodeCreator');
 const print = require('../../lib/util/print');
+
+const Node = require('../../lib/Node');
 
 function testFlatten(exprStr, afterNode, debug=false) {
   let flattened = flattenOperands(math.parse(exprStr));
@@ -20,10 +22,10 @@ function testFlatten(exprStr, afterNode, debug=false) {
 }
 
 // to create nodes, for testing
-let opNode = NodeCreator.operator;
-let constNode = NodeCreator.constant;
-let symbolNode = NodeCreator.symbol;
-let parenNode = NodeCreator.parenthesis;
+let opNode = Node.Creator.operator;
+let constNode = Node.Creator.constant;
+let symbolNode = Node.Creator.symbol;
+let parenNode = Node.Creator.parenthesis;
 
 describe('flattens + and *', function () {
   const tests = [

@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('assert');
+
 const Util = require('../../lib/util/Util');
 
 describe('appendToArrayInObject', function () {
