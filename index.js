@@ -1,9 +1,9 @@
-const simplifyExpressionString = require('./lib/simplifyExpressionString');
-const solveEquationString = require('./lib/solveEquation/solveEquationString');
-const MathChangeTypes = require('./lib/MathChangeTypes');
+const simplifyExpression = require('./lib/simplifyExpression');
+const solveEquation = require('./lib/solveEquation');
+const ChangeTypes = require('./lib/ChangeTypes');
 
 module.exports = {
-  simplifyExpressionString: simplifyExpressionString,
-  solveEquationString: solveEquationString,
-  MathChangeTypes: MathChangeTypes,
+  simplifyExpression: simplifyExpression,
+  solveEquation: solveEquation,
+  ChangeTypes: ChangeTypes,
 };
