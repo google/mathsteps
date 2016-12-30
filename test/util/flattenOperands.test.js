@@ -6,7 +6,7 @@ const math = require('mathjs');
 const flattenOperands = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 
-const Node = require('../../lib/Node');
+const Node = require('../../lib/node');
 
 function testFlatten(exprStr, afterNode, debug=false) {
   let flattened = flattenOperands(math.parse(exprStr));

@@ -3,7 +3,7 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const Node = require('../../lib/Node');
+const Node = require('../../lib/node');
 
 let constNode = Node.Creator.constant;
 
