@@ -1,10 +1,10 @@
 # Roadmap
 
-A rough roadmap for mathsteps
+A rough roadmap for `mathsteps`
 
 Last time we did a ground truth to see what concepts are needed to answer
 questions asked in the Soratic app, this was the breakdown (note that some
-concepts might overlap):
+concepts might overlap and both need to be covered for us to solve the problem):
 
 - Factoring: 22.84% of questions
 - Solve Equation: 17.99% of questions
