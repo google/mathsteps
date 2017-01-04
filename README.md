@@ -10,7 +10,7 @@ post where you can learn more about how this repo works, and we'll be welcoming
 contributers! You're welcome to play around with this before then, but we won't
 be taking pull requests until after our release. Thanks!
 
-### Usage
+## Usage
 
 To install mathsteps using npm:
 
@@ -41,7 +41,7 @@ const changes = mathsteps.ChangeTypes;
 
 
 
-### Contributing
+## Contributing
 
 Hi! If you're interested in working on this, that would be super awesome!
 Learn more here: [CONTRIBUTING.md](CONTRIBUTING.md).
