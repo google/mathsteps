@@ -10,40 +10,59 @@ post where you can learn more about how this repo works, and we'll be welcoming
 contributers! You're welcome to play around with this before then, but we won't
 be taking pull requests until after our release. Thanks!
 
-### Using the expression stepper
+### Usage
 
-TODO: show examples of usage
+To install mathsteps using npm:
+
+    npm install mathsteps
+
+```js
+const mathsteps = require('mathsteps');
+
+const steps = mathsteps.simplifyExpression('2x + 2x + x + x');
+
+steps.forEach(step => {
+	console.log("before change: " + step.oldNode);         // before change: 2 x + 2 x + x + x
+	console.log("change: " + step.changeType);             // change: ADD_POLYNOMIAL_TERMS
+	console.log("after change: " + step.newNode);          // after change: 6 x
+	console.log("# of substeps: " + step.substeps.length); // # of substeps: 3
+});
+```
+
+To solve an equation:
+```js
+const steps = mathsteps.solveEquation('2x + 2x + x + x');
+```
+
+To see all the change types:
+```js
+const changes = mathsteps.ChangeTypes;
+```
+
+
 
 ### Contributing
 
 Hi! If you're interested in working on this, that would be super awesome!
 Learn more here: [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Build
 
------ to be moved to wiki later -----
+First clone the project from github:
 
-The code
+    git clone https://github.com/socraticorg/mathsteps.git
+    cd mathsteps
 
-- If you want to see the flow of how this code works, start in `stepper.js`.
-  This is where `step` and `simplify` live. You can see what functions are
-  called from `step` and follow the logic through other files if you're curious
-  how any of those steps work.
-- `NodeCreator` and `NodeType` are used to create nodes and check what type
-  they are. Note that unaryMinus nodes (e.g. -x) are technically operator
-  nodes, but we don't treat them as such, and always keep them as their own
-  separate type.
-- `NodeStatus` objects are used throughout the code. The stepper calls a bunch
-  of functions that might make changes that are counted as a step, and each of
-  these functions return a NodeStatus object which contains: the updated node
-  after calling this function, if this function changed the expression in a way
-  that counts as a step, and what the change type is.
-- `MathChangeTypes` are used to describe different changes that count as steps.
-- `flattenOperands` (sometimes shortened to `flatten`) changes the structure
-  of the expression tree to be easier to work with. You probably will need to
-  use this in your tests, but nowhere else.
-  - TODO: write something that abstracts this away in the tests
-- `PolynomialTermNode` describes and stores what counts as a polynomial term
-  (e.g. x, x^2, -4/5 x^y)
- - Note that polynomial terms right now are defined by only having one symbol.
-   So 2x is grouped together as a polynomial node, but 2xy would be
-   2x \* y (two operands)
+Install the project dependencies:
+
+    npm install
+
+## Test
+
+To execute tests for the library, install the project dependencies once:
+
+    npm install
+
+Then, the tests can be executed:
+
+    npm test
