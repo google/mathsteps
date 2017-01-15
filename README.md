@@ -2,14 +2,6 @@
 
 https://www.youtube.com/watch?v=ay6GjmiJTPM
 
-## NOTE: not ready for contributers
-
-Be aware that this repo's file structure will be going through some changes to
-get ready for our release mid-January. At that point, we'll be publishing a blog
-post where you can learn more about how this repo works, and we'll be welcoming
-contributers! You're welcome to play around with this before then, but we won't
-be taking pull requests until after our release. Thanks!
-
 ## Usage
 
 To install mathsteps using npm:
