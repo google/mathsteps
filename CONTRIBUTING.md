@@ -28,7 +28,7 @@ Please report unacceptable behavior to mathsteps@socratic.org
 
 ### overview of how (and why) we built mathsteps
 
-- *TODO: link to blog post*
+- [Read about how and why we built mathsteps on our blog!](https://blog.socratic.org/stepping-into-math-open-sourcing-our-step-by-step-solver-9b5da066ae36)
 
 ### mathJS expression trees
 
