@@ -14,7 +14,7 @@ function testSolve(equationString, outputStr, debug=false) {
     lastStep = NO_STEPS;
   }
   else {
-    lastStep = steps[steps.length -1].asciimath;
+    lastStep = steps[steps.length -1].newEquation.print();
   }
   it(equationString + ' -> ' + outputStr, function () {
     assert.equal(lastStep, outputStr);
