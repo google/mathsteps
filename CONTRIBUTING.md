@@ -71,9 +71,9 @@ Please report unacceptable behavior to mathsteps@socratic.org
 ### Creating a pull request
 
 - we're excited to see your [pull request](https://help.github.com/articles/about-pull-requests/)!
-- if you want to work on something, please assign yourself to the
+- if you want to work on something, please comment on the
   [related issue](https://github.com/socraticorg/mathsteps/issues) on GitHub
-  before you get started
+  before you get started, so others are aware you're working on it
 - if there is no existing issue for the change you'd like to make, you can make
   a [new one](https://github.com/socraticorg/mathsteps/issues/new)
 - make sure all the unit tests pass (with `npm test`) before creating the
