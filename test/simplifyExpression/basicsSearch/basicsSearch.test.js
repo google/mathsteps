@@ -1,20 +1,8 @@
 'use strict';
 
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const basicsSearch = require('../../../lib/simplifyExpression/basicsSearch');
+const testSimplify = require('./testSimplify');
 
-function testSimplify(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(basicsSearch(flatten(math.parse(exprStr))).newNode),
-      outputStr);
-  });
-}
 describe('simplify basics', function () {
   const tests = [
     // removes multiplication by 1
@@ -47,5 +35,5 @@ describe('simplify basics', function () {
     // exponent to 0 -> 1
     ['(x+3)^0', '1'],
   ];
-  tests.forEach(t => testSimplify(t[0], t[1]));
+  tests.forEach(t => testSimplify(t[0], t[1], basicsSearch));
 });
