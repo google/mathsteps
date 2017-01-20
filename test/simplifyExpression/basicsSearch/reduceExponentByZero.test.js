@@ -4,5 +4,5 @@ const reduceExponentByZero = require('../../../lib/simplifyExpression/basicsSear
 const testSimplify = require('./testSimplify');
 
 describe('reduceExponentByZero', function() {
-	testSimplify('(x+3)^0', '1', reduceExponentByZero);	
+  testSimplify('(x+3)^0', '1', reduceExponentByZero);  
 });

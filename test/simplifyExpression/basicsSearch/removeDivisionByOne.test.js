@@ -4,5 +4,5 @@ const removeDivisionByOne = require('../../../lib/simplifyExpression/basicsSearc
 const testSimplify = require('./testSimplify');
 
 describe('removeDivisionByOne', function() {
-	testSimplify('x/1', 'x', removeDivisionByOne);
+  testSimplify('x/1', 'x', removeDivisionByOne);
 });

@@ -4,5 +4,5 @@ const removeExponentByOne = require('../../../lib/simplifyExpression/basicsSearc
 const testSimplify = require('./testSimplify');
 
 describe('removeExponentByOne', function() {
-	testSimplify('x^1', 'x', removeExponentByOne);	
+  testSimplify('x^1', 'x', removeExponentByOne);  
 });
