@@ -28,6 +28,10 @@ describe('simplify basics', function () {
     ['2x*2*-1', '2x * 2 * -1'], // does not remove multiplication by -1
     // removeExponentByOne
     ['x^1', 'x'],
+    // removeExponentBaseOne
+    ['1^3', '1'],
+    ['1^x', '1^x'],
+    ['1^(2 + 3 + 5/4 + 7 - 6/7)', '1'],
     // simplifyDoubleUnaryMinus
     ['--5', '5'],
     ['--x', 'x'],
