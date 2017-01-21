@@ -2,6 +2,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const flattenOperands = require('../../lib/util/flattenOperands');
+const TestHelper = require('../TestHelper');
 const print = require('../../lib/util/print');
 
 const Node = require('../../lib/node');
