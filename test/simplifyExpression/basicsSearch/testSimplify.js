@@ -9,11 +9,11 @@ const print = require('../../../lib/util/print');
 
 function testSimplify(exprStr, outputStr, simplifyOperation) {
   it(exprStr + ' -> ' + outputStr, function () {
-      const inputNode = flatten(math.parse(exprStr));
-      const newNode = simplifyOperation(inputNode).newNode;
-      assert.equal(
-        print(newNode),
-        outputStr);
+    const inputNode = flatten(math.parse(exprStr));
+    const newNode = simplifyOperation(inputNode).newNode;
+    assert.equal(
+      print(newNode),
+      outputStr);
   });
 }
 
