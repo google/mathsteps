@@ -3,7 +3,7 @@ const solveEquation = require('./lib/solveEquation');
 const ChangeTypes = require('./lib/ChangeTypes');
 
 module.exports = {
-  simplifyExpression: simplifyExpression,
-  solveEquation: solveEquation,
-  ChangeTypes: ChangeTypes,
+  simplifyExpression,
+  solveEquation,
+  ChangeTypes,
 };
