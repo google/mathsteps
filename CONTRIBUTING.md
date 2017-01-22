@@ -66,43 +66,43 @@ To lint your code, run `npm run lint .`
 ### Ways to help out
 
 - **Spread the word!**
-If you think mathsteps is cool, tell your friends!
-Let them know they can use this and that they can contribute.
+  If you think mathsteps is cool, tell your friends!
+  Let them know they can use this and that they can contribute.
 - **Suggest features!**
-Have an idea for something mathsteps should solve or a way for it to teach math better?
-If your idea is not an [existing issue](https://github.com/socraticorg/mathsteps/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement),
-create a new issue with the label "enhancement".
+  Have an idea for something mathsteps should solve or a way for it to teach math better?
+  If your idea is not an [existing issue](https://github.com/socraticorg/mathsteps/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement),
+  create a new issue with the label "enhancement".
 - **Report bugs!**
-If the bug is not an [existing issue](https://github.com/socraticorg/mathsteps/issues?q=is%3Aopen+is%3Aissue+label%3Abug),
-create a new issue with the label "bug" and provide as many details as you can,
-so that someone else can reproduce it.
+  If the bug is not an [existing issue](https://github.com/socraticorg/mathsteps/issues?q=is%3Aopen+is%3Aissue+label%3Abug),
+  create a new issue with the label "bug" and provide as many details as you can,
+  so that someone else can reproduce it.
 - **Contribute code!**
-We'd love to have more contributors working on this.
-Check out the section below with more information on how to contribute,
-and feel free to email us at mathsteps@socratic.org with any questions!
+  We'd love to have more contributors working on this.
+  Check out the section below with more information on how to contribute,
+  and feel free to email us at mathsteps@socratic.org with any questions!
 
 ### Creating a pull request
 
 We're excited to see your [pull request](https://help.github.com/articles/about-pull-requests/)!
 
 - If you want to work on something,
-please comment on the [related issue](https://github.com/socraticorg/mathsteps/issues)
-on GitHub before you get started, so others are aware that you're working on it.
-If there's no existing issue for the change you'd like to make,
-you can [create a new issue](https://github.com/socraticorg/mathsteps/issues/new).
+  please comment on the [related issue](https://github.com/socraticorg/mathsteps/issues)
+  on GitHub before you get started, so others are aware that you're working on it.
+  If there's no existing issue for the change you'd like to make,
+  you can [create a new issue](https://github.com/socraticorg/mathsteps/issues/new).
 
 - Make sure all the unit tests pass (with `npm test`) before creating the pull request,
-and please add your own tests for the changes that you made.
-If you're not sure how to add tests, or are confused about why tests are failing,
-it's fine to create the pull request first and we'll help you get things working.
+  and please add your own tests for the changes that you made.
+  If you're not sure how to add tests, or are confused about why tests are failing,
+  it's fine to create the pull request first and we'll help you get things working.
 
 ### Testing
 
 - Make sure you properly unit-test your changes.
 - Run tests with `npm test`
 - If you want to see what the expression tree looks like at any point in the code (for debugging),
-you can log a `node` as an expression string (e.g. '2x + 5') with `console.log(print(node))`,
-and you can log the full tree structure with `console.log(JSON.stringify(node, null, 2))`
+  you can log a `node` as an expression string (e.g. '2x + 5') with `console.log(print(node))`,
+  and you can log the full tree structure with `console.log(JSON.stringify(node, null, 2))`
 
 
 There's lots to be done, lots of students to help, and we're so glad you'll be a part of this.
