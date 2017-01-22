@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const Node = require('../../lib/node');
 
-let constNode = Node.Creator.constant;
+const constNode = Node.Creator.constant;
 
 describe('Node.Type works', function () {
   it('(2+2) parenthesis', function () {

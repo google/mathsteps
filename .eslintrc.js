@@ -29,6 +29,24 @@ module.exports = {
         "semi": [
             "error",
             "always"
+        ],
+        "eqeqeq": [
+            "error",
+            "always"
+        ],
+        "prefer-const": [
+            "error", {
+                "destructuring": "any"
+            }
+        ],
+        "no-trailing-spaces": [
+            "error"
+        ],
+        "object-shorthand": [
+            "error",
+            "always", {
+                "avoidQuotes": true
+            }
         ]
     }
 };

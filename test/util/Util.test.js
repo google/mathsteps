@@ -6,7 +6,7 @@ const Util = require('../../lib/util/Util');
 
 describe('appendToArrayInObject', function () {
   it('creates empty array', function () {
-    let object = {};
+    const object = {};
     Util.appendToArrayInObject(object, 'key', 'value');
     assert.deepEqual(
       object,
@@ -14,7 +14,7 @@ describe('appendToArrayInObject', function () {
      );
   });
   it('appends to array if it exists', function () {
-    let object = {'key': ['old_value']};
+    const object = {'key': ['old_value']};
     Util.appendToArrayInObject(object, 'key', 'new_value');
     assert.deepEqual(
       object,
