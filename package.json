@@ -13,7 +13,8 @@
   },
   "scripts": {
     "lint": "node_modules/.bin/eslint .",
-    "test": "node_modules/.bin/mocha --recursive"
+    "test": "node_modules/.bin/mocha --recursive",
+    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit"
   },
   "repository": {
     "type": "git",

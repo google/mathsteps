@@ -86,6 +86,7 @@ Please report unacceptable behavior to mathsteps@socratic.org
 
 - Make sure you properly unit test your changes.
 - Run tests with `npm test`
+- Install Git hooks with `npm run setup-hooks`. This will add a pre-commit hook which makes sure tests are passing and the code is eslint-compliant.
 - If you want to see what the expression tree looks like at any point
   in the code, for debugging, you can log `node` as an expression string
   (e.g. '2x + 5') with `console.log(print(node))`, and you can log the full
