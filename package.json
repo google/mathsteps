@@ -4,7 +4,11 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
-    "mathjs": "3.8.0"
+    "mathjs": "3.8.0",
+    "semver": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   },
   "devDependencies": {
     "eslint": "^3.10.2",
@@ -34,5 +38,9 @@
   "bugs": {
     "url": "https://github.com/socraticorg/mathsteps/issues"
   },
-  "homepage": "https://github.com/socraticorg/mathsteps#readme"
+  "homepage": "https://github.com/socraticorg/mathsteps#readme",
+  "scripts": {
+    "requirements-check": "node scripts/check-version.js",
+    "preinstall": "npm run requirements-check"
+  }
 }
