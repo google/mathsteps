@@ -41,6 +41,7 @@
   "homepage": "https://github.com/socraticorg/mathsteps#readme",
   "scripts": {
     "requirements-check": "node scripts/check-version.js",
-    "preinstall": "npm run requirements-check"
+    "preinstall": "npm run requirements-check",
+    "test": "mocha --recursive"
   }
 }
