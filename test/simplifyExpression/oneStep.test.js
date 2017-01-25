@@ -96,3 +96,15 @@ describe('simplifyDoubleUnaryMinus step actually happens', function () {
     assert.equal(steps[0].changeType, ChangeTypes.RESOLVE_DOUBLE_MINUS);
   });
 });
+
+describe('division by zero', function () {
+  it('1/(2-2) -> 1/0', function() {
+    const steps = simplifyExpression('1/(2-2)');
+    assert.equal(steps[0].changeType, ChangeTypes.SIMPLIFY_ARITHMETIC);
+    assert.equal(steps[1].changeType, ChangeTypes.DIVISION_BY_ZERO);
+  });
+  it('0/0 -> 0/0', function() {
+    const steps = simplifyExpression('0/0');
+    assert.equal(steps[0].changeType, ChangeTypes.DIVISION_BY_ZERO);
+  });
+});
