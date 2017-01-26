@@ -18,7 +18,9 @@
   "scripts": {
     "lint": "node_modules/.bin/eslint .",
     "test": "node_modules/.bin/mocha --recursive",
-    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit"
+    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit",
+    "requirements-check": "node scripts/check-version.js",
+    "preinstall": "npm run requirements-check"
   },
   "repository": {
     "type": "git",
@@ -38,10 +40,5 @@
   "bugs": {
     "url": "https://github.com/socraticorg/mathsteps/issues"
   },
-  "homepage": "https://github.com/socraticorg/mathsteps#readme",
-  "scripts": {
-    "requirements-check": "node scripts/check-version.js",
-    "preinstall": "npm run requirements-check",
-    "test": "mocha --recursive"
-  }
+  "homepage": "https://github.com/socraticorg/mathsteps#readme"  
 }
