@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/simplifyExpression/distributeSearch/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">lib/simplifyExpression/distributeSearch/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.94% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>114/124</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.04% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>47/54</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.94% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>114/124</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">868×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">797×</span>
+<span class="cline-any cline-yes">658×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">139×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">62×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">730×</span>
+<span class="cline-any cline-yes">484×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">246×</span>
+<span class="cline-any cline-yes">255×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">223×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">214×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">288×</span>
+<span class="cline-any cline-yes">288×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">567×</span>
+<span class="cline-any cline-yes">495×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+const clone = require('../../util/clone');
+const collectAndCombineSearch = require('../collectAndCombineSearch');
+const arithmeticSearch = require('../arithmeticSearch');
+const rearrangeCoefficient = require('../basicsSearch/rearrangeCoefficient');
+&nbsp;
+const ChangeTypes = require('../../ChangeTypes');
+const Negative = require('../../Negative');
+const Node = require('../../node');
+const TreeSearch = require('../../TreeSearch');
+&nbsp;
+const search = TreeSearch.postOrder(distribute);
+&nbsp;
+// Distributes through parenthesis.
+// e.g. 2(x+3) -&gt; (2*x + 2*3)
+// e.g. -(x+5) -&gt; (-x + -5)
+// Returns a Node.Status object.
+function distribute(node) {
+  if (Node.Type.isUnaryMinus(node)) {
+    return distributeUnaryMinus(node);
+  }
+  else if (Node.Type.isOperator(node)) {
+    return distributeAndSimplifyOperationNode(node);
+  }
+  else {
+    return Node.Status.noChange(node);
+  }
+}
+&nbsp;
+// Distributes unary minus into a parenthesis node.
+// e.g. -(4*9*x^2) --&gt; (-4 * 9  * x^2)
+// e.g. -(x + y - 5) --&gt; (-x + -y + 5)
+// Returns a Node.Status object.
+function distributeUnaryMinus(node) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!Node.Type.isUnaryMinus(node)) {
+<span class="cstat-no" title="statement not covered" >    return Node.Status.noChange(node);</span>
+  }
+  const unaryContent = node.args[0];
+  if (!Node.Type.isParenthesis(unaryContent)) {
+    return Node.Status.noChange(node);
+  }
+  const content = unaryContent.content;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!Node.Type.isOperator(content)) {
+<span class="cstat-no" title="statement not covered" >    return Node.Status.noChange(node);</span>
+  }
+  const newContent = clone(content);
+  node.changeGroup = 1;
+  // For multiplication and division, we can push the unary minus in to
+  // the first argument.
+  // e.g. -(2/3) -&gt; (-2/3)    -(4*9*x^2) --&gt; (-4 * 9  * x^2)
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (content.op === '*' || content.op === '/') {
+<span class="cstat-no" title="statement not covered" >    newContent.args[0] = Negative.negate(newContent.args[0]);</span>
+<span class="cstat-no" title="statement not covered" >    newContent.args[0].changeGroup = 1;</span>
+<span class="cstat-no" title="statement not covered" >    const newNode = Node.Creator.parenthesis(newContent);</span>
+<span class="cstat-no" title="statement not covered" >    return Node.Status.nodeChanged(</span>
+      ChangeTypes.DISTRIBUTE_NEGATIVE_ONE, node, newNode, false);
+  }
+  else <span class="missing-if-branch" title="else path not taken" >E</span>if (content.op === '+') {
+    // Now we know `node` is of the form -(x + y + ...).
+    // We want to now return (-x + -y + ....)
+    // If any term is negative, we make it positive it right away
+    // e.g. -(2-4) =&gt; -2 + 4
+    const newArgs = newContent.args.map(arg =&gt; {
+      const newArg = Negative.negate(arg);
+      newArg.changeGroup = 1;
+      return newArg;
+    });
+    newContent.args = newArgs;
+    const newNode = Node.Creator.parenthesis(newContent);
+    return Node.Status.nodeChanged(
+      ChangeTypes.DISTRIBUTE_NEGATIVE_ONE, node, newNode, false);
+  }
+  else {
+<span class="cstat-no" title="statement not covered" >    return Node.Status.noChange(node);</span>
+  }
+}
+&nbsp;
+// Distributes a pair of terms in a multiplication operation, if a pair
+// can be distributed. To be distributed, there must be two terms beside
+// each other, and at least one of them must be a parenthesis node.
+// e.g. 2*(3+x) or (4+x^2+x^3)*(x+3)
+// Returns a Node.Status object with substeps
+function distributeAndSimplifyOperationNode(node) {
+  if (!Node.Type.isOperator(node) || node.op !== '*') {
+    return Node.Status.noChange(node);
+  }
+&nbsp;
+  // STEP 1: distribute with `distributeTwoNodes`
+  // e.g. x*(2+x) -&gt; x*2 + x*x
+  // STEP 2: simplifications of each operand in the new sum with `simplify`
+  // e.g. x*2 + x*x -&gt; ... -&gt; 2x + x^2
+  for (let i = 0; i+1 &lt; node.args.length; i++) {
+    if (!isParenthesisOfAddition(node.args[i]) &amp;&amp;
+        !isParenthesisOfAddition(node.args[i+1])) {
+      continue;
+    }
+&nbsp;
+    let newNode = clone(node);
+    const substeps = [];
+    let status;
+&nbsp;
+    const combinedNode = distributeTwoNodes(newNode.args[i], newNode.args[i+1]);
+    node.args[i].changeGroup = 1;
+    node.args[i+1].changeGroup = 1;
+    combinedNode.changeGroup = 1;
+&nbsp;
+    if (newNode.args.length &gt; 2) {
+      newNode.args.splice(i, 2, combinedNode);
+      newNode.args[i].changeGroup = 1;
+    }
+    else {
+      newNode = combinedNode;
+      newNode.changeGroup = 1;
+    }
+&nbsp;
+    status = Node.Status.nodeChanged(
+      ChangeTypes.DISTRIBUTE, node, newNode, false);
+    substeps.push(status);
+    newNode = Node.Status.resetChangeGroups(status.newNode);
+&nbsp;
+    // case 1: there were more than two operands in this multiplication
+    // e.g. 3*7*(2+x)*(3+x)*(4+x) is a multiplication node with 5 children
+    // and the new node will be 3*(14+7x)*(3+x)*(4+x) with 4 children.
+    if (Node.Type.isOperator(newNode, '*')) {
+      const childStatus = simplifyWithParens(newNode.args[i]);
+      if (childStatus.hasChanged()) {
+        status = Node.Status.childChanged(newNode, childStatus, i);
+        substeps.push(status);
+        newNode = Node.Status.resetChangeGroups(status.newNode);
+      }
+    }
+    // case 2: there were only two operands and we multiplied them together.
+    // e.g. 7*(2+x) -&gt; (7*2 + 7*x)
+    // Now we can just simplify it.
+    else <span class="missing-if-branch" title="else path not taken" >E</span>if (Node.Type.isParenthesis(newNode)){
+      status = simplifyWithParens(newNode);
+      if (status.hasChanged()) {
+        substeps.push(status);
+        newNode = Node.Status.resetChangeGroups(status.newNode);
+      }
+    }
+    else {
+<span class="cstat-no" title="statement not covered" >      throw Error('Unsupported node type for distribution: ' + node);</span>
+    }
+&nbsp;
+    if (substeps.length === 1) {
+      return substeps[0];
+    }
+&nbsp;
+    return Node.Status.nodeChanged(
+      ChangeTypes.DISTRIBUTE, node, newNode, false, substeps);
+  }
+  return Node.Status.noChange(node);
+}
+&nbsp;
+// Distributes two nodes together. At least one node must be parenthesis node
+// e.g. 2*(x+3) -&gt; (2*x + 2*3)       (5+x)*x -&gt; 5*x + x*x
+// e.g. (5+x)*(x+3) -&gt; (5*x + 5*3 + x*x + x*3)
+// Returns a node.
+function distributeTwoNodes(firstNode, secondNode) {
+  // lists of terms we'll be multiplying together from each node
+  let firstArgs, secondArgs;
+  if (isParenthesisOfAddition(firstNode)) {
+    firstArgs = firstNode.content.args;
+  }
+  else {
+    firstArgs = [firstNode];
+  }
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (isParenthesisOfAddition(secondNode)) {
+    secondArgs = secondNode.content.args;
+  }
+  else {
+<span class="cstat-no" title="statement not covered" >    secondArgs = [secondNode];</span>
+  }
+  // the new operands under addition, now products of terms
+  const newArgs = [];
+&nbsp;
+  // e.g. (4+x)(x+y+z) will become 4(x+y+z) + x(x+y+z) as an intermediate
+  // step.
+  if (firstArgs.length &gt; 1 &amp;&amp; secondArgs.length &gt; 1) {
+    firstArgs.forEach(leftArg =&gt; {
+      const arg = Node.Creator.operator('*', [leftArg, secondNode]);
+      arg.changeGroup = 1;
+      newArgs.push(arg);
+    });
+  }
+  else {
+    // a list of all pairs of nodes between the two arg lists
+    firstArgs.forEach(leftArg =&gt; {
+      secondArgs.forEach(rightArg =&gt; {
+        const arg = Node.Creator.operator('*', [leftArg, rightArg]);
+        arg.changeGroup = 1;
+        newArgs.push(arg);
+      });
+    });
+  }
+  return Node.Creator.parenthesis(Node.Creator.operator('+', newArgs));
+}
+&nbsp;
+// Simplifies a sum of terms (a result of distribution) that's in parens
+// (note that all results of distribution are in parens)
+// e.g. 2x*(4 + x) distributes to (2x*4 + 2x*x)
+// This is a separate function from simplify to make the flow more readable,
+// but this is literally just a wrapper around 'simplify'.
+// Returns a Node.Status object
+function simplifyWithParens(node) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!Node.Type.isParenthesis(node)) {
+<span class="cstat-no" title="statement not covered" >    throw Error('expected ' + node + ' to be a parenthesis node');</span>
+  }
+&nbsp;
+  const status = simplify(node.content);
+  if (status.hasChanged()) {
+    return Node.Status.childChanged(node, status);
+  }
+  else {
+    return Node.Status.noChange(node);
+  }
+}
+&nbsp;
+// Simplifies a sum of terms that are a result of distribution.
+// e.g. (2x+3)*(4x+5) -distribute-&gt; 2x*(4x+5) + 3*(4x+5) &lt;- 2 terms to simplify
+// e.g. 2x*(4x+5) --distribute--&gt; 2x*4x + 2x*5 --simplify--&gt; 8x^2 + 10x
+// Returns a Node.Status object.
+function simplify(node) {
+  const substeps = [];
+  const simplifyFunctions = [
+    arithmeticSearch,                       // e.g. 2*9 -&gt; 18
+    rearrangeCoefficient,  // e.g. x*5 -&gt; 5x
+    collectAndCombineSearch,                        // e.g 2x*4x -&gt; 8x^2
+    distributeAndSimplifyOperationNode, // e.g. (2+x)(3+x) -&gt; 2*(3+x) recurses
+  ];
+&nbsp;
+  let newNode = clone(node);
+  for (let i = 0; i &lt; newNode.args.length; i++) {
+    for (let j = 0; j &lt; simplifyFunctions.length; j++) {
+      const childStatus = simplifyFunctions[j](newNode.args[i]);
+      if (childStatus.hasChanged()) {
+        const status = Node.Status.childChanged(newNode, childStatus, i);
+        substeps.push(status);
+        newNode = Node.Status.resetChangeGroups(status.newNode);
+      }
+    }
+  }
+&nbsp;
+  // possible in cases like 2(x + y) -&gt; 2x + 2y -&gt; doesn't need simplifying
+  if (substeps.length === 0) {
+    return Node.Status.noChange(node);
+  }
+  else {
+    return Node.Status.nodeChanged(
+      ChangeTypes.SIMPLIFY_TERMS, node, newNode, false, substeps);
+  }
+}
+&nbsp;
+// returns true if `node` is of the type (node + node + ...)
+function isParenthesisOfAddition(node) {
+  if (!Node.Type.isParenthesis(node)) {
+    return false;
+  }
+  const content = node.content;
+  return Node.Type.isOperator(content, '+');
+}
+&nbsp;
+module.exports = search;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 27 2017 16:45:20 GMT+0530 (IST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,989 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/simplifyExpression/fractionsSearch/cancelLikeTerms.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">lib/simplifyExpression/fractionsSearch/</a> cancelLikeTerms.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.7% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>125/132</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">84.21% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>80/95</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.7% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>125/132</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">257×</span>
+<span class="cline-any cline-yes">257×</span>
+<span class="cline-any cline-yes">257×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4251×</span>
+<span class="cline-any cline-yes">4059×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">192×</span>
+<span class="cline-any cline-yes">192×</span>
+<span class="cline-any cline-yes">192×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">192×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">158×</span>
+<span class="cline-any cline-yes">158×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">152×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">257×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">251×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">233×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">230×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">218×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">214×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">202×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">578×</span>
+<span class="cline-any cline-yes">118×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">460×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+const clone = require('../../util/clone');
+const print = require('../../util/print');
+&nbsp;
+const ChangeTypes = require('../../ChangeTypes');
+const Negative = require('../../Negative');
+const Node = require('../../node');
+&nbsp;
+// Used for cancelTerms to return a (possibly updated) numerator and denominator
+class CancelOutStatus {
+  constructor(numerator, denominator, hasChanged=false) {
+    this.numerator = numerator;
+    this.denominator = denominator;
+    this.hasChanged = hasChanged;
+  }
+}
+&nbsp;
+// Cancels like terms in a fraction node
+// e.g. (2x^2 * 5) / 2x^2 =&gt; 5 / 1
+// Returns a Node.Status object
+function cancelLikeTerms(node) {
+  if (!Node.Type.isOperator(node) || node.op !== '/') {
+    return Node.Status.noChange(node);
+  }
+  let newNode = clone(node);
+  const numerator = newNode.args[0];
+  const denominator = newNode.args[1];
+&nbsp;
+  // case 1: neither the numerator or denominator is a multiplication of terms
+  if (!isMultiplicationOfTerms(numerator) &amp;&amp;
+      !isMultiplicationOfTerms(denominator)) {
+    const cancelStatus = cancelTerms(numerator, denominator);
+    if (cancelStatus.hasChanged) {
+      newNode.args[0] = cancelStatus.numerator || Node.Creator.constant(1);
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (cancelStatus.denominator) {
+<span class="cstat-no" title="statement not covered" >        newNode.args[1] = cancelStatus.denominator;</span>
+      }
+      else {
+        // If we cancelled out the denominator, the node is now its numerator
+        // e.g. (2x*y) / 2x =&gt; y (note y isn't a fraction)
+        newNode = newNode.args[0];
+      }
+      return Node.Status.nodeChanged(
+        ChangeTypes.CANCEL_TERMS, node, newNode);
+    }
+    else {
+      return Node.Status.noChange(node);
+    }
+  }
+&nbsp;
+  // case 2: numerator is a multiplication of terms and denominator is not
+  // e.g. (2x^2 * 5) / 2x^2 =&gt; 5 / 1
+  // e.g. (x^2*y) / x  =&gt; x^(2 - 1) * y (&lt;-- note that the denominator goes
+  // away because we always adjust the exponent in the numerator)
+  else if (isMultiplicationOfTerms(numerator) &amp;&amp;
+      !isMultiplicationOfTerms(denominator)) {
+    const numeratorArgs = Node.Type.isParenthesis(numerator) ?
+            numerator.content.args : <span class="branch-1 cbranch-no" title="branch not covered" >numerator.args;</span>
+    for (let i = 0; i &lt; numeratorArgs.length; i++) {
+      const cancelStatus = cancelTerms(numeratorArgs[i], denominator);
+      if (cancelStatus.hasChanged) {
+        if (cancelStatus.numerator) {
+          numeratorArgs[i] = cancelStatus.numerator;
+        }
+        // if the cancelling out got rid of the numerator node, we remove it from
+        // the list
+        else {
+          numeratorArgs.splice(i, 1);
+          // if the numerator is now a "multiplication" of only one term,
+          // change it to just that term
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (numeratorArgs.length === 1) {
+            newNode.args[0] = numeratorArgs[0];
+          }
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (cancelStatus.denominator) {
+<span class="cstat-no" title="statement not covered" >          newNode.args[1] = cancelStatus.denominator;</span>
+        }
+        else {
+          // If we cancelled out the denominator, the node is now its numerator
+          // e.g. (2x*y) / 2x =&gt; y (note y isn't a fraction)
+          newNode = newNode.args[0];
+        }
+        return Node.Status.nodeChanged(
+          ChangeTypes.CANCEL_TERMS, node, newNode);
+      }
+    }
+    return Node.Status.noChange(node);
+  }
+&nbsp;
+  // case 3: denominator is a multiplication of terms and numerator is not
+  // e.g. 2x^2 / (2x^2 * 5) =&gt; 1 / 5
+  // e.g. x / (x^2*y) =&gt; x^(1-2) / y
+  else if (isMultiplicationOfTerms(denominator) &amp;&amp;
+      !isMultiplicationOfTerms(numerator)) {
+    const denominatorArgs = Node.Type.isParenthesis(denominator) ?
+            denominator.content.args : <span class="branch-1 cbranch-no" title="branch not covered" >denominator.args;</span>
+    for (let i = 0; i &lt; denominatorArgs.length; i++) {
+      const cancelStatus = cancelTerms(numerator, denominatorArgs[i]);
+      if (cancelStatus.hasChanged) {
+        newNode.args[0] = cancelStatus.numerator || Node.Creator.constant(1);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (cancelStatus.denominator) {
+<span class="cstat-no" title="statement not covered" >          denominatorArgs[i] = cancelStatus.denominator;</span>
+        }
+        // if the cancelling out got rid of the denominator node, we remove it
+        // from the list
+        else {
+          denominatorArgs.splice(i, 1);
+          // if the denominator is now a "multiplication" of only one term,
+          // change it to just that term
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (denominatorArgs.length === 1) {
+            newNode.args[1] = denominatorArgs[0];
+          }
+        }
+        return Node.Status.nodeChanged(
+          ChangeTypes.CANCEL_TERMS, node, newNode);
+      }
+    }
+    return Node.Status.noChange(node);
+  }
+&nbsp;
+  // case 4: the numerator and denominator are both multiplications of terms
+  else {
+    const numeratorArgs = Node.Type.isParenthesis(numerator) ?
+      numerator.content.args : <span class="branch-1 cbranch-no" title="branch not covered" >numerator.args;</span>
+    const denominatorArgs = Node.Type.isParenthesis(denominator) ?
+      denominator.content.args : <span class="branch-1 cbranch-no" title="branch not covered" >denominator.args;</span>
+    for (let i = 0; i &lt; numeratorArgs.length; i++) {
+      for (let j = 0; j &lt; denominatorArgs.length; j++) {
+        const cancelStatus = cancelTerms(numeratorArgs[i], denominatorArgs[j]);
+        if (cancelStatus.hasChanged) {
+          if (cancelStatus.numerator) {
+            numeratorArgs[i] = cancelStatus.numerator;
+          }
+          // if the cancelling out got rid of the numerator node, we remove it
+          // from the list
+          else {
+            numeratorArgs.splice(i, 1);
+            // if the numerator is now a "multiplication" of only one term,
+            // change it to just that term
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (numeratorArgs.length === 1) {
+              newNode.args[0] = numeratorArgs[0];
+            }
+          }
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (cancelStatus.denominator) {
+<span class="cstat-no" title="statement not covered" >            denominatorArgs[j] = cancelStatus.denominator;</span>
+          }
+          // if the cancelling out got rid of the denominator node, we remove it
+          // from the list
+          else {
+            denominatorArgs.splice(j, 1);
+            // if the denominator is now a "multiplication" of only one term,
+            // change it to just that term
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (denominatorArgs.length === 1) {
+              newNode.args[1] = denominatorArgs[0];
+            }
+          }
+          return Node.Status.nodeChanged(
+            ChangeTypes.CANCEL_TERMS, node, newNode);
+        }
+      }
+    }
+    return Node.Status.noChange(node);
+  }
+}
+&nbsp;
+// Given a term in the numerator and a term in the denominator, cancels out
+// like terms if possible. See the cases below for possible things that can
+// be cancelled out and how they are cancelled out.
+// Returns the new nodes for numerator and denominator with the common terms
+// removed. If the entire numerator or denominator is cancelled out, it is
+// returned as null. e.g. 4, 4x =&gt; null, x
+function cancelTerms(numerator, denominator) {
+  // Deal with unary minuses by recursing on the argument
+  if (Node.Type.isUnaryMinus(numerator)) {
+    const cancelStatus = cancelTerms(numerator.args[0], denominator);
+    if (!cancelStatus.numerator) {
+      numerator = Node.Creator.constant(-1);
+    }
+    else <span class="missing-if-branch" title="if path not taken" >I</span>if (Negative.isNegative(cancelStatus.numerator)) {
+<span class="cstat-no" title="statement not covered" >      numerator = Negative.negate(cancelStatus.numerator);</span>
+    }
+    else {
+      numerator.args[0] = cancelStatus.numerator;
+    }
+    denominator = cancelTerms.denominator;
+    return new CancelOutStatus(numerator, denominator, cancelStatus.hasChanged);
+  }
+  if (Node.Type.isUnaryMinus(denominator)) {
+    const cancelStatus = cancelTerms(numerator, denominator.args[0]);
+    numerator = cancelStatus.numerator;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (cancelStatus.denominator) {
+<span class="cstat-no" title="statement not covered" >      denominator.args[0] = cancelStatus.denominator;</span>
+    }
+    else {
+      denominator = cancelStatus.denominator;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (numerator) {
+        numerator = Negative.negate(numerator);
+      }
+      else {
+<span class="cstat-no" title="statement not covered" >        numerator = Node.Creator.constant(-1);</span>
+      }
+    }
+    return new CancelOutStatus(numerator, denominator, cancelStatus.hasChanged);
+  }
+&nbsp;
+  // Deal with parens similarily
+  if (Node.Type.isParenthesis(numerator)) {
+    const cancelStatus = cancelTerms(numerator.content, denominator);
+    if (cancelStatus.numerator) {
+      numerator.content = cancelStatus.numerator;
+    }
+    else {
+      // if the numerator was cancelled out, the numerator should be null
+      // and not null in parens.
+      numerator = cancelStatus.numerator;
+    }
+    denominator = cancelStatus.denominator;
+    return new CancelOutStatus(numerator, denominator, cancelStatus.hasChanged);
+  }
+  if (Node.Type.isParenthesis(denominator)) {
+    const cancelStatus = cancelTerms(numerator, denominator.content);
+    if (cancelStatus.denominator) {
+      denominator.content = cancelStatus.denominator;
+    }
+    else {
+      // if the denominator was cancelled out, the denominator should be null
+      // and not null in parens.
+      denominator = cancelStatus.denominator;
+    }
+    numerator = cancelStatus.numerator;
+    return new CancelOutStatus(numerator, denominator, cancelStatus.hasChanged);
+  }
+&nbsp;
+  // Now for the term cancelling ----
+&nbsp;
+  // case 1: the numerator term and denominator term are the same, so we cancel
+  // them out. e.g. (x+5)^100 / (x+5)^100 =&gt; null / null
+  if (print(numerator) === print(denominator)) {
+    return new CancelOutStatus(null, null, true);
+  }
+&nbsp;
+  // case 2: they're both exponent nodes with the same base
+  // e.g. (2x+5)^8 and (2x+5)^2
+  if (Node.Type.isOperator(numerator, '^') &amp;&amp;
+      Node.Type.isOperator(denominator, '^') &amp;&amp;
+      print(numerator.args[0]) === print(denominator.args[0])) {
+    const numeratorExponent = numerator.args[1];
+    let denominatorExponent =  denominator.args[1];
+    // wrap the denominatorExponent in parens, in case it's complicated.
+    // If the parens aren't needed, they'll be removed with
+    // removeUnnecessaryParens at the end of this step.
+    denominatorExponent = Node.Creator.parenthesis(denominatorExponent);
+    const newExponent = Node.Creator.parenthesis(
+      Node.Creator.operator('-', [numeratorExponent, denominatorExponent]));
+    numerator.args[1] = newExponent;
+    return new CancelOutStatus(numerator, null, true);
+  }
+&nbsp;
+  // case 3: they're both polynomial terms, check if they have the same symbol
+  // e.g. 4x^2 / 5x^2 =&gt; 4 / 5
+  // e.g. 4x^3 / 5x^2 =&gt; 4x^(3-2) / 5
+  if (Node.PolynomialTerm.isPolynomialTerm(numerator) &amp;&amp;
+      Node.PolynomialTerm.isPolynomialTerm(denominator)) {
+    const numeratorTerm = new Node.PolynomialTerm(numerator);
+    const denominatorTerm = new Node.PolynomialTerm(denominator);
+    if (numeratorTerm.getSymbolName() !== denominatorTerm.getSymbolName()) {
+      return new CancelOutStatus(numerator, denominator);
+    }
+    const numeratorExponent = numeratorTerm.getExponentNode(true);
+    let denominatorExponent =  denominatorTerm.getExponentNode(true);
+    if (print(numeratorExponent) === print(denominatorExponent)) {
+      // note this returns null if there's no coefficient (ie it's 1)
+      numerator = numeratorTerm.getCoeffNode();
+    }
+    else {
+      // wrap the denominatorExponent in parens, in case it's complicated.
+      // If the parens aren't needed, they'll be removed with
+      // removeUnnecessaryParens at the end of this step.
+      denominatorExponent = Node.Creator.parenthesis(denominatorExponent);
+      const newExponent = Node.Creator.parenthesis(
+        Node.Creator.operator('-', [numeratorExponent, denominatorExponent]));
+      numerator = Node.Creator.polynomialTerm(
+        numeratorTerm.getSymbolNode(),
+        newExponent,
+        numeratorTerm.getCoeffNode());
+    }
+    denominator = denominatorTerm.getCoeffNode();
+    return new CancelOutStatus(numerator, denominator, true);
+  }
+&nbsp;
+  return new CancelOutStatus(numerator, denominator);
+}
+&nbsp;
+// Returns true if node is a multiplication of terms that can be cancelled out
+// e.g. 2 * 6^y =&gt; true
+// e.g. 2 + 6 =&gt; false
+// e.g. (2 * 6^y) =&gt; true
+// e.g. 2x^2 =&gt; false (polynomial terms are considered as one single term)
+function isMultiplicationOfTerms(node) {
+  if (Node.Type.isParenthesis(node)) {
+    return isMultiplicationOfTerms(node.content);
+  }
+  return (Node.Type.isOperator(node, '*') &amp;&amp;
+          !Node.PolynomialTerm.isPolynomialTerm(node));
+}
+&nbsp;
+module.exports = cancelLikeTerms;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 27 2017 16:45:20 GMT+0530 (IST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

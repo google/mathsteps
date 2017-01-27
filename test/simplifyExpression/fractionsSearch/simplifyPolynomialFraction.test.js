@@ -1,20 +1,10 @@
 'use strict';
 
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const simplifyPolynomialFraction = require('../../../lib/simplifyExpression/fractionsSearch/simplifyPolynomialFraction');
+const TestUtil = require('../../TestUtil');
 
 function testSimplifyPolynomialFraction(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    const inputNode = flatten(math.parse(exprStr));
-    assert.deepEqual(
-      print(simplifyPolynomialFraction(inputNode).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(simplifyPolynomialFraction, exprStr, outputStr);
 }
 
 describe('simplifyPolynomialFraction', function() {

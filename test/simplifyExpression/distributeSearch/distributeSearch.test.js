@@ -1,17 +1,10 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
+'use strict';
 
 const distributeSearch = require('../../../lib/simplifyExpression/distributeSearch');
+const TestUtil = require('../../TestUtil');
 
 function testDistributeMinus(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(flatten(distributeSearch(flatten(math.parse(exprStr))).newNode)),
-      outputStr);
-  });
+  TestUtil.testSimplification(distributeSearch, exprStr, outputStr);
 }
 
 describe('distribute - into paren with addition', function () {
@@ -32,23 +25,8 @@ describe('distribute - into paren with multiplication/division', function () {
   tests.forEach(t => testDistributeMinus(t[0], t[1]));
 });
 
-function testDistributeSteps(exprString, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  it(exprString + ' -> ' + lastString, function () {
-    const status = distributeSearch(flatten(math.parse(exprString)));
-    const substeps = status.substeps;
-
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-
-    assert.deepEqual(
-      print(status.newNode),
-      lastString);
-  });
+function checkDistributeSteps(exprString, outputList) {
+  TestUtil.testDistributeSteps(distributeSearch, exprString, outputList);
 }
 
 describe('distribute', function () {
@@ -70,5 +48,5 @@ describe('distribute', function () {
         '(-6x^3 + 8x^2)']
     ],
   ];
-  tests.forEach(t => testDistributeSteps(t[0], t[1]));
+  tests.forEach(t => checkDistributeSteps(t[0], t[1]));
 });

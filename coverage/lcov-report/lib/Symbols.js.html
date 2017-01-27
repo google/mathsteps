@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/Symbols.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> Symbols.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>39/39</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">93.75% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>15/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>37/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">174×</span>
+<span class="cline-any cline-yes">174×</span>
+<span class="cline-any cline-yes">174×</span>
+<span class="cline-any cline-yes">174×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1460×</span>
+<span class="cline-any cline-yes">348×</span>
+<span class="cline-any cline-yes">348×</span>
+<span class="cline-any cline-yes">348×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">329×</span>
+<span class="cline-any cline-yes">79×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250×</span>
+<span class="cline-any cline-yes">81×</span>
+<span class="cline-any cline-yes">181×</span>
+<span class="cline-any cline-yes">181×</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">184×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">89×</span>
+<span class="cline-any cline-yes">57×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">45×</span>
+<span class="cline-any cline-yes">45×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">644×</span>
+<span class="cline-any cline-yes">231×</span>
+<span class="cline-any cline-yes">231×</span>
+<span class="cline-any cline-yes">217×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">427×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+const Node = require('./node');
+&nbsp;
+const Symbols = {};
+&nbsp;
+// returns the set of all the symbols in an equation
+Symbols.getSymbolsInEquation = function(equation) {
+  const leftSymbols = Symbols.getSymbolsInExpression(equation.leftNode);
+  const rightSymbols = Symbols.getSymbolsInExpression(equation.rightNode);
+  const symbols = new Set([...leftSymbols, ...rightSymbols]);
+  return symbols;
+};
+&nbsp;
+// return the set of symbols in the expression tree
+Symbols.getSymbolsInExpression = function(expression) {
+  const symbolNodes = expression.filter(node =&gt; node.isSymbolNode); // all the symbol nodes
+  const symbols = symbolNodes.map(node =&gt; node.name); // all the symbol nodes' names
+  const symbolSet = new Set(symbols); // to get rid of duplicates
+  return symbolSet;
+};
+&nbsp;
+// Iterates through a node and returns the polynomial term with the symbol name
+// Returns null if no terms with the symbol name are in the node.
+// e.g. 4x^2 + 2x + y + 2 with `symbolName=x` would return 2x
+Symbols.getLastSymbolTerm = function(node, symbolName) {
+  // First check if the node itself is a polyomial term with symbolName
+  if(isSymbolTerm(node, symbolName)) {
+    return node;
+  }
+  // Otherwise, it's a sum of terms. Look through the operands for a term
+  // with `symbolName`
+  else if (Node.Type.isOperator(node, '+')) {
+    for (let i = node.args.length - 1; i &gt;= 0 ; i--) {
+      const child = node.args[i];
+      if (isSymbolTerm(child, symbolName)) {
+        return child;
+      }
+    }
+  }
+  return null;
+};
+&nbsp;
+// Iterates through a node and returns the last term that does not have the
+// symbolName including other polynomial terms, and constants or constant
+// fractions
+// e.g. 4x^2 with `symbolName=x` would return 4
+// e.g. 4x^2 + 2x + 2/4 with `symbolName=x` would return 2/4
+// e.g. 4x^2 + 2x + y with `symbolName=x` would return y
+Symbols.getLastNonSymbolTerm = function(node, symbolName) {
+  if (isSymbolTerm(node, symbolName)) {
+    return new Node.PolynomialTerm(node).getCoeffNode();
+  }
+  else <span class="missing-if-branch" title="else path not taken" >E</span>if (Node.Type.isOperator(node)) {
+    for (let i = node.args.length - 1; i &gt;= 0 ; i--) {
+      const child = node.args[i];
+      if (!isSymbolTerm(child, symbolName)) {
+        return child;
+      }
+    }
+  }
+&nbsp;
+  return null;
+};
+&nbsp;
+// Returns if `node` is a polynomial term with symbol `symbolName`
+function isSymbolTerm(node, symbolName) {
+  if (Node.PolynomialTerm.isPolynomialTerm(node)) {
+    const polyTerm = new Node.PolynomialTerm(node);
+    if (polyTerm.getSymbolName() === symbolName) {
+      return true;
+    }
+  }
+  return false;
+}
+&nbsp;
+module.exports = Symbols;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 27 2017 16:45:20 GMT+0530 (IST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,30 +1,10 @@
 'use strict';
 
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const addConstantFractions = require('../../../lib/simplifyExpression/fractionsSearch/addConstantFractions');
+const TestUtil = require('../../TestUtil');
 
 function testAddConstantFractions(exprString, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  it(exprString + ' -> ' + lastString, function () {
-    const status = addConstantFractions(flatten(math.parse(exprString)));
-    const substeps = status.substeps;
-
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-
-    assert.deepEqual(
-      print(status.newNode),
-      lastString);
-  });
+  TestUtil.testDistributeSteps(addConstantFractions, exprString, outputList);
 }
 
 describe('addConstantFractions', function () {
