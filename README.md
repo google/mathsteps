@@ -1,6 +1,6 @@
 ## A step by step solver for math
 
-https://www.youtube.com/watch?v=ay6GjmiJTPM
+https://www.youtube.com/watch?v=iCrargw1rrM
 
 ## Usage
 

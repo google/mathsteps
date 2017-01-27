@@ -9,7 +9,7 @@ const print = require('../../lib/util/print');
 const Node = require('../../lib/node');
 
 function testFlatten(exprStr, afterNode, debug=false) {
-  let flattened = flattenOperands(math.parse(exprStr));
+  const flattened = flattenOperands(math.parse(exprStr));
   if (debug) {
     // eslint-disable-next-line
     console.log(print(flattened));
@@ -22,10 +22,10 @@ function testFlatten(exprStr, afterNode, debug=false) {
 }
 
 // to create nodes, for testing
-let opNode = Node.Creator.operator;
-let constNode = Node.Creator.constant;
-let symbolNode = Node.Creator.symbol;
-let parenNode = Node.Creator.parenthesis;
+const opNode = Node.Creator.operator;
+const constNode = Node.Creator.constant;
+const symbolNode = Node.Creator.symbol;
+const parenNode = Node.Creator.parenthesis;
 
 describe('flattens + and *', function () {
   const tests = [

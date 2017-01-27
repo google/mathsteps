@@ -5,7 +5,7 @@ const math = require('mathjs');
 
 const Node = require('../../lib/node');
 
-let constNode = Node.Creator.constant;
+const constNode = Node.Creator.constant;
 
 describe('Node.Type works', function () {
   it('(2+2) parenthesis', function () {
@@ -23,10 +23,20 @@ describe('Node.Type works', function () {
       Node.Type.isConstant(constNode(-2)),
       true);
   });
-  it('2+2 operator', function () {
+  it('2+2 operator without operator param', function () {
     assert.deepEqual(
       Node.Type.isOperator(math.parse('2+2')),
       true);
+  });
+  it('2+2 operator with correct operator param', function () {
+    assert.deepEqual(
+      Node.Type.isOperator(math.parse('2+2'), '+'),
+      true);
+  });
+  it('2+2 operator with incorrect operator param', function () {
+    assert.deepEqual(
+      Node.Type.isOperator(math.parse('2+2'), '-'),
+      false);
   });
   it('-x not operator', function () {
     assert.deepEqual(

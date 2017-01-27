@@ -12,7 +12,7 @@ function testOneStep(exprStr, outputStr, debug=false) {
   if (!steps.length) {
     return exprStr;
   }
-  let nodeStatus = steps[0];
+  const nodeStatus = steps[0];
   if (debug) {
     if (!nodeStatus.changeType) {
       throw Error('missing or bad change type');
