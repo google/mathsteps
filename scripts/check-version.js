@@ -1,3 +1,5 @@
+/*global process*/
+
 'use strict';
 
 const semver = require('semver');
