@@ -4,7 +4,11 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
-    "mathjs": "^3.8.0"
+    "mathjs": "^3.8.0",
+    "semver": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   },
   "devDependencies": {
     "eslint": "^3.10.2",
@@ -17,7 +21,9 @@
     "lint": "node_modules/.bin/eslint .",
     "coverage": "istanbul cover _mocha --R ./test/**",
     "test": "node_modules/.bin/mocha --recursive",
-    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit"
+    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit",
+    "requirements-check": "node scripts/check-version.js",
+    "preinstall": "npm run requirements-check"
   },
   "repository": {
     "type": "git",

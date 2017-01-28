@@ -1,10 +1,11 @@
 'use strict';
 
 const evaluateConstantSum = require('../../../lib/simplifyExpression/collectAndCombineSearch/evaluateConstantSum');
+
 const TestUtil = require('../../TestUtil');
 
 function testEvaluateConstantSum(exprString, outputList) {
-  TestUtil.testDistributeSteps(evaluateConstantSum, exprString, outputList);
+  TestUtil.verifyDistributeSteps(evaluateConstantSum, exprString, outputList);
 }
 
 describe('evaluateConstantSum', function () {

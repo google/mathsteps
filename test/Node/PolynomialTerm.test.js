@@ -1,10 +1,11 @@
 'use strict';
 
-const {isPolynomialTerm} = require('../../lib/node/PolynomialTerm');
+const PolynomialTerm = require('../../lib/node/PolynomialTerm');
+
 const TestUtil = require('../TestUtil');
 
 function testIsPolynomialTerm(exprStr, isTerm) {
-  TestUtil.testBooleanFunction(isPolynomialTerm, exprStr, isTerm);
+  TestUtil.testBooleanFunction(PolynomialTerm.isPolynomialTerm, exprStr, isTerm);
 }
 
 describe('classifies symbol terms correctly', function() {

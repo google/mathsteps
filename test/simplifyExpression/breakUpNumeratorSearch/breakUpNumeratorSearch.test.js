@@ -1,6 +1,7 @@
 'use strict';
 
 const breakUpNumeratorSearch = require('../../../lib/simplifyExpression/breakUpNumeratorSearch');
+
 const TestUtil = require('../../TestUtil');
 
 function testBreakUpNumeratorSearch(exprStr, outputStr) {

@@ -1,10 +1,11 @@
 'use strict';
 
-const {canSimplifyPolynomialTerms} = require('../../lib/checks');
+const checks = require('../../lib/checks');
+
 const TestUtil = require('../TestUtil');
 
 function testCanCombine(exprStr, canCombine) {
-  TestUtil.testBooleanFunction(canSimplifyPolynomialTerms, exprStr, canCombine);
+  TestUtil.testBooleanFunction(checks.canSimplifyPolynomialTerms, exprStr, canCombine);
 }
 
 describe('canSimplifyPolynomialTerms multiplication', function() {

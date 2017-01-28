@@ -1,10 +1,11 @@
 'use strict';
 
 const addConstantAndFraction = require('../../../lib/simplifyExpression/fractionsSearch/addConstantAndFraction');
+
 const TestUtil = require('../../TestUtil');
 
 function testAddConstantAndFraction(exprString, outputList) {
-  TestUtil.testDistributeSteps(addConstantAndFraction, exprString, outputList);
+  TestUtil.verifyDistributeSteps(addConstantAndFraction, exprString, outputList);
 }
 
 describe('addConstantAndFraction', function () {

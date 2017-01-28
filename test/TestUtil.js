@@ -1,66 +1,53 @@
 'use strict';
 const assert = require('assert');
-const print = require('../lib/util/print');
-const flatten = require('../lib/util/flattenOperands');
 const math = require('mathjs');
 
-// Test helper contains methods for reducing the redundant code. (Test Util)
+const print = require('../lib/util/print');
+const flatten = require('../lib/util/flattenOperands');
+
+// TestUtil contains helper methods to share code across tests
 const TestUtil = {};
 
 // Test the distribute steps in the expression string.
-TestUtil.testDistributeSteps = function (evaluator, exprString, outputList) {
+TestUtil.verifyDistributeSteps = function (evaluator, exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
-  it(exprString + ' -> ' + lastString, () => {
-    const status = evaluator(flatten(math.parse(exprString)));
-    const substeps = status.substeps;
-
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-
-    assert.deepEqual(
-      print(status.newNode),
-      lastString);
-  });
+  TestUtil.testSubsteps(evaluator, exprString, outputList, lastString);
 };
 
 // Test the prime factors and the factor pairs
-TestUtil.testFactors = function (fn, input, output) {
+TestUtil.testFunctionOutput = function (fn, input, output) {
   it(input + ' -> ' + output,  () => {
     assert.deepEqual(fn(input),output);
   });
 };
 
 // Testing the expression whether a true / false
-TestUtil.testBooleanFunction = function (simplifier, exprStr, canCombine) {
-  it(exprStr + ' ' + canCombine, () => {
-    const inputNode = flatten(math.parse(exprStr));
-    assert.equal(simplifier(inputNode),canCombine);
+TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBooleanValue) {
+  it(exprString + ' ' + expectedBooleanValue, () => {
+    const inputNode = flatten(math.parse(exprString));
+    assert.equal(simplifier(inputNode),expectedBooleanValue);
   });
 };
 
-// Test simplifier
-TestUtil.testSimplification = function (evaluator, original, expected, debug) {
+// Tests a simplification function
+TestUtil.testSimplification = function (simplifyingFunction, exprString, expectedOutputString, debug) {
   (debug === undefined) ?
     (() => {
-      it (original + ' -> ' + expected,  () => {
+      it (exprString + ' -> ' + expectedOutputString,  () => {
         assert.deepEqual(
-          print(evaluator(flatten(math.parse(original))).newNode),expected);
+          print(simplifyingFunction(flatten(math.parse(exprString))).newNode),expectedOutputString);
       });
     })() :
     (() => {
-      it(original + ' -> ' + expected,  () => {
+      it(exprString + ' -> ' + expectedOutputString,  () => {
         assert.deepEqual(
-          print(evaluator(math.parse(original), debug)),
-         expected);
+          print(simplifyingFunction(math.parse(exprString), debug)),
+         expectedOutputString);
       });
     })();
 };
 
-// Test the substeps in the expression
+// Tests a simplification function, as well as the substeps it generates
 TestUtil.testSubsteps = function (fn, exprString, outputList, outputStr) {
   it(exprString + ' -> ' + outputStr, () => {
     const status = fn(flatten(math.parse(exprString)));
@@ -72,11 +59,9 @@ TestUtil.testSubsteps = function (fn, exprString, outputList, outputStr) {
         print(step.newNode),
         outputList[i]);
     });
-    if (outputStr) {
-      assert.deepEqual(
-        print(status.newNode),
-        outputStr);
-    }
+    outputStr ? assert.deepEqual(
+      print(status.newNode),
+      outputStr) : null
   });
 };
 

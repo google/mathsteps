@@ -1,12 +1,14 @@
 'use strict';
 const assert = require('assert');
-const print = require('../../lib/util/print');
 const math = require('mathjs');
 
+const print = require('../../lib/util/print');
+
+const TestUtil = require('../TestUtil');
+
 function testPrint(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, () => {
-    assert.deepEqual(print(math.parse(exprStr)), outputStr);
-  });
+  const inputStr = math.parse(exprStr)
+  TestUtil.testFunctionOutput(print, inputStr, outputStr)
 }
 
 describe('print asciimath', function () {

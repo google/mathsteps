@@ -1,6 +1,7 @@
 'use strict';
 
 const collectAndCombineSearch = require('../../../lib/simplifyExpression/collectAndCombineSearch');
+
 const TestUtil = require('../../TestUtil');
 
 function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {

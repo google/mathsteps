@@ -1,6 +1,7 @@
 'use strict';
 
 const nthRoot = require('../../../lib/simplifyExpression/functionsSearch/nthRoot');
+
 const TestUtil = require('../../TestUtil');
 
 function testNthRoot(exprString, outputStr) {
@@ -33,7 +34,7 @@ describe('simplify nthRoot', function () {
 });
 
 function testNthRootSteps(exprString, outputList) {
-  TestUtil.testDistributeSteps(nthRoot, exprString, outputList);
+  TestUtil.verifyDistributeSteps(nthRoot, exprString, outputList);
 }
 
 describe('nthRoot steps', function () {

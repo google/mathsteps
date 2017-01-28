@@ -1,10 +1,11 @@
 'use strict';
 
-const {resolvesToConstant} = require('../../lib/checks');
+const checks = require('../../lib/checks');
+
 const TestUtil = require('../TestUtil');
 
 function testResolvesToConstant(exprString, resolves) {
-  TestUtil.testBooleanFunction(resolvesToConstant, exprString, resolves);
+  TestUtil.testBooleanFunction(checks.resolvesToConstant, exprString, resolves);
 }
 
 describe('resolvesToConstant', function () {

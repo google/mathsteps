@@ -1,6 +1,7 @@
 'use strict';
 
 const divideByGCD = require('../../../lib/simplifyExpression/fractionsSearch/divideByGCD');
+
 const TestUtil = require('../../TestUtil');
 
 function testdivideByGCD(exprStr, outputStr) {

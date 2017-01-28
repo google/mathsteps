@@ -1,6 +1,7 @@
 'use strict';
 
 const simplifyFractionSigns = require('../../../lib/simplifyExpression/fractionsSearch/simplifyFractionSigns');
+
 const TestUtil = require('../../TestUtil');
 
 function testSimplifyFractionSigns(exprStr, outputStr) {

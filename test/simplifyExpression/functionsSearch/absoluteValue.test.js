@@ -1,6 +1,7 @@
 'use strict';
 
 const absoluteValue = require('../../../lib/simplifyExpression/functionsSearch/absoluteValue');
+
 const TestUtil = require('../../TestUtil');
 
 function testAbsoluteValue(exprString, outputStr) {

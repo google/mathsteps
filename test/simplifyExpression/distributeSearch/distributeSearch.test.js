@@ -1,6 +1,7 @@
 'use strict';
 
 const distributeSearch = require('../../../lib/simplifyExpression/distributeSearch');
+
 const TestUtil = require('../../TestUtil');
 
 function testDistributeMinus(exprStr, outputStr) {
@@ -25,8 +26,8 @@ describe('distribute - into paren with multiplication/division', function () {
   tests.forEach(t => testDistributeMinus(t[0], t[1]));
 });
 
-function checkDistributeSteps(exprString, outputList) {
-  TestUtil.testDistributeSteps(distributeSearch, exprString, outputList);
+function testDistributeSteps(exprString, outputList) {
+  TestUtil.verifyDistributeSteps(distributeSearch, exprString, outputList);
 }
 
 describe('distribute', function () {
@@ -48,5 +49,5 @@ describe('distribute', function () {
         '(-6x^3 + 8x^2)']
     ],
   ];
-  tests.forEach(t => checkDistributeSteps(t[0], t[1]));
+  tests.forEach(t => testDistributeSteps(t[0], t[1]));
 });

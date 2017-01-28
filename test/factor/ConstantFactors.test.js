@@ -1,10 +1,11 @@
 'use strict';
 
-const {getPrimeFactors, getFactorPairs} = require('../../lib/factor/ConstantFactors');
+const ConstantFactors = require('../../lib/factor/ConstantFactors');
+
 const TestUtil = require('../TestUtil');
 
 function testPrimeFactors(input, output) {
-  TestUtil.testFactors(getPrimeFactors, input, output);
+  TestUtil.testFunctionOutput(ConstantFactors.getPrimeFactors, input, output);
 }
 
 describe('prime factors', function() {
@@ -25,7 +26,7 @@ describe('prime factors', function() {
 });
 
 function testFactorPairs(input, output) {
-  TestUtil.testFactors(getFactorPairs, input, output);
+  TestUtil.testFunctionOutput(ConstantFactors.getFactorPairs, input, output);
 }
 
 describe('factor pairs', function() {

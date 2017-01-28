@@ -1,9 +1,11 @@
 'use strict';
 const assert = require('assert');
+const math = require('mathjs');
+
 const print = require('../../../lib/util/print');
 const flatten = require('../../../lib/util/flattenOperands');
-const math = require('mathjs');
-const {collectLikeTerms, canCollectLikeTerms} = require('../../../lib/simplifyExpression/collectAndCombineSearch/LikeTermCollector');
+
+const LikeTermCollector = require('../../../lib/simplifyExpression/collectAndCombineSearch/LikeTermCollector');
 
 function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
   let description = `${exprStr} -> ${outputStr}`;
@@ -14,7 +16,7 @@ function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
 
   it(description, () => {
     const exprTree = flatten(math.parse(exprStr));
-    const collected = print(collectLikeTerms(exprTree).newNode);
+    const collected = print(LikeTermCollector.collectLikeTerms(exprTree).newNode);
     if (debug) {
       // eslint-disable-next-line
       console.log(collected);
@@ -33,7 +35,7 @@ function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
   it(description , () => {
     const exprTree = flatten(math.parse(exprStr));
     assert.equal(
-      canCollectLikeTerms(exprTree),
+      LikeTermCollector.canCollectLikeTerms(exprTree),
       canCollect);
   });
 }
