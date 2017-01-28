@@ -63,6 +63,7 @@ describe('solveEquation for =', function () {
     ['2/(8 - 4x) = 1/2', 'x = 1'],
     ['2/(1 + 1 + 4x) = 1/3', 'x = 1'],
     ['(3 + x) / (x^2 + 3) = 1', '-x^2 + x = 0'],
+    ['6/x + 8/2x = 10', '(-10x) + 4x^2 = -6'],
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
