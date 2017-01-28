@@ -94,6 +94,7 @@ describe('solveEquation for =', function () {
     ['2/(8 - 4x) = 1/2', 'x = 1'],
     ['2/(1 + 1 + 4x) = 1/3', 'x = 1'],
     ['(3 + x) / (x^2 + 3) = 1', 'x = [0, 1]'],
+    ['6/x + 8/2x = 10', NO_STEPS],
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
