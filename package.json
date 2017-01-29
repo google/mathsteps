@@ -1,6 +1,6 @@
 {
   "name": "mathsteps",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
@@ -40,5 +40,5 @@
   "bugs": {
     "url": "https://github.com/socraticorg/mathsteps/issues"
   },
-  "homepage": "https://github.com/socraticorg/mathsteps#readme"  
+  "homepage": "https://github.com/socraticorg/mathsteps#readme"
 }
