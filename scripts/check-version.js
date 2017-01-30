@@ -1,8 +1,7 @@
 /*global process*/
 'use strict';
-
-const semver = require('semver');
 const engines = require('../package').engines;
+const semver = require('semver');
 
 const version = engines.node;
 if (!semver.satisfies(process.version, version)) {
