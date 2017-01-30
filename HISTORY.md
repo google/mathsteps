@@ -1,5 +1,9 @@
 # History
 
+## 2017-01-29, version 0.1.5
+
+Reverted #82 (Added script to check the installed node version) and mention
+node version requiremnts in the README.
 
 ## 2017-01-29, version 0.1.4
 
