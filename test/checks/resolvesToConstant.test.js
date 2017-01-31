@@ -1,16 +1,11 @@
 'use strict';
 
-const assert = require('assert');
-const math = require('mathjs');
-
 const checks = require('../../lib/checks');
 
+const TestUtil = require('../TestUtil');
+
 function testResolvesToConstant(exprString, resolves) {
-  it(exprString  + ' ' + resolves, function () {
-    assert.deepEqual(
-      checks.resolvesToConstant(math.parse(exprString)),
-      resolves);
-  });
+  TestUtil.testBooleanFunction(checks.resolvesToConstant, exprString, resolves);
 }
 
 describe('resolvesToConstant', function () {

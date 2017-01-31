@@ -1,17 +1,11 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
+'use strict';
 
 const cancelLikeTerms = require('../../../lib/simplifyExpression/fractionsSearch/cancelLikeTerms');
 
+const TestUtil = require('../../TestUtil');
+
 function testCancelLikeTerms(exprStr, expectedStr) {
-  const evaluated = cancelLikeTerms(flatten(math.parse(exprStr))).newNode;
-  assert.deepEqual(
-    print(evaluated),
-    expectedStr);
-  return;
+  TestUtil.testSimplification(cancelLikeTerms, exprStr, expectedStr);
 }
 
 describe('cancel like terms', function () {

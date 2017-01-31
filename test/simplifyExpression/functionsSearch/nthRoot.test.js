@@ -1,19 +1,11 @@
 'use strict';
 
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const nthRoot = require('../../../lib/simplifyExpression/functionsSearch/nthRoot');
 
+const TestUtil = require('../../TestUtil');
+
 function testNthRoot(exprString, outputStr) {
-  it(exprString + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(nthRoot(flatten(math.parse(exprString))).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(nthRoot, exprString, outputStr);
 }
 
 describe('simplify nthRoot', function () {
@@ -42,22 +34,7 @@ describe('simplify nthRoot', function () {
 });
 
 function testNthRootSteps(exprString, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  it(exprString + ' -> ' + lastString, function () {
-    const status = nthRoot(flatten(math.parse(exprString)));
-    const substeps = status.substeps;
-
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-
-    assert.deepEqual(
-      print(status.newNode),
-      lastString);
-  });
+  TestUtil.verifyDistributeSteps(nthRoot, exprString, outputList);
 }
 
 describe('nthRoot steps', function () {

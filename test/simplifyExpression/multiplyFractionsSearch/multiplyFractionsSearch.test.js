@@ -1,20 +1,11 @@
 'use strict';
 
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const multiplyFractionsSearch = require('../../../lib/simplifyExpression//multiplyFractionsSearch');
 
+const TestUtil = require('../../TestUtil');
+
 function testMultiplyFractionsSearch(exprString, outputStr) {
-  const node = flatten(math.parse(exprString));
-  it(exprString + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(multiplyFractionsSearch(node).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(multiplyFractionsSearch, exprString, outputStr);
 }
 
 describe('multiplyFractions', function () {
