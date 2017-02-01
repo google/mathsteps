@@ -15,7 +15,7 @@ module.exports = {
         "module": true,
         "describe": true,
         "it": true
-    },    
+    },
     "rules": {
         "indent": [
             "error",
@@ -52,10 +52,12 @@ module.exports = {
             }
         ],
         "brace-style": [
-            "error",            
+            "error",
             "stroustrup",
-            {"allowSingleLine": true}
-        ],        
+            {
+                "allowSingleLine": true
+            }
+        ],
         "sort-requires/sort-requires": [
             "error"
         ],
