@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const checks = require('../../lib/checks');
 const flatten = require('../../lib/util/flattenOperands');

@@ -63,6 +63,9 @@ module.exports = {
         ],
         "keyword-spacing": [
             "error"
+        ],
+        "strict": [
+            "error"
         ]
     }
 };
