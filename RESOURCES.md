@@ -39,6 +39,10 @@ mathsteps@socratic.org
 - [Michael Beason and the “MathXpert” system](https://www.helpwithmath.com/)
 - [Structure in algebra research paper](http://pat-thompson.net/PDFversions/1987StrucInAlg.pdf)
 - [2015-AuditedAlgebra.pdf](https://github.com/socraticorg/mathsteps/files/723419/2015-AuditedAlgebra.pdf)
+- On the following website is a file named moses-simp.pdf that contains a paper
+  titled "Algebraic Simplification a Guide for the Perplexed":
+  [https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/simplification/](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/simplification/). It describes the various ways
+  simplification is typically used in a CAS.
 - PRESS (PRolog Equation Solving System) research papers.
 
     PRESS was created by a team of researchers lead by Dr. Alan Bundy at the
