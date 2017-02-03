@@ -1,5 +1,3 @@
-'use strict';
-const assert = require('assert');
 const math = require('mathjs');
 
 const print = require('../../lib/util/print');
@@ -8,7 +6,7 @@ const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens'
 const TestUtil = require('../TestUtil');
 
 function testRemoveUnnecessaryParens(exprStr, outputStr) {
-  let input = removeUnnecessaryParens(math.parse(exprStr));
+  const input = removeUnnecessaryParens(math.parse(exprStr));
   TestUtil.testFunctionOutput(print, input, outputStr);
 }
 

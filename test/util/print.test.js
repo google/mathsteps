@@ -1,5 +1,3 @@
-'use strict';
-const assert = require('assert');
 const math = require('mathjs');
 
 const print = require('../../lib/util/print');
@@ -7,7 +5,7 @@ const print = require('../../lib/util/print');
 const TestUtil = require('../TestUtil');
 
 function testPrint(exprStr, outputStr) {
-  let input = math.parse(exprStr);
+  const input = math.parse(exprStr);
   TestUtil.testFunctionOutput(print, input, outputStr);
 }
 

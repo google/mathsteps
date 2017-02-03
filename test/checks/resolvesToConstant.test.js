@@ -1,5 +1,3 @@
-'use strict';
-
 const checks = require('../../lib/checks');
 
 const TestUtil = require('../TestUtil');

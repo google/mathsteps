@@ -1,5 +1,3 @@
-'use strict';
-
 const nthRoot = require('../../../lib/simplifyExpression/functionsSearch/nthRoot');
 
 const TestUtil = require('../../TestUtil');

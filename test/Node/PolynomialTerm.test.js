@@ -1,5 +1,3 @@
-'use strict';
-
 const PolynomialTerm = require('../../lib/node/PolynomialTerm');
 
 const TestUtil = require('../TestUtil');

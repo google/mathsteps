@@ -1,5 +1,3 @@
-'use strict';
-
 const divisionSearch = require('../../../lib/simplifyExpression/divisionSearch');
 
 const TestUtil = require('../../TestUtil');

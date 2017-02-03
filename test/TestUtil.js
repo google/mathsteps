@@ -1,9 +1,8 @@
-'use strict';
 const assert = require('assert');
 const math = require('mathjs');
 
-const print = require('../lib/util/print');
 const flatten = require('../lib/util/flattenOperands');
+const print = require('../lib/util/print');
 
 // TestUtil contains helper methods to share code across tests
 const TestUtil = {};

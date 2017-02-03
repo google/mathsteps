@@ -1,5 +1,3 @@
-'use strict';
-
 const distributeSearch = require('../../../lib/simplifyExpression/distributeSearch');
 
 const TestUtil = require('../../TestUtil');

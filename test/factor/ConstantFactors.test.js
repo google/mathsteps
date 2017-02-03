@@ -1,5 +1,3 @@
-'use strict';
-
 const ConstantFactors = require('../../lib/factor/ConstantFactors');
 
 const TestUtil = require('../TestUtil');

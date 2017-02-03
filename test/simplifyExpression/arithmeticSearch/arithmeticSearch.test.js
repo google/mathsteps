@@ -1,5 +1,3 @@
-'use strict';
-
 const arithmeticSearch = require('../../../lib/simplifyExpression/arithmeticSearch');
 
 const TestUtil = require('../../TestUtil');

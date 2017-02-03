@@ -1,5 +1,3 @@
-'use strict';
-
 const evaluateConstantSum = require('../../../lib/simplifyExpression/collectAndCombineSearch/evaluateConstantSum');
 
 const TestUtil = require('../../TestUtil');

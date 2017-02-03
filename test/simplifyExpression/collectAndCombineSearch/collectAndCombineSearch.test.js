@@ -1,5 +1,3 @@
-'use strict';
-
 const collectAndCombineSearch = require('../../../lib/simplifyExpression/collectAndCombineSearch');
 
 const TestUtil = require('../../TestUtil');

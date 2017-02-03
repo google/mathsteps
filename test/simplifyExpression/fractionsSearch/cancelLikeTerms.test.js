@@ -1,5 +1,3 @@
-'use strict';
-
 const cancelLikeTerms = require('../../../lib/simplifyExpression/fractionsSearch/cancelLikeTerms');
 
 const TestUtil = require('../../TestUtil');

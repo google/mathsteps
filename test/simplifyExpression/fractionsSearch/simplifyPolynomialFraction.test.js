@@ -1,5 +1,3 @@
-'use strict';
-
 const simplifyPolynomialFraction = require('../../../lib/simplifyExpression/fractionsSearch/simplifyPolynomialFraction');
 
 const TestUtil = require('../../TestUtil');

@@ -1,11 +1,12 @@
-'use strict';
 const assert = require('assert');
 const math = require('mathjs');
 
-const print = require('../../../lib/util/print');
 const flatten = require('../../../lib/util/flattenOperands');
 
 const LikeTermCollector = require('../../../lib/simplifyExpression/collectAndCombineSearch/LikeTermCollector');
+
+const print = require('../../../lib/util/print');
+
 
 function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
   let description = `${exprStr} -> ${outputStr}`;

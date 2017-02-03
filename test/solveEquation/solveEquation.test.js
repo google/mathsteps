@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 
 const ChangeTypes = require('../../lib/ChangeTypes');
@@ -18,7 +16,8 @@ function testSolve(equationString, outputStr, debug=false) {
   }
   it(equationString + ' -> ' + outputStr, () => {
     assert.equal(lastStep, outputStr);
-  });}
+  });
+}
 
 describe('solveEquation for =', function () {
   const tests = [
@@ -80,7 +79,8 @@ function testSolveConstantEquation(equationString, expectedChange, debug=false) 
   const actualChange = steps[steps.length -1].changeType;
   it(equationString + ' -> ' + expectedChange, () => {
     assert.equal(actualChange, expectedChange);
-  });}
+  });
+}
 
 describe('constant comparison support', function () {
   const tests = [
@@ -116,7 +116,8 @@ describe('constant comparison support', function () {
 function testEquationError(equationString, debug=false) {
   it(equationString + ' throws error', () => {
     assert.throws(() => solveEquation(equationString, debug),Error);
-  });}
+  });
+}
 
 describe('solveEquation errors', function() {
   const tests = [

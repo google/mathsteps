@@ -1,5 +1,3 @@
-'use strict';
-
 const addConstantAndFraction = require('../../../lib/simplifyExpression/fractionsSearch/addConstantAndFraction');
 
 const TestUtil = require('../../TestUtil');
