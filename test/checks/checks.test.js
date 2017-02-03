@@ -1,10 +1,7 @@
-'use strict';
-
 const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../lib/util/flattenOperands');
 const checks = require('../../lib/checks');
+const flatten = require('../../lib/util/flattenOperands');
+const math = require('mathjs');
 
 function testCanCombine(exprStr, canCombine) {
   it(exprStr + ' ' + canCombine, function () {

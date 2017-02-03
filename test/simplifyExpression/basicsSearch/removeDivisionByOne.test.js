@@ -1,5 +1,3 @@
-'use strict';
-
 const removeDivisionByOne = require('../../../lib/simplifyExpression/basicsSearch/removeDivisionByOne');
 const testSimplify = require('./testSimplify');
 
