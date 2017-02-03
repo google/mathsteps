@@ -2,10 +2,10 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const Negative = require('../lib/Negative');
-
 const print = require('../lib/util/print');
 const flatten = require('../lib/util/flattenOperands');
+
+const Negative = require('../lib/Negative');
 
 function testNegate(exprString, outputStr) {
   it(exprString + ' -> ' + outputStr, () => {
