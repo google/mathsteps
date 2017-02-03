@@ -2,8 +2,8 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const print = require('../lib/util/print');
 const flatten = require('../lib/util/flattenOperands');
+const print = require('../lib/util/print');
 
 const Negative = require('../lib/Negative');
 
