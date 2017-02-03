@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require('assert');
 
 const print = require('../../lib/util/print');

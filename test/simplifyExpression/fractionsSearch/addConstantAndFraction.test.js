@@ -1,24 +1,12 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const print = require('../../../lib/util/print');
+'use strict';
 
 const addConstantAndFraction = require('../../../lib/simplifyExpression/fractionsSearch/addConstantAndFraction');
 
+const TestUtil = require('../../TestUtil');
+
 function testAddConstantAndFraction(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
-  it(exprString + ' -> ' + lastString, function () {
-    const status = addConstantAndFraction(math.parse(exprString));
-    const substeps = status.substeps;
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-    assert.deepEqual(
-      print(status.newNode),
-      lastString);
-  });
+  TestUtil.testSubsteps(addConstantAndFraction, exprString, outputList, lastString);
 }
 
 describe('addConstantAndFraction', function () {

@@ -1,3 +1,5 @@
+'use strict';
+
 const simplifyDoubleUnaryMinus = require('../../../lib/simplifyExpression/basicsSearch/simplifyDoubleUnaryMinus');
 const testSimplify = require('./testSimplify');
 

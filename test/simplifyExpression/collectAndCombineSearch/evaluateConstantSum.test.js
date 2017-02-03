@@ -1,28 +1,12 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
+'use strict';
 
 const evaluateConstantSum = require('../../../lib/simplifyExpression/collectAndCombineSearch/evaluateConstantSum');
 
+const TestUtil = require('../../TestUtil');
+
 function testEvaluateConstantSum(exprString, outputList) {
   const lastString = outputList[outputList.length - 1];
-  it(exprString + ' -> ' + lastString, function () {
-    const status = evaluateConstantSum(flatten(math.parse(exprString)));
-    const substeps = status.substeps;
-
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-
-    assert.deepEqual(
-      print(status.newNode),
-      lastString);
-  });
+  TestUtil.testSubsteps(evaluateConstantSum, exprString, outputList, lastString);
 }
 
 describe('evaluateConstantSum', function () {

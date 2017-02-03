@@ -1,3 +1,5 @@
+'use strict';
+
 const removeAdditionOfZero = require('../../../lib/simplifyExpression/basicsSearch/removeAdditionOfZero');
 const testSimplify = require('./testSimplify');
 

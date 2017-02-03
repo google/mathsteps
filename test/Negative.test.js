@@ -1,16 +1,16 @@
+'use strict';
 const assert = require('assert');
 const math = require('mathjs');
 
-const flatten = require('../lib/util/flattenOperands');
-const print = require('../lib/util/print');
-
 const Negative = require('../lib/Negative');
 
+const print = require('../lib/util/print');
+const flatten = require('../lib/util/flattenOperands');
+
 function testNegate(exprString, outputStr) {
-  it(exprString + ' -> ' + outputStr, function () {
+  it(exprString + ' -> ' + outputStr, () => {
     assert.deepEqual(
-      print(Negative.negate(flatten(math.parse(exprString)))),
-      outputStr);
+      print(Negative.negate(flatten(math.parse(exprString)))),outputStr);
   });
 }
 

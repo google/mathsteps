@@ -1,3 +1,5 @@
+'use strict';
+
 const reduceZeroDividedByAnything = require('../../../lib/simplifyExpression/basicsSearch/reduceZeroDividedByAnything');
 const testSimplify = require('./testSimplify');
 

@@ -1,15 +1,11 @@
-const assert = require('assert');
+'use strict';
+
 const checks = require('../../lib/checks');
-const flatten = require('../../lib/util/flattenOperands');
-const math = require('mathjs');
+
+const TestUtil = require('../TestUtil');
 
 function testCanCombine(exprStr, canCombine) {
-  it(exprStr + ' ' + canCombine, function () {
-    const inputNode = flatten(math.parse(exprStr));
-    assert.equal(
-      checks.canSimplifyPolynomialTerms(inputNode),
-      canCombine);
-  });
+  TestUtil.testBooleanFunction(checks.canSimplifyPolynomialTerms, exprStr, canCombine);
 }
 
 describe('canSimplifyPolynomialTerms multiplication', function() {

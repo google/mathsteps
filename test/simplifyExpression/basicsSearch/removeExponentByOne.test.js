@@ -1,3 +1,5 @@
+'use strict';
+
 const removeExponentByOne = require('../../../lib/simplifyExpression/basicsSearch/removeExponentByOne');
 const testSimplify = require('./testSimplify');
 

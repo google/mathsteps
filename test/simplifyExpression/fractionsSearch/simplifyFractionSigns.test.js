@@ -1,18 +1,11 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
+'use strict';
 
 const simplifyFractionSigns = require('../../../lib/simplifyExpression/fractionsSearch/simplifyFractionSigns');
 
+const TestUtil = require('../../TestUtil');
 
 function testSimplifyFractionSigns(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(simplifyFractionSigns(flatten(math.parse(exprStr))).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(simplifyFractionSigns, exprStr, outputStr);
 }
 
 describe('simplify signs', function() {

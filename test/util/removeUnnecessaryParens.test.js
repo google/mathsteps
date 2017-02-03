@@ -1,21 +1,15 @@
+'use strict';
 const assert = require('assert');
 const math = require('mathjs');
+
 const print = require('../../lib/util/print');
 const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens');
 
-
-it('(x+4) + 12 -> x + 4 + 12', function () {
-  assert.deepEqual(
-    removeUnnecessaryParens(math.parse('(x+4) + 12')),
-    math.parse('x+4+12'));
-});
+const TestUtil = require('../TestUtil');
 
 function testRemoveUnnecessaryParens(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(removeUnnecessaryParens(math.parse(exprStr))),
-      outputStr);
-  });
+  let input = removeUnnecessaryParens(math.parse(exprStr));
+  TestUtil.testFunctionOutput(print, input, outputStr);
 }
 
 describe('removeUnnecessaryParens', function () {
