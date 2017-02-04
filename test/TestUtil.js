@@ -27,8 +27,8 @@ TestUtil.testSimplification = function (simplifyingFunction, exprString,
                                         expectedOutputString) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
     assert.deepEqual(
-      print(simplifyingFunction(
-        flatten(math.parse(exprString))).newNode),expectedOutputString);
+      print(simplifyingFunction(flatten(math.parse(exprString))).newNode),
+      expectedOutputString);
   });
 };
 
