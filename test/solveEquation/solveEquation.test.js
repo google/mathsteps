@@ -14,8 +14,9 @@ function testSolve(equationString, outputStr, debug=false) {
   else {
     lastStep = steps[steps.length -1].newEquation.print();
   }
-  it(equationString + ' -> ' + outputStr, () => {
+  it(equationString + ' -> ' + outputStr, (done) => {
     assert.equal(lastStep, outputStr);
+    done();
   });
 }
 
@@ -77,8 +78,9 @@ describe('solveEquation for non = comparators', function() {
 function testSolveConstantEquation(equationString, expectedChange, debug=false) {
   const steps = solveEquation(equationString, debug);
   const actualChange = steps[steps.length -1].changeType;
-  it(equationString + ' -> ' + expectedChange, () => {
+  it(equationString + ' -> ' + expectedChange, (done) => {
     assert.equal(actualChange, expectedChange);
+    done();
   });
 }
 
@@ -114,8 +116,9 @@ describe('constant comparison support', function () {
 });
 
 function testEquationError(equationString, debug=false) {
-  it(equationString + ' throws error', () => {
+  it(equationString + ' throws error', (done) => {
     assert.throws(() => solveEquation(equationString, debug),Error);
+    done();
   });
 }
 
