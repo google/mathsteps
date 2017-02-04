@@ -1,4 +1,5 @@
 const removeExponentBaseOne = require('../../../lib/simplifyExpression/basicsSearch/removeExponentBaseOne');
+
 const testSimplify = require('./testSimplify');
 
 describe('removeExponentBaseOne', function() {

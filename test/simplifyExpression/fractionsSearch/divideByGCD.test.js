@@ -1,17 +1,9 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const divideByGCD = require('../../../lib/simplifyExpression/fractionsSearch/divideByGCD');
 
+const TestUtil = require('../../TestUtil');
+
 function testdivideByGCD(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(divideByGCD(flatten(math.parse(exprStr))).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(divideByGCD, exprStr, outputStr);
 }
 
 describe('simplifyFraction', function() {

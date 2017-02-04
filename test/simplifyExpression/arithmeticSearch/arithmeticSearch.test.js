@@ -1,18 +1,11 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const arithmeticSearch = require('../../../lib/simplifyExpression/arithmeticSearch');
 
+const TestUtil = require('../../TestUtil');
+
 function testArithmeticSearch(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(arithmeticSearch(flatten(math.parse(exprStr))).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(arithmeticSearch, exprStr, outputStr);
 }
+
 describe('evaluate arithmeticSearch', function () {
   const tests = [
     ['2+2', '4'],

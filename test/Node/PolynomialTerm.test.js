@@ -1,16 +1,9 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../lib/util/flattenOperands');
-
 const PolynomialTerm = require('../../lib/node/PolynomialTerm');
 
+const TestUtil = require('../TestUtil');
+
 function testIsPolynomialTerm(exprStr, isTerm) {
-  it(exprStr + ' ' + isTerm, function () {
-    assert.equal(
-      PolynomialTerm.isPolynomialTerm(flatten(math.parse(exprStr))),
-      isTerm);
-  });
+  TestUtil.testBooleanFunction(PolynomialTerm.isPolynomialTerm, exprStr, isTerm);
 }
 
 describe('classifies symbol terms correctly', function() {

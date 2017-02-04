@@ -1,4 +1,5 @@
 const removeMultiplicationByOne = require('../../../lib/simplifyExpression/basicsSearch/removeMultiplicationByOne');
+
 const testSimplify = require('./testSimplify');
 
 describe('removeMultiplicationByOne', function() {

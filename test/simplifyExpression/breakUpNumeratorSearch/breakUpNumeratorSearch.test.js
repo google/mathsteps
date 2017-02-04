@@ -1,17 +1,9 @@
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const breakUpNumeratorSearch = require('../../../lib/simplifyExpression/breakUpNumeratorSearch');
 
+const TestUtil = require('../../TestUtil');
+
 function testBreakUpNumeratorSearch(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(breakUpNumeratorSearch(flatten(math.parse(exprStr))).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(breakUpNumeratorSearch, exprStr, outputStr);
 }
 
 describe('breakUpNumerator', function() {
