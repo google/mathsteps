@@ -1,6 +1,5 @@
-'use strict';
-
 const reduceMultiplicationByZero = require('../../../lib/simplifyExpression/basicsSearch/reduceMultiplicationByZero');
+
 const testSimplify = require('./testSimplify');
 
 describe('reduce multiplication by 0', function () {

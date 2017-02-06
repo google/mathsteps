@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 
 const ChangeTypes = require('../../lib/ChangeTypes');
@@ -16,8 +14,9 @@ function testSolve(equationString, outputStr, debug=false) {
   else {
     lastStep = steps[steps.length -1].newEquation.print();
   }
-  it(equationString + ' -> ' + outputStr, function () {
+  it(equationString + ' -> ' + outputStr, (done) => {
     assert.equal(lastStep, outputStr);
+    done();
   });
 }
 
@@ -76,12 +75,12 @@ describe('solveEquation for non = comparators', function() {
   tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
 
-function testSolveConstantEquation(
-  equationString, expectedChange, debug=false) {
+function testSolveConstantEquation(equationString, expectedChange, debug=false) {
   const steps = solveEquation(equationString, debug);
   const actualChange = steps[steps.length -1].changeType;
-  it(equationString + ' -> ' + expectedChange, function () {
+  it(equationString + ' -> ' + expectedChange, (done) => {
     assert.equal(actualChange, expectedChange);
+    done();
   });
 }
 
@@ -117,9 +116,9 @@ describe('constant comparison support', function () {
 });
 
 function testEquationError(equationString, debug=false) {
-  it(equationString + ' throws error', function () {
-    assert.throws(() => solveEquation(equationString, debug),
-                  Error);
+  it(equationString + ' throws error', (done) => {
+    assert.throws(() => solveEquation(equationString, debug),Error);
+    done();
   });
 }
 

@@ -3,6 +3,9 @@ module.exports = {
         "browser": true,
         "es6": true
     },
+    "plugins": [
+        "sort-requires"
+    ],
     "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"
@@ -47,6 +50,22 @@ module.exports = {
             "always", {
                 "avoidQuotes": true
             }
+        ],
+        "brace-style": [
+            "error",
+            "stroustrup",
+            {
+                "allowSingleLine": true
+            }
+        ],
+        "sort-requires/sort-requires": [
+            "error"
+        ],
+        "keyword-spacing": [
+            "error"
+        ],
+        "strict": [
+            "error"
         ]
     }
 };

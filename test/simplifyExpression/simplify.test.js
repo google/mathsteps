@@ -1,7 +1,6 @@
-'use strict';
-
 const assert = require('assert');
 const math = require('mathjs');
+
 const print = require('../../lib/util/print');
 
 const simplify = require('../../lib/simplifyExpression/simplify');

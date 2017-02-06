@@ -1,39 +1,13 @@
-'use strict';
-
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const collectAndCombineSearch = require('../../../lib/simplifyExpression/collectAndCombineSearch');
 
-function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
-  it(exprString + ' -> ' + outputStr, function () {
-    const status = collectAndCombineSearch(flatten(math.parse(exprString)));
-    const substeps = status.substeps;
+const TestUtil = require('../../TestUtil');
 
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-    if (outputStr) {
-      assert.deepEqual(
-        print(status.newNode),
-        outputStr);
-    }
-  });
+function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
+  TestUtil.testSubsteps(collectAndCombineSearch, exprString, outputList, outputStr);
 }
 
 function testSimpleCollectAndCombineSearch(exprString, outputStr) {
-  it(exprString + ' -> ' + outputStr, function () {
-    const status = collectAndCombineSearch(flatten(math.parse(exprString)));
-    assert.deepEqual(
-      print(status.newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(collectAndCombineSearch, exprString, outputStr);
 }
 
 describe('combinePolynomialTerms multiplication', function() {

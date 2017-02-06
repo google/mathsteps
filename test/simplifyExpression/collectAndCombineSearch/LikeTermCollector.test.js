@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const math = require('mathjs');
 
@@ -10,10 +8,12 @@ const LikeTermCollector = require('../../../lib/simplifyExpression/collectAndCom
 
 function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
   let description = `${exprStr} -> ${outputStr}`;
+
   if (explanation) {
     description += ` (${explanation})`;
   }
-  it(description, function () {
+
+  it(description, () => {
     const exprTree = flatten(math.parse(exprStr));
     const collected = print(LikeTermCollector.collectLikeTerms(exprTree).newNode);
     if (debug) {
@@ -26,10 +26,12 @@ function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
 
 function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
   let description = `${exprStr} -> ${canCollect}`;
+
   if (explanation) {
     description += ` (${explanation})`;
   }
-  it(description , function () {
+
+  it(description , () => {
     const exprTree = flatten(math.parse(exprStr));
     assert.equal(
       LikeTermCollector.canCollectLikeTerms(exprTree),

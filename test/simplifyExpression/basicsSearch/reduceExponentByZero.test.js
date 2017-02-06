@@ -1,6 +1,5 @@
-'use strict';
-
 const reduceExponentByZero = require('../../../lib/simplifyExpression/basicsSearch/reduceExponentByZero');
+
 const testSimplify = require('./testSimplify');
 
 describe('reduceExponentByZero', function() {

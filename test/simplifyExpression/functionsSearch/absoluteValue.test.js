@@ -1,19 +1,9 @@
-'use strict';
-
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const absoluteValue = require('../../../lib/simplifyExpression/functionsSearch/absoluteValue');
 
+const TestUtil = require('../../TestUtil');
+
 function testAbsoluteValue(exprString, outputStr) {
-  it(exprString + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(absoluteValue(flatten(math.parse(exprString))).newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(absoluteValue, exprString, outputStr);
 }
 
 describe('abs', function () {
