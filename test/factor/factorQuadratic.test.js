@@ -1,22 +1,13 @@
-'use strict';
-
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../lib/util/flattenOperands');
-const print = require('../../lib/util/print');
-
 const factorQuadratic = require('../../lib/factor/factorQuadratic');
+const TestUtil = require('../TestUtil');
 
-function testFactorQuadratic(exprStr, outputStr) {
-  it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(factorQuadratic(flatten(math.parse(exprStr))).newNode),
-      outputStr);
-  });
+function testFactorQuadratic(input, output) {
+  TestUtil.testSimplification(factorQuadratic, input, output);
 }
+
 describe('factorQuadratic', function () {
   const tests = [
+    ['x^2', 'x^2'],
     ['x^2 - 4', '(x + 2)(x - 2)'],
     ['x^2 + 2x + 1', '(x + 1)^2'],
     ['x^2 - 2x + 1', '(x - 1)^2'],
@@ -25,6 +16,11 @@ describe('factorQuadratic', function () {
     ['x^2 + x - 2', '(x - 1)(x + 2)'],
     ['x^2 + 4', 'x^2 + 4'],
     ['x^2 + 4x + 1', 'x^2 + 4x + 1'],
+    ['x^2 + 2x', 'x(x + 2)'],
+    ['x^2 + 4 + 2^x', 'x^2 + 4 + 2^x'],
+    ['-x^2 - 2x - 1', '-(x + 1)^2'],
+    ['-x^2 - 3x - 2', '-(x + 1)(x + 2)'],
+    ['-x^2 + 1', '-(x + 1)(x - 1)'],
   ];
   tests.forEach(t => testFactorQuadratic(t[0], t[1]));
 });
