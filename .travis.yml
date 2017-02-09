@@ -3,3 +3,6 @@ node_js:
   - "6"
 notifications:
   email: false
+script:
+  - npm run lint
+  - npm test
