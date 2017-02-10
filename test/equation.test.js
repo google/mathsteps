@@ -2,14 +2,15 @@ const assert = require('assert');
 
 const Equation = require('../lib/equation/Equation');
 
-function makeEquation(left, right, comp) {
-  return (new Equation(left, right, comp).print());
+function constructAndPrintEquation(left, right, comp) {
+  const equation = new Equation(left, right, comp);
+  return equation.print();
 }
 
 function equationRepresenter(left, right, comp, output) {
-  it ('represents an equation', () => {
+  it (output, () => {
     assert.equal(
-      makeEquation(left, right, comp), output
+      constructAndPrintEquation(left, right, comp), output
     );
   });
 }
