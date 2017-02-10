@@ -23,6 +23,7 @@ describe('removeUnnecessaryParens', function () {
     ['((4+5)) + ((2^3))', '(4 + 5) + 2^3'],
     ['(2x^6 + -50 x^2) - (x^4)', '2x^6 - 50x^2 - x^4'],
     ['(x+4) - (12 + x)', 'x + 4 - (12 + x)'],
+    ['(2x)^2', '(2x)^2'],
   ];
   tests.forEach(t => testRemoveUnnecessaryParens(t[0], t[1]));
 });
