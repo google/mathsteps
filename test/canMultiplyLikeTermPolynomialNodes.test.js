@@ -2,7 +2,7 @@ const canMultiplyLikeTermPolynomialNodes = require('../lib/checks/canMultiplyLik
 
 const TestUtil = require('./TestUtil');
 
-function canBeMultiplied(expr, multipliable) {
+function testCanBeMultiplied(expr, multipliable) {
   TestUtil.testBooleanFunction(canMultiplyLikeTermPolynomialNodes, expr, multipliable);
 }
 
@@ -12,5 +12,5 @@ describe('can multiply like term polynomials', () => {
     ['x^2 * 3x * x', false],
     ['y * y^3', true]
   ];
-  tests.forEach(t => canBeMultiplied(t[0], t[1]));
+  tests.forEach(t => testCanBeMultiplied(t[0], t[1]));
 });
