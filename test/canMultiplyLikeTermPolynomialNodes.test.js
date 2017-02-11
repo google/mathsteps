@@ -1,9 +1,9 @@
-const canMultiply = require('../lib/checks/canMultiplyLikeTermPolynomialNodes');
+const canMultiplyLikeTermPolynomialNodes = require('../lib/checks/canMultiplyLikeTermPolynomialNodes');
 
 const TestUtil = require('./TestUtil');
 
 function canBeMultiplied(expr, multipliable) {
-  TestUtil.testBooleanFunction(canMultiply, expr, multipliable);
+  TestUtil.testBooleanFunction(canMultiplyLikeTermPolynomialNodes, expr, multipliable);
 }
 
 describe('can multiply like term polynomials', () => {

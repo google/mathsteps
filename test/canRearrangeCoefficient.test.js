@@ -1,9 +1,9 @@
-const canRearrange = require('../lib/checks/canRearrangeCoefficient');
+const canRearrangeCoefficient = require('../lib/checks/canRearrangeCoefficient');
 
 const TestUtil = require('./TestUtil');
 
 function canBeRearranged(expr, arrangeable) {
-  TestUtil.testBooleanFunction(canRearrange, expr, arrangeable);
+  TestUtil.testBooleanFunction(canRearrangeCoefficient, expr, arrangeable);
 }
 
 describe('Rearrange coefficient', () => {
