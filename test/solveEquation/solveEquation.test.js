@@ -128,3 +128,21 @@ describe('solveEquation errors', function() {
   ];
   tests.forEach(t => testEquationError(t[0], t[1]));
 });
+
+function testPerformTermOperationExpressionStep(equationString, outputString, step, debug=false) {
+  it(equationString + ' -> ' + outputString, (done) => {
+    const steps = solveEquation(equationString, debug);
+    assert.equal(steps[step].newEquation.print(), outputString);
+    done();
+  });
+}
+
+describe('performTermOperationOnExpression parenthesis', function() {
+  const tests = [
+    ['x + 1 = 2', 'x + 1 - 1 = 2 - 1', 0],
+    ['2y = 2x + 2', 'y = (2x + 2) / 2', 1],
+    ['x - 1 = 2', 'x - 1 + 1 = 2 + 1', 0],
+    ['y/2 = 2x + 2', 'y = (2x + 2) * 2', 1],
+  ];
+  tests.forEach(t => testPerformTermOperationExpressionStep(t[0], t[1], t[2]));
+});
