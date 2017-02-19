@@ -25,7 +25,7 @@ describe('combinePolynomialTerms multiplication', function() {
     ['2x * x^2 * 5x',
       ['(2 * 5) * (x * x^2 * x)',
         '10 * (x * x^2 * x)',
-        '10 * x^4'],
+        '10x^4'],
       '10x^4'
     ],
   ];
@@ -36,12 +36,12 @@ describe('combinePolynomialTerms addition', function() {
   const tests = [
     ['x+x',
       ['1x + 1x',
-        '(1 + 1)x',
+        '(1 + 1) * x',
         '2x']
     ],
     ['4y^2 + 7y^2 + y^2',
       ['4y^2 + 7y^2 + 1y^2',
-        '(4 + 7 + 1)y^2',
+        '(4 + 7 + 1) * y^2',
         '12y^2']
     ],
     ['2x + 4x + y',
