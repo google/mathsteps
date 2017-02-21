@@ -1,7 +1,7 @@
 const math = require('mathjs');
 
-const print = require('../../lib/util/print');
 const Node = require('../../lib/node');
+const print = require('../../lib/util/print');
 
 const TestUtil = require('../TestUtil');
 
@@ -32,17 +32,17 @@ describe('print asciimath', function () {
 describe('print with parenthesis', function () {
   const tests = [
     [opNode('*', [
-        opNode('+', [constNode(2), constNode(3)]),
-        symbolNode('x')
-      ]), '(2 + 3) * x'],
+      opNode('+', [constNode(2), constNode(3)]),
+      symbolNode('x')
+    ]), '(2 + 3) * x'],
     [opNode('^', [
-        opNode('-', [constNode(7), constNode(4)]),
-        symbolNode('x')
-      ]), '(7 - 4)^x'],
+      opNode('-', [constNode(7), constNode(4)]),
+      symbolNode('x')
+    ]), '(7 - 4)^x'],
     [opNode('/', [
-        opNode('+', [constNode(9), constNode(2)]),
-        symbolNode('x')
-      ]), '(9 + 2) / x'],
+      opNode('+', [constNode(9), constNode(2)]),
+      symbolNode('x')
+    ]), '(9 + 2) / x'],
   ];
   tests.forEach(t => testPrintNode(t[0], t[1]));
-})
+});
