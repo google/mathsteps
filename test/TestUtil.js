@@ -33,10 +33,10 @@ TestUtil.testSimplification = function (simplifyingFunction, exprString,
 };
 
 // Test the substeps in the expression
-TestUtil.testSubsteps = function (collectAndCombineSearch, exprString, outputList,
+TestUtil.testSubsteps = function (fn, exprString, outputList,
                                     outputStr) {
   it(exprString + ' -> ' + outputStr, () => {
-    const status = collectAndCombineSearch(flatten(math.parse(exprString)));
+    const status = fn(flatten(math.parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);
