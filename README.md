@@ -49,6 +49,7 @@ npm install mathsteps --save
 The main objective of the mathsteps is to continue to evolve and provide more operations and features. Read below to learn how can you contribute to the project.
 
 **Contributing guide**
+
 Read our [contributing guide](CONTRIBUTING.md) to suggest more features, report bugs or contribute code.
 
 ## Test
