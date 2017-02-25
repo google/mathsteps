@@ -1,6 +1,5 @@
-const math = require('mathjs');
-
 const Node = require('../../lib/node');
+const parse = require('../../lib/util/parse');
 const print = require('../../lib/util/print');
 
 const TestUtil = require('../TestUtil');
@@ -11,7 +10,7 @@ const constNode = Node.Creator.constant;
 const symbolNode = Node.Creator.symbol;
 
 function testPrintStr(exprStr, outputStr) {
-  const input = math.parse(exprStr);
+  const input = parse(exprStr);
   TestUtil.testFunctionOutput(print, input, outputStr);
 }
 

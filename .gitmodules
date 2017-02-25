@@ -1,0 +1,3 @@
+[submodule "parser"]
+	path = parser
+	url = https://github.com/kevinbarabash/math-parser

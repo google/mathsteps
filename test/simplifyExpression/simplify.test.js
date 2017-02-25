@@ -1,6 +1,6 @@
 const assert = require('assert');
-const math = require('mathjs');
 
+const parse = require('../../lib/util/parse');
 const print = require('../../lib/util/print');
 
 const simplify = require('../../lib/simplifyExpression/simplify');
@@ -8,7 +8,7 @@ const simplify = require('../../lib/simplifyExpression/simplify');
 function testSimplify(exprStr, outputStr, debug=false) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplify(math.parse(exprStr), debug)),
+      print(simplify(parse(exprStr), debug)),
       outputStr);
   });
 }
