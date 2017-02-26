@@ -32,7 +32,7 @@ function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
   }
 
   it(description , () => {
-    const exprTree = flatten(math.parse(exprStr));
+    const exprTree = flatten(parse(exprStr));
     assert.equal(
       LikeTermCollector.canCollectLikeTerms(exprTree),
       canCollect);

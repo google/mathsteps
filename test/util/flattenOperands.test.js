@@ -7,14 +7,12 @@ const print = require('../../lib/util/print');
 const Node = require('../../lib/node');
 
 function testFlatten(exprStr, afterNode, debug=false) {
-  const flattened = flattenOperands(parse(exprStr));
-  if (debug) {
-    // eslint-disable-next-line
-    console.log(print(flattened));
-  }
-  removeComments(flattened);
-  removeComments(afterNode);
-  it(print(flattened), function() {
+  it(`${exprStr} -> ${print(afterNode)}`, function() {
+    const flattened = flattenOperands(parse(exprStr));
+    if (debug) {
+      // eslint-disable-next-line
+      console.log(print(flattened));
+    }
     assert.deepEqual(flattened, afterNode);
   });
 }
