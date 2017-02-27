@@ -1,6 +1,5 @@
-'use strict';
-
 const rearrangeCoefficient = require('../../../lib/simplifyExpression/basicsSearch/rearrangeCoefficient');
+
 const testSimplify = require('./testSimplify');
 
 describe('rearrangeCoefficient', function() {

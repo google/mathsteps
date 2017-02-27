@@ -1,39 +1,13 @@
-'use strict';
-
-const assert = require('assert');
-const math = require('mathjs');
-
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
-
 const collectAndCombineSearch = require('../../../lib/simplifyExpression/collectAndCombineSearch');
 
-function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
-  it(exprString + ' -> ' + outputStr, function () {
-    const status = collectAndCombineSearch(flatten(math.parse(exprString)));
-    const substeps = status.substeps;
+const TestUtil = require('../../TestUtil');
 
-    assert.deepEqual(substeps.length, outputList.length);
-    substeps.forEach((step, i) => {
-      assert.deepEqual(
-        print(step.newNode),
-        outputList[i]);
-    });
-    if (outputStr) {
-      assert.deepEqual(
-        print(status.newNode),
-        outputStr);
-    }
-  });
+function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
+  TestUtil.testSubsteps(collectAndCombineSearch, exprString, outputList, outputStr);
 }
 
 function testSimpleCollectAndCombineSearch(exprString, outputStr) {
-  it(exprString + ' -> ' + outputStr, function () {
-    const status = collectAndCombineSearch(flatten(math.parse(exprString)));
-    assert.deepEqual(
-      print(status.newNode),
-      outputStr);
-  });
+  TestUtil.testSimplification(collectAndCombineSearch, exprString, outputStr);
 }
 
 describe('combinePolynomialTerms multiplication', function() {
@@ -51,7 +25,7 @@ describe('combinePolynomialTerms multiplication', function() {
     ['2x * x^2 * 5x',
       ['(2 * 5) * (x * x^2 * x)',
         '10 * (x * x^2 * x)',
-        '10 * x^4'],
+        '10x^4'],
       '10x^4'
     ],
   ];
@@ -62,12 +36,12 @@ describe('combinePolynomialTerms addition', function() {
   const tests = [
     ['x+x',
       ['1x + 1x',
-        '(1 + 1)x',
+        '(1 + 1) * x',
         '2x']
     ],
     ['4y^2 + 7y^2 + y^2',
       ['4y^2 + 7y^2 + 1y^2',
-        '(4 + 7 + 1)y^2',
+        '(4 + 7 + 1) * y^2',
         '12y^2']
     ],
     ['2x + 4x + y',

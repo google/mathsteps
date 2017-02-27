@@ -1,14 +1,18 @@
 {
   "name": "mathsteps",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
     "mathjs": "3.8.0"
   },
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "devDependencies": {
     "eslint": "^3.10.2",
     "eslint-config-google": "^0.7.0",
+    "eslint-plugin-sort-requires": "^2.1.0",
     "mocha": "2.4.5"
   },
   "scripts": {
