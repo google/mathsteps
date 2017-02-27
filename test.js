@@ -2,8 +2,6 @@ const mathsteps = require('./index');
 const print = require('./lib/util/print');
 const parse = require('./lib/util/parse');
 
-const simplifyPolynomialFraction = require('./lib/simplifyExpression/fractionsSearch/simplifyPolynomialFraction');
-
 // const steps = mathsteps.solveEquation('5x + (1/2)x = 27');
 
 // steps.forEach(step => {
@@ -13,19 +11,17 @@ const simplifyPolynomialFraction = require('./lib/simplifyExpression/fractionsSe
 //     console.log("# of substeps: " + step.substeps.length);      // # of substeps: 3
 // });
 
-const ast = parse('2 * x / 4');
-const output = simplifyPolynomialFraction(ast);
+const steps = mathsteps.simplifyExpression('nthRoot(x * (2 + 3) * x, 2)');
 
-// console.log(print(ast));
-console.log(print(output.newNode));
-// console.log(print(output));
+steps.forEach(step => {
+  console.log("change: " + step.changeType);
+  step.substeps.forEach(substep => {
+    console.log("    change: " + substep.changeType);
+    console.log("    " + print(substep.newNode));
+  });
+  console.log(print(step.newNode));
+});
 
-// const steps = mathsteps.simplifyExpression('2 * x / 4');
-
-// steps.forEach(step => {
-//   console.log("change: " + step.changeType);
-//   console.log(print(step.newNode));
-// });
 
 // const ast = parse('5 + (3 * 6) + (2 * y / x)');
 // const output = print(ast);

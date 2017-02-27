@@ -35,7 +35,7 @@ describe('flattens + and *', function () {
     ['5*(2+3+2)*10',
       opNode('*', [
         constNode(5),
-        parenNode(opNode('+', [constNode(2), constNode(3),constNode(2)])),
+        opNode('+', [constNode(2), constNode(3),constNode(2)]),
         constNode(10)])],
     // keeps the polynomial term
     ['9x*8*6+3+4',
@@ -53,8 +53,8 @@ describe('flattens + and *', function () {
     ['2 x ^ (2 + 1 + 2) * y',
       opNode('*', [
         opNode('*', [constNode(2),
-          opNode('^', [symbolNode('x'), parenNode(
-            opNode('+', [constNode(2), constNode(1), constNode(2)]))]),
+          opNode('^', [symbolNode('x'),
+            opNode('+', [constNode(2), constNode(1), constNode(2)])]),
         ], true), symbolNode('y')])
     ],
     ['3x*4x', opNode('*', [parse('3x'), parse('4x')])]
