@@ -8,18 +8,18 @@ function testDistributeMinus(exprStr, outputStr) {
 
 describe('distribute - into paren with addition', function () {
   const tests = [
-    ['-(x+3)', '(-x - 3)'],
-    ['-(x - 3)', '(-x + 3)'],
-    ['-(-x^2 + 3y^6)' , '(x^2 - 3y^6)'],
+    ['-(x+3)', '-x - 3'],
+    ['-(x - 3)', '-x + 3'],
+    ['-(-x^2 + 3y^6)' , 'x^2 - 3y^6'],
   ];
   tests.forEach(t => testDistributeMinus(t[0], t[1]));
 });
 
 describe('distribute - into paren with multiplication/division', function () {
   const tests = [
-    ['-(x*3)', '(-x * 3)'],
-    ['-(-x * 3)', '(x * 3)'],
-    ['-(-x^2 * 3y^6)', '(x^2 * 3y^6)'],
+    ['-(x*3)', '-x * 3'],
+    ['-(-x * 3)', 'x * 3'],
+    ['-(-x^2 * 3y^6)', 'x^2 * 3y^6'],
   ];
   tests.forEach(t => testDistributeMinus(t[0], t[1]));
 });

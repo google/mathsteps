@@ -5,8 +5,8 @@ const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens'
 const TestUtil = require('../TestUtil');
 
 function testRemoveUnnecessaryParens(exprStr, outputStr) {
-  const input = removeUnnecessaryParens(parse(exprStr));
-  TestUtil.testFunctionOutput(print, input, outputStr);
+  const fn = (input) => print(removeUnnecessaryParens(parse(exprStr)));
+  TestUtil.testFunctionOutput(fn, exprStr, outputStr);
 }
 
 describe('removeUnnecessaryParens', function () {
@@ -19,7 +19,7 @@ describe('removeUnnecessaryParens', function () {
     ['((3 - 5)) * x', '(3 - 5) * x'],
     ['((3 - 5)) * x', '(3 - 5) * x'],
     ['(((-5)))', '-5'],
-    ['((4+5)) + ((2^3))', '(4 + 5) + 2^3'],
+    ['((4+5)) + ((2^3))', '4 + 5 + 2^3'],
     ['(2x^6 + -50 x^2) - (x^4)', '2x^6 - 50x^2 - x^4'],
     ['(x+4) - (12 + x)', 'x + 4 - (12 + x)'],
     ['(2x)^2', '(2x)^2'],

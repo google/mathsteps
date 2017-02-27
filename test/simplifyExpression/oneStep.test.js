@@ -6,21 +6,21 @@ const ChangeTypes = require('../../lib/ChangeTypes');
 const simplifyExpression = require('../../lib/simplifyExpression');
 
 function testOneStep(exprStr, outputStr, debug=false) {
-  const steps = simplifyExpression(exprStr);
-  if (!steps.length) {
-    return exprStr;
-  }
-  const nodeStatus = steps[0];
-  if (debug) {
-    if (!nodeStatus.changeType) {
-      throw Error('missing or bad change type');
-    }
-    // eslint-disable-next-line
-    console.log(nodeStatus.changeType);
-    // eslint-disable-next-line
-    console.log(print(nodeStatus.newNode));
-  }
   it(exprStr + ' -> ' + outputStr, function () {
+    const steps = simplifyExpression(exprStr);
+    if (!steps.length) {
+      return exprStr;
+    }
+    const nodeStatus = steps[0];
+    if (debug) {
+      if (!nodeStatus.changeType) {
+        throw Error('missing or bad change type');
+      }
+      // eslint-disable-next-line
+      console.log(nodeStatus.changeType);
+      // eslint-disable-next-line
+      console.log(print(nodeStatus.newNode));
+    }
     assert.deepEqual(
       print(nodeStatus.newNode),
       outputStr);

@@ -9,7 +9,8 @@ const TestUtil = {};
 
 // Tests a function that takes an input string and check its output
 TestUtil.testFunctionOutput = function (fn, input, output) {
-  it(input + ' -> ' + output,  () => {
+  const inputStr = typeof input === 'object' ? print(input) : input;
+  it(inputStr + ' -> ' + output,  () => {
     assert.deepEqual(fn(input),output);
   });
 };
