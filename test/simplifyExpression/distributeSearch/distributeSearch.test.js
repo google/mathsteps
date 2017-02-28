@@ -2,7 +2,7 @@ const distributeSearch = require('../../../lib/simplifyExpression/distributeSear
 
 const TestUtil = require('../../TestUtil');
 
-function testDistributeMinus(exprStr, outputStr) {
+function testDistributeResult(exprStr, outputStr) {
   TestUtil.testSimplification(distributeSearch, exprStr, outputStr);
 }
 
@@ -12,7 +12,7 @@ describe('distribute - into paren with addition', function () {
     ['-(x - 3)', '(-x + 3)'],
     ['-(-x^2 + 3y^6)' , '(x^2 - 3y^6)'],
   ];
-  tests.forEach(t => testDistributeMinus(t[0], t[1]));
+  tests.forEach(t => testDistributeResult(t[0], t[1]));
 });
 
 describe('distribute - into paren with multiplication/division', function () {
@@ -21,7 +21,7 @@ describe('distribute - into paren with multiplication/division', function () {
     ['-(-x * 3)', '(x * 3)'],
     ['-(-x^2 * 3y^6)', '(x^2 * 3y^6)'],
   ];
-  tests.forEach(t => testDistributeMinus(t[0], t[1]));
+  tests.forEach(t => testDistributeResult(t[0], t[1]));
 });
 
 function testDistributeSteps(exprString, outputList) {
@@ -49,4 +49,25 @@ describe('distribute', function () {
     ],
   ];
   tests.forEach(t => testDistributeSteps(t[0], t[1]));
+});
+
+describe('distribute with fractions', function () {
+  const tests = [
+    // distribute the non-fraction term into the numerator(s)
+    ['(1 / x +  x^2) * (x^3 + 1)',
+      '(1 * (x^3 + 1) / x + (x^5 + x^2))',
+    ],
+
+    // same
+    ['(3 / x^2 + x / (x^2 + 3)) * (x^2 + 3)',
+      '(3 * (x^2 + 3) / (x^2) + x * (x^2 + 3) / (x^2 + 3))',
+    ],
+
+    // if both groupings have fraction, the rule does not apply
+    ['(3 / x^2 + x / (x^2 + 3)) * (5 / x + x^5)',
+      '((3 / (x^2) * 5 / x + 3 / (x^2) * x^5) + (x / (x^2 + 3) * 5 / x + x / (x^2 + 3) * x^5))',
+    ],
+  ];
+
+  tests.forEach(t => testDistributeResult(t[0], t[1]));
 });
