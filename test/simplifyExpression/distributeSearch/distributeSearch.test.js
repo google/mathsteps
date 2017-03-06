@@ -32,7 +32,7 @@ function testDistributeSteps(exprString, outputList) {
 describe('distribute', function () {
   const tests = [
     ['x*(x+2+y)',
-      ['(x * x + x * 2 + x * y)',
+      ['x * x + x * 2 + x * y',
         '(x^2 + 2x + x * y)']
     ],
     ['(x+2+y)*x*7',
@@ -40,11 +40,11 @@ describe('distribute', function () {
         '(x^2 + 2x + y * x) * 7']
     ],
     ['(5+x)*(x+3)',
-      ['(5 * (x + 3) + x * (x + 3))',
+      ['5 * (x + 3) + x * (x + 3)',
         '((5x + 15) + (x^2 + 3x))']
     ],
     ['-2x^2 * (3x - 4)',
-      ['(-2x^2 * 3x - 2x^2 * -4)',
+      ['-2x^2 * 3x - 2x^2 * -4',
         '(-6x^3 + 8x^2)']
     ],
   ];

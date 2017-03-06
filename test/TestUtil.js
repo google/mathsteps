@@ -27,8 +27,10 @@ TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBoolean
 TestUtil.testSimplification = function (simplifyingFunction, exprString,
                                         expectedOutputString) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
+    const outputAST = simplifyingFunction(flatten(parse(exprString))).newNode;
+    // console.log(JSON.stringify(outputAST, null, 2));
     assert.deepEqual(
-      print(simplifyingFunction(flatten(parse(exprString))).newNode),
+      print(outputAST),
       expectedOutputString);
   });
 };

@@ -27,11 +27,11 @@ describe('simplify (arithmetic)', function () {
 describe('collects and combines like terms', function() {
   const tests = [
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
-    ['2x^2 * y * x * y^3', '2x^3 * y^4'],
+    ['2x^2 * y * x * y^3', '2x^3y^4'],
     ['4y*3*5', '60y'],
     ['(2x^2 - 4) + (4x^2 + 3)', '6x^2 - 1'],
     ['(2x^1 + 4) + (4x^2 + 3)', '4x^2 + 2x + 7'],
-    ['y * 2x * 10', '20x * y'],
+    ['y * 2x * 10', '20xy'],
     ['x^y * x^z', 'x^(y + z)'],
     ['x^(3+y) + x^(3+y)+ 4', '2x^(3 + y) + 4'],
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
