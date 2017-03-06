@@ -33,7 +33,7 @@ describe('distribute', function () {
   const tests = [
     ['x*(x+2+y)',
       ['x * x + x * 2 + x * y',
-        '(x^2 + 2x + x * y)']
+        'x^2 + 2x + x * y']
     ],
     ['(x+2+y)*x*7',
       ['(x * x + 2x + y * x) * 7',
@@ -41,11 +41,11 @@ describe('distribute', function () {
     ],
     ['(5+x)*(x+3)',
       ['5 * (x + 3) + x * (x + 3)',
-        '((5x + 15) + (x^2 + 3x))']
+        '5x + 15 + x^2 + 3x']
     ],
     ['-2x^2 * (3x - 4)',
       ['-2x^2 * 3x - 2x^2 * -4',
-        '(-6x^3 + 8x^2)']
+        '-6x^3 + 8x^2']
     ],
   ];
   tests.forEach(t => testDistributeSteps(t[0], t[1]));

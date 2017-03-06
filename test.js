@@ -5,17 +5,17 @@ const checks = require('./lib/checks');
 const flatten = require('./lib/util/flattenOperands');
 const math = require('mathjs');
 
-// const steps = mathsteps.simplifyExpression('(5+x)*(x+3)');
+// const ast = parse('2(x+3)/3 = 2');
+// console.log(JSON.stringify(ast, null, 2));
 
-// steps.forEach(step => {
-//   console.log(`${step.changeType}: ${print(step.newNode)}`);
-//   step.substeps.forEach(substep => {
-//     console.log(`    ${substep.changeType}: ${print(substep.newNode)}`);
-//   });
-// });
+// const steps = mathsteps.simplifyExpression('4/5 - 4/5');
 
-const steps = mathsteps.solveEquation('x + 3 = 4');
+const steps = mathsteps.solveEquation('2(x+3)/3 = 2');
 
-steps.forEach(step => {
-  console.log(step.newEquation);
-});
+const logStep = (step, level = 0) => {
+  const indent = ' '.repeat(4 * level);
+  console.log(`${indent}${step.changeType}: ${print(step.newEquation.leftNode)} = ${print(step.newEquation.rightNode)}`);
+  step.substeps.forEach(substep => logStep(substep, level + 1));
+};
+
+steps.forEach(step => logStep(step));
