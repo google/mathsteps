@@ -55,7 +55,7 @@ describe('distribute with fractions', function () {
   const tests = [
     // distribute the non-fraction term into the numerator(s)
     ['(3 / x^2 + x / (x^2 + 3)) * (x^2 + 3)',
-      '(3 * (x^2 + 3) / (x^2) + x * (x^2 + 3) / (x^2 + 3))',
+      '((3 * (x^2 + 3)) / (x^2) + (x * (x^2 + 3)) / (x^2 + 3))',
     ],
 
     // if both groupings have fraction, the rule does not apply
@@ -67,18 +67,18 @@ describe('distribute with fractions', function () {
   const multiStepTests = [
 
     ['(2 / x +  3x^2) * (x^3 + 1)',
-      ['(2 * (x^3 + 1) / x + 3x^2 * (x^3 + 1))',
-        '(2 * (x^3 + 1) / x + (3x^5 + 3x^2))']
+      ['((2 * (x^3 + 1)) / x + 3x^2 * (x^3 + 1))',
+        '((2 * (x^3 + 1)) / x + (3x^5 + 3x^2))']
     ],
 
     ['(2x + x^2) * (1 / (x^2 -4) + 4x^2)',
-      ['(1 * (2x + x^2) / (x^2 - 4) + 4x^2 * (2x + x^2))',
-        '(1 * (2x + x^2) / (x^2 - 4) + (8x^3 + 4x^4))']
+      ['((1 * (2x + x^2)) / (x^2 - 4) + 4x^2 * (2x + x^2))',
+        '((1 * (2x + x^2)) / (x^2 - 4) + (8x^3 + 4x^4))']
     ],
 
     ['(2x + x^2) * (3x^2 / (x^2 -4) + 4x^2)',
-      ['(3x^2 * (2x + x^2) / (x^2 - 4) + 4x^2 * (2x + x^2))',
-        '(3x^2 * (2x + x^2) / (x^2 - 4) + (8x^3 + 4x^4))']
+      ['((3x^2 * (2x + x^2)) / (x^2 - 4) + 4x^2 * (2x + x^2))',
+        '((3x^2 * (2x + x^2)) / (x^2 - 4) + (8x^3 + 4x^4))']
     ],
 
   ];
