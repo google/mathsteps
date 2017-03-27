@@ -29,6 +29,7 @@ describe('factorQuadratic', function () {
     ['-x^2 - 3x - 2', '-(x + 1) * (x + 2)'],
     ['-x^2 + 1', '-(x + 1) * (x - 1)'],
     ['-x^2 - 1', '-x^2 - 1'],
+    //['2x^2 + 5x + 3','(x + 3) * (2x - 1)'], // TODO(ael)
   ];
   tests.forEach(t => testFactorQuadratic(t[0], t[1]));
 });
