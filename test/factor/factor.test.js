@@ -27,6 +27,9 @@ describe('factor expressions', function () {
     ['x^2 + 4', NO_STEPS],
     ['x^2 + 2x + 1', '(x + 1)^2'],
     ['x^2 + 3x + 2', '(x + 1) * (x + 2)'],
+    ['x^3 + x^2 + x + 1', NO_STEPS],
+    ['1 + 2', NO_STEPS],
+    ['x + 2', NO_STEPS],
   ];
   tests.forEach(t => testFactor(t[0], t[1], t[2]));
 });
