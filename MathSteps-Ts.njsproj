@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{d741bb67-79e4-48ae-91fe-723afef84328}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>index.ts</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <EnableTypeScript>true</EnableTypeScript>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include="CODE_OF_CONDUCT.md" />
+    <Content Include="CONTRIBUTING.md" />
+    <Content Include="HISTORY.md" />
+    <Content Include="README.md" />
+    <Content Include="RESOURCES.md" />
+    <Content Include="ROADMAP.md" />
+    <TypeScriptCompile Include="index.ts" />
+    <Compile Include=".eslintrc.js" />
+    <TypeScriptCompile Include="lib\ChangeTypes.ts" />
+    <TypeScriptCompile Include="lib\Negative.ts" />
+    <TypeScriptCompile Include="lib\Symbols.ts" />
+    <TypeScriptCompile Include="lib\TreeSearch.ts" />
+    <TypeScriptCompile Include="test\canAddLikeTermPolynomialNodes.test.ts" />
+    <TypeScriptCompile Include="test\canMultiplyLikeTermPolynomialNodes.test.ts" />
+    <TypeScriptCompile Include="test\canRearrangeCoefficient.test.ts" />
+    <TypeScriptCompile Include="test\equation.test.ts" />
+    <TypeScriptCompile Include="test\Negative.test.ts" />
+    <TypeScriptCompile Include="test\TestUtil.ts" />
+    <TypeScriptCompile Include="lib\checks\canAddLikeTermPolynomialNodes.ts" />
+    <TypeScriptCompile Include="lib\checks\canMultiplyLikeTermPolynomialNodes.ts" />
+    <TypeScriptCompile Include="lib\checks\canRearrangeCoefficient.ts" />
+    <TypeScriptCompile Include="lib\checks\canSimplifyPolynomialTerms.ts" />
+    <TypeScriptCompile Include="lib\checks\hasUnsupportedNodes.ts" />
+    <TypeScriptCompile Include="lib\checks\index.ts" />
+    <TypeScriptCompile Include="lib\checks\isQuadratic.ts" />
+    <TypeScriptCompile Include="lib\checks\resolvesToConstant.ts" />
+    <TypeScriptCompile Include="lib\equation\Equation.ts" />
+    <TypeScriptCompile Include="lib\equation\index.ts" />
+    <TypeScriptCompile Include="lib\equation\Status.ts" />
+    <TypeScriptCompile Include="lib\factor\ConstantFactors.ts" />
+    <TypeScriptCompile Include="lib\factor\factorQuadratic.ts" />
+    <TypeScriptCompile Include="lib\mathNode\Creator.ts" />
+    <TypeScriptCompile Include="lib\mathNode\index.ts" />
+    <TypeScriptCompile Include="lib\mathNode\PolynomialTerm.ts" />
+    <TypeScriptCompile Include="lib\mathNode\Status.ts" />
+    <TypeScriptCompile Include="lib\mathNode\Type.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\simplify.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\stepThrough.ts" />
+    <TypeScriptCompile Include="lib\solveEquation\EquationOperations.ts" />
+    <TypeScriptCompile Include="lib\solveEquation\index.ts" />
+    <TypeScriptCompile Include="lib\solveEquation\stepThrough.ts" />
+    <TypeScriptCompile Include="lib\util\clone.ts" />
+    <TypeScriptCompile Include="lib\util\evaluate.ts" />
+    <TypeScriptCompile Include="lib\util\flattenOperands.ts" />
+    <TypeScriptCompile Include="lib\util\print.ts" />
+    <TypeScriptCompile Include="lib\util\removeUnnecessaryParens.ts" />
+    <TypeScriptCompile Include="lib\util\Util.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\arithmeticSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\rearrangeCoefficient.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\reduceExponentByZero.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\reduceMultiplicationByZero.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\reduceZeroDividedByAnything.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\removeAdditionOfZero.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\removeDivisionByOne.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\removeExponentBaseOne.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\removeExponentByOne.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\removeMultiplicationByNegativeOne.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\removeMultiplicationByOne.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\basicsSearch\simplifyDoubleUnaryMinus.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\breakUpNumeratorSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\collectAndCombineSearch\addLikeTerms.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\collectAndCombineSearch\evaluateConstantSum.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\collectAndCombineSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\collectAndCombineSearch\LikeTermCollector.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\collectAndCombineSearch\multiplyLikeTerms.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\distributeSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\divisionSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\fractionsSearch\addConstantAndFraction.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\fractionsSearch\addConstantFractions.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\fractionsSearch\cancelLikeTerms.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\fractionsSearch\divideByGCD.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\fractionsSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\fractionsSearch\simplifyFractionSigns.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\fractionsSearch\simplifyPolynomialFraction.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\functionsSearch\absoluteValue.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\functionsSearch\index.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\functionsSearch\nthRoot.ts" />
+    <TypeScriptCompile Include="lib\simplifyExpression\multiplyFractionsSearch\index.ts" />
+    <TypeScriptCompile Include="test\checks\checks.test.ts" />
+    <TypeScriptCompile Include="test\checks\hasUnsupportedNodes.test.ts" />
+    <TypeScriptCompile Include="test\checks\isQuadratic.test.ts" />
+    <TypeScriptCompile Include="test\checks\resolvesToConstant.test.ts" />
+    <TypeScriptCompile Include="test\factor\ConstantFactors.test.ts" />
+    <TypeScriptCompile Include="test\factor\factorQuadratic.test.ts" />
+    <TypeScriptCompile Include="test\Node\PolynomialTerm.test.ts" />
+    <TypeScriptCompile Include="test\Node\Type.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\oneStep.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\simplify.test.ts" />
+    <TypeScriptCompile Include="test\solveEquation\solveEquation.test.ts" />
+    <TypeScriptCompile Include="test\util\flattenOperands.test.ts" />
+    <TypeScriptCompile Include="test\util\print.test.ts" />
+    <TypeScriptCompile Include="test\util\removeUnnecessaryParens.test.ts" />
+    <TypeScriptCompile Include="test\util\Util.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\arithmeticSearch\arithmeticSearch.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\rearrangeCoefficient.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\reduceExponentByZero.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\reduceMutliplicationByZero.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\reduceZeroDividedByAnything.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\removeAdditionOfZero.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\removeDivisionByOne.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\removeExponentBaseOne.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\removeExponentByOne.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\removeMultiplicationByNegativeOne.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\removeMultiplicationByOne.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\simplifyDoubleUnaryMinus.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\basicsSearch\testSimplify.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\breakUpNumeratorSearch\breakUpNumeratorSearch.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\collectAndCombineSearch\collectAndCombineSearch.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\collectAndCombineSearch\evaluateConstantSum.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\collectAndCombineSearch\LikeTermCollector.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\distributeSearch\distributeSearch.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\divisionSearch\divisionSearch.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\fractionsSearch\addConstantAndFraction.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\fractionsSearch\addConstantFractions.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\fractionsSearch\cancelLikeTerms.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\fractionsSearch\divideByGCD.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\fractionsSearch\simplifyFractionSigns.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\fractionsSearch\simplifyPolynomialFraction.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\functionsSearch\absoluteValue.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\functionsSearch\nthRoot.test.ts" />
+    <TypeScriptCompile Include="test\simplifyExpression\multiplyFractionsSearch\multiplyFractionsSearch.test.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib" />
+    <Folder Include="lib\checks" />
+    <Folder Include="lib\equation" />
+    <Folder Include="lib\factor" />
+    <Folder Include="lib\mathNode\" />
+    <Folder Include="lib\simplifyExpression" />
+    <Folder Include="lib\simplifyExpression\arithmeticSearch" />
+    <Folder Include="lib\simplifyExpression\basicsSearch" />
+    <Folder Include="lib\simplifyExpression\breakUpNumeratorSearch" />
+    <Folder Include="lib\simplifyExpression\collectAndCombineSearch" />
+    <Folder Include="lib\simplifyExpression\distributeSearch" />
+    <Folder Include="lib\simplifyExpression\divisionSearch" />
+    <Folder Include="lib\simplifyExpression\fractionsSearch" />
+    <Folder Include="lib\simplifyExpression\functionsSearch" />
+    <Folder Include="lib\simplifyExpression\multiplyFractionsSearch" />
+    <Folder Include="lib\solveEquation" />
+    <Folder Include="lib\util" />
+    <Folder Include="scripts" />
+    <Folder Include="scripts\git-hooks" />
+    <Folder Include="test" />
+    <Folder Include="test\checks" />
+    <Folder Include="test\factor" />
+    <Folder Include="test\Node" />
+    <Folder Include="test\simplifyExpression" />
+    <Folder Include="test\simplifyExpression\arithmeticSearch" />
+    <Folder Include="test\simplifyExpression\basicsSearch" />
+    <Folder Include="test\simplifyExpression\breakUpNumeratorSearch" />
+    <Folder Include="test\simplifyExpression\collectAndCombineSearch" />
+    <Folder Include="test\simplifyExpression\distributeSearch" />
+    <Folder Include="test\simplifyExpression\divisionSearch" />
+    <Folder Include="test\simplifyExpression\fractionsSearch" />
+    <Folder Include="test\simplifyExpression\functionsSearch" />
+    <Folder Include="test\simplifyExpression\multiplyFractionsSearch" />
+    <Folder Include="test\solveEquation" />
+    <Folder Include="test\util" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
