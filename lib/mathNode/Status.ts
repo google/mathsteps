@@ -25,7 +25,7 @@ class Status {
   hasChanged() {
     return this.changeType !== ChangeTypes.NO_CHANGE;
   }
-  resetChangeGroups(node) {
+  static resetChangeGroups(node) {
       node = clone(node);
       node.filter(node => node.changeGroup).forEach(change => {
           delete change.changeGroup;

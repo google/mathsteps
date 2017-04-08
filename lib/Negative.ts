@@ -4,7 +4,7 @@ class Negative {
 // Returns if the given node is negative. Treats a unary minus as a negative,
 // as well as a negative constant value or a constant fraction that would
 // evaluate to a negative number
-    isNegative(node) {
+    static isNegative(node) {
         if (mathNode.Type.isUnaryMinus(node)) {
             return !Negative.isNegative(node.args[0]);
         } else if (mathNode.Type.isConstant(node)) {
@@ -29,7 +29,7 @@ class Negative {
 // E.g.
 //    not naive: -3 -> 3, x -> -x
 //    naive: -3 -> --3, x -> -x
-    negate(node, naive=false) {
+    static negate(node, naive=false) {
         if (mathNode.Type.isConstantFraction(node)) {
             node.args[0] = Negative.negate(node.args[0], naive);
             return node;
@@ -51,7 +51,7 @@ class Negative {
 // E.g.
 //    not naive: -3x -> 3x, x -> -x
 //    naive: -3x -> --3x, x -> -x
-    negatePolynomialTerm(node, naive=false) {
+    static negatePolynomialTerm(node, naive=false) {
         if (!mathNode.PolynomialTerm.isPolynomialTerm(node)) {
             throw Error('node is not a polynomial term');
         }

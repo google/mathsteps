@@ -5,11 +5,11 @@ class constantFactors {
 
 // Given a number, will return all the prime factors of that number as a list
 // sorted from smallest to largest
-    getPrimeFactors(number:number) {
+    static getPrimeFactors(number:number) {
         let factors = [];
         if (number < 0) {
             factors = [-1];
-            factors = factors.concat(ConstantFactors.getPrimeFactors(-1 * number));
+            factors = factors.concat(this.getPrimeFactors(-1 * number));
             return factors;
         }
 
@@ -30,7 +30,7 @@ class constantFactors {
         // our newly found prime factor in order to find more factors
         else {
             factors.push(candidate);
-            factors = factors.concat(ConstantFactors.getPrimeFactors(number / candidate));
+            factors = factors.concat(this.getPrimeFactors(number / candidate));
         }
 
         return factors;
@@ -38,7 +38,7 @@ class constantFactors {
 
 // Given a number, will return all the factor pairs for that number as a list
 // of 2-item lists
-    getFactorPairs(number:number) {
+    static getFactorPairs(number:number) {
         const factors = [];
 
         const bound = Math.floor(Math.sqrt(Math.abs(number)));

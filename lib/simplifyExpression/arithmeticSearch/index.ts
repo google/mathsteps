@@ -1,6 +1,6 @@
 import ChangeTypes = require('../../ChangeTypes');
 import evaluate = require('../../util/evaluate');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 
 // Searches through the tree, prioritizing deeper nodes, and evaluates
@@ -10,7 +10,6 @@ const search = TreeSearch.postOrder(arithmetic);
 
 // evaluates arithmetic (e.g. 2+2 or 3*5*2) on an operation node.
 // Returns a mathNode.Status object.
-function arithmetic(node: any);
 function arithmetic(node) {
   if (!mathNode.Type.isOperator(node)) {
     return mathNode.Status.noChange(node);
@@ -48,7 +47,6 @@ function arithmetic(node) {
 
 // Evaluates a math expression to a constant, e.g. 3+4 -> 7 and rounds if
 // necessary
-function evaluateAndRound(node: any);
 function evaluateAndRound(node) {
   let result = evaluate(node);
   if (result < 1) {

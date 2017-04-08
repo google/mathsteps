@@ -1,7 +1,7 @@
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
 import Negative = require('../../Negative');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is a division operation of something by 1 or -1, we can remove the
 // denominator. Returns a mathNode.Status object.

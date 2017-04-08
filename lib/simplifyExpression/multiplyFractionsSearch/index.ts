@@ -1,5 +1,5 @@
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 
 // If `node` is a product of terms where some are fractions (but none are

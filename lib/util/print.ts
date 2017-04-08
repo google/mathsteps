@@ -1,6 +1,6 @@
 import clone = require('./clone');
 import flatten = require('./flattenOperands');
-import Node = require('../node');
+import mathNode = require('../mathNode');
 
 // Prints an expression node in asciimath
 // If showPlusMinus is true, print + - (e.g. 2 + -3)
@@ -16,18 +16,16 @@ function print(node, showPlusMinus=false) {
   }
   return string;
 }
-
-function printTreeTraversal(node: any, parentNode: any);
-function printTreeTraversal(node, parentNode) {
-  if (Node.PolynomialTerm.isPolynomialTerm(node)) {
-    const polyTerm = new Node.PolynomialTerm(node);
+function printTreeTraversal(node, parentNode?) {
+  if (mathNode.PolynomialTerm.isPolynomialTerm(node)) {
+    const polyTerm = new mathNode.PolynomialTerm(node);
     // This is so we don't print 2/3 x^2 as 2 / 3x^2
     // Still print x/2 as x/2 and not 1/2 x though
     if (polyTerm.hasFractionCoeff() && node.op !== '/') {
       const coeffTerm = polyTerm.getCoeffNode();
       const coeffStr = printTreeTraversal(coeffTerm);
 
-      const nonCoeffTerm = Node.Creator.polynomialTerm(
+      const nonCoeffTerm = mathNode.Creator.polynomialTerm(
         polyTerm.symbol, polyTerm.exponent, null);
       const nonCoeffStr = printTreeTraversal(nonCoeffTerm);
 
@@ -35,12 +33,12 @@ function printTreeTraversal(node, parentNode) {
     }
   }
 
-  if (Node.Type.isIntegerFraction(node)) {
+  if (mathNode.Type.isIntegerFraction(node)) {
     return `${node.args[0]}/${node.args[1]}`;
   }
 
-  if (Node.Type.isOperator(node)) {
-    if (node.op === '/' && Node.Type.isOperator(node.args[1])) {
+  if (mathNode.Type.isOperator(node)) {
+    if (node.op === '/' && mathNode.Type.isOperator(node.args[1])) {
       return `${printTreeTraversal(node.args[0])} / (${printTreeTraversal(node.args[1])})`;
     }
 
@@ -60,7 +58,7 @@ function printTreeTraversal(node, parentNode) {
       break;
     case '/':
       // no space for constant fraction divisions (slightly easier to read)
-      if (Node.Type.isConstantFraction(node, true)) {
+      if (mathNode.Type.isConstantFraction(node, true)) {
         opString = `${node.op}`;
       }
       else {
@@ -80,7 +78,7 @@ function printTreeTraversal(node, parentNode) {
     // Check #120, #126 issues for more details.
     // { "/" [{ "+" ["x", "2"] }, "2"] } -> (x + 2) / 2.
     if (parentNode &&
-        Node.Type.isOperator(parentNode) &&
+        mathNode.Type.isOperator(parentNode) &&
         node.op && parentNode.op &&
         '*/^'.indexOf(parentNode.op) >= 0 &&
         '+-'.indexOf(node.op) >= 0) {
@@ -89,13 +87,13 @@ function printTreeTraversal(node, parentNode) {
 
     return str;
   }
-  else if (Node.Type.isParenthesis(node)) {
+  else if (mathNode.Type.isParenthesis(node)) {
     return `(${printTreeTraversal(node.content)})`;
   }
-  else if (Node.Type.isUnaryMinus(node)) {
-    if (Node.Type.isOperator(node.args[0]) &&
+  else if (mathNode.Type.isUnaryMinus(node)) {
+    if (mathNode.Type.isOperator(node.args[0]) &&
         '*/^'.indexOf(node.args[0].op) === -1 &&
-        !Node.PolynomialTerm.isPolynomialTerm(node)) {
+        !mathNode.PolynomialTerm.isPolynomialTerm(node)) {
       return `-(${printTreeTraversal(node.args[0])})`;
     }
     else {

@@ -1,6 +1,6 @@
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Simplifies two unary minuses in a row by removing both of them.
 // e.g. -(- 4) --> 4

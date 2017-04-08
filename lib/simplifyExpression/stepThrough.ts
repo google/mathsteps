@@ -1,6 +1,6 @@
 import checks = require('../checks');
-const mathNode = require('../node');
-const Status = require('../node/Status');
+import  mathNode = require('../mathNode');
+import Status = require('../mathnode/Status');
 import arithmeticSearch = require('./arithmeticSearch');
 import basicsSearch = require('./basicsSearch');
 import breakUpNumeratorSearch = require('./breakUpNumeratorSearch');
@@ -20,7 +20,8 @@ import removeUnnecessaryParens = require('../util/removeUnnecessaryParens');
 function stepThrough(node, debug=false) {
   if (debug) {
     // eslint-disable-next-line
-    console.log('\n\nSimplifying: ' + print(node, false, true));
+      // again, unsure whether or not there should be a ternary argument
+    console.log('\n\nSimplifying: ' + print(node, false));
   }
 
   if (checks.hasUnsupportedNodes(node)) {
@@ -56,7 +57,6 @@ function stepThrough(node, debug=false) {
 
 // Given a mathjs expression node, performs a single step to simplify the
 // expression. Returns a mathNode.Status object.
-function step(node: any);
 function step(node) {
   let nodeStatus;
 
@@ -106,7 +106,6 @@ function step(node) {
 
 // Removes unnecessary parens throughout the steps.
 // TODO: Ideally this would happen in NodeStatus instead.
-function removeUnnecessaryParensInStep(nodeStatus: any);
 function removeUnnecessaryParensInStep(nodeStatus) {
   if (nodeStatus.substeps.length > 0) {
     nodeStatus.substeps.map(removeUnnecessaryParensInStep);
@@ -117,7 +116,6 @@ function removeUnnecessaryParensInStep(nodeStatus) {
   return nodeStatus;
 }
 
-function logSteps(nodeStatus: any);
 function logSteps(nodeStatus) {
   // eslint-disable-next-line
   console.log(nodeStatus.changeType);

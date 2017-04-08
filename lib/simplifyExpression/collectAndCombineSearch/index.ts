@@ -5,7 +5,7 @@ import clone = require('../../util/clone');
 import multiplyLikeTerms = require('./multiplyLikeTerms');
 import ChangeTypes = require('../../ChangeTypes');
 import LikeTermCollector = require('./LikeTermCollector');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 const termCollectorFunctions = {
   '+': addLikeTerms,
@@ -19,7 +19,6 @@ const search = TreeSearch.postOrder(collectAndCombineLikeTerms);
 // Given an operator node, maybe collects and then combines if possible
 // e.g. 2x + 4x + y => 6x + y
 // e.g. 2x * x^2 * 5x => 10 x^4
-function collectAndCombineLikeTerms(node: any);
 function collectAndCombineLikeTerms(node) {
   if (node.op === '+') {
     const status = collectAndCombineOperation(node);
@@ -81,7 +80,6 @@ function collectAndCombineOperation(node) {
 // combine like terms for each group that can be combined
 // e.g. (x + 3x) + (2 + 2) has two groups
 // returns a list of combine steps
-function combineLikeTerms(node: any);
 function combineLikeTerms(node) {
   const steps = [];
   let newNode = clone(node);

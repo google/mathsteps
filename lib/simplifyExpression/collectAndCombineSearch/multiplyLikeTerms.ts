@@ -3,7 +3,7 @@ import checks = require('../../checks');
 import clone = require('../../util/clone');
 import multiplyFractionsSearch = require('../multiplyFractionsSearch');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Multiplies a list of nodes that are polynomial like terms. Returns a node.
 // The polynomial nodes should *not* have coefficients. (multiplying

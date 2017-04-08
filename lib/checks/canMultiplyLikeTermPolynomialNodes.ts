@@ -1,4 +1,5 @@
-const mathNode = require('../node');
+import mathNode = require('../mathnode');
+
 
 // Returns true if the nodes are symbolic terms with the same symbol and no
 // coefficients.

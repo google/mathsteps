@@ -1,6 +1,6 @@
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is of the form x^1, reduces it to a node of the form x.
 // Returns a mathNode.Status object.

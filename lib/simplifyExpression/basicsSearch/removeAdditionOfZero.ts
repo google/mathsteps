@@ -1,6 +1,6 @@
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is an addition node with 0 as one of its operands,
 // remove 0 from the operands list. Returns a mathNode.Status object.

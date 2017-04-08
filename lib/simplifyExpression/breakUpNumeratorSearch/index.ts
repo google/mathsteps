@@ -1,5 +1,5 @@
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 
 // Breaks up any fraction (deeper nodes getting priority) that has a numerator

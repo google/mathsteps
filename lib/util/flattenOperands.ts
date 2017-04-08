@@ -1,6 +1,6 @@
 import evaluate = require('./evaluate');
 import Negative = require('../Negative');
-import Node = require('../node');
+import mathNode = require('../mathNode');
 
 /*
 Background:
@@ -34,7 +34,6 @@ interested in how that works
 // 2+2+2, ie one + node that has three children.
 // Input: an expression tree
 // Output: the expression tree updated with flattened operations
-function flattenOperands(node: any);
 function flattenOperands(node) {
   if (Node.Type.isConstant(node, true)) {
     // the evaluate() changes unary minuses around constant nodes to constant nodes
@@ -226,7 +225,6 @@ function getOperands(node, parentOp) {
 // 2*2*x (which has three children).
 // So this function would return true for the input 2*2x, if it was stored as
 // an expression tree with root node * and children 2*2 and x
-function isPolynomialTermMultiplication(node: any);
 function isPolynomialTermMultiplication(node) {
   // This concept only applies when we're flattening multiplication operations
   if (node.op !== '*') {
@@ -239,8 +237,8 @@ function isPolynomialTermMultiplication(node) {
   // The second node should be for the form x or x^2 (ie a polynomial term
   // with no coefficient)
   const secondOperand = node.args[1];
-  if (Node.PolynomialTerm.isPolynomialTerm(secondOperand)) {
-    const polyNode = new Node.PolynomialTerm(secondOperand);
+  if (mathNode.PolynomialTerm.isPolynomialTerm(secondOperand)) {
+    const polyNode = new mathNode.PolynomialTerm(secondOperand);
     return !polyNode.hasCoeff();
   }
   else {
@@ -269,10 +267,10 @@ function maybeFlattenPolynomialTerm(node) {
   const nextOperand = flattenOperands(node.args[1]);
 
   // a coefficient can be constant or a fraction of constants
-  if (Node.Type.isConstantOrConstantFraction(lastOperand)) {
+  if (mathNode.Type.isConstantOrConstantFraction(lastOperand)) {
     // we replace the constant (which we popped) with constant*symbol
     operands.push(
-      Node.Creator.operator('*', [lastOperand, nextOperand], true));
+      mathNode.Creator.operator('*', [lastOperand, nextOperand], true));
   }
   // Now we know it isn't a polynomial term, it's just another seperate operand
   else {
@@ -306,7 +304,7 @@ function flattenDivision(node) {
     const denominator = flattenOperands(node.args[1]);
     // Note that this means 2 * 3 * 4 / 5 / 6 * 7 will flatten but keep the 4/5/6
     // as an operand - in simplifyDivision.js this is changed to 4/(5*6)
-    const divisionNode = Node.Creator.operator('/', [numerator, denominator]);
+    const divisionNode = mathNode.Creator.operator('/', [numerator, denominator]);
     operands.push(divisionNode);
   }
 
@@ -319,7 +317,7 @@ function flattenDivision(node) {
 // e.g. returns false: 3/4/5, ((3*2) - 5) / 7, (2*5)/6
 function hasMultiplicationBesideDivision(node: any);
 function hasMultiplicationBesideDivision(node) {
-  if (!Node.Type.isOperator(node)) {
+  if (!mathNode.Type.isOperator(node)) {
     return false;
   }
   if (node.op === '*') {

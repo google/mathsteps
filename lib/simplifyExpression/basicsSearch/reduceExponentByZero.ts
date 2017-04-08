@@ -1,5 +1,5 @@
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is an exponent of something to 0, we can reduce that to just 1.
 // Returns a mathNode.Status object.

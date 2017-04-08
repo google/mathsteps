@@ -28,7 +28,6 @@ function simplify(node, debug=false) {
 
 // Unflattens a node so it is in the math.js style, by printing and parsing it
 // again
-function unflatten(node: any);
 function unflatten(node) {
   return math.parse(print(node));
 }

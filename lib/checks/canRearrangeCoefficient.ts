@@ -1,4 +1,5 @@
-const mathNode = require('../node');
+import mathNode = require('../mathnode');
+
 
 // Returns true if the expression is a multiplication between a constant
 // and polynomial without a coefficient.

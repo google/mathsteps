@@ -2,7 +2,7 @@ import clone = require('../../util/clone');
 import print = require('../../util/print');
 import ChangeTypes = require('../../ChangeTypes');
 import Negative = require('../../Negative');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Used for cancelTerms to return a (possibly updated) numerator and denominator
 class CancelOutStatus {
@@ -11,12 +11,15 @@ class CancelOutStatus {
     this.denominator = denominator;
     this.hasChanged = hasChanged;
   }
+
+    numerator;
+    denominator;
+    hasChanged: boolean;
 }
 
 // Cancels like terms in a fraction node
 // e.g. (2x^2 * 5) / 2x^2 => 5 / 1
 // Returns a mathNode.Status object
-function cancelLikeTerms(node: any);
 function cancelLikeTerms(node) {
   if (!mathNode.Type.isOperator(node) || node.op !== '/') {
     return mathNode.Status.noChange(node);
@@ -168,7 +171,6 @@ function cancelLikeTerms(node) {
 // Returns the new nodes for numerator and denominator with the common terms
 // removed. If the entire numerator or denominator is cancelled out, it is
 // returned as null. e.g. 4, 4x => null, x
-function cancelTerms(numerator: any, denominator: any);
 function cancelTerms(numerator, denominator) {
   // Deal with unary minuses by recursing on the argument
   if (mathNode.Type.isUnaryMinus(numerator)) {

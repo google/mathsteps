@@ -1,7 +1,7 @@
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
 import Negative = require('../../Negative');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Simplifies negative signs if possible
 // e.g. -1/-3 --> 1/3   4/-5 --> -4/5

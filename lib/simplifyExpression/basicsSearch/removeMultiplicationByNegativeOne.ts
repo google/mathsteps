@@ -1,7 +1,7 @@
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
 import Negative = require('../../Negative');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is a multiplication node with -1 as one of its operands,
 // and a non constant as the next operand, remove -1 from the operands

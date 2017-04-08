@@ -1,5 +1,5 @@
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 
 // Searches for and simplifies any chains of division or nested division.

@@ -2,7 +2,7 @@ import checks = require('../../checks');
 import clone = require('../../util/clone');
 import evaluateConstantSum = require('./evaluateConstantSum');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Adds a list of nodes that are polynomial terms. Returns a mathNode.Status object.
 function addLikeTerms(node, polynomialOnly=false) {
@@ -75,7 +75,7 @@ function addLikePolynomialTerms(node) {
 // Returns a mathNode.Status object.
 function addPositiveOneCoefficient(node: any);
 function addPositiveOneCoefficient(node) {
-  const newNode = clone(node, false);
+  const newNode = clone(node);
   let change = false;
 
   let changeGroup = 1;

@@ -15,7 +15,7 @@ import cancelLikeTerms = require('./cancelLikeTerms');
 import divideByGCD = require('./divideByGCD');
 import simplifyFractionSigns = require('./simplifyFractionSigns');
 import simplifyPolynomialFraction = require('./simplifyPolynomialFraction');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 const SIMPLIFICATION_FUNCTIONS = [
   // e.g. 2/3 + 5/6

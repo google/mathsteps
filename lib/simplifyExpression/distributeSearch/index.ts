@@ -4,7 +4,7 @@ import collectAndCombineSearch = require('../collectAndCombineSearch');
 import rearrangeCoefficient = require('../basicsSearch/rearrangeCoefficient');
 import ChangeTypes = require('../../ChangeTypes');
 import Negative = require('../../Negative');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 const search = TreeSearch.postOrder(distribute);
 

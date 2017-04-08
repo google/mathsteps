@@ -1,4 +1,4 @@
-const mathNode = require('../node');
+import mathNode = require('../mathnode');
 import Symbols = require('../Symbols');
 
 // Given a node, will determine if the expression is in the form of a quadratic

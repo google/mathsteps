@@ -3,7 +3,7 @@ import math = require('mathjs');
 import ChangeTypes = require('../../ChangeTypes');
 import ConstantFactors = require('../../factor/ConstantFactors');
 import Negative = require('../../Negative');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Evaluate nthRoot() function.
 // Returns a mathNode.Status object.
@@ -379,7 +379,6 @@ function combineRoots(node) {
 // Returns the nthRoot evaluated on a constant node
 // Potentially factors the constant node into primes, and calls
 // nthRootMultiplication on the new nthRoot
-function nthRootConstant(node: any);
 function nthRootConstant(node) {
   let newNode = clone(node);
   const radicandNode = getRadicandNode(node);

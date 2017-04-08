@@ -4,11 +4,11 @@ class TreeSearch {
 
 // Returns a function that performs a preorder search on the tree for the given
 // simplifcation function
-    preOrder = simplificationFunction => node => search(simplificationFunction, node, true);
+    static preOrder = simplificationFunction => node => this.search(simplificationFunction, node, true);
 
 // Returns a function that performs a postorder search on the tree for the given
 // simplifcation function
-    postOrder = simplificationFunction => node => search(simplificationFunction, node, false);
+    static postOrder = simplificationFunction => node => this.search(simplificationFunction, node, false);
 
 // A helper function for performing a tree search with a function
 
@@ -32,13 +32,13 @@ class TreeSearch {
         } else if (mathNode.Type.isOperator(node) || mathNode.Type.isFunction(node)) {
             for (let i = 0; i < node.args.length; i++) {
                 const child = node.args[i];
-                const childNodeStatus = search(simplificationFunction, child, preOrder);
+                const childNodeStatus = this.search(simplificationFunction, child, preOrder);
                 if (childNodeStatus.hasChanged()) {
                     return mathNode.Status.childChanged(node, childNodeStatus, i);
                 }
             }
         } else if (mathNode.Type.isParenthesis(node)) {
-            status = search(simplificationFunction, node.content, preOrder);
+            status = this.search(simplificationFunction, node.content, preOrder);
             if (status.hasChanged()) {
                 return mathNode.Status.childChanged(node, status);
             }

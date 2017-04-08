@@ -5,7 +5,7 @@ import checks = require('../checks');
 import evaluate = require('../util/evaluate');
 import flatten = require('../util/flattenOperands');
 import Negative = require('../Negative');
-import Node = require('../node');
+import mathNode = require('../mathNode');
 const FACTOR_FUNCTIONS = [
   // factor just the symbol e.g. x^2 + 2x -> x(x + 2)
   factorSymbol,
@@ -27,21 +27,20 @@ const FACTOR_FUNCTIONS = [
 //    - TODO: quadratic formula
 //        requires us simplify the following only within the parens:
 //        a(x - (-b + sqrt(b^2 - 4ac)) / 2a)(x - (-b - sqrt(b^2 - 4ac)) / 2a)
-function factorQuadratic(node: any);
 function factorQuadratic(node) {
   node = flatten(node);
   if (!checks.isQuadratic(node)) {
-    return Node.Status.noChange(node);
+    return mathNode.Status.noChange(node);
   }
 
   // get a, b and c
   let symbol, aValue = 0, bValue = 0, cValue = 0;
   for (const term of node.args) {
-    if (Node.Type.isConstant(term)) {
+      if (mathNode.Type.isConstant(term)) {
       cValue = evaluate(term);
     }
-    else if (Node.PolynomialTerm.isPolynomialTerm(term)) {
-      const polyTerm = new Node.PolynomialTerm(term);
+      else if (mathNode.PolynomialTerm.isPolynomialTerm(term)) {
+          const polyTerm = new mathNode.PolynomialTerm(term);
       const exponent = polyTerm.getExponentNode(true);
       if (exponent.value === '2') {
         symbol = polyTerm.getSymbolNode();
@@ -51,16 +50,16 @@ function factorQuadratic(node) {
         bValue = polyTerm.getCoeffValue();
       }
       else {
-        return Node.Status.noChange(node);
+          return mathNode.Status.noChange(node);
       }
     }
     else {
-      return Node.Status.noChange(node);
+          return mathNode.Status.noChange(node);
     }
   }
 
   if (!symbol || !aValue) {
-    return Node.Status.noChange(node);
+      return mathNode.Status.noChange(node);
   }
 
   let negate = false;
@@ -78,89 +77,80 @@ function factorQuadratic(node) {
     }
   }
 
-  return Node.Status.noChange(node);
+  return mathNode.Status.noChange(node);
 }
 
 // Will factor the node if it's in the form of ax^2 + bx
-function factorSymbol(node: any, symbol: any, aValue: any, bValue: any, cValue: any, negate: any);
 function factorSymbol(node, symbol, aValue, bValue, cValue, negate) {
   if (!bValue || cValue) {
-    return Node.Status.noChange(node);
+      return mathNode.Status.noChange(node);
   }
 
   const gcd = math.gcd(aValue, bValue);
-  const gcdNode = Node.Creator.constant(gcd);
-  const aNode = Node.Creator.constant(aValue/gcd);
-  const bNode = Node.Creator.constant(bValue/gcd);
+  const gcdNode = mathNode.Creator.constant(gcd);
+  const aNode = mathNode.Creator.constant(aValue/gcd);
+  const bNode = mathNode.Creator.constant(bValue/gcd);
 
-  const factoredNode = Node.Creator.polynomialTerm(symbol, null, gcdNode);
-  const polyTerm = Node.Creator.polynomialTerm(symbol, null, aNode);
-  const paren = Node.Creator.parenthesis(
-    Node.Creator.operator('+', [polyTerm, bNode]));
+  const factoredNode = mathNode.Creator.polynomialTerm(symbol, null, gcdNode);
+  const polyTerm = mathNode.Creator.polynomialTerm(symbol, null, aNode);
+  const paren = mathNode.Creator.parenthesis(
+      mathNode.Creator.operator('+', [polyTerm, bNode]));
 
-  let newNode = Node.Creator.operator('*', [factoredNode, paren], true);
+  let newNode = mathNode.Creator.operator('*', [factoredNode, paren], true);
   if (negate) {
     newNode = Negative.negate(newNode);
   }
 
-  return Node.Status.nodeChanged(ChangeTypes.FACTOR_SYMBOL, node, newNode);
+  return mathNode.Status.nodeChanged(ChangeTypes.FACTOR_SYMBOL, node, newNode);
 }
 
 // Will factor the node if it's in the form of ax^2 - c, and the aValue
 // and cValue are perfect squares
 // e.g. 4x^2 - 4 -> (2x + 2)(2x - 2)
-function factorDifferenceOfSquares(node: any,
-    symbol: any,
-    aValue: any,
-    bValue?: boolean,
-    cValue?: any,
-    negate?: any);
-function factorDifferenceOfSquares(node: any, symbol: any, aValue: any, bValue: any, cValue: any, negate: any);
 function factorDifferenceOfSquares(node, symbol, aValue, bValue?, cValue?, negate?) {
   // check if difference of squares: (i) abs(a) and abs(c) are squares, (ii) b = 0,
   // (iii) c is negative
   if (bValue || !cValue) {
-    return Node.Status.noChange(node);
+      return mathNode.Status.noChange(node);
   }
 
   const aRootValue = Math.sqrt(Math.abs(aValue));
   const cRootValue = Math.sqrt(Math.abs(cValue));
 
   // must be a difference of squares
-  if (Number.isInteger(aRootValue) &&
-      Number.isInteger(cRootValue) &&
+  if ((aRootValue%1 === 0) &&
+      (cRootValue % 1 === 0) &&
       cValue < 0) {
 
-    const aRootNode = Node.Creator.constant(aRootValue);
-    const cRootNode = Node.Creator.constant(cRootValue);
+      const aRootNode = mathNode.Creator.constant(aRootValue);
+      const cRootNode = mathNode.Creator.constant(cRootValue);
 
-    const polyTerm = Node.Creator.polynomialTerm(symbol, null, aRootNode);
-    const firstParen = Node.Creator.parenthesis(
-      Node.Creator.operator('+', [polyTerm, cRootNode]));
-    const secondParen = Node.Creator.parenthesis(
-      Node.Creator.operator('-', [polyTerm, cRootNode]));
+    const polyTerm = mathNode.Creator.polynomialTerm(symbol, null, aRootNode);
+    const firstParen = mathNode.Creator.parenthesis(
+      mathNode.Creator.operator('+', [polyTerm, cRootNode]));
+    const secondParen = mathNode.Creator.parenthesis(
+      mathNode.Creator.operator('-', [polyTerm, cRootNode]));
 
     // create node in difference of squares form
-    let newNode = Node.Creator.operator('*', [firstParen, secondParen], true);
+    let newNode = mathNode.Creator.operator('*', [firstParen, secondParen], true);
     if (negate) {
       newNode = Negative.negate(newNode);
     }
 
-    return Node.Status.nodeChanged(
+    return mathNode.Status.nodeChanged(
       ChangeTypes.FACTOR_DIFFERENCE_OF_SQUARES, node, newNode);
   }
 
-  return Node.Status.noChange(node);
+  return mathNode.Status.noChange(node);
 }
 
 // Will factor the node if it's in the form of ax^2 + bx + c, where a and c
 // are perfect squares and b = 2*sqrt(a)*sqrt(c)
 // e.g. x^2 + 2x + 1 -> (x + 1)^2
-function factorPerfectSquare(node: any, symbol: any, aValue: any, bValue: any, cValue: any, negate: any);
 function factorPerfectSquare(node, symbol, aValue, bValue, cValue, negate) {
   // check if perfect square: (i) a and c squares, (ii) b = 2*sqrt(a)*sqrt(c)
   if (!bValue || !cValue) {
-    return Node.Status.noChange(node);
+    return mathNode.Status.noChange(node);
   }
 
   const aRootValue = Math.sqrt(Math.abs(aValue));
@@ -174,60 +164,58 @@ function factorPerfectSquare(node, symbol, aValue, bValue, cValue, negate) {
 
   // apply the perfect square test
   const perfectProduct = 2 * aRootValue * cRootValue;
-  if (Number.isInteger(aRootValue) &&
-      Number.isInteger(cRootValue) &&
+  if ((aRootValue%1 === 0) &&
+      (cRootValue %1 === 0) &&
       bValue === perfectProduct) {
 
-    const aRootNode = Node.Creator.constant(aRootValue);
-    const cRootNode = Node.Creator.constant(cRootValue);
+      const aRootNode = mathNode.Creator.constant(aRootValue);
+      const cRootNode = mathNode.Creator.constant(cRootValue);
 
-    const polyTerm = Node.Creator.polynomialTerm(symbol, null, aRootNode);
-    const paren = Node.Creator.parenthesis(
-      Node.Creator.operator('+', [polyTerm, cRootNode]));
-    const exponent = Node.Creator.constant(2);
+    const polyTerm = mathNode.Creator.polynomialTerm(symbol, null, aRootNode);
+    const paren = mathNode.Creator.parenthesis(
+        mathNode.Creator.operator('+', [polyTerm, cRootNode]));
+    const exponent = mathNode.Creator.constant(2);
 
     // create node in perfect square form
-    let newNode = Node.Creator.operator('^', [paren, exponent]);
+    let newNode = mathNode.Creator.operator('^', [paren, exponent]);
     if (negate) {
       newNode = Negative.negate(newNode);
     }
 
-    return Node.Status.nodeChanged(
+    return mathNode.Status.nodeChanged(
       ChangeTypes.FACTOR_PERFECT_SQUARE, node, newNode);
   }
 
-  return Node.Status.noChange(node);
+  return mathNode.Status.noChange(node);
 }
 
 // Will factor the node if it's in the form of x^2 + bx + c (i.e. a is 1), by
 // applying the sum product rule: finding factors of c that add up to b.
 // e.g. x^2 + 3x + 2 -> (x + 1)(x + 2)
-function factorSumProductRule(node: any, symbol: any, aValue: number, bValue: any, cValue: any, negate: any);
-function factorSumProductRule(node: any, symbol: any, aValue: any, bValue: any, cValue: any, negate: any);
 function factorSumProductRule(node, symbol, aValue, bValue, cValue, negate) {
   if (aValue === 1 && bValue && cValue) {
     // try sum/product rule: find a factor pair of c that adds up to b
-    const factorPairs = ConstantFactors.getFactorPairs(cValue, true);
+    const factorPairs = ConstantFactors.getFactorPairs(cValue);
     for (const pair of factorPairs) {
       if (pair[0] + pair[1] === bValue) {
-        const firstParen = Node.Creator.parenthesis(
-          Node.Creator.operator('+', [symbol, Node.Creator.constant(pair[0])]));
-        const secondParen = Node.Creator.parenthesis(
-          Node.Creator.operator('+', [symbol, Node.Creator.constant(pair[1])]));
+          const firstParen = mathNode.Creator.parenthesis(
+            mathNode.Creator.operator('+', [symbol, mathNode.Creator.constant(pair[0])]));
+        const secondParen = mathNode.Creator.parenthesis(
+            mathNode.Creator.operator('+', [symbol, mathNode.Creator.constant(pair[1])]));
 
         // create a node in the general factored form for expression
-        let newNode = Node.Creator.operator('*', [firstParen, secondParen], true);
+        let newNode = mathNode.Creator.operator('*', [firstParen, secondParen], true);
         if (negate) {
           newNode = Negative.negate(newNode);
         }
 
-        return Node.Status.nodeChanged(
+        return mathNode.Status.nodeChanged(
           ChangeTypes.FACTOR_SUM_PRODUCT_RULE, node, newNode);
       }
     }
   }
 
-  return Node.Status.noChange(node);
+  return mathNode.Status.noChange(node);
 }
 
 export = factorQuadratic;

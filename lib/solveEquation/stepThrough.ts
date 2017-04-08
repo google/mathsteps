@@ -5,7 +5,7 @@ import EquationOperations = require('./EquationOperations');
 import EquationStatus = require('../equation/Status');
 import evaluate = require('../util/evaluate');
 import flattenOperands = require('../util/flattenOperands');
-const mathNode = require('../node');
+import mathNode = require('../mathnode');
 import removeUnnecessaryParens = require('../util/removeUnnecessaryParens');
 import simplifyExpressionNode = require('../simplifyExpression/stepThrough');
 import Symbols = require('../Symbols');
@@ -26,7 +26,8 @@ function stepThrough(leftNode, rightNode, comparator, debug=false) {
 
   if (debug) {
     // eslint-disable-next-line
-    console.log('\n\nSolving: ' + equation.print(false, true));
+      // unsure whether or not the second paramter should be a thing?
+    console.log('\n\nSolving: ' + equation.print(false));
   }
 
   // we can't solve/find steps if there are any unsupported nodes
@@ -115,7 +116,7 @@ function solveConstantEquation(equation, debug, steps=[]) {
     throw Error('Unexpected comparator');
   }
 
-  steps = addSimplificationSteps(steps, equation, true, debug);
+  steps = addSimplificationSteps(steps, equation, debug);
   if (steps.length > 0) {
     const lastStep = steps[steps.length - 1];
     equation = Equation.createEquationFromString(

@@ -3,7 +3,7 @@ import divideByGCD = require('./divideByGCD');
 import math = require('mathjs');
 import ChangeTypes = require('../../ChangeTypes');
 import evaluate = require('../../util/evaluate');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Adds constant fractions -- can start from either step 1 or 2
 // 1A. Find the LCD if denominators are different and multiplies to make

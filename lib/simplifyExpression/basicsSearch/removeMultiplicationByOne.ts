@@ -1,10 +1,9 @@
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is a multiplication node with 1 as one of its operands,
 // remove 1 from the operands list. Returns a mathNode.Status object.
-function removeMultiplicationByOne(node: any);
 function removeMultiplicationByOne(node) {
   if (node.op !== '*') {
     return mathNode.Status.noChange(node);

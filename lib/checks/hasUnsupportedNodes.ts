@@ -1,4 +1,4 @@
-const mathNode = require('../node');
+import mathNode = require('../mathnode');
 import resolvesToConstant = require('./resolvesToConstant');
 
 function hasUnsupportedNodes(node: any);

@@ -1,4 +1,4 @@
-const mathNode = require('../node');
+import mathNode = require('../mathnode');
 
 // Returns true if the nodes are polynomial terms that can be added together.
 function canAddLikeTermPolynomialNodes(node: any);

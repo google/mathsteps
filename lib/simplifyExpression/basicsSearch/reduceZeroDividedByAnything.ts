@@ -1,5 +1,5 @@
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is a fraction with 0 as the numerator, reduce the node to 0.
 // Returns a mathNode.Status object.

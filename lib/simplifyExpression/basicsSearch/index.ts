@@ -3,7 +3,7 @@
  * These are always the first simplifications that are attempted.
  */
 
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import TreeSearch = require('../../TreeSearch');
 import rearrangeCoefficient = require('./rearrangeCoefficient');
 import reduceExponentByZero = require('./reduceExponentByZero');

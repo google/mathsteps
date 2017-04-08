@@ -16,7 +16,6 @@ class Equation {
     const leftSide = printNode(this.leftNode, showPlusMinus);
     const rightSide = printNode(this.rightNode, showPlusMinus);
     const comparator = this.comparator;
-
     return `${leftSide} ${comparator} ${rightSide}`;
   }
 
@@ -25,19 +24,23 @@ class Equation {
     const newRight = clone(this.rightNode);
     return new Equation(newLeft, newRight, this.comparator);
   }
+
+  // Splits a string on the given comparator and returns a new Equation object
+  // from the left and right hand sides
+  static createEquationFromString = (str, comparator) => {
+      const sides = str.split(comparator);
+      if (sides.length !== 2) {
+          throw Error('Expected two sides of an equation using comparator: ' +
+              comparator);
+      }
+      const leftNode = math.parse(sides[0]);
+      const rightNode = math.parse(sides[1]);
+
+      return new Equation(leftNode, rightNode, comparator);
+  };
+    leftNode;
+    rightNode;
+    comparator;
 }
 
-// Splits a string on the given comparator and returns a new Equation object
-// from the left and right hand sides
-Equation.createEquationFromString = (str, comparator) => {
-    const sides = str.split(comparator);
-    if (sides.length !== 2) {
-        throw Error('Expected two sides of an equation using comparator: ' +
-            comparator);
-    }
-    const leftNode = math.parse(sides[0]);
-    const rightNode = math.parse(sides[1]);
-
-    return new Equation(leftNode, rightNode, comparator);
-};
 export = Equation;

@@ -2,7 +2,7 @@ import addConstantFractions = require('./addConstantFractions');
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
 import evaluate = require('../../util/evaluate');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Adds a constant to a fraction by:
 // - collapsing the fraction to decimal if the constant is not an integer
@@ -47,7 +47,7 @@ function addConstantAndFraction(node) {
   // track of which is which.
   let newConstNode, newFractionNode;
   let changeType;
-  if (Number.isInteger(parseFloat(constNode.value))) {
+  if (parseFloat(constNode.value) % 1 === 0) {
     const denominatorNode = fractionNode.args[1];
     const denominatorValue = parseInt(denominatorNode);
     const constNodeValue = parseInt(constNode.value);

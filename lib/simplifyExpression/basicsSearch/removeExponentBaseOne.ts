@@ -1,7 +1,7 @@
 import checks = require('../../checks');
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // If `node` is of the form 1^x, reduces it to a node of the form 1.
 // Returns a mathNode.Status object.

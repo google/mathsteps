@@ -1,7 +1,7 @@
 import math = require('mathjs');
 import ChangeTypes = require('../../ChangeTypes');
 import evaluate = require('../../util/evaluate');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Simplifies a fraction (with constant numerator and denominator) by dividing
 // the top and bottom by the GCD, if possible.

@@ -1,6 +1,6 @@
 import checks = require('../checks');
 import LikeTermCollector = require('../simplifyExpression/collectAndCombineSearch/LikeTermCollector');
-import Node = require('../node');
+import mathNode = require('../mathNode');
 
 // Removes any parenthesis around nodes that can't be resolved further.
 // Input must be a top level expression.
@@ -12,7 +12,7 @@ function removeUnnecessaryParens(node, rootNode=false) {
   // e.g. (2 + 3) * 4 can't become 2 + 3 * 4, but if (2 + 3) as a top level
   // expression can become 2 + 3
   if (rootNode) {
-    while (Node.Type.isParenthesis(node)) {
+    while (mathNode.Type.isParenthesis(node)) {
       node = node.content;
     }
   }
@@ -23,21 +23,20 @@ function removeUnnecessaryParens(node, rootNode=false) {
 // it doesn't change the value of the expression. Returns a node.
 // NOTE: after this function is called, every parenthesis node in the
 // tree should always have an operator node or unary minus as its child.
-function removeUnnecessaryParensSearch(node: any);
 function removeUnnecessaryParensSearch(node) {
-  if (Node.Type.isOperator(node)) {
+  if (mathNode.Type.isOperator(node)) {
     return removeUnnecessaryParensInOperatorNode(node);
   }
-  else if (Node.Type.isFunction(node)) {
+  else if (mathNode.Type.isFunction(node)) {
     return removeUnnecessaryParensInFunctionNode(node);
   }
-  else if (Node.Type.isParenthesis(node)) {
+  else if (mathNode.Type.isParenthesis(node)) {
     return removeUnnecessaryParensInParenthesisNode(node);
   }
-  else if (Node.Type.isConstant(node, true) || Node.Type.isSymbol(node)) {
+  else if (mathNode.Type.isConstant(node, true) || mathNode.Type.isSymbol(node)) {
     return node;
   }
-  else if (Node.Type.isUnaryMinus(node)) {
+  else if (mathNode.Type.isUnaryMinus(node)) {
     const content = node.args[0];
     node.args[0] = removeUnnecessaryParensSearch(content);
     return node;
@@ -55,9 +54,9 @@ function removeUnnecessaryParensInOperatorNode(node) {
   // Special case: if the node is an exponent node and the base
   // is an operator, we should keep the parentheses for the base.
   // e.g. (2x)^2 -> (2x)^2 instead of 2x^2
-  if (node.op === '^' && Node.Type.isParenthesis(node.args[0])) {
+  if (node.op === '^' && mathNode.Type.isParenthesis(node.args[0])) {
     const base = node.args[0];
-    if (Node.Type.isOperator(base.content)) {
+    if (mathNode.Type.isOperator(base.content)) {
       base.content = removeUnnecessaryParensSearch(base.content);
       node.args[1] = removeUnnecessaryParensSearch(node.args[1]);
 
@@ -75,7 +74,7 @@ function removeUnnecessaryParensInOperatorNode(node) {
   // e.g. (x+4) + 12 -> x+4 + 12
   if (node.op === '+') {
     node.args.forEach((child, i) => {
-      if (Node.Type.isParenthesis(child) &&
+      if (mathNode.Type.isParenthesis(child) &&
           !canCollectOrCombine(child.content)) {
         // remove the parens by replacing the child node (in its args list)
         // with its content
@@ -87,7 +86,7 @@ function removeUnnecessaryParensInOperatorNode(node) {
   //in parenthesis, we want to distribute the subtraction.
   // e.g. `(2 + x) - (1 + x)` => `2 + x - (1 + x)` not `2 + x - 1 + x`
   else if (node.op === '-') {
-    if (Node.Type.isParenthesis(node.args[0]) &&
+    if (mathNode.Type.isParenthesis(node.args[0]) &&
         !canCollectOrCombine(node.args[0].content)) {
       node.args[0] = node.args[0].content;
     }
@@ -101,7 +100,7 @@ function removeUnnecessaryParensInOperatorNode(node) {
 function removeUnnecessaryParensInFunctionNode(node: any);
 function removeUnnecessaryParensInFunctionNode(node) {
   node.args.forEach((child, i) => {
-    if (Node.Type.isParenthesis(child)) {
+    if (mathNode.Type.isParenthesis(child)) {
       child = child.content;
     }
     node.args[i] = removeUnnecessaryParensSearch(child);
@@ -120,7 +119,7 @@ function removeUnnecessaryParensInParenthesisNode(node: any);
 function removeUnnecessaryParensInParenthesisNode(node) {
   // polynomials terms can be complex trees (e.g. 3x^2/5) but don't need parens
   // around them
-  if (Node.PolynomialTerm.isPolynomialTerm(node.content)) {
+  if (mathNode.PolynomialTerm.isPolynomialTerm(node.content)) {
     // also recurse to remove any unnecessary parens within the term
     // (e.g. the exponent might have parens around it)
     if (node.content.args) {
@@ -132,19 +131,19 @@ function removeUnnecessaryParensInParenthesisNode(node) {
   }
   // If the content is just one symbol or constant, the parens are not
   // needed.
-  else if (Node.Type.isConstant(node.content, true) ||
-           Node.Type.isIntegerFraction(node.content) ||
-           Node.Type.isSymbol(node.content)) {
+  else if (mathNode.Type.isConstant(node.content, true) ||
+           mathNode.Type.isIntegerFraction(node.content) ||
+           mathNode.Type.isSymbol(node.content)) {
     node = node.content;
   }
   // If the content is just one function call, the parens are not needed.
-  else if (Node.Type.isFunction(node.content)) {
+  else if (mathNode.Type.isFunction(node.content)) {
     node = node.content;
     node = removeUnnecessaryParensSearch(node);
   }
   // If there is an operation within the parens, then the parens are
   // likely needed. So, recurse.
-  else if (Node.Type.isOperator(node.content)) {
+  else if (mathNode.Type.isOperator(node.content)) {
     node.content = removeUnnecessaryParensSearch(node.content);
     // exponent nodes don't need parens around them
     if (node.content.op === '^') {
@@ -154,10 +153,10 @@ function removeUnnecessaryParensInParenthesisNode(node) {
   // If the content is also parens, we have doubly nested parens. First
   // recurse on the child node, then set the current node equal to its child
   // to get rid of the extra parens.
-  else if (Node.Type.isParenthesis(node.content)) {
+  else if (mathNode.Type.isParenthesis(node.content)) {
     node = removeUnnecessaryParensSearch(node.content);
   }
-  else if (Node.Type.isUnaryMinus(node.content)) {
+  else if (mathNode.Type.isUnaryMinus(node.content)) {
     node.content = removeUnnecessaryParensSearch(node.content);
   }
   else {
@@ -169,7 +168,6 @@ function removeUnnecessaryParensInParenthesisNode(node) {
 
 // Returns true if any of the collect or combine steps can be applied to the
 // expression tree `node`.
-function canCollectOrCombine(node: any);
 function canCollectOrCombine(node) {
   return LikeTermCollector.canCollectLikeTerms(node) ||
     checks.resolvesToConstant(node) ||

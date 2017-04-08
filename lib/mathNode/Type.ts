@@ -24,7 +24,7 @@ class NodeType {
         }
         return true;
     };
-    isSymbol(node, allowUnaryMinus = true) {
+    static isSymbol(node, allowUnaryMinus = true) {
         if (node.type === 'SymbolNode') {
             return true;
         }
@@ -60,7 +60,7 @@ class NodeType {
             return false;
         }
     };
-    isConstantOrConstantFraction(node, allowUnaryMinus = false) {
+    static isConstantOrConstantFraction(node, allowUnaryMinus = false) {
         if (NodeType.isConstant(node, allowUnaryMinus) ||
             NodeType.isConstantFraction(node, allowUnaryMinus)) {
             return true;

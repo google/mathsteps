@@ -1,4 +1,5 @@
-const mathNode = require('../node');
+import mathNode = require('../mathnode');
+
 
 // Returns true if the node is a constant or can eventually be resolved to
 // a constant.

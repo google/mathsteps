@@ -3,7 +3,7 @@ import addConstantFractions = require('../fractionsSearch/addConstantFractions')
 import arithmeticSearch = require('../arithmeticSearch');
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Evaluates a sum of constant numbers and integer fractions to a single
 // constant number or integer fraction. e.g. e.g. 2/3 + 5 + 5/2 => 49/6

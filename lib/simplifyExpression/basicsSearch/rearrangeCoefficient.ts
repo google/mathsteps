@@ -1,7 +1,7 @@
 import checks = require('../../checks');
 import clone = require('../../util/clone');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Rearranges something of the form x * 5 to be 5x, ie putting the coefficient
 // in the right place.

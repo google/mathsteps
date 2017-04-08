@@ -9,7 +9,7 @@ import NodeType = require('./Type');
 const NodeCreator = {
   operator (op, args, implicit=false) {
     switch (op) {
-    case '+':
+        case '+':
       return new math.expression.node.OperatorNode('+', 'add', args);
     case '-':
       return new math.expression.node.OperatorNode('-', 'subtract', args);

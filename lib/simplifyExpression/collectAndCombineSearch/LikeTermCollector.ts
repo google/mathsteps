@@ -1,17 +1,17 @@
 import clone = require('../../util/clone');
 import print = require('../../util/print');
 import ChangeTypes = require('../../ChangeTypes');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 import Util = require('../../util/Util');
 const CONSTANT = 'constant';
 const CONSTANT_FRACTION = 'constantFraction';
 const OTHER = 'other';
 
-const LikeTermCollector = {};
+class LikeTermCollector{
 
 // Given an expression tree, returns true if there are terms that can be
 // collected
-LikeTermCollector.canCollectLikeTerms = node => {
+    static canCollectLikeTerms = node => {
     // We can collect like terms through + or through *
     // Note that we never collect like terms with - or /, those expressions will
     // always be manipulated in flattenOperands so that the top level operation is
@@ -43,13 +43,13 @@ LikeTermCollector.canCollectLikeTerms = node => {
 };
 
 // Collects like terms for an operation node and returns a mathNode.Status object.
-LikeTermCollector.collectLikeTerms = node => {
+collectLikeTerms = node => {
     if (!LikeTermCollector.canCollectLikeTerms(node)) {
         return mathNode.Status.noChange(node);
     }
 
     const op = node.op;
-    let terms = [];
+    let terms: {};
     if (op === '+') {
         terms = getTermsForCollectingAddition(node);
     }
@@ -114,12 +114,10 @@ LikeTermCollector.collectLikeTerms = node => {
     return mathNode.Status.nodeChanged(
         ChangeTypes.COLLECT_LIKE_TERMS, node, newNode, false);
 };
-
+}
 // Polyonomial terms are collected by categorizing them by their 'name'
 // which is used to separate them into groups that can be combined. getTermName
 // returns this group 'name'
-function getTermName(node: any, op: "+");
-function getTermName(node: any, op: any);
 function getTermName(node, op) {
   const polyNode = new mathNode.PolynomialTerm(node);
   // we 'name' polynomial terms by their symbol name
@@ -136,7 +134,6 @@ function getTermName(node, op) {
 // Returns a dictionary of termname to lists of nodes with that name
 // e.g. 2x + 4 + 5x would return {'x': [2x, 5x], CONSTANT: [4]}
 // (where 2x, 5x, and 4 would actually be expression trees)
-function getTermsForCollectingAddition(node: any);
 function getTermsForCollectingAddition(node) {
   let terms = {};
 
@@ -251,7 +248,6 @@ function addToTermsforPolynomialMultiplication(terms, node) {
 }
 
 // Sort function for termnames. Sort first by symbol name, and then by exponent.
-function sortTerms(a: any, b: any);
 function sortTerms(a, b) {
   if (a === b) {
     return 0;

@@ -1,7 +1,7 @@
 import arithmeticSearch = require('../arithmeticSearch');
 import clone = require('../../util/clone');
 import divideByGCD = require('./divideByGCD');
-const mathNode = require('../../node');
+import mathNode = require('../../mathnode');
 
 // Simplifies a polynomial term with a fraction as its coefficients.
 // e.g. 2x/4 --> x/2    10x/5 --> 2x
