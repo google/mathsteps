@@ -1,13 +1,12 @@
-import mathNode = require('../mathnode');
+import mathNode = require("../mathnode");
 
 
 // Returns true if the expression is a multiplication between a constant
 // and polynomial without a coefficient.
-function canRearrangeCoefficient(node: any);
-function canRearrangeCoefficient(node) {
+function canRearrangeCoefficient(node: mathjs.MathNode) {
   // implicit multiplication doesn't count as multiplication here, since it
   // represents a single term.
-  if (node.op !== '*' || node.implicit) {
+  if (node.op !== "*" || node.implicit) {
     return false;
   }
   if (node.args.length !== 2) {

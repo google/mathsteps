@@ -1,15 +1,14 @@
-import arithmeticSearch = require('../arithmeticSearch');
-import clone = require('../../util/clone');
-import divideByGCD = require('./divideByGCD');
-import mathNode = require('../../mathnode');
+import arithmeticSearch = require("../arithmeticSearch");
+import clone = require("../../util/clone");
+import divideByGCD = require("./divideByGCD");
+import mathNode = require("../../mathnode");
 
 // Simplifies a polynomial term with a fraction as its coefficients.
 // e.g. 2x/4 --> x/2    10x/5 --> 2x
 // Also simplified negative signs
 // e.g. -y/-3 --> y/3   4x/-5 --> -4x/5
 // returns the new simplified node in a mathNode.Status object
-function simplifyPolynomialFraction(node: any);
-function simplifyPolynomialFraction(node) {
+function simplifyPolynomialFraction(node: mathjs.MathNode) {
   if (!mathNode.PolynomialTerm.isPolynomialTerm(node)) {
     return mathNode.Status.noChange(node);
   }
@@ -29,7 +28,7 @@ function simplifyPolynomialFraction(node) {
     const newCoeffStatus = coefficientSimplifications[i](coefficientFraction);
     if (newCoeffStatus.hasChanged()) {
       let newCoeff = newCoeffStatus.newNode;
-      if (newCoeff.value === '1') {
+      if (newCoeff.value === "1") {
         newCoeff = null;
       }
       const exponentNode = polyNode.getExponentNode();

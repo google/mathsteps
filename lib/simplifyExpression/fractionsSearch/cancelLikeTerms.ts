@@ -1,8 +1,8 @@
-import clone = require('../../util/clone');
-import print = require('../../util/print');
-import ChangeTypes = require('../../ChangeTypes');
-import Negative = require('../../Negative');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import print = require("../../util/print");
+import ChangeTypes = require("../../ChangeTypes");
+import Negative = require("../../Negative");
+import mathNode = require("../../mathnode");
 
 // Used for cancelTerms to return a (possibly updated) numerator and denominator
 class CancelOutStatus {
@@ -20,8 +20,8 @@ class CancelOutStatus {
 // Cancels like terms in a fraction node
 // e.g. (2x^2 * 5) / 2x^2 => 5 / 1
 // Returns a mathNode.Status object
-function cancelLikeTerms(node) {
-  if (!mathNode.Type.isOperator(node) || node.op !== '/') {
+function cancelLikeTerms(node: mathjs.MathNode) {
+  if (!mathNode.Type.isOperator(node) || node.op !== "/") {
     return mathNode.Status.noChange(node);
   }
   let newNode = clone(node);
@@ -243,8 +243,8 @@ function cancelTerms(numerator, denominator) {
 
   // case 2: they're both exponent nodes with the same base
   // e.g. (2x+5)^8 and (2x+5)^2
-  if (mathNode.Type.isOperator(numerator, '^') &&
-      mathNode.Type.isOperator(denominator, '^') &&
+  if (mathNode.Type.isOperator(numerator, "^") &&
+      mathNode.Type.isOperator(denominator, "^") &&
       print(numerator.args[0]) === print(denominator.args[0])) {
     const numeratorExponent = numerator.args[1];
     let denominatorExponent =  denominator.args[1];
@@ -253,7 +253,7 @@ function cancelTerms(numerator, denominator) {
     // removeUnnecessaryParens at the end of this step.
     denominatorExponent = mathNode.Creator.parenthesis(denominatorExponent);
     const newExponent = mathNode.Creator.parenthesis(
-      mathNode.Creator.operator('-', [numeratorExponent, denominatorExponent]));
+      mathNode.Creator.operator("-", [numeratorExponent, denominatorExponent]));
     numerator.args[1] = newExponent;
     return new CancelOutStatus(numerator, null, true);
   }
@@ -280,7 +280,7 @@ function cancelTerms(numerator, denominator) {
       // removeUnnecessaryParens at the end of this step.
       denominatorExponent = mathNode.Creator.parenthesis(denominatorExponent);
       const newExponent = mathNode.Creator.parenthesis(
-        mathNode.Creator.operator('-', [numeratorExponent, denominatorExponent]));
+        mathNode.Creator.operator("-", [numeratorExponent, denominatorExponent]));
       numerator = mathNode.Creator.polynomialTerm(
         numeratorTerm.getSymbolNode(),
         newExponent,
@@ -298,12 +298,11 @@ function cancelTerms(numerator, denominator) {
 // e.g. 2 + 6 => false
 // e.g. (2 * 6^y) => true
 // e.g. 2x^2 => false (polynomial terms are considered as one single term)
-function isMultiplicationOfTerms(node: any);
-function isMultiplicationOfTerms(node) {
+function isMultiplicationOfTerms(node: mathjs.MathNode) {
   if (mathNode.Type.isParenthesis(node)) {
-    return isMultiplicationOfTerms(node.content);
+    return isMultiplicationOfTerms(node);
   }
-  return (mathNode.Type.isOperator(node, '*') &&
+  return (mathNode.Type.isOperator(node, "*") &&
           !mathNode.PolynomialTerm.isPolynomialTerm(node));
 }
 

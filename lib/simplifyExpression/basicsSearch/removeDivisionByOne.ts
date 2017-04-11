@@ -1,13 +1,12 @@
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import Negative = require('../../Negative');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import Negative = require("../../Negative");
+import mathNode = require("../../mathnode");
 
 // If `node` is a division operation of something by 1 or -1, we can remove the
 // denominator. Returns a mathNode.Status object.
-function removeDivisionByOne(node: any);
-function removeDivisionByOne(node) {
-  if (node.op !== '/') {
+function removeDivisionByOne(node: mathjs.MathNode) {
+  if (node.op !== "/") {
     return mathNode.Status.noChange(node);
   }
   const denominator = node.args[1];

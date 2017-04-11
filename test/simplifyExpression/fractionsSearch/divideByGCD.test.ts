@@ -1,19 +1,19 @@
-import divideByGCD = require('../../../lib/simplifyExpression/fractionsSearch/divideByGCD');
-import TestUtil = require('../../TestUtil');
+import divideByGCD = require("../../../lib/simplifyExpression/fractionsSearch/divideByGCD");
+import TestUtil = require("../../TestUtil");
 
-function testdivideByGCD(exprStr: any, outputStr: any);
-function testdivideByGCD(exprStr, outputStr) {
+function testdivideByGcd(exprStr: any, outputStr: any);
+function testdivideByGcd(exprStr, outputStr) {
   TestUtil.testSimplification(divideByGCD, exprStr, outputStr);
 }
 
-describe('simplifyFraction', () => {
+describe("simplifyFraction", () => {
     const tests = [
-        ['2/4', '1/2'],
-        ['9/3', '3'],
-        ['12/27', '4/9'],
-        ['1/-3', '-1/3'],
-        ['-3/-2', '3/2'],
-        ['-1/-1', '1'],
+        ["2/4", "1/2"],
+        ["9/3", "3"],
+        ["12/27", "4/9"],
+        ["1/-3", "-1/3"],
+        ["-3/-2", "3/2"],
+        ["-1/-1", "1"],
     ];
-    tests.forEach(t => testdivideByGCD(t[0], t[1]));
+    tests.forEach(t => testdivideByGcd(t[0], t[1]));
 });

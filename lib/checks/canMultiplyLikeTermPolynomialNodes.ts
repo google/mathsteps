@@ -1,11 +1,10 @@
-import mathNode = require('../mathnode');
+import mathNode = require("../mathnode");
 
 
 // Returns true if the nodes are symbolic terms with the same symbol and no
 // coefficients.
-function canMultiplyLikeTermPolynomialNodes(node: any);
-function canMultiplyLikeTermPolynomialNodes(node) {
-  if (!mathNode.Type.isOperator(node) || node.op !== '*') {
+function canMultiplyLikeTermPolynomialNodes(node: mathjs.MathNode) {
+  if (!mathNode.Type.isOperator(node) || node.op !== "*") {
     return false;
   }
   const args = node.args;

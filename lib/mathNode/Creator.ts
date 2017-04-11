@@ -3,25 +3,25 @@
   see http://mathjs.org/docs/expressions/expression_trees.html#nodes for more
   information on nodes in mathJS
 */
-
-import math = require('mathjs');
-import NodeType = require('./Type');
-const NodeCreator = {
+/// <reference path="../../node_modules/@types/mathjs/index.d.ts"/>
+import math = require("mathjs");
+import NodeType = require("./Type");
+const nodeCreator = {
   operator (op, args, implicit=false) {
     switch (op) {
-        case '+':
-      return new math.expression.node.OperatorNode('+', 'add', args);
-    case '-':
-      return new math.expression.node.OperatorNode('-', 'subtract', args);
-    case '/':
-      return new math.expression.node.OperatorNode('/', 'divide', args);
-    case '*':
+    case "+":
+      return new math.expression.OperatorNode("+", "add", args);
+    case "-":
+      return new math.expression.OperatorNode("-", "subtract", args);
+    case "/":
+      return new math.expression.node.OperatorNode("/", "divide", args);
+    case "*":
       return new math.expression.node.OperatorNode(
-        '*', 'multiply', args, implicit);
-    case '^':
-      return new math.expression.node.OperatorNode('^', 'pow', args);
+        "*", "multiply", args, implicit);
+    case "^":
+      return new math.expression.node.OperatorNode("^", "pow", args);
     default:
-      throw Error('Unsupported operation: ' + op);
+      throw Error("Unsupported operation: " + op);
     }
   },
 
@@ -29,7 +29,7 @@ const NodeCreator = {
   // unary minus to your node, rather than calling this constructor directly
   unaryMinus (content) {
     return new math.expression.node.OperatorNode(
-      '-', 'unaryMinus', [content]);
+      "-", "unaryMinus", [content]);
   },
 
   constant (val) {
@@ -50,7 +50,7 @@ const NodeCreator = {
   polynomialTerm (symbol, exponent, coeff, explicitCoeff=false) {
     let polyTerm = symbol;
     if (exponent) {
-      polyTerm = this.operator('^', [polyTerm, exponent]);
+      polyTerm = this.operator("^", [polyTerm, exponent]);
     }
     if (coeff && (explicitCoeff || parseFloat(coeff.value) !== 1)) {
       if (NodeType.isConstant(coeff) &&
@@ -60,7 +60,7 @@ const NodeCreator = {
         polyTerm = this.unaryMinus(polyTerm);
       }
       else {
-        polyTerm = this.operator('*', [coeff, polyTerm], true);
+        polyTerm = this.operator("*", [coeff, polyTerm], true);
       }
     }
     return polyTerm;
@@ -68,8 +68,8 @@ const NodeCreator = {
 
   // Given a root value and a radicand (what is under the radical)
   nthRoot (radicandNode, rootNode) {
-    const symbol = NodeCreator.symbol('nthRoot');
+    const symbol = nodeCreator.symbol("nthRoot");
     return new math.expression.node.FunctionNode(symbol, [radicandNode, rootNode]);
   }
 };
-export = NodeCreator;
+export = nodeCreator;

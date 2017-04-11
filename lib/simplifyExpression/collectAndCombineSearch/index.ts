@@ -1,12 +1,12 @@
 // Collects and combines like terms
 
-import addLikeTerms = require('./addLikeTerms');
-import clone = require('../../util/clone');
-import multiplyLikeTerms = require('./multiplyLikeTerms');
-import ChangeTypes = require('../../ChangeTypes');
-import LikeTermCollector = require('./LikeTermCollector');
-import mathNode = require('../../mathnode');
-import TreeSearch = require('../../TreeSearch');
+import addLikeTerms = require("./addLikeTerms");
+import clone = require("../../util/clone");
+import multiplyLikeTerms = require("./multiplyLikeTerms");
+import ChangeTypes = require("../../ChangeTypes");
+import LikeTermCollector = require("./LikeTermCollector");
+import mathNode = require("../../mathnode");
+import TreeSearch = require("../../TreeSearch");
 const termCollectorFunctions = {
   '+': addLikeTerms,
   '*': multiplyLikeTerms
@@ -20,7 +20,7 @@ const search = TreeSearch.postOrder(collectAndCombineLikeTerms);
 // e.g. 2x + 4x + y => 6x + y
 // e.g. 2x * x^2 * 5x => 10 x^4
 function collectAndCombineLikeTerms(node) {
-  if (node.op === '+') {
+  if (node.op === "+") {
     const status = collectAndCombineOperation(node);
     if (status.hasChanged()) {
       return status;
@@ -29,7 +29,7 @@ function collectAndCombineLikeTerms(node) {
     // e.g. 2x + 4x + x (doesn't need collecting)
     return addLikeTerms(node, true);
   }
-  else if (node.op === '*') {
+  else if (node.op === "*") {
     // collect and combine involves there being coefficients pulled the front
     // e.g. 2x * x^2 * 5x => (2*5) * (x * x^2 * x) => ... => 10 x^4
     const status = collectAndCombineOperation(node);

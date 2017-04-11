@@ -1,8 +1,8 @@
-import math = require('mathjs');
-import stepThrough = require('./stepThrough');
+import math = require("mathjs");
+import stepThrough = require("./stepThrough");
 
 function solveEquationString(equationString, debug=false) {
-  const comparators = ['<=', '>=', '=', '<', '>'];
+  const comparators = ["<=", ">=", "=", "<", ">"];
 
   for (let i = 0; i < comparators.length; i++) {
     const comparator = comparators[i];

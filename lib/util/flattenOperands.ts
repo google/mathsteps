@@ -1,6 +1,6 @@
-import evaluate = require('./evaluate');
-import Negative = require('../Negative');
-import mathNode = require('../mathNode');
+import evaluate = require("./evaluate");
+import Negative = require("../Negative");
+import mathNode = require("../mathNode");
 
 /*
 Background:
@@ -45,17 +45,17 @@ function flattenOperands(node) {
     return constNode;
   }
   else if (Node.Type.isOperator(node)) {
-    if ('+-/*'.includes(node.op)) {
+    if ("+-/*".includes(node.op)) {
       let parentOp;
-      if (node.op === '/') {
+      if (node.op === "/") {
         // Division is flattened in partner with multiplication. This means
         // that after collecting the operands, they'll be children args of *
-        parentOp = '*';
+        parentOp = "*";
       }
-      else if (node.op === '-') {
+      else if (node.op === "-") {
         // Subtraction is flattened in partner with addition, This means that
         // after collecting the operands, they'll be children args of +
-        parentOp = '+';
+        parentOp = "+";
       }
       else {
         parentOp = node.op;
@@ -82,11 +82,11 @@ function flattenOperands(node) {
     }
     return flattenedNode;
   }
-  else if (Node.Type.isFunction(node, 'abs')) {
+  else if (Node.Type.isFunction(node, "abs")) {
     node.args[0] = flattenOperands(node.args[0]);
     return node;
   }
-  else if (Node.Type.isFunction(node, 'nthRoot')) {
+  else if (Node.Type.isFunction(node, "nthRoot")) {
     node.args[0] = flattenOperands(node.args[0]);
     if (node.args[1]) {
       node.args[1] = flattenOperands(node.args[1]);
@@ -125,13 +125,13 @@ function flattenSupportedOperation(node, parentOp) {
     // (which is impossible for division), then by recursing through the
     // original tree for any multiplication node - if there was one, it would
     // have ended up at the root.
-    if (node.op === '/' && (operands.length > 2 ||
+    if (node.op === "/" && (operands.length > 2 ||
                             hasMultiplicationBesideDivision(node))) {
-      node = Node.Creator.operator('*', operands);
+      node = Node.Creator.operator("*", operands);
     }
     // similarily, - will become + always
-    else if (node.op === '-') {
-      node = Node.Creator.operator('+', operands);
+    else if (node.op === "-") {
+      node = Node.Creator.operator("+", operands);
     }
     // otherwise keep the operator, replace operands
     else {
@@ -139,7 +139,7 @@ function flattenSupportedOperation(node, parentOp) {
     }
     // When we collect operands to flatten multiplication, the
     // multiplication of those operands should never be implicit
-    if (node.op === '*') {
+    if (node.op === "*") {
       node.implicit = false;
     }
   }
@@ -164,15 +164,15 @@ function getOperands(node, parentOp) {
   }
   switch (node.op) {
   // division is part of flattening multiplication
-  case '*':
-  case '/':
-    if (parentOp !== '*') {
+  case "*":
+  case "/":
+    if (parentOp !== "*") {
       return [flattenOperands(node)];
     }
     break;
-  case '+':
-  case '-':
-    if (parentOp !== '+') {
+  case "+":
+  case "-":
+    if (parentOp !== "+") {
       return [flattenOperands(node)];
     }
     break;
@@ -190,13 +190,13 @@ function getOperands(node, parentOp) {
   // coefficient multiplied by a symbol such as 2x^2 or 3y)
   // This is true if there's an implicit multiplication and the right operand
   // is a symbol or a symbol to an exponent.
-  else if (parentOp === '*' && isPolynomialTermMultiplication(node)) {
+  else if (parentOp === "*" && isPolynomialTermMultiplication(node)) {
     return maybeFlattenPolynomialTerm(node);
   }
-  else if (parentOp === '*' && node.op === '/') {
+  else if (parentOp === "*" && node.op === "/") {
     return flattenDivision(node);
   }
-  else if (node.op === '-') {
+  else if (node.op === "-") {
     // this operation will become addition e.g. 2 - 3 -> 2 + -(-3)
     const secondOperand = node.args[1];
     const negativeSecondOperand = Negative.negate(secondOperand, true);
@@ -227,7 +227,7 @@ function getOperands(node, parentOp) {
 // an expression tree with root node * and children 2*2 and x
 function isPolynomialTermMultiplication(node) {
   // This concept only applies when we're flattening multiplication operations
-  if (node.op !== '*') {
+  if (node.op !== "*") {
     return false;
   }
   // This only makes sense when we're flattening two arguments
@@ -253,7 +253,7 @@ function isPolynomialTermMultiplication(node) {
 function maybeFlattenPolynomialTerm(node: any);
 function maybeFlattenPolynomialTerm(node) {
   // We recurse on the left side of the tree to find operands so far
-  const operands = getOperands(node.args[0], '*');
+  const operands = getOperands(node.args[0], "*");
 
   // If the last operand (so far) under * was a constant, then it's a
   // polynomial term.
@@ -270,7 +270,7 @@ function maybeFlattenPolynomialTerm(node) {
   if (mathNode.Type.isConstantOrConstantFraction(lastOperand)) {
     // we replace the constant (which we popped) with constant*symbol
     operands.push(
-      mathNode.Creator.operator('*', [lastOperand, nextOperand], true));
+      mathNode.Creator.operator("*", [lastOperand, nextOperand], true));
   }
   // Now we know it isn't a polynomial term, it's just another seperate operand
   else {
@@ -290,7 +290,7 @@ function flattenDivision(node) {
   // We recurse on the left side of the tree to find operands so far
   // Flattening division is always considered part of a bigger picture
   // of multiplication, so we get operands with '*'
-  let operands = getOperands(node.args[0], '*');
+  let operands = getOperands(node.args[0], "*");
 
   if (operands.length === 1) {
     node.args[0] = operands.pop();
@@ -304,7 +304,7 @@ function flattenDivision(node) {
     const denominator = flattenOperands(node.args[1]);
     // Note that this means 2 * 3 * 4 / 5 / 6 * 7 will flatten but keep the 4/5/6
     // as an operand - in simplifyDivision.js this is changed to 4/(5*6)
-    const divisionNode = mathNode.Creator.operator('/', [numerator, denominator]);
+    const divisionNode = mathNode.Creator.operator("/", [numerator, denominator]);
     operands.push(divisionNode);
   }
 
@@ -320,11 +320,11 @@ function hasMultiplicationBesideDivision(node) {
   if (!mathNode.Type.isOperator(node)) {
     return false;
   }
-  if (node.op === '*') {
+  if (node.op === "*") {
     return true;
   }
   // we ony recurse through division
-  if (node.op !== '/') {
+  if (node.op !== "/") {
     return false;
   }
   return node.args.some(hasMultiplicationBesideDivision);

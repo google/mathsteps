@@ -1,9 +1,8 @@
-import mathNode = require('../mathnode');
+import mathNode = require("../mathnode");
 
 // Returns true if the nodes are polynomial terms that can be added together.
-function canAddLikeTermPolynomialNodes(node: any);
-function canAddLikeTermPolynomialNodes(node) {
-  if (!mathNode.Type.isOperator(node) || node.op !== '+') {
+function canAddLikeTermPolynomialNodes(node: mathjs.MathNode) {
+  if (!mathNode.Type.isOperator(node) || node.op !== "+") {
     return false;
   }
   const args = node.args;

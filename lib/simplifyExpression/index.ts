@@ -1,5 +1,5 @@
-import math = require('mathjs');
-import stepThrough = require('./stepThrough');
+import math = require("mathjs");
+import stepThrough = require("./stepThrough");
 
 function simplifyExpressionString(expressionString, debug=false) {
   let exprNode;

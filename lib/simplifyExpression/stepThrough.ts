@@ -1,27 +1,27 @@
-import checks = require('../checks');
-import  mathNode = require('../mathNode');
-import Status = require('../mathnode/Status');
-import arithmeticSearch = require('./arithmeticSearch');
-import basicsSearch = require('./basicsSearch');
-import breakUpNumeratorSearch = require('./breakUpNumeratorSearch');
-import collectAndCombineSearch = require('./collectAndCombineSearch');
-import distributeSearch = require('./distributeSearch');
-import divisionSearch = require('./divisionSearch');
-import fractionsSearch = require('./fractionsSearch');
-import functionsSearch = require('./functionsSearch');
-import multiplyFractionsSearch = require('./multiplyFractionsSearch');
-import clone = require('../util/clone');
-import flattenOperands = require('../util/flattenOperands');
-import print = require('../util/print');
-import removeUnnecessaryParens = require('../util/removeUnnecessaryParens');
+import checks = require("../checks");
+import mathNode = require("../mathNode");
+import Status = require("../mathnode/Status");
+import arithmeticSearch = require("./arithmeticSearch");
+import basicsSearch = require("./basicsSearch");
+import breakUpNumeratorSearch = require("./breakUpNumeratorSearch");
+import collectAndCombineSearch = require("./collectAndCombineSearch");
+import distributeSearch = require("./distributeSearch");
+import divisionSearch = require("./divisionSearch");
+import fractionsSearch = require("./fractionsSearch");
+import functionsSearch = require("./functionsSearch");
+import multiplyFractionsSearch = require("./multiplyFractionsSearch");
+import clone = require("../util/clone");
+import flattenOperands = require("../util/flattenOperands");
+import print = require("../util/print");
+import removeUnnecessaryParens = require("../util/removeUnnecessaryParens");
 
 // Given a mathjs expression node, steps through simplifying the expression.
 // Returns a list of details about each step.
-function stepThrough(node, debug=false) {
+function stepThrough(node: mathjs.MathNode, debug=false) {
   if (debug) {
     // eslint-disable-next-line
       // again, unsure whether or not there should be a ternary argument
-    console.log('\n\nSimplifying: ' + print(node, false));
+    console.log("\n\nSimplifying: " + print(node, false));
   }
 
   if (checks.hasUnsupportedNodes(node)) {
@@ -32,7 +32,7 @@ function stepThrough(node, debug=false) {
   const steps = [];
 
   const originalExpressionStr = print(node);
-  const MAX_STEP_COUNT = 20;
+  const maxStepCount = 20;
   let iters = 0;
 
   // Now, step through the math expression until nothing changes
@@ -44,10 +44,10 @@ function stepThrough(node, debug=false) {
     steps.push(removeUnnecessaryParensInStep(nodeStatus));
     const nextNode = Status.resetChangeGroups(nodeStatus.newNode);
     nodeStatus = step(nextNode);
-    if (iters++ === MAX_STEP_COUNT) {
+    if (iters++ === maxStepCount) {
       // eslint-disable-next-line
-      console.error('Math error: Potential infinite loop for expression: ' +
-                    originalExpressionStr + ', returning no steps');
+      console.error("Math error: Potential infinite loop for expression: " +
+                    originalExpressionStr + ", returning no steps");
       return [];
     }
   }
@@ -57,7 +57,7 @@ function stepThrough(node, debug=false) {
 
 // Given a mathjs expression node, performs a single step to simplify the
 // expression. Returns a mathNode.Status object.
-function step(node) {
+function step(node: mathjs.MathNode) {
   let nodeStatus;
 
   node = flattenOperands(node);
@@ -120,11 +120,11 @@ function logSteps(nodeStatus) {
   // eslint-disable-next-line
   console.log(nodeStatus.changeType);
   // eslint-disable-next-line
-  console.log(print(nodeStatus.newNode) + '\n');
+  console.log(print(nodeStatus.newNode) + "\n");
 
   if (nodeStatus.substeps.length > 0) {
     // eslint-disable-next-line
-    console.log('\nsubsteps: ');
+    console.log("\nsubsteps: ");
     nodeStatus.substeps.forEach(substep => substep);
   }
 }

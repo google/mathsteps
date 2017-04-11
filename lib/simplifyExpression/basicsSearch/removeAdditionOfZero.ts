@@ -1,16 +1,15 @@
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
 
 // If `node` is an addition node with 0 as one of its operands,
 // remove 0 from the operands list. Returns a mathNode.Status object.
-function removeAdditionOfZero(node: any);
-function removeAdditionOfZero(node) {
-  if (node.op !== '+') {
+function removeAdditionOfZero(node: mathjs.MathNode) {
+  if (node.op !== "+") {
     return mathNode.Status.noChange(node);
   }
   const zeroIndex = node.args.findIndex(arg => {
-    return mathNode.Type.isConstant(arg) && arg.value === '0';
+    return mathNode.Type.isConstant(arg) && arg.value === "0";
   });
   let newNode = clone(node);
   if (zeroIndex >= 0) {

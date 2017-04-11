@@ -1,15 +1,15 @@
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
 
 // If `node` is a multiplication node with 1 as one of its operands,
 // remove 1 from the operands list. Returns a mathNode.Status object.
-function removeMultiplicationByOne(node) {
-  if (node.op !== '*') {
+function removeMultiplicationByOne(node: mathjs.MathNode) {
+  if (node.op !== "*") {
     return mathNode.Status.noChange(node);
   }
   const oneIndex = node.args.findIndex(arg => {
-    return mathNode.Type.isConstant(arg) && arg.value === '1';
+    return mathNode.Type.isConstant(arg) && arg.value === "1";
   });
   if (oneIndex >= 0) {
     let newNode = clone(node);

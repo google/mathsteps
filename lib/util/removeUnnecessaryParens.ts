@@ -1,6 +1,6 @@
-import checks = require('../checks');
-import LikeTermCollector = require('../simplifyExpression/collectAndCombineSearch/LikeTermCollector');
-import mathNode = require('../mathNode');
+import checks = require("../checks");
+import LikeTermCollector = require("../simplifyExpression/collectAndCombineSearch/LikeTermCollector");
+import mathNode = require("../mathNode");
 
 // Removes any parenthesis around nodes that can't be resolved further.
 // Input must be a top level expression.
@@ -42,7 +42,7 @@ function removeUnnecessaryParensSearch(node) {
     return node;
   }
   else {
-    throw Error('Unsupported node type: ' + node.type);
+    throw Error("Unsupported node type: " + node.type);
   }
 }
 
@@ -54,7 +54,7 @@ function removeUnnecessaryParensInOperatorNode(node) {
   // Special case: if the node is an exponent node and the base
   // is an operator, we should keep the parentheses for the base.
   // e.g. (2x)^2 -> (2x)^2 instead of 2x^2
-  if (node.op === '^' && mathNode.Type.isParenthesis(node.args[0])) {
+  if (node.op === "^" && mathNode.Type.isParenthesis(node.args[0])) {
     const base = node.args[0];
     if (mathNode.Type.isOperator(base.content)) {
       base.content = removeUnnecessaryParensSearch(base.content);
@@ -72,7 +72,7 @@ function removeUnnecessaryParensInOperatorNode(node) {
   // all they can be. If that expression is part of an addition or subtraction
   // operation, we can remove the parenthesis.
   // e.g. (x+4) + 12 -> x+4 + 12
-  if (node.op === '+') {
+  if (node.op === "+") {
     node.args.forEach((child, i) => {
       if (mathNode.Type.isParenthesis(child) &&
           !canCollectOrCombine(child.content)) {
@@ -85,7 +85,7 @@ function removeUnnecessaryParensInOperatorNode(node) {
   // This is different from addition because when subtracting a group of terms
   //in parenthesis, we want to distribute the subtraction.
   // e.g. `(2 + x) - (1 + x)` => `2 + x - (1 + x)` not `2 + x - 1 + x`
-  else if (node.op === '-') {
+  else if (node.op === "-") {
     if (mathNode.Type.isParenthesis(node.args[0]) &&
         !canCollectOrCombine(node.args[0].content)) {
       node.args[0] = node.args[0].content;
@@ -146,7 +146,7 @@ function removeUnnecessaryParensInParenthesisNode(node) {
   else if (mathNode.Type.isOperator(node.content)) {
     node.content = removeUnnecessaryParensSearch(node.content);
     // exponent nodes don't need parens around them
-    if (node.content.op === '^') {
+    if (node.content.op === "^") {
       node = node.content;
     }
   }
@@ -160,7 +160,7 @@ function removeUnnecessaryParensInParenthesisNode(node) {
     node.content = removeUnnecessaryParensSearch(node.content);
   }
   else {
-    throw Error('Unsupported node type: ' + node.content.type);
+    throw Error("Unsupported node type: " + node.content.type);
   }
 
   return node;

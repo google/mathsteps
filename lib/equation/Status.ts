@@ -1,18 +1,18 @@
-import ChangeTypes = require('../ChangeTypes');
-import Equation = require('./Equation');
-import mathNode = require('../mathNode');
+import ChangeTypes = require("../ChangeTypes");
+import Equation = require("./Equation");
+import mathNode = require("../mathNode");
 
 // This represents the current equation we're solving.
 // As we move step by step, an equation might be updated. Functions return this
 // status object to pass on the updated equation and information on if/how it was
 // changed.
 class Status {
-    constructor(changeType, oldEquation, newEquation, substeps=[]) {
+    constructor(changeType, oldEquation: Equation, newEquation: Equation, substeps=[]) {
         if (!newEquation) {
-            throw Error('new equation isn\'t defined');
+            throw Error("new equation isn't defined");
         }
-        if (changeType === undefined || typeof(changeType) !== 'string') {
-            throw Error('changetype isn\'t valid');
+        if (changeType === undefined || typeof(changeType) !== "string") {
+            throw Error("changetype isn't valid");
         }
 
         this.changeType = changeType;

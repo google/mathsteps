@@ -1,14 +1,14 @@
-import math = require('mathjs');
-import checks = require('../checks');
-import flattenOperands = require('../util/flattenOperands');
-import print = require('../util/print');
-import removeUnnecessaryParens = require('../util/removeUnnecessaryParens');
-import stepThrough = require('./stepThrough');
+import math = require("mathjs");
+import checks = require("../checks");
+import flattenOperands = require("../util/flattenOperands");
+import print = require("../util/print");
+import removeUnnecessaryParens = require("../util/removeUnnecessaryParens");
+import stepThrough = require("./stepThrough");
 
 
 // Given a mathjs expression node, steps through simplifying the expression.
 // Returns the simplified expression node.
-function simplify(node, debug=false) {
+function simplify(node: mathjs.MathNode, debug=false) {
   if (checks.hasUnsupportedNodes(node)) {
     return node;
   }
@@ -28,7 +28,7 @@ function simplify(node, debug=false) {
 
 // Unflattens a node so it is in the math.js style, by printing and parsing it
 // again
-function unflatten(node) {
+function unflatten(node: mathjs.MathNode) {
   return math.parse(print(node));
 }
 

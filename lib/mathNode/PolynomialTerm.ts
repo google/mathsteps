@@ -1,6 +1,7 @@
-import NodeCreator = require('./Creator');
-import NodeType = require('./Type');
-import evaluate = require('../util/evaluate');
+/// <reference path="../../node_modules/@types/mathjs/index.d.ts"/>
+import NodeCreator = require("./Creator");
+import NodeType = require("./Type");
+import evaluate = require("../util/evaluate");
 
 // For storing polynomial terms.
 // Has a symbol (e.g. x), maybe an exponent, and maybe a coefficient.
@@ -21,28 +22,28 @@ class PolynomialTerm {
     // if onlyImplicitMultiplication is true, an error will be thrown if `node`
     // is a polynomial term without implicit multiplication
     // (i.e. 2*x instead of 2x) and therefore isPolynomialTerm will return false.
-    constructor(node, onlyImplicitMultiplication=false) {
+    constructor(node: mathjs.MathNode, onlyImplicitMultiplication=false) {
         if (NodeType.isOperator(node)) {
-            if (node.op === '^') {
+            if (node.op === "^") {
                 const symbolNode = node.args[0];
                 if (!NodeType.isSymbol(symbolNode)) {
-                    throw Error('Expected symbol term, got ' + symbolNode);
+                    throw Error("Expected symbol term, got " + symbolNode);
                 }
                 this.symbol = symbolNode;
                 this.exponent = node.args[1];
             }
             // it's '*' ie it has a coefficient
-            else if (node.op === '*') {
+            else if (node.op === "*") {
                 if (onlyImplicitMultiplication && !node.implicit) {
-                    throw Error('Expected implicit multiplication');
+                    throw Error("Expected implicit multiplication");
                 }
                 if (node.args.length !== 2) {
-                    throw Error('Expected two arguments to *');
+                    throw Error("Expected two arguments to *");
                 }
                 const coeffNode = node.args[0];
                 if (!NodeType.isConstantOrConstantFraction(coeffNode)) {
-                    throw Error('Expected coefficient to be constant or fraction of ' +
-                        'constants term, got ' +
+                    throw Error("Expected coefficient to be constant or fraction of " +
+                        "constants term, got " +
                         coeffNode);
                 }
                 this.coeff = coeffNode;
@@ -50,35 +51,35 @@ class PolynomialTerm {
                     node.args[1],
                     onlyImplicitMultiplication);
                 if (nonCoefficientTerm.hasCoeff()) {
-                    throw Error('Cannot have two coefficients ' +
+                    throw Error("Cannot have two coefficients " +
                         coeffNode +
-                        ' and ' +
+                        " and " +
                         nonCoefficientTerm.getCoeffNode());
                 }
                 this.symbol = nonCoefficientTerm.getSymbolNode();
                 this.exponent = nonCoefficientTerm.getExponentNode();
             }
             // this means there's a fraction coefficient
-            else if (node.op === '/') {
+            else if (node.op === "/") {
                 const denominatorNode = node.args[1];
                 if (!NodeType.isConstant(denominatorNode)) {
-                    throw Error('denominator must be constant node, instead of ' +
+                    throw Error("denominator must be constant node, instead of " +
                         denominatorNode);
                 }
                 const numeratorNode = new PolynomialTerm(
                     node.args[0],
                     onlyImplicitMultiplication);
                 if (numeratorNode.hasFractionCoeff()) {
-                    throw Error('Polynomial terms cannot have nested fractions');
+                    throw Error("Polynomial terms cannot have nested fractions");
                 }
                 this.exponent = numeratorNode.getExponentNode();
                 this.symbol = numeratorNode.getSymbolNode();
                 const numeratorConstantNode = numeratorNode.getCoeffNode(true);
                 this.coeff = NodeCreator.operator(
-                    '/',
+                    "/",
                     [numeratorConstantNode, denominatorNode]);
             } else {
-                throw Error('Unsupported operatation for polynomial node: ' + node.op);
+                throw Error("Unsupported operatation for polynomial node: " + node.op);
             }
         } else if (NodeType.isUnaryMinus(node)) {
             var arg = node.args[0];
@@ -98,7 +99,7 @@ class PolynomialTerm {
         } else if (NodeType.isSymbol(node)) {
             this.symbol = node;
         } else {
-            throw Error('Unsupported node type: ' + node.type);
+            throw Error("Unsupported node type: " + node.type);
         }
     }
 
@@ -161,10 +162,10 @@ class PolynomialTerm {
     // e.g. x^2, 2y, z, 3x/5 are all terms. 4, 2+x, 3*7, x-z are all not terms.
     // See the tests for some more thorough examples of exactly what counts and
     // what does not.
-    isPolynomialTerm = (node, onlyImplicitMultiplication = false) => {
+    isPolynomialTerm = (node: mathjs.MathNode, onlyImplicitMultiplication = false) => {
         try {
             // will throw error if node isn't poly term
-            new PolynomialTerm(node, onlyImplicitMultiplication);
+            const temp = new PolynomialTerm(node, onlyImplicitMultiplication);
             return true;
         } catch (err) {
             return false;
@@ -173,9 +174,7 @@ class PolynomialTerm {
 
 // Multiplies `node`, a constant or fraction of two constant nodes, by -1
 // Returns a node
-    function
-
-    negativeCoefficient(node) {
+    negativeCoefficient(node: mathjs.MathNode) {
         if (NodeType.isConstant(node)) {
             node = NodeCreator.constant(0 - parseFloat(node.value));
         } else {

@@ -1,7 +1,7 @@
-import absoluteValue = require('./absoluteValue');
-import nthRoot = require('./nthRoot');
-const mathNode = require('../../node');
-import TreeSearch = require('../../TreeSearch');
+import absoluteValue = require("./absoluteValue");
+import nthRoot = require("./nthRoot");
+import mathNode = require("../../mathnode");
+import TreeSearch = require("../../TreeSearch");
 const FUNCTIONS = [
   nthRoot,
   absoluteValue
@@ -13,8 +13,7 @@ const FUNCTIONS = [
 const search = TreeSearch.postOrder(functions);
 
 // Evaluates a function call if possible. Returns a mathNode.Status object.
-function functions(node: any);
-function functions(node) {
+function functions(node: mathjs.MathNode) {
   if (!mathNode.Type.isFunction(node)) {
     return mathNode.Status.noChange(node);
   }

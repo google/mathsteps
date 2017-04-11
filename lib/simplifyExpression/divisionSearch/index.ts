@@ -1,14 +1,13 @@
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
-import TreeSearch = require('../../TreeSearch');
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
+import TreeSearch = require("../../TreeSearch");
 
 // Searches for and simplifies any chains of division or nested division.
 // Returns a mathNode.Status object
 const search = TreeSearch.preOrder(division);
 
-function division(node: any);
-function division(node) {
-  if (!mathNode.Type.isOperator(node) || node.op !== '/') {
+function division(node: mathjs.MathNode) {
+  if (!mathNode.Type.isOperator(node) || node.op !== "/") {
     return mathNode.Status.noChange(node);
   }
   // e.g. 2/(x/6) => 2 * 6/x
@@ -27,13 +26,13 @@ function division(node) {
 // If `node` is a fraction with a denominator that is also a fraction, multiply
 // by the inverse.
 // e.g. x/(2/3) -> x * 3/2
-function multiplyByInverse(node: any);
-function multiplyByInverse(node) {
+
+function multiplyByInverse(node: mathjs.MathNode) {
   let denominator = node.args[1];
   if (mathNode.Type.isParenthesis(denominator)) {
     denominator = denominator.content;
   }
-  if (!mathNode.Type.isOperator(denominator) || denominator.op !== '/') {
+  if (!mathNode.Type.isOperator(denominator) || denominator.op !== "/") {
     return mathNode.Status.noChange(node);
   }
   // At this point, we know that node is a fraction and denonimator is the
@@ -41,9 +40,9 @@ function multiplyByInverse(node) {
   const inverseNumerator = denominator.args[1];
   const inverseDenominator = denominator.args[0];
   const inverseFraction = mathNode.Creator.operator(
-    '/', [inverseNumerator, inverseDenominator]);
+    "/", [inverseNumerator, inverseDenominator]);
 
-  const newNode = mathNode.Creator.operator('*', [node.args[0], inverseFraction]);
+  const newNode = mathNode.Creator.operator("*", [node.args[0], inverseFraction]);
   return mathNode.Status.nodeChanged(
     ChangeTypes.MULTIPLY_BY_INVERSE, node, newNode);
 }
@@ -51,8 +50,7 @@ function multiplyByInverse(node) {
 // Simplifies any chains of division into a single division operation.
 // e.g. 2/x/6 -> 2/(x*6)
 // Returns a mathNode.Status object
-function simplifyDivisionChain(node: any);
-function simplifyDivisionChain(node) {
+function simplifyDivisionChain(node: mathjs.MathNode) {
   // check for a chain of division
   const denominatorList = getDenominatorList(node);
   // one for the numerator, and at least two terms in the denominator
@@ -61,8 +59,8 @@ function simplifyDivisionChain(node) {
     // the new single denominator is all the chained denominators
     // multiplied together, in parentheses.
     const denominator = mathNode.Creator.parenthesis(
-      mathNode.Creator.operator('*', denominatorList));
-    const newNode = mathNode.Creator.operator('/', [numerator, denominator]);
+      mathNode.Creator.operator("*", denominatorList));
+    const newNode = mathNode.Creator.operator("/", [numerator, denominator]);
     return mathNode.Status.nodeChanged(
       ChangeTypes.SIMPLIFY_DIVISION, node, newNode);
   }
@@ -72,11 +70,11 @@ function simplifyDivisionChain(node) {
 // Given a the denominator of a division node, returns all the nested
 // denominator nodess. e.g. 2/3/4/5 would return [2,3,4,5]
 // (note: all the numbers in the example are actually constant nodes)
-function getDenominatorList(denominator: any);
+
 function getDenominatorList(denominator) {
   let node = denominator;
   const denominatorList = [];
-  while (node.op === '/') {
+  while (node.op === "/") {
     // unshift the denominator to the front of the list, and recurse on
     // the numerator
     denominatorList.unshift(node.args[1]);

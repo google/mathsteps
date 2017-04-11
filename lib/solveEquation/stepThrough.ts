@@ -1,15 +1,15 @@
-import ChangeTypes = require('../ChangeTypes');
-import checks = require('../checks');
-import Equation = require('../equation/Equation');
-import EquationOperations = require('./EquationOperations');
-import EquationStatus = require('../equation/Status');
-import evaluate = require('../util/evaluate');
-import flattenOperands = require('../util/flattenOperands');
-import mathNode = require('../mathnode');
-import removeUnnecessaryParens = require('../util/removeUnnecessaryParens');
-import simplifyExpressionNode = require('../simplifyExpression/stepThrough');
-import Symbols = require('../Symbols');
-const COMPARATOR_TO_FUNCTION = {
+import ChangeTypes = require("../ChangeTypes");
+import checks = require("../checks");
+import Equation = require("../equation/Equation");
+import EquationOperations = require("./EquationOperations");
+import EquationStatus = require("../equation/Status");
+import evaluate = require("../util/evaluate");
+import flattenOperands = require("../util/flattenOperands");
+import mathNode = require("../mathnode");
+import removeUnnecessaryParens = require("../util/removeUnnecessaryParens");
+import simplifyExpressionNode = require("../simplifyExpression/stepThrough");
+import Symbols = require("../Symbols");
+const comparatorToFunction = {
     '='(left, right) { return left === right; },
     '>'(left, right) { return left > right; },
     '>='(left, right) { return left >= right; },
@@ -21,13 +21,13 @@ const COMPARATOR_TO_FUNCTION = {
 // the solution. Possible solutions include:
 // - solving for a variable (e.g. 'x=3' for '3x=4+5')
 // - the result of comparing values (e.g. 'true' for 3 = 3, 'false' for 3 < 2)
-function stepThrough(leftNode, rightNode, comparator, debug=false) {
+function stepThrough(leftNode: mathjs.MathNode, rightNode: mathjs.MathNode, comparator, debug=false) {
   let equation = new Equation(leftNode, rightNode, comparator);
 
   if (debug) {
     // eslint-disable-next-line
       // unsure whether or not the second paramter should be a thing?
-    console.log('\n\nSolving: ' + equation.print(false));
+    console.log("\n\nSolving: " + equation.print(false));
   }
 
   // we can't solve/find steps if there are any unsupported nodes
@@ -47,7 +47,7 @@ function stepThrough(leftNode, rightNode, comparator, debug=false) {
   let steps = [];
 
   const originalEquationStr = equation.print();
-  const MAX_STEP_COUNT = 20;
+  const maxStepCount = 20;
   let iters = 0;
 
   // Step through the math equation until nothing changes
@@ -72,9 +72,9 @@ function stepThrough(leftNode, rightNode, comparator, debug=false) {
     }
     catch (e) {
       // This error happens for some math that we don't support
-      if (e.message.startsWith('No term with symbol: ')) {
+      if (e.message.startsWith("No term with symbol: ")) {
         // eslint-disable-next-line
-        console.error('Math error: ' + e.message + ', returning no steps');
+        console.error("Math error: " + e.message + ", returning no steps");
         return [];
       }
       else {
@@ -85,9 +85,9 @@ function stepThrough(leftNode, rightNode, comparator, debug=false) {
     if (equationStatus.hasChanged()) {
       if (equationStatus.newEquation.print().length > 300) {
         // eslint-disable-next-line
-        throw Error('Math error: Potential infinite loop for equation ' +
-                    originalEquationStr +  '. It reached over 300 characters '+
-                    ' long, so returning no steps');
+        throw Error("Math error: Potential infinite loop for equation " +
+                    originalEquationStr +  ". It reached over 300 characters "+
+                    " long, so returning no steps");
       }
       if (debug) {
         logSteps(equationStatus);
@@ -96,10 +96,10 @@ function stepThrough(leftNode, rightNode, comparator, debug=false) {
     }
 
     equation = EquationStatus.resetChangeGroups(equationStatus.newEquation);
-    if (iters++ === MAX_STEP_COUNT) {
+    if (iters++ === maxStepCount) {
       // eslint-disable-next-line
-      console.error('Math error: Potential infinite loop for equation: ' +
-                    originalEquationStr + ', returning no steps');
+      console.error("Math error: Potential infinite loop for equation: " +
+                    originalEquationStr + ", returning no steps");
       return [];
     }
   } while (equationStatus.hasChanged());
@@ -109,11 +109,11 @@ function stepThrough(leftNode, rightNode, comparator, debug=false) {
 
 // Given an equation of constants, will simplify both sides, returning
 // the steps and the result of the equation e.g. 'True' or 'False'
-function solveConstantEquation(equation, debug, steps=[]) {
-  const compareFunction = COMPARATOR_TO_FUNCTION[equation.comparator];
+function solveConstantEquation(equation: Equation, debug, steps=[]) {
+  const compareFunction = comparatorToFunction[equation.comparator];
 
   if (!compareFunction) {
-    throw Error('Unexpected comparator');
+    throw Error("Unexpected comparator");
   }
 
   steps = addSimplificationSteps(steps, equation, debug);
@@ -130,7 +130,7 @@ function solveConstantEquation(equation, debug, steps=[]) {
 
   if (!mathNode.Type.isConstantOrConstantFraction(equation.leftNode, true) ||
       !mathNode.Type.isConstantOrConstantFraction(equation.rightNode, true)) {
-    throw Error('Expected both nodes to be constants, instead got: ' +
+    throw Error("Expected both nodes to be constants, instead got: " +
                 equation.print());
   }
 
@@ -150,13 +150,12 @@ function solveConstantEquation(equation, debug, steps=[]) {
   if (debug) {
     logSteps(equationStatus);
   }
-  steps.push(equationStatus);
+  steps.push((equationStatus) as any);
   return steps;
 }
 
 // Given a symbol and an equation, performs a single step to
 // solve for the symbol. Returns an Status object.
-function step(equation: any, symbolName: any);
 function step(equation, symbolName) {
   const solveFunctions = [
     // ensure the symbol is always on the left node
@@ -180,7 +179,7 @@ function step(equation, symbolName) {
 }
 
 // Simplifies the equation and returns the simplification steps
-function addSimplificationSteps(steps, equation, debug=false) {
+function addSimplificationSteps(steps, equation: Equation, debug=false) {
   let oldEquation = equation.clone();
 
   const leftSteps = simplifyExpressionNode(equation.leftNode, false);
@@ -248,15 +247,14 @@ function addSimplificationSteps(steps, equation, debug=false) {
   return steps;
 }
 
-function logSteps(equationStatus: any);
-function logSteps(equationStatus) {
+function logSteps(equationStatus: EquationStatus) {
   // eslint-disable-next-line
-  console.log('\n' + equationStatus.changeType);
+  console.log("\n" + equationStatus.changeType);
   // eslint-disable-next-line
   console.log(equationStatus.newEquation.print());
   if (equationStatus.substeps.length > 0) {
     // eslint-disable-next-line
-    console.log('\n substeps: ');
+    console.log("\n substeps: ");
     equationStatus.substeps.forEach(logSteps);
   }
 }

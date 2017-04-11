@@ -1,11 +1,11 @@
-import clone = require('../../util/clone');
-import print = require('../../util/print');
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
-import Util = require('../../util/Util');
-const CONSTANT = 'constant';
-const CONSTANT_FRACTION = 'constantFraction';
-const OTHER = 'other';
+import clone = require("../../util/clone");
+import print = require("../../util/print");
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
+import Util = require("../../util/Util");
+const constant = "constant";
+const constantFraction = "constantFraction";
+const other = "other";
 
 class LikeTermCollector{
 
@@ -16,19 +16,19 @@ class LikeTermCollector{
     // Note that we never collect like terms with - or /, those expressions will
     // always be manipulated in flattenOperands so that the top level operation is
     // + or *.
-    if (!(mathNode.Type.isOperator(node, '+') || mathNode.Type.isOperator(node, '*'))) {
+    if (!(mathNode.Type.isOperator(node, "+") || mathNode.Type.isOperator(node, "*"))) {
         return false;
     }
 
     let terms;
-    if (node.op === '+') {
+    if (node.op === "+") {
         terms = getTermsForCollectingAddition(node);
     }
-    else if (node.op === '*') {
+    else if (node.op === "*") {
         terms = getTermsForCollectingMultiplication(node);
     }
     else {
-        throw Error('Operation not supported: ' + node.op);
+        throw Error("Operation not supported: " + node.op);
     }
 
     // Conditions we need to meet to decide to to reorganize (collect) the terms:
@@ -37,7 +37,7 @@ class LikeTermCollector{
     // (note that this means x^2 + x + x + 2 -> x^2 + (x + x) + 2,
     // which will be recorded as a step, but doesn't change the order of terms)
     const termTypes = Object.keys(terms);
-    const filteredTermTypes = termTypes.filter(x => x !== OTHER);
+    const filteredTermTypes = termTypes.filter(x => x !== other);
     return (termTypes.length > 1 &&
         filteredTermTypes.some(x => terms[x].length > 1));
 };
@@ -50,35 +50,35 @@ collectLikeTerms = node => {
 
     const op = node.op;
     let terms: {};
-    if (op === '+') {
+    if (op === "+") {
         terms = getTermsForCollectingAddition(node);
     }
-    else if (op === '*') {
+    else if (op === "*") {
         terms = getTermsForCollectingMultiplication(node);
     }
     else {
-        throw Error('Operation not supported: ' + op);
+        throw Error("Operation not supported: " + op);
     }
 
     // List the symbols alphabetically
     const termTypesSorted = Object.keys(terms)
-        .filter(x => (x !== CONSTANT && x !== CONSTANT_FRACTION && x !== OTHER))
+        .filter(x => (x !== constant && x !== constantFraction && x !== other))
         .sort(sortTerms);
 
 
     // Then add const
-    if (terms[CONSTANT]) {
+    if (terms[constant]) {
         // at the end for addition (since we'd expect x^2 + (x + x) + 4)
-        if (op === '+') {
-            termTypesSorted.push(CONSTANT);
+        if (op === "+") {
+            termTypesSorted.push(constant);
         }
         // for multipliation it should be at the front (e.g. (3*4) * x^2)
-        if (op === '*') {
-            termTypesSorted.unshift(CONSTANT);
+        if (op === "*") {
+            termTypesSorted.unshift(constant);
         }
     }
-    if (terms[CONSTANT_FRACTION]) {
-        termTypesSorted.push(CONSTANT_FRACTION);
+    if (terms[constantFraction]) {
+        termTypesSorted.push(constantFraction);
     }
 
     // Collect the new operands under op.
@@ -105,8 +105,8 @@ collectLikeTerms = node => {
     });
 
     // then stick anything else (paren nodes, operator nodes) at the end
-    if (terms[OTHER]) {
-        newOperands = newOperands.concat(terms[OTHER]);
+    if (terms[other]) {
+        newOperands = newOperands.concat(terms[other]);
     }
 
     const newNode = clone(node);
@@ -123,9 +123,9 @@ function getTermName(node, op) {
   // we 'name' polynomial terms by their symbol name
   let termName = polyNode.getSymbolName();
   // when adding terms, the exponent matters too (e.g. 2x^2 + 5x^3 can't be combined)
-  if (op === '+') {
+  if (op === "+") {
     const exponent = print(polyNode.getExponentNode(true));
-    termName += '^' + exponent;
+    termName += "^" + exponent;
   }
   return termName;
 }
@@ -141,36 +141,36 @@ function getTermsForCollectingAddition(node) {
     const child = node.args[i];
 
     if (mathNode.PolynomialTerm.isPolynomialTerm(child)) {
-      const termName = getTermName(child, '+');
+      const termName = getTermName(child, "+");
       terms = Util.appendToArrayInObject(terms, termName, child);
     }
     else if (mathNode.Type.isIntegerFraction(child)) {
-      terms = Util.appendToArrayInObject(terms, CONSTANT_FRACTION, child);
+      terms = Util.appendToArrayInObject(terms, constantFraction, child);
     }
     else if (mathNode.Type.isConstant(child)) {
-      terms = Util.appendToArrayInObject(terms, CONSTANT, child);
+      terms = Util.appendToArrayInObject(terms, constant, child);
     }
     else if (mathNode.Type.isOperator(node) ||
              mathNode.Type.isFunction(node) ||
              mathNode.Type.isParenthesis(node) ||
              mathNode.Type.isUnaryMinus(node)) {
-      terms = Util.appendToArrayInObject(terms, OTHER, child);
+      terms = Util.appendToArrayInObject(terms, other, child);
     }
     else {
       // Note that we shouldn't get any symbol nodes in the switch statement
       // since they would have been handled by isPolynomialTerm
-      throw Error('Unsupported node type: ' + child.type);
+      throw Error("Unsupported node type: " + child.type);
     }
   }
   // If there's exactly one constant and one fraction, we collect them
   // to add them together.
   // e.g. 2 + 1/3 + 5 would collect the constants (2+5) + 1/3
   // but 2 + 1/3 + x would collect (2 + 1/3) + x so we can add them together
-  if (terms[CONSTANT] && terms[CONSTANT].length === 1 &&
-     terms[CONSTANT_FRACTION] && terms[CONSTANT_FRACTION].length === 1) {
-    const fraction = terms[CONSTANT_FRACTION][0];
-    terms = Util.appendToArrayInObject(terms, CONSTANT, fraction);
-    delete terms[CONSTANT_FRACTION];
+  if (terms[constant] && terms[constant].length === 1 &&
+     terms[constantFraction] && terms[constantFraction].length === 1) {
+    const fraction = terms[constantFraction][0];
+    terms = Util.appendToArrayInObject(terms, constant, fraction);
+    delete terms[constantFraction];
   }
 
   return terms;
@@ -191,28 +191,28 @@ function getTermsForCollectingMultiplication(node) {
 
     if (mathNode.Type.isUnaryMinus(child)) {
       terms = Util.appendToArrayInObject(
-        terms, CONSTANT, mathNode.Creator.constant(-1));
+        terms, constant, mathNode.Creator.constant(-1));
       child = child.args[0];
     }
     if (mathNode.PolynomialTerm.isPolynomialTerm(child)) {
       terms = addToTermsforPolynomialMultiplication(terms, child);
     }
     else if (mathNode.Type.isIntegerFraction(child)) {
-      terms = Util.appendToArrayInObject(terms, CONSTANT, child);
+      terms = Util.appendToArrayInObject(terms, constant, child);
     }
     else if (mathNode.Type.isConstant(child)) {
-      terms = Util.appendToArrayInObject(terms, CONSTANT, child);
+      terms = Util.appendToArrayInObject(terms, constant, child);
     }
     else if (mathNode.Type.isOperator(node) ||
              mathNode.Type.isFunction(node) ||
              mathNode.Type.isParenthesis(node) ||
              mathNode.Type.isUnaryMinus(node)) {
-      terms = Util.appendToArrayInObject(terms, OTHER, child);
+      terms = Util.appendToArrayInObject(terms, other, child);
     }
     else {
       // Note that we shouldn't get any symbol nodes in the switch statement
       // since they would have been handled by isPolynomialTerm
-      throw Error('Unsupported node type: ' + child.type);
+      throw Error("Unsupported node type: " + child.type);
     }
   }
   return terms;
@@ -229,7 +229,7 @@ function addToTermsforPolynomialMultiplication(terms, node) {
   let termName;
 
   if (!polyNode.hasCoeff()) {
-    termName = getTermName(node, '*');
+    termName = getTermName(node, "*");
     terms = Util.appendToArrayInObject(terms, termName, node);
   }
   else {
@@ -237,11 +237,11 @@ function addToTermsforPolynomialMultiplication(terms, node) {
     let termWithoutCoefficient = polyNode.getSymbolNode();
     if (polyNode.getExponentNode()) {
       termWithoutCoefficient = mathNode.Creator.operator(
-        '^', [termWithoutCoefficient, polyNode.getExponentNode()]);
+        "^", [termWithoutCoefficient, polyNode.getExponentNode()]);
     }
 
-    terms = Util.appendToArrayInObject(terms, CONSTANT, coefficient);
-    termName = getTermName(termWithoutCoefficient, '*');
+    terms = Util.appendToArrayInObject(terms, constant, coefficient);
+    termName = getTermName(termWithoutCoefficient, "*");
     terms = Util.appendToArrayInObject(terms, termName, termWithoutCoefficient);
   }
   return terms;
@@ -253,15 +253,15 @@ function sortTerms(a, b) {
     return 0;
   }
   // if no exponent, sort alphabetically
-  if (a.indexOf('^') === -1) {
+  if (a.indexOf("^") === -1) {
     return a < b ? -1 : 1;
   }
   // if exponent: sort by symbol, but then exponent decreasing
   else {
-    const symbA = a.split('^')[0];
-    const expA = a.split('^')[1];
-    const symbB = b.split('^')[0];
-    const expB = b.split('^')[1];
+    const symbA = a.split("^")[0];
+    const expA = a.split("^")[1];
+    const symbB = b.split("^")[0];
+    const expB = b.split("^")[1];
     if (symbA !== symbB) {
       return symbA < symbB ? -1 : 1;
     }

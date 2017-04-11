@@ -1,14 +1,13 @@
-import clone = require('../../util/clone');
-import math = require('mathjs');
-import ChangeTypes = require('../../ChangeTypes');
-import evaluate = require('../../util/evaluate');
-const mathNode = require('../../node');
+import clone = require("../../util/clone");
+import math = require("mathjs");
+import ChangeTypes = require("../../ChangeTypes");
+import evaluate = require("../../util/evaluate");
+import  mathNode = require("../../mathnode");
 
 // Evaluates abs() function if it's on a single constant value.
 // Returns a mathNode.Status object.
-function absoluteValue(node: any);
-function absoluteValue(node) {
-  if (!mathNode.Type.isFunction(node, 'abs')) {
+function absoluteValue(node: mathjs.MathNode) {
+  if (!mathNode.Type.isFunction(node, "abs")) {
     return mathNode.Status.noChange(node);
   }
   if (node.args.length > 1) {
@@ -26,7 +25,7 @@ function absoluteValue(node) {
       math.abs(evaluate(argument.args[0])));
     const newDenominator =  mathNode.Creator.constant(
       math.abs(evaluate(argument.args[1])));
-    newNode = mathNode.Creator.operator('/', [newNumerator, newDenominator]);
+    newNode = mathNode.Creator.operator("/", [newNumerator, newDenominator]);
     return mathNode.Status.nodeChanged(
       ChangeTypes.ABSOLUTE_VALUE, node, newNode);
   }

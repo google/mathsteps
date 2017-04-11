@@ -3,20 +3,20 @@
  * These are always the first simplifications that are attempted.
  */
 
-import mathNode = require('../../mathnode');
-import TreeSearch = require('../../TreeSearch');
-import rearrangeCoefficient = require('./rearrangeCoefficient');
-import reduceExponentByZero = require('./reduceExponentByZero');
-import reduceMultiplicationByZero = require('./reduceMultiplicationByZero');
-import reduceZeroDividedByAnything = require('./reduceZeroDividedByAnything');
-import removeAdditionOfZero = require('./removeAdditionOfZero');
-import removeDivisionByOne = require('./removeDivisionByOne');
-import removeExponentBaseOne = require('./removeExponentBaseOne');
-import removeExponentByOne = require('./removeExponentByOne');
-import removeMultiplicationByNegativeOne = require('./removeMultiplicationByNegativeOne');
-import removeMultiplicationByOne = require('./removeMultiplicationByOne');
-import simplifyDoubleUnaryMinus = require('./simplifyDoubleUnaryMinus');
-const SIMPLIFICATION_FUNCTIONS = [
+import mathNode = require("../../mathnode");
+import TreeSearch = require("../../TreeSearch");
+import rearrangeCoefficient = require("./rearrangeCoefficient");
+import reduceExponentByZero = require("./reduceExponentByZero");
+import reduceMultiplicationByZero = require("./reduceMultiplicationByZero");
+import reduceZeroDividedByAnything = require("./reduceZeroDividedByAnything");
+import removeAdditionOfZero = require("./removeAdditionOfZero");
+import removeDivisionByOne = require("./removeDivisionByOne");
+import removeExponentBaseOne = require("./removeExponentBaseOne");
+import removeExponentByOne = require("./removeExponentByOne");
+import removeMultiplicationByNegativeOne = require("./removeMultiplicationByNegativeOne");
+import removeMultiplicationByOne = require("./removeMultiplicationByOne");
+import simplifyDoubleUnaryMinus = require("./simplifyDoubleUnaryMinus");
+const simplificationFunctions = [
   // multiplication by 0 yields 0
   reduceMultiplicationByZero,
   // division of 0 by something yields 0
@@ -45,10 +45,9 @@ const SIMPLIFICATION_FUNCTIONS = [
 const search = TreeSearch.preOrder(basics);
 
 // Look for basic step(s) to perform on a node. Returns a mathNode.Status object.
-function basics(node: any);
-function basics(node) {
-  for (let i = 0; i < SIMPLIFICATION_FUNCTIONS.length; i++) {
-    const nodeStatus = SIMPLIFICATION_FUNCTIONS[i](node);
+function basics(node: mathjs.MathNode) {
+  for (let i = 0; i < simplificationFunctions.length; i++) {
+    const nodeStatus = simplificationFunctions[i](node);
     if (nodeStatus.hasChanged()) {
       return nodeStatus;
     }

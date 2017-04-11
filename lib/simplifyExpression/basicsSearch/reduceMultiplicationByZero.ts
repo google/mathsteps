@@ -1,15 +1,14 @@
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
 
 // If `node` is a multiplication node with 0 as one of its operands,
 // reduce the node to 0. Returns a mathNode.Status object.
-function reduceMultiplicationByZero(node: any);
-function reduceMultiplicationByZero(node) {
-  if (node.op !== '*') {
+function reduceMultiplicationByZero(node: mathjs.MathNode) {
+  if (node.op !== "*") {
     return mathNode.Status.noChange(node);
   }
   const zeroIndex = node.args.findIndex(arg => {
-    if (mathNode.Type.isConstant(arg) && arg.value === '0') {
+    if (mathNode.Type.isConstant(arg) && arg.value === "0") {
       return true;
     }
     if (mathNode.PolynomialTerm.isPolynomialTerm(arg)) {

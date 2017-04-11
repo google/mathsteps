@@ -1,19 +1,18 @@
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import Negative = require('../../Negative');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import Negative = require("../../Negative");
+import mathNode = require("../../mathnode");
 
 // If `node` is a multiplication node with -1 as one of its operands,
 // and a non constant as the next operand, remove -1 from the operands
 // list and make the next term have a unary minus.
 // Returns a mathNode.Status object.
-function removeMultiplicationByNegativeOne(node: any);
-function removeMultiplicationByNegativeOne(node) {
-  if (node.op !== '*') {
+function removeMultiplicationByNegativeOne(node: mathjs.MathNode) {
+  if (node.op !== "*") {
     return mathNode.Status.noChange(node);
   }
   const minusOneIndex = node.args.findIndex(arg => {
-    return mathNode.Type.isConstant(arg) && arg.value === '-1';
+    return mathNode.Type.isConstant(arg) && arg.value === "-1";
   });
   if (minusOneIndex < 0) {
     return mathNode.Status.noChange(node);

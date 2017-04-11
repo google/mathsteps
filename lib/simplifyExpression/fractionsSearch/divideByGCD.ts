@@ -1,7 +1,7 @@
-import math = require('mathjs');
-import ChangeTypes = require('../../ChangeTypes');
-import evaluate = require('../../util/evaluate');
-import mathNode = require('../../mathnode');
+import math = require("mathjs");
+import ChangeTypes = require("../../ChangeTypes");
+import evaluate = require("../../util/evaluate");
+import mathNode = require("../../mathnode");
 
 // Simplifies a fraction (with constant numerator and denominator) by dividing
 // the top and bottom by the GCD, if possible.
@@ -12,9 +12,8 @@ import mathNode = require('../../mathnode');
 // Note that our goal is for the denominator to always be positive. If it
 // isn't, we can simplify signs.
 // Returns a mathNode.Status object
-function divideByGCD(fraction: any);
-function divideByGCD(fraction) {
-  if (!mathNode.Type.isOperator(fraction) || fraction.op !== '/') {
+function divideByGcd(fraction) {
+  if (!mathNode.Type.isOperator(fraction) || fraction.op !== "/") {
     return mathNode.Status.noChange(fraction);
   }
   // If it's not an integer fraction, all we can do is simplify signs
@@ -48,11 +47,11 @@ function divideByGCD(fraction) {
   }
   else {
     newFraction = mathNode.Creator.operator(
-      '/', [newNumeratorNode, newDenominatorNode]);
+      "/", [newNumeratorNode, newDenominatorNode]);
   }
 
   return mathNode.Status.nodeChanged(
     ChangeTypes.SIMPLIFY_FRACTION, fraction, newFraction);
 }
 
-export = divideByGCD;
+export = divideByGcd;

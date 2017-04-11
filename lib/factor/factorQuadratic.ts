@@ -1,12 +1,13 @@
-import math = require('mathjs');
-import ConstantFactors = require('./ConstantFactors');
-import ChangeTypes = require('../ChangeTypes');
-import checks = require('../checks');
-import evaluate = require('../util/evaluate');
-import flatten = require('../util/flattenOperands');
-import Negative = require('../Negative');
-import mathNode = require('../mathNode');
-const FACTOR_FUNCTIONS = [
+/// <reference path="../../node_modules/@types/mathjs/index.d.ts"/>
+import math = require("mathjs");
+import ConstantFactors = require("./ConstantFactors");
+import ChangeTypes = require("../ChangeTypes");
+import checks = require("../checks");
+import evaluate = require("../util/evaluate");
+import flatten = require("../util/flattenOperands");
+import Negative = require("../Negative");
+import mathNode = require("../mathNode");
+const factorFunctions = [
   // factor just the symbol e.g. x^2 + 2x -> x(x + 2)
   factorSymbol,
   // factor difference of squares e.g. x^2 - 4
@@ -27,7 +28,7 @@ const FACTOR_FUNCTIONS = [
 //    - TODO: quadratic formula
 //        requires us simplify the following only within the parens:
 //        a(x - (-b + sqrt(b^2 - 4ac)) / 2a)(x - (-b - sqrt(b^2 - 4ac)) / 2a)
-function factorQuadratic(node) {
+function factorQuadratic(node: mathjs.MathNode) {
   node = flatten(node);
   if (!checks.isQuadratic(node)) {
     return mathNode.Status.noChange(node);
@@ -42,11 +43,11 @@ function factorQuadratic(node) {
       else if (mathNode.PolynomialTerm.isPolynomialTerm(term)) {
           const polyTerm = new mathNode.PolynomialTerm(term);
       const exponent = polyTerm.getExponentNode(true);
-      if (exponent.value === '2') {
+      if (exponent.value === "2") {
         symbol = polyTerm.getSymbolNode();
         aValue = polyTerm.getCoeffValue();
       }
-      else if (exponent.value === '1') {
+      else if (exponent.value === "1") {
         bValue = polyTerm.getCoeffValue();
       }
       else {
@@ -70,8 +71,8 @@ function factorQuadratic(node) {
     cValue = -cValue;
   }
 
-  for (let i = 0; i < FACTOR_FUNCTIONS.length; i++) {
-    const nodeStatus = FACTOR_FUNCTIONS[i](node, symbol, aValue, bValue, cValue, negate);
+  for (let i = 0; i < factorFunctions.length; i++) {
+    const nodeStatus = factorFunctions[i](node, symbol, aValue, bValue, cValue, negate);
     if (nodeStatus.hasChanged()) {
       return nodeStatus;
     }
@@ -81,7 +82,7 @@ function factorQuadratic(node) {
 }
 
 // Will factor the node if it's in the form of ax^2 + bx
-function factorSymbol(node, symbol, aValue, bValue, cValue, negate) {
+function factorSymbol(node: mathjs.MathNode, symbol, aValue: number, bValue: number, cValue: number, negate: boolean) {
   if (!bValue || cValue) {
       return mathNode.Status.noChange(node);
   }
@@ -94,9 +95,9 @@ function factorSymbol(node, symbol, aValue, bValue, cValue, negate) {
   const factoredNode = mathNode.Creator.polynomialTerm(symbol, null, gcdNode);
   const polyTerm = mathNode.Creator.polynomialTerm(symbol, null, aNode);
   const paren = mathNode.Creator.parenthesis(
-      mathNode.Creator.operator('+', [polyTerm, bNode]));
+      mathNode.Creator.operator("+", [polyTerm, bNode]));
 
-  let newNode = mathNode.Creator.operator('*', [factoredNode, paren], true);
+  let newNode = mathNode.Creator.operator("*", [factoredNode, paren], true);
   if (negate) {
     newNode = Negative.negate(newNode);
   }
@@ -107,7 +108,7 @@ function factorSymbol(node, symbol, aValue, bValue, cValue, negate) {
 // Will factor the node if it's in the form of ax^2 - c, and the aValue
 // and cValue are perfect squares
 // e.g. 4x^2 - 4 -> (2x + 2)(2x - 2)
-function factorDifferenceOfSquares(node, symbol, aValue, bValue?, cValue?, negate?) {
+function factorDifferenceOfSquares(node: mathjs.MathNode, symbol, aValue: number, bValue?: number, cValue?: number, negate?: boolean) {
   // check if difference of squares: (i) abs(a) and abs(c) are squares, (ii) b = 0,
   // (iii) c is negative
   if (bValue || !cValue) {
@@ -127,12 +128,12 @@ function factorDifferenceOfSquares(node, symbol, aValue, bValue?, cValue?, negat
 
     const polyTerm = mathNode.Creator.polynomialTerm(symbol, null, aRootNode);
     const firstParen = mathNode.Creator.parenthesis(
-      mathNode.Creator.operator('+', [polyTerm, cRootNode]));
+      mathNode.Creator.operator("+", [polyTerm, cRootNode]));
     const secondParen = mathNode.Creator.parenthesis(
-      mathNode.Creator.operator('-', [polyTerm, cRootNode]));
+      mathNode.Creator.operator("-", [polyTerm, cRootNode]));
 
     // create node in difference of squares form
-    let newNode = mathNode.Creator.operator('*', [firstParen, secondParen], true);
+    let newNode = mathNode.Creator.operator("*", [firstParen, secondParen], true);
     if (negate) {
       newNode = Negative.negate(newNode);
     }
@@ -147,7 +148,7 @@ function factorDifferenceOfSquares(node, symbol, aValue, bValue?, cValue?, negat
 // Will factor the node if it's in the form of ax^2 + bx + c, where a and c
 // are perfect squares and b = 2*sqrt(a)*sqrt(c)
 // e.g. x^2 + 2x + 1 -> (x + 1)^2
-function factorPerfectSquare(node, symbol, aValue, bValue, cValue, negate) {
+function factorPerfectSquare(node: mathjs.MathNode, symbol, aValue: number, bValue: number, cValue: number, negate: boolean) {
   // check if perfect square: (i) a and c squares, (ii) b = 2*sqrt(a)*sqrt(c)
   if (!bValue || !cValue) {
     return mathNode.Status.noChange(node);
@@ -173,11 +174,11 @@ function factorPerfectSquare(node, symbol, aValue, bValue, cValue, negate) {
 
     const polyTerm = mathNode.Creator.polynomialTerm(symbol, null, aRootNode);
     const paren = mathNode.Creator.parenthesis(
-        mathNode.Creator.operator('+', [polyTerm, cRootNode]));
+        mathNode.Creator.operator("+", [polyTerm, cRootNode]));
     const exponent = mathNode.Creator.constant(2);
 
     // create node in perfect square form
-    let newNode = mathNode.Creator.operator('^', [paren, exponent]);
+    let newNode = mathNode.Creator.operator("^", [paren, exponent]);
     if (negate) {
       newNode = Negative.negate(newNode);
     }
@@ -192,19 +193,19 @@ function factorPerfectSquare(node, symbol, aValue, bValue, cValue, negate) {
 // Will factor the node if it's in the form of x^2 + bx + c (i.e. a is 1), by
 // applying the sum product rule: finding factors of c that add up to b.
 // e.g. x^2 + 3x + 2 -> (x + 1)(x + 2)
-function factorSumProductRule(node, symbol, aValue, bValue, cValue, negate) {
+function factorSumProductRule(node: mathjs.MathNode, symbol, aValue: number, bValue: number, cValue: number, negate: boolean) {
   if (aValue === 1 && bValue && cValue) {
     // try sum/product rule: find a factor pair of c that adds up to b
     const factorPairs = ConstantFactors.getFactorPairs(cValue);
     for (const pair of factorPairs) {
       if (pair[0] + pair[1] === bValue) {
           const firstParen = mathNode.Creator.parenthesis(
-            mathNode.Creator.operator('+', [symbol, mathNode.Creator.constant(pair[0])]));
+            mathNode.Creator.operator("+", [symbol, mathNode.Creator.constant(pair[0])]));
         const secondParen = mathNode.Creator.parenthesis(
-            mathNode.Creator.operator('+', [symbol, mathNode.Creator.constant(pair[1])]));
+            mathNode.Creator.operator("+", [symbol, mathNode.Creator.constant(pair[1])]));
 
         // create a node in the general factored form for expression
-        let newNode = mathNode.Creator.operator('*', [firstParen, secondParen], true);
+        let newNode = mathNode.Creator.operator("*", [firstParen, secondParen], true);
         if (negate) {
           newNode = Negative.negate(newNode);
         }

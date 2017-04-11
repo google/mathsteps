@@ -1,11 +1,10 @@
-import mathNode = require('../mathnode');
+import mathNode = require("../mathnode");
 
 
 // Returns true if the node is a constant or can eventually be resolved to
 // a constant.
 // e.g. 2, 2+4, (2+4)^2 would all return true. x + 4 would return false
-function resolvesToConstant(node: any);
-function resolvesToConstant(node) {
+function resolvesToConstant(node: mathjs.MathNode) {
   if (mathNode.Type.isOperator(node) || mathNode.Type.isFunction(node)) {
     return node.args.every(
       (child) => resolvesToConstant(child));
@@ -23,7 +22,7 @@ function resolvesToConstant(node) {
     return resolvesToConstant(node.args[0]);
   }
   else {
-    throw Error('Unsupported node type: ' + node.type);
+    throw Error("Unsupported node type: " + node.type);
   }
 }
 

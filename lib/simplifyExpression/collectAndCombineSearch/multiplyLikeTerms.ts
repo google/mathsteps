@@ -1,9 +1,9 @@
-import arithmeticSearch = require('../arithmeticSearch');
-import checks = require('../../checks');
-import clone = require('../../util/clone');
-import multiplyFractionsSearch = require('../multiplyFractionsSearch');
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
+import arithmeticSearch = require("../arithmeticSearch");
+import checks = require("../../checks");
+import clone = require("../../util/clone");
+import multiplyFractionsSearch = require("../multiplyFractionsSearch");
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
 
 // Multiplies a list of nodes that are polynomial like terms. Returns a node.
 // The polynomial nodes should *not* have coefficients. (multiplying
@@ -136,7 +136,7 @@ function collectExponents(node) {
   // parens) e.g. x^(3+4+5)
   const exponentNodeList = polynomialTermList.map(p => p.getExponentNode(true));
   const newExponent = mathNode.Creator.parenthesis(
-    mathNode.Creator.operator('+', exponentNodeList));
+    mathNode.Creator.operator("+", exponentNodeList));
   const newNode = mathNode.Creator.polynomialTerm(symbolNode, newExponent, null);
   return mathNode.Status.nodeChanged(
     ChangeTypes.COLLECT_EXPONENTS, node, newNode);

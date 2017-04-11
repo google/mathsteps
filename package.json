@@ -4,6 +4,7 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
+    "@types/mathjs": "0.0.34",
     "mathjs": "3.11.2"
   },
   "engines": {

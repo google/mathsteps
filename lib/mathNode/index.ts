@@ -1,7 +1,7 @@
-import Creator = require('./Creator');
-import PolynomialTerm = require('./PolynomialTerm');
-import Status = require('./Status');
-import Type = require('./Type');
+import Creator = require("./Creator");
+import PolynomialTerm = require("./PolynomialTerm");
+import Status = require("./Status");
+import Type = require("./Type");
 var tmp;
 tmp = {
     Creator,

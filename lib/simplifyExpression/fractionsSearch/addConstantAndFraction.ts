@@ -1,23 +1,20 @@
-import addConstantFractions = require('./addConstantFractions');
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import evaluate = require('../../util/evaluate');
-import mathNode = require('../../mathnode');
+import addConstantFractions = require("./addConstantFractions");
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import evaluate = require("../../util/evaluate");
+import mathNode = require("../../mathnode");
 
 // Adds a constant to a fraction by:
 // - collapsing the fraction to decimal if the constant is not an integer
 //   e.g. 5.3 + 1/2 -> 5.3 + 0.2
 // - turning the constant into a fraction with the same denominator if it is
 //   an integer, e.g. 5 + 1/2 -> 10/2 + 1/2
-function addConstantAndFraction(node: any);
-function addConstantAndFraction(node) {
-  if (!mathNode.Type.isOperator(node) || node.op !== '+' || node.args.length !== 2) {
+function addConstantAndFraction(node: mathjs.MathNode) {
+  if (!mathNode.Type.isOperator(node) || node.op !== "+" || node.args.length !== 2) {
     return mathNode.Status.noChange(node);
   }
-
-  const firstArg = node.args[0];
-  const secondArg = node.args[1];
-  let constNode, fractionNode;
+    const [firstArg, secondArg] = node.args;
+    let constNode, fractionNode;
   if (mathNode.Type.isConstant(firstArg)) {
     if (mathNode.Type.isIntegerFraction(secondArg)) {
       constNode = firstArg;
@@ -54,7 +51,7 @@ function addConstantAndFraction(node) {
     const newNumeratorNode = mathNode.Creator.constant(
       constNodeValue * denominatorValue);
     newConstNode = mathNode.Creator.operator(
-      '/', [newNumeratorNode, denominatorNode]);
+      "/", [newNumeratorNode, denominatorNode]);
     newFractionNode = fractionNode;
     changeType = ChangeTypes.CONVERT_INTEGER_TO_FRACTION;
   }

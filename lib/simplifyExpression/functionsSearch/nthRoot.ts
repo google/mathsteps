@@ -1,24 +1,23 @@
-import clone = require('../../util/clone');
-import math = require('mathjs');
-import ChangeTypes = require('../../ChangeTypes');
-import ConstantFactors = require('../../factor/ConstantFactors');
-import Negative = require('../../Negative');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import math = require("mathjs");
+import ChangeTypes = require("../../ChangeTypes");
+import ConstantFactors = require("../../factor/ConstantFactors");
+import Negative = require("../../Negative");
+import mathNode = require("../../mathnode");
 
 // Evaluate nthRoot() function.
 // Returns a mathNode.Status object.
-function nthRoot(node: any);
-function nthRoot(node) {
-  if (!mathNode.Type.isFunction(node, 'nthRoot')) {
+function nthRoot(node: mathjs.MathNode) {
+  if (!mathNode.Type.isFunction(node, "nthRoot")) {
     return mathNode.Status.noChange(node);
   }
 
   const radicandNode = getRadicandNode(node);
   if (mathNode.Type.isOperator(radicandNode)) {
-    if (radicandNode.op === '^') {
+    if (radicandNode.op === "^") {
       return nthRootExponent(node);
     }
-    else if (radicandNode.op === '*') {
+    else if (radicandNode.op === "*") {
       return nthRootMultiplication(node);
     }
   }
@@ -34,8 +33,8 @@ function nthRoot(node) {
 // equal: nthRoot(2^x, x) = 2
 // root > exponent: nthRoot(x^2, 4) = nthRoot(x, 2)
 // exponent > root: nthRoot(x^4, 2) = x^2
-function nthRootExponent(node: any);
-function nthRootExponent(node) {
+function nthRootExponent(node: mathjs.MathNode) {
+    // is this used anywhere?
   let newNode = clone(node);
 
   const radicandNode = getRadicandNode(node);
@@ -63,7 +62,7 @@ function nthRootExponent(node) {
       const newExponentValue = exponentValue/rootValue;
       const newExponentNode = mathNode.Creator.constant(newExponentValue);
 
-      newNode = mathNode.Creator.operator('^', [baseNode, newExponentNode]);
+      newNode = mathNode.Creator.operator("^", [baseNode, newExponentNode]);
       return mathNode.Status.nodeChanged(
         ChangeTypes.CANCEL_ROOT, node, newNode);
     }
@@ -82,8 +81,7 @@ function nthRootExponent(node) {
 //  2A: Distributes the nthRoot into the children nodes,
 //  2B: evaluates those nthRoots
 //  2C: combines them
-function nthRootMultiplication(node: any);
-function nthRootMultiplication(node) {
+function nthRootMultiplication(node: mathjs.MathNode) {
   let newNode = clone(node);
   const rootNode = getRootNode(node);
 
@@ -109,7 +107,7 @@ function nthRootMultiplication(node) {
     if (status.hasChanged()) {
       substeps.push(status);
       newNode = mathNode.Status.resetChangeGroups(status.newNode);
-      if (newNode.args[0].op === '^') {
+      if (newNode.args[0].op === "^") {
         status = nthRootExponent(newNode);
         substeps.push(status);
         return mathNode.Status.nodeChanged(
@@ -146,8 +144,7 @@ function nthRootMultiplication(node) {
 // Given an nthRoot node with a constant positive root, will do the step of
 // factoring all the multiplicands under the radicand
 // e.g. nthRoot(2 * 9 * 5 * 12) = nthRoot(2 * 3 * 3 * 5 * 2 * 2 * 3)
-function factorMultiplicands(node: any);
-function factorMultiplicands(node) {
+function factorMultiplicands(node: mathjs.MathNode) {
   const newNode = clone(node);
   const radicandNode = getRadicandNode(node);
 
@@ -178,7 +175,7 @@ function factorMultiplicands(node) {
   });
 
   if (factored) {
-    newNode.args[0] = mathNode.Creator.operator('*', children);
+    newNode.args[0] = mathNode.Creator.operator("*", children);
     return mathNode.Status.nodeChanged(
       ChangeTypes.FACTOR_INTO_PRIMES, node, newNode);
   }
@@ -186,8 +183,7 @@ function factorMultiplicands(node) {
   return mathNode.Status.noChange(node);
 }
 
-function getFactorNodes(node: any);
-function getFactorNodes(node) {
+function getFactorNodes(node: mathjs.MathNode): any {
   if (mathNode.Type.isConstant(node) && !Negative.isNegative(node)) {
     const value = parseFloat(node.value);
     const factors = ConstantFactors.getPrimeFactors(value);
@@ -200,8 +196,7 @@ function getFactorNodes(node) {
 // Given an nthRoot node with a constant positive root, will group the arguments
 // into groups of the root as a step
 // e.g. nthRoot(2 * 2 * 2, 2) -> nthRoot((2 * 2) * 2, 2)
-function groupTermsByRoot(node: any);
-function groupTermsByRoot(node) {
+function groupTermsByRoot(node: mathjs.MathNode) {
   const newNode = clone(node);
   const radicandNode = getRadicandNode(node);
   const rootNode = getRootNode(node);
@@ -225,7 +220,7 @@ function groupTermsByRoot(node) {
     if (j - i === rootValue) {
       hasGroups = true;
       const groupedNode = mathNode.Creator.parenthesis(
-        mathNode.Creator.operator('*', radicandNode.args.slice(i, j)));
+        mathNode.Creator.operator("*", radicandNode.args.slice(i, j)));
       children.push(groupedNode);
     }
     else {
@@ -236,7 +231,7 @@ function groupTermsByRoot(node) {
 
   if (hasGroups) {
     newNode.args[0] = children.length === 1 ?
-        children[0] : mathNode.Creator.operator('*', children);
+        children[0] : mathNode.Creator.operator("*", children);
     return mathNode.Status.nodeChanged(
       ChangeTypes.GROUP_TERMS_BY_ROOT, node, newNode);
   }
@@ -247,8 +242,7 @@ function groupTermsByRoot(node) {
 // Given an nthRoot node with a constant positive root,
 // will convert any grouped factors into exponent nodes as a step
 // e.g. nthRoot((2 * 2) * 2, 2) -> nthRoot(2^2 * 2, 2)
-function convertMultiplicationToExponent(node: any);
-function convertMultiplicationToExponent(node) {
+function convertMultiplicationToExponent(node: mathjs.MathNode) {
   const newNode = clone(node);
 
   const radicandNode = getRadicandNode(node);
@@ -258,12 +252,12 @@ function convertMultiplicationToExponent(node) {
     if (isMultiplicationOfEqualNodes(child)) {
       const baseNode = child.args[0];
       const exponentNode = mathNode.Creator.constant(child.args.length);
-      newNode.args[0] = mathNode.Creator.operator('^', [baseNode, exponentNode]);
+      newNode.args[0] = mathNode.Creator.operator("^", [baseNode, exponentNode]);
       return mathNode.Status.nodeChanged(
         ChangeTypes.CONVERT_MULTIPLICATION_TO_EXPONENT, node, newNode);
     }
   }
-  else if (mathNode.Type.isOperator(radicandNode, '*')) {
+  else if (mathNode.Type.isOperator(radicandNode, "*")) {
     const children = [];
     radicandNode.args.forEach(child => {
       if (mathNode.Type.isParenthesis(child)) {
@@ -271,14 +265,14 @@ function convertMultiplicationToExponent(node) {
         if (isMultiplicationOfEqualNodes(grandChild)) {
           const baseNode = grandChild.args[0];
           const exponentNode = mathNode.Creator.constant(grandChild.args.length);
-          children.push(mathNode.Creator.operator('^', [baseNode, exponentNode]));
+          children.push(mathNode.Creator.operator("^", [baseNode, exponentNode]));
           return;
         }
       }
       children.push(child);
     });
 
-    newNode.args[0] = mathNode.Creator.operator('*', children);
+    newNode.args[0] = mathNode.Creator.operator("*", children);
     return mathNode.Status.nodeChanged(
       ChangeTypes.CONVERT_MULTIPLICATION_TO_EXPONENT, node, newNode);
   }
@@ -289,8 +283,8 @@ function convertMultiplicationToExponent(node) {
 // Given an nthRoot node with a multiplication under the radicand, will
 // distribute the nthRoot to all the arguments under the radicand as a step
 // e.g. nthRoot(2 * x^2, 2) -> nthRoot(2) * nthRoot(x^2)
-function distributeNthRoot(node: any);
-function distributeNthRoot(node) {
+function distributeNthRoot(node: mathjs.MathNode) {
+  //is this used anywhere?
   let newNode = clone(node);
   const radicandNode = getRadicandNode(node);
   const rootNode = getRootNode(node);
@@ -301,7 +295,7 @@ function distributeNthRoot(node) {
     children.push(mathNode.Creator.nthRoot(child, rootNode));
   }
 
-  newNode = mathNode.Creator.operator('*', children);
+  newNode = mathNode.Creator.operator("*", children);
   return mathNode.Status.nodeChanged(
     ChangeTypes.DISTRIBUTE_NTH_ROOT, node, newNode);
 }
@@ -309,8 +303,7 @@ function distributeNthRoot(node) {
 // Given a multiplication node of nthRoots (with the same root)
 // will evaluate the nthRoot of each child as a substep
 // e.g. nthRoot(2) * nthRoot(x^2) -> nthRoot(2) * x
-function evaluateNthRootForChildren(node: any);
-function evaluateNthRootForChildren(node) {
+function evaluateNthRootForChildren(node: mathjs.MathNode) {
   const newNode = clone(node);
 
   const substeps = [];
@@ -340,8 +333,7 @@ function evaluateNthRootForChildren(node) {
 // e.g. 2 * nthRoot(2) * nthRoot(x) -> 2 * nthRoot(2 * x)
 // Assumes that all the roots are the same (that this is occuring right
 // after distributeNthRoot and evaluateNthRootForChildren)
-function combineRoots(node: any);
-function combineRoots(node) {
+function combineRoots(node: mathjs.MathNode) {
   let newNode = clone(node);
 
   let rootNode;
@@ -349,7 +341,7 @@ function combineRoots(node) {
   const radicandArgs = [];
   for (let i = 0; i < newNode.args.length; i++) {
     const child = newNode.args[i];
-    if (mathNode.Type.isFunction(child, 'nthRoot')) {
+    if (mathNode.Type.isFunction(child, "nthRoot")) {
       radicandArgs.push(child.args[0]);
       rootNode = getRootNode(child);
     }
@@ -361,11 +353,11 @@ function combineRoots(node) {
   if (children.length > 0) {
     if (radicandArgs.length > 0) {
       const radicandNode = radicandArgs.length === 1 ?
-        radicandArgs[0] : mathNode.Creator.operator('*', radicandArgs);
+        radicandArgs[0] : mathNode.Creator.operator("*", radicandArgs);
       children.push(mathNode.Creator.nthRoot(radicandNode, rootNode));
     }
 
-    newNode = mathNode.Creator.operator('*', children);
+    newNode = mathNode.Creator.operator("*", children);
     if (!newNode.equals(node)) {
       return mathNode.Status.nodeChanged(
         ChangeTypes.COMBINE_UNDER_ROOT, node, newNode);
@@ -379,7 +371,7 @@ function combineRoots(node) {
 // Returns the nthRoot evaluated on a constant node
 // Potentially factors the constant node into primes, and calls
 // nthRootMultiplication on the new nthRoot
-function nthRootConstant(node) {
+function nthRootConstant(node: mathjs.MathNode) {
   let newNode = clone(node);
   const radicandNode = getRadicandNode(node);
   const rootNode = getRootNode(node);
@@ -391,9 +383,9 @@ function nthRootConstant(node) {
     return mathNode.Status.noChange(node);
   }
 
-  const radicandValue = parseFloat(radicandNode.value);
-  const rootValue = parseFloat(rootNode.value);
-  const nthRootValue = math.nthRoot(radicandValue, rootValue);
+  const radicandValue: number = parseFloat(radicandNode.value);
+  const rootValue: number = parseFloat(rootNode.value);
+  const nthRootValue: any = math.nthRoot(radicandValue, rootValue);
   // Perfect root e.g. nthRoot(4, 2) = 2
   if (nthRootValue % 1 === 0) {
     newNode = mathNode.Creator.constant(nthRootValue);
@@ -409,7 +401,7 @@ function nthRootConstant(node) {
       let substeps = [];
       const factorNodes = factors.map(mathNode.Creator.constant);
 
-      newNode.args[0] = mathNode.Creator.operator('*', factorNodes);
+      newNode.args[0] = mathNode.Creator.operator("*", factorNodes);
       substeps.push(mathNode.Status.nodeChanged(
           ChangeTypes.FACTOR_INTO_PRIMES, node, newNode));
 
@@ -433,20 +425,18 @@ function nthRootConstant(node) {
 // Given an nthRoot node, will return the root node.
 // The root node is the second child of the nthRoot node, but if one doesn't
 // exist, we assume it's a square root and return 2.
-function getRootNode(node: any);
-function getRootNode(node) {
-  if (!mathNode.Type.isFunction(node, 'nthRoot')) {
-    throw Error('Expected nthRoot');
+function getRootNode(node: mathjs.MathNode) {
+  if (!mathNode.Type.isFunction(node, "nthRoot")) {
+    throw Error("Expected nthRoot");
   }
 
   return node.args.length === 2 ? node.args[1] : mathNode.Creator.constant(2);
 }
 
 // Given an nthRoot node, will return the radicand node.
-function getRadicandNode(node: any);
-function getRadicandNode(node) {
-  if (!mathNode.Type.isFunction(node, 'nthRoot')) {
-    throw Error('Expected nthRoot');
+function getRadicandNode(node: mathjs.MathNode) {
+  if (!mathNode.Type.isFunction(node, "nthRoot")) {
+    throw Error("Expected nthRoot");
   }
 
   return node.args[0];
@@ -454,8 +444,7 @@ function getRadicandNode(node) {
 
 // Sorts nodes, ordering constants nodes from smallest to largest and symbol
 // nodes after
-function sortNodes(a: any, b: any);
-function sortNodes(a, b) {
+function sortNodes(a: mathjs.MathNode, b: mathjs.MathNode) {
   if (mathNode.Type.isConstant(a) && mathNode.Type.isConstant(b)) {
     return parseFloat(a.value) - parseFloat(b.value);
   }
@@ -470,9 +459,8 @@ function sortNodes(a, b) {
 
 // Simple helper function which determines a node is a multiplication node
 // of all equal nodes
-function isMultiplicationOfEqualNodes(node: any);
 function isMultiplicationOfEqualNodes(node) {
-  if (!mathNode.Type.isOperator(node) || node.op !== '*') {
+  if (!mathNode.Type.isOperator(node) || node.op !== "*") {
     return false;
   }
 

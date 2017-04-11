@@ -1,10 +1,10 @@
-import mathNode = require('./mathNode');
+import mathNode = require("./mathNode");
 
 class Negative {
 // Returns if the given node is negative. Treats a unary minus as a negative,
 // as well as a negative constant value or a constant fraction that would
 // evaluate to a negative number
-    static isNegative(node) {
+    static isNegative(node: mathjs.MathNode) {
         if (mathNode.Type.isUnaryMinus(node)) {
             return !Negative.isNegative(node.args[0]);
         } else if (mathNode.Type.isConstant(node)) {
@@ -29,7 +29,7 @@ class Negative {
 // E.g.
 //    not naive: -3 -> 3, x -> -x
 //    naive: -3 -> --3, x -> -x
-    static negate(node, naive=false) {
+    static negate(node: mathjs.MathNode, naive: boolean=false) {
         if (mathNode.Type.isConstantFraction(node)) {
             node.args[0] = Negative.negate(node.args[0], naive);
             return node;
@@ -51,9 +51,9 @@ class Negative {
 // E.g.
 //    not naive: -3x -> 3x, x -> -x
 //    naive: -3x -> --3x, x -> -x
-    static negatePolynomialTerm(node, naive=false) {
+    static negatePolynomialTerm(node: mathjs.MathNode, naive: boolean = false) {
         if (!mathNode.PolynomialTerm.isPolynomialTerm(node)) {
-            throw Error('node is not a polynomial term');
+            throw Error("node is not a polynomial term");
         }
         const polyNode = new mathNode.PolynomialTerm(node);
 
@@ -62,17 +62,17 @@ class Negative {
             newCoeff = mathNode.Creator.constant(-1);
         } else {
             const oldCoeff = polyNode.getCoeffNode();
-            if (oldCoeff.value === '-1') {
+            if (oldCoeff.value === "-1") {
                 newCoeff = null;
             } else if (polyNode.hasFractionCoeff()) {
                 let numerator = oldCoeff.args[0];
                 numerator = Negative.negate(numerator, naive);
 
                 const denominator = oldCoeff.args[1];
-                newCoeff = mathNode.Creator.operator('/', [numerator, denominator]);
+                newCoeff = mathNode.Creator.operator("/", [numerator, denominator]);
             } else {
                 newCoeff = Negative.negate(oldCoeff, naive);
-                if (newCoeff.value === '1') {
+                if (newCoeff.value === "1") {
                     newCoeff = null;
                 }
             }

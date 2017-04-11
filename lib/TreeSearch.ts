@@ -1,18 +1,18 @@
-import mathNode = require('./mathNode');
-
+/// <reference path="../node_modules/@types/mathjs/index.d.ts"/>
+import mathNode = require("./mathNode");
 class TreeSearch {
 
 // Returns a function that performs a preorder search on the tree for the given
 // simplifcation function
-    static preOrder = simplificationFunction => node => this.search(simplificationFunction, node, true);
+    static preOrder = simplificationFunction => node => TreeSearch.search(simplificationFunction, node, true);
 
 // Returns a function that performs a postorder search on the tree for the given
 // simplifcation function
-    static postOrder = simplificationFunction => node => this.search(simplificationFunction, node, false);
+    static postOrder = simplificationFunction => node => TreeSearch.search(simplificationFunction, node, false);
 
 // A helper function for performing a tree search with a function
 
-    search(simplificationFunction, node, preOrder) {
+    static search(simplificationFunction, node: mathjs.MathNode, preOrder) {
         let status;
 
         if (preOrder) {
@@ -43,7 +43,7 @@ class TreeSearch {
                 return mathNode.Status.childChanged(node, status);
             }
         } else {
-            throw Error('Unsupported node type: ' + node);
+            throw Error("Unsupported node type: " + node);
         }
 
         if (!preOrder) {

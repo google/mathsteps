@@ -1,7 +1,7 @@
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import Negative = require('../../Negative');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import Negative = require("../../Negative");
+import mathNode = require("../../mathnode");
 
 // Simplifies negative signs if possible
 // e.g. -1/-3 --> 1/3   4/-5 --> -4/5
@@ -9,9 +9,9 @@ import mathNode = require('../../mathnode');
 // Note that our goal is for the denominator to always be positive. If it
 // isn't, we can simplify signs.
 // Returns a mathNode.Status object
-function simplifySigns(fraction: any);
+
 function simplifySigns(fraction) {
-  if (!mathNode.Type.isOperator(fraction) || fraction.op !== '/') {
+  if (!mathNode.Type.isOperator(fraction) || fraction.op !== "/") {
     return mathNode.Status.noChange(fraction);
   }
   const oldFraction = clone(fraction);
@@ -24,7 +24,7 @@ function simplifySigns(fraction) {
       ChangeTypes.CANCEL_MINUSES :
       ChangeTypes.SIMPLIFY_SIGNS;
     numerator = Negative.negate(numerator);
-    const newFraction = mathNode.Creator.operator('/', [numerator, denominator]);
+    const newFraction = mathNode.Creator.operator("/", [numerator, denominator]);
     return mathNode.Status.nodeChanged(changeType, oldFraction, newFraction);
   }
   else {

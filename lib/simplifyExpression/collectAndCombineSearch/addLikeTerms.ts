@@ -1,11 +1,11 @@
-import checks = require('../../checks');
-import clone = require('../../util/clone');
-import evaluateConstantSum = require('./evaluateConstantSum');
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
+import checks = require("../../checks");
+import clone = require("../../util/clone");
+import evaluateConstantSum = require("./evaluateConstantSum");
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
 
 // Adds a list of nodes that are polynomial terms. Returns a mathNode.Status object.
-function addLikeTerms(node, polynomialOnly=false) {
+function addLikeTerms(node: mathjs.MathNode, polynomialOnly=false) {
   if (!mathNode.Type.isOperator(node)) {
     return mathNode.Status.noChange(node);
   }
@@ -26,8 +26,7 @@ function addLikeTerms(node, polynomialOnly=false) {
   return mathNode.Status.noChange(node);
 }
 
-function addLikePolynomialTerms(node: any);
-function addLikePolynomialTerms(node) {
+function addLikePolynomialTerms(node: mathjs.MathNode) {
   if (!checks.canAddLikeTermPolynomialNodes(node)) {
     return mathNode.Status.noChange(node);
   }
@@ -73,8 +72,7 @@ function addLikePolynomialTerms(node) {
 // makes the adding coefficients step clearer.
 // e.g. 2x + x -> 2x + 1x
 // Returns a mathNode.Status object.
-function addPositiveOneCoefficient(node: any);
-function addPositiveOneCoefficient(node) {
+function addPositiveOneCoefficient(node: mathjs.MathNode) {
   const newNode = clone(node);
   let change = false;
 
@@ -110,8 +108,7 @@ function addPositiveOneCoefficient(node) {
 // pedagogy, and makes the adding coefficients step clearer.
 // e.g. 2x - x -> 2x - 1x
 // Returns a mathNode.Status object.
-function addNegativeOneCoefficient(node: any);
-function addNegativeOneCoefficient(node) {
+function addNegativeOneCoefficient(node: mathjs.MathNode) {
   const newNode = clone(node);
   let change = false;
 
@@ -152,7 +149,7 @@ function groupCoefficientsForAdding(node) {
   const polynomialTermList = newNode.args.map(n => new mathNode.PolynomialTerm(n));
   const coefficientList = polynomialTermList.map(p => p.getCoeffNode(true));
   const sumOfCoefficents = mathNode.Creator.parenthesis(
-    mathNode.Creator.operator('+', coefficientList));
+    mathNode.Creator.operator("+", coefficientList));
   // TODO: changegroups should also be on the before node, on all the
   // coefficients, but changegroups with polyTerm gets messy so let's tackle
   // that later.

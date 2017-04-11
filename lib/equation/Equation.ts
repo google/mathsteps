@@ -1,11 +1,12 @@
-import math = require('mathjs');
-import clone = require('../util/clone');
-import printNode = require('../util/print');
+/// <reference path="../../node_modules/@types/mathjs/index.d.ts"/>
+import math = require("mathjs");
+import clone = require("../util/clone");
+import printNode = require("../util/print");
 
 // This represents an equation, made up of the leftNode (LHS), the
 // rightNode (RHS) and a comparator (=, <, >, <=, or >=)
 class Equation {
-  constructor(leftNode, rightNode, comparator) {
+    constructor(leftNode: mathjs.MathNode, rightNode: mathjs.MathNode, comparator) {
     this.leftNode = leftNode;
     this.rightNode = rightNode;
     this.comparator = comparator;
@@ -30,7 +31,7 @@ class Equation {
   static createEquationFromString = (str, comparator) => {
       const sides = str.split(comparator);
       if (sides.length !== 2) {
-          throw Error('Expected two sides of an equation using comparator: ' +
+          throw Error("Expected two sides of an equation using comparator: " +
               comparator);
       }
       const leftNode = math.parse(sides[0]);
@@ -38,8 +39,8 @@ class Equation {
 
       return new Equation(leftNode, rightNode, comparator);
   };
-    leftNode;
-    rightNode;
+    leftNode: mathjs.MathNode;
+    rightNode: mathjs.MathNode;
     comparator;
 }
 

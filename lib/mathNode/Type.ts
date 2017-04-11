@@ -1,31 +1,32 @@
+/// <reference path="../../node_modules/@types/mathjs/index.d.ts"/>
 /*
   For determining the type of a mathJS node.
  */
 
 class NodeType {
-    static isOperator (node, operator = null) {
-        return node.type === 'OperatorNode' &&
-            node.fn !== 'unaryMinus' &&
-            ('*+-/^'.lastIndexOf(node.op) !== -1) &&
+    static isOperator(node: mathjs.MathNode, operator = null) {
+        return node.type === "OperatorNode" &&
+            node.fn !== "unaryMinus" &&
+            ("*+-/^".lastIndexOf(node.op) !== -1) &&
             (operator ? node.op === operator : true);
     };
-    static isParenthesis(node) {
-        return node.type === 'ParenthesisNode';
+    static isParenthesis(node: mathjs.MathNode) {
+        return node.type === "ParenthesisNode";
     };
-    static isUnaryMinus(node) {
-        return node.type === 'OperatorNode' && node.fn === 'unaryMinus';
+    static isUnaryMinus(node: mathjs.MathNode) {
+        return node.type === "OperatorNode" && node.fn === "unaryMinus";
     };
-    static isFunction(node, functionName = null) {
-        if (node.type !== 'FunctionNode') {
+    static isFunction(node: mathjs.MathNode, functionName = null) {
+        if (node.type !== "FunctionNode") {
             return false;
         }
-        if (functionName && node.fn.name !== functionName) {
+        if (functionName && node.fn !== functionName) {
             return false;
         }
         return true;
     };
-    static isSymbol(node, allowUnaryMinus = true) {
-        if (node.type === 'SymbolNode') {
+    static isSymbol(node: mathjs.MathNode, allowUnaryMinus = true) {
+        if (node.type === "SymbolNode") {
             return true;
         }
         else if (allowUnaryMinus && NodeType.isUnaryMinus(node)) {
@@ -35,8 +36,8 @@ class NodeType {
             return false;
         }
     };
-    static isConstant(node, allowUnaryMinus = false) {
-        if (node.type === 'ConstantNode') {
+    static isConstant(node: mathjs.MathNode, allowUnaryMinus = false) {
+        if (node.type === "ConstantNode") {
             return true;
         }
         else if (allowUnaryMinus && NodeType.isUnaryMinus(node)) {
@@ -52,7 +53,7 @@ class NodeType {
             return false;
         }
     };
-    static isConstantFraction(node, allowUnaryMinus = false) {
+    static isConstantFraction(node: mathjs.MathNode, allowUnaryMinus = false) {
         if (NodeType.isOperator(node, '/')) {
             return node.args.every(n => NodeType.isConstant(n, allowUnaryMinus));
         }
@@ -60,7 +61,7 @@ class NodeType {
             return false;
         }
     };
-    static isConstantOrConstantFraction(node, allowUnaryMinus = false) {
+    static isConstantOrConstantFraction(node: mathjs.MathNode, allowUnaryMinus = false) {
         if (NodeType.isConstant(node, allowUnaryMinus) ||
             NodeType.isConstantFraction(node, allowUnaryMinus)) {
             return true;
@@ -69,7 +70,7 @@ class NodeType {
             return false;
         }
     };
-    isIntegerFraction(node, allowUnaryMinus = false) {
+    isIntegerFraction(node: mathjs.MathNode, allowUnaryMinus = false) {
         if (!NodeType.isConstantFraction(node, allowUnaryMinus)) {
             return false;
         }

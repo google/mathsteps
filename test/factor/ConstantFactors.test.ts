@@ -1,12 +1,12 @@
-import ConstantFactors = require('../../lib/factor/ConstantFactors');
-import TestUtil = require('../TestUtil');
+import ConstantFactors = require("../../lib/factor/ConstantFactors");
+import TestUtil = require("../TestUtil");
 
 function testPrimeFactors(input: any, output: any);
 function testPrimeFactors(input, output) {
   TestUtil.testFunctionOutput(ConstantFactors.getPrimeFactors, input, output);
 }
 
-describe('prime factors', () => {
+describe("prime factors", () => {
     const tests = [
         [1, [1]],
         [-1, [-1, 1]],
@@ -28,7 +28,7 @@ function testFactorPairs(input, output) {
   TestUtil.testFunctionOutput(ConstantFactors.getFactorPairs, input, output);
 }
 
-describe('factor pairs', () => {
+describe("factor pairs", () => {
     const tests = [
         [1, [[-1, -1], [1, 1]]],
         [5, [[-1, -5], [1, 5]]],

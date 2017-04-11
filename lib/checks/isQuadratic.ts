@@ -1,11 +1,10 @@
-import mathNode = require('../mathnode');
-import Symbols = require('../Symbols');
+import mathNode = require("../mathnode");
+import Symbols = require("../Symbols");
 
 // Given a node, will determine if the expression is in the form of a quadratic
 // e.g. `x^2 + 2x + 1` OR `x^2 - 1` but not `x^3 + x^2 + x + 1`
-function isQuadratic(node: any);
-function isQuadratic(node) {
-  if (!mathNode.Type.isOperator(node, '+')) {
+function isQuadratic(node: mathjs.MathNode) {
+  if (!mathNode.Type.isOperator(node, "+")) {
     return false;
   }
 
@@ -41,7 +40,6 @@ function isQuadratic(node) {
 
 // Given a degree, returns a function that checks if a node
 // is a polynomial term of the given degree.
-function isPolynomialTermOfDegree(degree: any);
 function isPolynomialTermOfDegree(degree) {
   return node => {
       if (mathNode.PolynomialTerm.isPolynomialTerm(node)) {

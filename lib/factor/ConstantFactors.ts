@@ -1,7 +1,7 @@
 // This module deals with getting constant factors, including prime factors
 // and factor pairs of a number
 
-class constantFactors {
+class ConstantFactors {
 
 // Given a number, will return all the prime factors of that number as a list
 // sorted from smallest to largest
@@ -56,4 +56,4 @@ class constantFactors {
     };
 }
 
-export = constantFactors;
+export = ConstantFactors;

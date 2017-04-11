@@ -1,19 +1,20 @@
-import clone = require('../util/clone');
-import ChangeTypes = require('../ChangeTypes');
-import Type = require('./Type');
+/// <reference path="../../node_modules/@types/mathjs/index.d.ts"/>
+import clone = require("../util/clone");
+import ChangeTypes = require("../ChangeTypes");
+import Type = require("./Type");
 
-// This represents the current (sub)expression we're simplifying.
+// This represents the current (sub)exp+    ression we're simplifying.
 // As we move step by step, a node might be updated. Functions return this
 // status object to pass on the updated node and information on if/how it was
 // changed.
 // Status(node) creates a Status object that signals no change
 class Status {
-  constructor(changeType, oldNode, newNode, substeps=[]) {
+  constructor(changeType, oldNode: mathjs.MathNode, newNode: mathjs.MathNode, substeps=[]) {
     if (!newNode) {
-      throw Error('node is not defined');
+      throw Error("node is not defined");
     }
-    if (changeType === undefined || typeof(changeType) !== 'string') {
-      throw Error('changetype isn\'t valid');
+    if (changeType === undefined || typeof(changeType) !== "string") {
+      throw Error("changetype isn't valid");
     }
 
     this.changeType = changeType;
@@ -25,7 +26,7 @@ class Status {
   hasChanged() {
     return this.changeType !== ChangeTypes.NO_CHANGE;
   }
-  static resetChangeGroups(node) {
+  static resetChangeGroups(node: mathjs.MathNode) {
       node = clone(node);
       node.filter(node => node.changeGroup).forEach(change => {
           delete change.changeGroup;
@@ -34,13 +35,13 @@ class Status {
   };
   // A wrapper around the Status constructor for the case where node hasn't
   // been changed.
-  noChange(node) {
+  noChange(node: mathjs.MathNode) {
       return new Status(ChangeTypes.NO_CHANGE, null, node);
   };
   // A wrapper around the Status constructor for the case of a change
   // that is happening at the level of oldNode + newNode
   // e.g. 2 + 2 --> 4 (an addition node becomes a constant node)
-  Status.nodeChanged(changeType, oldNode, newNode, defaultChangeGroup = true, steps = []) {
+  nodeChanged(changeType, oldNode: mathjs.MathNode, newNode: mathjs.MathNode, defaultChangeGroup = true, steps = []) {
       if (defaultChangeGroup) {
           oldNode.changeGroup = 1;
           newNode.changeGroup = 1;
@@ -52,16 +53,15 @@ class Status {
   // a change that happened deeper `node`'s tree, and `node`'s children must be
   // updated to have the newNode/oldNode metadata (changeGroups)
   // e.g. (2 + 2) + x --> 4 + x has to update the left argument
-  childChanged(node, childStatus, childArgIndex = null) {
+  childChanged(node: mathjs.MathNode, childStatus, childArgIndex = null) {
       const oldNode = clone(node);
       const newNode = clone(node);
       let substeps = childStatus.substeps;
 
       if (!childStatus.oldNode) {
-          throw Error('Expected old node for changeType: ' + childStatus.changeType);
+          throw Error(`Expected old node for changeType: ${childStatus.changeType}`);
       }
 
-      function updateSubsteps(substeps: any, fn: any);
       function updateSubsteps(substeps, fn) {
           substeps.map((step) => {
               step = fn(step);
@@ -111,14 +111,12 @@ class Status {
           });
       }
       else {
-          throw Error('Unexpected node type: ' + node.type);
+          throw Error("Unexpected node type: " + node.type);
       }
 
       return new Status(childStatus.changeType, oldNode, newNode, substeps);
   };
     changeType;
-    oldNode;
-    newNode;
     substeps;
 }
 export = Status;

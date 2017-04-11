@@ -1,18 +1,18 @@
 // Operations on equation nodes
 
-import ChangeTypes = require('../ChangeTypes');
-import clone = require('../util/clone');
-import Equation = require('../equation/Equation');
-import EquationStatus = require('../equation/Status');
-import Negative = require('../Negative');
-import mathNode = require('../mathNode');
-import Symbols = require('../Symbols');
-const COMPARATOR_TO_INVERSE = {
-  '>': '<',
-  '>=': '<=',
-  '<': '>',
-  '<=': '>=',
-  '=': '='
+import ChangeTypes = require("../ChangeTypes");
+import clone = require("../util/clone");
+import Equation = require("../equation/Equation");
+import EquationStatus = require("../equation/Status");
+import Negative = require("../Negative");
+import mathNode = require("../mathNode");
+import Symbols = require("../Symbols");
+const comparatorToInverse = {
+  '>': "<",
+  '>=': "<=",
+  '<': ">",
+  '<=': ">=",
+  '=': "="
 };
 
 class EquationOperations {
@@ -30,7 +30,7 @@ class EquationOperations {
 
         if (!leftSideSymbolTerm) {
             if (rightSideSymbolTerm) {
-                const comparator = COMPARATOR_TO_INVERSE[equation.comparator];
+                const comparator = comparatorToInverse[equation.comparator];
                 const oldEquation = equation;
                 const newEquation = new Equation(
                     equation.rightNode,
@@ -43,7 +43,7 @@ class EquationOperations {
                     oldEquation,
                     newEquation);
             } else {
-                throw Error('No term with symbol: ' + symbolName);
+                throw Error("No term with symbol: " + symbolName);
             }
         }
         return EquationStatus.noChange(equation);
@@ -61,7 +61,7 @@ class EquationOperations {
 // There are actually no cases where we'd remove symbols from the right side
 // by multiplying or dividing by a symbol term.
 // TODO: support inverting functions e.g. sqrt, ^, log etc.
-    static removeSymbolFromRightSide = (equation, symbolName) => {
+    static removeSymbolFromRightSide = (equation: Equation, symbolName) => {
         const rightNode = equation.rightNode;
         let symbolTerm = Symbols.getLastSymbolTerm(rightNode, symbolName);
 
@@ -76,22 +76,22 @@ class EquationOperations {
 
         if (mathNode.PolynomialTerm.isPolynomialTerm(rightNode)) {
             if (Negative.isNegative(symbolTerm)) {
-                inverseOp = '+';
+                inverseOp = "+";
                 changeType = ChangeTypes.ADD_TO_BOTH_SIDES;
                 inverseTerm = Negative.negate(symbolTerm);
             } else {
-                inverseOp = '-';
+                inverseOp = "-";
                 changeType = ChangeTypes.SUBTRACT_FROM_BOTH_SIDES;
                 inverseTerm = symbolTerm;
             }
         } else if (mathNode.Type.isOperator(rightNode)) {
-            if (rightNode.op === '+') {
+            if (rightNode.op === "+") {
                 if (Negative.isNegative(symbolTerm)) {
-                    inverseOp = '+';
+                    inverseOp = "+";
                     changeType = ChangeTypes.ADD_TO_BOTH_SIDES;
                     inverseTerm = Negative.negate(symbolTerm);
                 } else {
-                    inverseOp = '-';
+                    inverseOp = "-";
                     changeType = ChangeTypes.SUBTRACT_FROM_BOTH_SIDES;
                     inverseTerm = symbolTerm;
                 }
@@ -99,14 +99,14 @@ class EquationOperations {
                 // Note that operator '-' won't show up here because subtraction is
                 // flattened into adding the negative. See 'TRICKY catch' in the README
                 // for more details.
-                throw Error('Unsupported operation: ' + symbolTerm.op);
+                throw Error("Unsupported operation: " + symbolTerm.op);
             }
         } else if (mathNode.Type.isUnaryMinus(rightNode)) {
-            inverseOp = '+';
+            inverseOp = "+";
             changeType = ChangeTypes.ADD_TO_BOTH_SIDES;
             inverseTerm = symbolTerm.args[0];
         } else {
-            throw Error('Unsupported node type: ' + rightNode.type);
+            throw Error("Unsupported node type: " + rightNode.type);
         }
         return performTermOperationOnEquation(
             equation,
@@ -118,7 +118,7 @@ class EquationOperations {
 // Isolates the given symbolName to the left side by adding, multiplying, subtracting
 // or dividing all other symbols and constants from both sides appropriately
 // TODO: support inverting functions e.g. sqrt, ^, log etc.
-    static isolateSymbolOnLeftSide = (equation, symbolName) => {
+    static isolateSymbolOnLeftSide = (equation: Equation, symbolName) => {
         const leftNode = equation.leftNode;
         let nonSymbolTerm = Symbols.getLastNonSymbolTerm(leftNode, symbolName);
 
@@ -132,56 +132,56 @@ class EquationOperations {
         nonSymbolTerm = clone(nonSymbolTerm);
 
         if (mathNode.Type.isOperator(leftNode)) {
-            if (leftNode.op === '+') {
+            if (leftNode.op === "+") {
                 if (Negative.isNegative(nonSymbolTerm)) {
-                    inverseOp = '+';
+                    inverseOp = "+";
                     changeType = ChangeTypes.ADD_TO_BOTH_SIDES;
                     inverseTerm = Negative.negate(nonSymbolTerm);
                 } else {
-                    inverseOp = '-';
+                    inverseOp = "-";
                     changeType = ChangeTypes.SUBTRACT_FROM_BOTH_SIDES;
                     inverseTerm = nonSymbolTerm;
                 }
-            } else if (leftNode.op === '*') {
+            } else if (leftNode.op === "*") {
                 if (mathNode.Type.isConstantFraction(nonSymbolTerm)) {
-                    inverseOp = '*';
+                    inverseOp = "*";
                     changeType = ChangeTypes.MULTIPLY_BOTH_SIDES_BY_INVERSE_FRACTION;
                     inverseTerm = mathNode.Creator.operator(
-                        '/',
+                        "/",
                         [nonSymbolTerm.args[1], nonSymbolTerm.args[0]]);
                 } else {
-                    inverseOp = '/';
+                    inverseOp = "/";
                     changeType = ChangeTypes.DIVIDE_FROM_BOTH_SIDES;
                     inverseTerm = nonSymbolTerm;
                 }
-            } else if (leftNode.op === '/') {
+            } else if (leftNode.op === "/") {
                 // The non symbol term is always a fraction because it's the
                 // coefficient of our symbol term.
                 // If the numerator is 1, we multiply both sides by the denominator,
                 // otherwise we multiply by the inverse
-                if (['1', '-1'].indexOf(nonSymbolTerm.args[0].value) !== -1) {
-                    inverseOp = '*';
+                if (["1", "-1"].indexOf(nonSymbolTerm.args[0].value) !== -1) {
+                    inverseOp = "*";
                     changeType = ChangeTypes.MULTIPLY_TO_BOTH_SIDES;
                     inverseTerm = nonSymbolTerm.args[1];
                 } else {
-                    inverseOp = '*';
+                    inverseOp = "*";
                     changeType = ChangeTypes.MULTIPLY_BOTH_SIDES_BY_INVERSE_FRACTION;
                     inverseTerm = mathNode.Creator.operator(
-                        '/',
+                        "/",
                         [nonSymbolTerm.args[1], nonSymbolTerm.args[0]]);
                 }
-            } else if (leftNode.op === '^') {
+            } else if (leftNode.op === "^") {
                 // TODO: support roots
                 return EquationStatus.noChange(equation);
             } else {
-                throw Error('Unsupported operation: ' + leftNode.op);
+                throw Error("Unsupported operation: " + leftNode.op);
             }
         } else if (mathNode.Type.isUnaryMinus(leftNode)) {
-            inverseOp = '*';
+            inverseOp = "*";
             changeType = ChangeTypes.MULTIPLY_BOTH_SIDES_BY_NEGATIVE_ONE;
             inverseTerm = mathNode.Creator.constant(-1);
         } else {
-            throw Error('Unsupported node type: ' + leftNode.type);
+            throw Error("Unsupported node type: " + leftNode.type);
         }
 
         return performTermOperationOnEquation(
@@ -194,7 +194,7 @@ class EquationOperations {
 
 // Modifies the left and right sides of an equation by `op`-ing `term`
 // to both sides. Returns an Status object.
-function performTermOperationOnEquation(equation, op, term, changeType) {
+function performTermOperationOnEquation(equation: Equation, op, term, changeType) {
   const oldEquation = equation.clone();
 
   const leftTerm = clone(term);
@@ -205,8 +205,8 @@ function performTermOperationOnEquation(equation, op, term, changeType) {
     equation.rightNode, op, rightTerm);
 
   let comparator = equation.comparator;
-  if (Negative.isNegative(term) && (op === '*' || op === '/')) {
-    comparator = COMPARATOR_TO_INVERSE[comparator];
+  if (Negative.isNegative(term) && (op === "*" || op === "/")) {
+    comparator = comparatorToInverse[comparator];
   }
 
   const newEquation = new Equation(leftNode, rightNode, comparator);

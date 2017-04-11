@@ -1,19 +1,18 @@
-import arithmeticSearch = require('../arithmeticSearch');
-import clone = require('../../util/clone');
-import collectAndCombineSearch = require('../collectAndCombineSearch');
-import rearrangeCoefficient = require('../basicsSearch/rearrangeCoefficient');
-import ChangeTypes = require('../../ChangeTypes');
-import Negative = require('../../Negative');
-import mathNode = require('../../mathnode');
-import TreeSearch = require('../../TreeSearch');
+import arithmeticSearch = require("../arithmeticSearch");
+import clone = require("../../util/clone");
+import collectAndCombineSearch = require("../collectAndCombineSearch");
+import rearrangeCoefficient = require("../basicsSearch/rearrangeCoefficient");
+import ChangeTypes = require("../../ChangeTypes");
+import Negative = require("../../Negative");
+import mathNode = require("../../mathnode");
+import TreeSearch = require("../../TreeSearch");
 const search = TreeSearch.postOrder(distribute);
 
 // Distributes through parenthesis.
 // e.g. 2(x+3) -> (2*x + 2*3)
 // e.g. -(x+5) -> (-x + -5)
 // Returns a mathNode.Status object.
-function distribute(node: any);
-function distribute(node) {
+function distribute(node: mathjs.MathNode) {
   if (mathNode.Type.isUnaryMinus(node)) {
     return distributeUnaryMinus(node);
   }
@@ -29,8 +28,7 @@ function distribute(node) {
 // e.g. -(4*9*x^2) --> (-4 * 9  * x^2)
 // e.g. -(x + y - 5) --> (-x + -y + 5)
 // Returns a mathNode.Status object.
-function distributeUnaryMinus(node: any);
-function distributeUnaryMinus(node) {
+function distributeUnaryMinus(node: mathjs.MathNode) {
   if (!mathNode.Type.isUnaryMinus(node)) {
     return mathNode.Status.noChange(node);
   }
@@ -38,7 +36,7 @@ function distributeUnaryMinus(node) {
   if (!mathNode.Type.isParenthesis(unaryContent)) {
     return mathNode.Status.noChange(node);
   }
-  const content = unaryContent.content;
+  const content = unaryContent;
   if (!mathNode.Type.isOperator(content)) {
     return mathNode.Status.noChange(node);
   }
@@ -47,14 +45,14 @@ function distributeUnaryMinus(node) {
   // For multiplication and division, we can push the unary minus in to
   // the first argument.
   // e.g. -(2/3) -> (-2/3)    -(4*9*x^2) --> (-4 * 9  * x^2)
-  if (content.op === '*' || content.op === '/') {
+  if (content.op === "*" || content.op === "/") {
     newContent.args[0] = Negative.negate(newContent.args[0]);
     newContent.args[0].changeGroup = 1;
     const newNode = mathNode.Creator.parenthesis(newContent);
     return mathNode.Status.nodeChanged(
       ChangeTypes.DISTRIBUTE_NEGATIVE_ONE, node, newNode, false);
   }
-  else if (content.op === '+') {
+  else if (content.op === "+") {
     // Now we know `node` is of the form -(x + y + ...).
     // We want to now return (-x + -y + ....)
     // If any term is negative, we make it positive it right away
@@ -79,9 +77,8 @@ function distributeUnaryMinus(node) {
 // each other, and at least one of them must be a parenthesis node.
 // e.g. 2*(3+x) or (4+x^2+x^3)*(x+3)
 // Returns a mathNode.Status object with substeps
-function distributeAndSimplifyOperationNode(node: any);
-function distributeAndSimplifyOperationNode(node) {
-  if (!mathNode.Type.isOperator(node) || node.op !== '*') {
+function distributeAndSimplifyOperationNode(node: mathjs.MathNode) {
+  if (!mathNode.Type.isOperator(node) || node.op !== "*") {
     return mathNode.Status.noChange(node);
   }
 
@@ -121,7 +118,7 @@ function distributeAndSimplifyOperationNode(node) {
     // case 1: there were more than two operands in this multiplication
     // e.g. 3*7*(2+x)*(3+x)*(4+x) is a multiplication node with 5 children
     // and the new node will be 3*(14+7x)*(3+x)*(4+x) with 4 children.
-    if (mathNode.Type.isOperator(newNode, '*')) {
+    if (mathNode.Type.isOperator(newNode, "*")) {
       const childStatus = simplifyWithParens(newNode.args[i]);
       if (childStatus.hasChanged()) {
         status = mathNode.Status.childChanged(newNode, childStatus, i);
@@ -140,7 +137,7 @@ function distributeAndSimplifyOperationNode(node) {
       }
     }
     else {
-      throw Error('Unsupported node type for distribution: ' + node);
+      throw Error("Unsupported node type for distribution: " + node);
     }
 
     if (substeps.length === 1) {
@@ -157,19 +154,18 @@ function distributeAndSimplifyOperationNode(node) {
 // e.g. 2*(x+3) -> (2*x + 2*3)       (5+x)*x -> 5*x + x*x
 // e.g. (5+x)*(x+3) -> (5*x + 5*3 + x*x + x*3)
 // Returns a node.
-function distributeTwoNodes(firstNode: any, secondNode: any);
-function distributeTwoNodes(firstNode, secondNode) {
+function distributeTwoNodes(firstNode: mathjs.MathNode, secondNode: mathjs.MathNode) {
   // lists of terms we'll be multiplying together from each node
   let firstArgs, secondArgs;
   if (isParenthesisOfAddition(firstNode)) {
-    firstArgs = firstNode.content.args;
+    firstArgs = firstNode.args;
   }
   else {
     firstArgs = [firstNode];
   }
 
   if (isParenthesisOfAddition(secondNode)) {
-    secondArgs = secondNode.content.args;
+    secondArgs = secondNode.args;
   }
   else {
     secondArgs = [secondNode];
@@ -186,12 +182,12 @@ function distributeTwoNodes(firstNode, secondNode) {
     fractionNodes.forEach((node) => {
       let arg;
       if (isFraction(node)) {
-        let numerator = mathNode.Creator.operator('*', [node.args[0], nonFractionTerm]);
+        let numerator = mathNode.Creator.operator("*", [node.args[0], nonFractionTerm]);
         numerator = mathNode.Creator.parenthesis(numerator);
-        arg = mathNode.Creator.operator('/', [numerator, node.args[1]]);
+        arg = mathNode.Creator.operator("/", [numerator, node.args[1]]);
       }
       else {
-        arg = mathNode.Creator.operator('*', [node, nonFractionTerm]);
+        arg = mathNode.Creator.operator("*", [node, nonFractionTerm]);
       }
       arg.changeGroup = 1;
       newArgs.push(arg);
@@ -201,7 +197,7 @@ function distributeTwoNodes(firstNode, secondNode) {
   // step.
   else if (firstArgs.length > 1 && secondArgs.length > 1) {
     firstArgs.forEach(leftArg => {
-      const arg = mathNode.Creator.operator('*', [leftArg, secondNode]);
+      const arg = mathNode.Creator.operator("*", [leftArg, secondNode]);
       arg.changeGroup = 1;
       newArgs.push(arg);
     });
@@ -210,23 +206,21 @@ function distributeTwoNodes(firstNode, secondNode) {
     // a list of all pairs of nodes between the two arg lists
     firstArgs.forEach(leftArg => {
       secondArgs.forEach(rightArg => {
-        const arg = mathNode.Creator.operator('*', [leftArg, rightArg]);
+        const arg = mathNode.Creator.operator("*", [leftArg, rightArg]);
         arg.changeGroup = 1;
         newArgs.push(arg);
       });
     });
   }
-  return mathNode.Creator.parenthesis(mathNode.Creator.operator('+', newArgs));
+  return mathNode.Creator.parenthesis(mathNode.Creator.operator("+", newArgs));
 }
 
-function hasFraction(args: any);
 function hasFraction(args) {
   return args.filter(isFraction).length > 0;
 }
 
-function isFraction(node: any);
-function isFraction(node) {
-  return mathNode.Type.isOperator(node, '/');
+function isFraction(node: mathjs.MathNode) {
+  return mathNode.Type.isOperator(node, "/");
 }
 
 // Simplifies a sum of terms (a result of distribution) that's in parens
@@ -238,7 +232,7 @@ function isFraction(node) {
 function simplifyWithParens(node: any);
 function simplifyWithParens(node) {
   if (!mathNode.Type.isParenthesis(node)) {
-    throw Error('expected ' + node + ' to be a parenthesis node');
+    throw Error(`expected ${node} to be a parenthesis node`);
   }
 
   const status = simplify(node.content);
@@ -254,8 +248,7 @@ function simplifyWithParens(node) {
 // e.g. (2x+3)*(4x+5) -distribute-> 2x*(4x+5) + 3*(4x+5) <- 2 terms to simplify
 // e.g. 2x*(4x+5) --distribute--> 2x*4x + 2x*5 --simplify--> 8x^2 + 10x
 // Returns a mathNode.Status object.
-function simplify(node: any);
-function simplify(node) {
+function simplify(node: mathjs.MathNode) {
   const substeps = [];
   const simplifyFunctions = [
     arithmeticSearch,                       // e.g. 2*9 -> 18
@@ -287,13 +280,12 @@ function simplify(node) {
 }
 
 // returns true if `node` is of the type (node + node + ...)
-function isParenthesisOfAddition(node: any);
-function isParenthesisOfAddition(node) {
+function isParenthesisOfAddition(node: mathjs.MathNode) {
   if (!mathNode.Type.isParenthesis(node)) {
     return false;
   }
   const content = node.content;
-  return mathNode.Type.isOperator(content, '+');
+  return mathNode.Type.isOperator(content, "+");
 }
 
 export = search;

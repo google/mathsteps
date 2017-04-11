@@ -9,15 +9,15 @@
 
  */
 
-import addConstantAndFraction = require('./addConstantAndFraction');
-import addConstantFractions = require('./addConstantFractions');
-import cancelLikeTerms = require('./cancelLikeTerms');
-import divideByGCD = require('./divideByGCD');
-import simplifyFractionSigns = require('./simplifyFractionSigns');
-import simplifyPolynomialFraction = require('./simplifyPolynomialFraction');
-import mathNode = require('../../mathnode');
-import TreeSearch = require('../../TreeSearch');
-const SIMPLIFICATION_FUNCTIONS = [
+import addConstantAndFraction = require("./addConstantAndFraction");
+import addConstantFractions = require("./addConstantFractions");
+import cancelLikeTerms = require("./cancelLikeTerms");
+import divideByGCD = require("./divideByGCD");
+import simplifyFractionSigns = require("./simplifyFractionSigns");
+import simplifyPolynomialFraction = require("./simplifyPolynomialFraction");
+import mathNode = require("../../mathnode");
+import TreeSearch = require("../../TreeSearch");
+const simplificationFunctions: Array<any> = [
   // e.g. 2/3 + 5/6
   addConstantFractions,
   // e.g. 4 + 5/6 or 4.5 + 6/8
@@ -37,8 +37,8 @@ const search = TreeSearch.preOrder(simplifyFractions);
 // Look for step(s) to perform on a node. Returns a mathNode.Status object.
 function simplifyFractions(node: any);
 function simplifyFractions(node) {
-  for (let i = 0; i < SIMPLIFICATION_FUNCTIONS.length; i++) {
-    const nodeStatus = SIMPLIFICATION_FUNCTIONS[i](node);
+  for (let i = 0; i < simplificationFunctions.length; i++) {
+    const nodeStatus = simplificationFunctions[i](node);
     if (nodeStatus.hasChanged()) {
       return nodeStatus;
     }

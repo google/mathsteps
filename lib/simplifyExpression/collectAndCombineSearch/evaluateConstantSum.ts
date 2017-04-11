@@ -1,9 +1,9 @@
-import addConstantAndFraction = require('../fractionsSearch/addConstantAndFraction');
-import addConstantFractions = require('../fractionsSearch/addConstantFractions');
-import arithmeticSearch = require('../arithmeticSearch');
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
+import addConstantAndFraction = require("../fractionsSearch/addConstantAndFraction");
+import addConstantFractions = require("../fractionsSearch/addConstantFractions");
+import arithmeticSearch = require("../arithmeticSearch");
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
 
 // Evaluates a sum of constant numbers and integer fractions to a single
 // constant number or integer fraction. e.g. e.g. 2/3 + 5 + 5/2 => 49/6
@@ -13,7 +13,7 @@ function evaluateConstantSum(node) {
   if (mathNode.Type.isParenthesis(node)) {
     node = node.content;
   }
-  if (!mathNode.Type.isOperator(node) || node.op !== '+') {
+  if (!mathNode.Type.isOperator(node) || node.op !== "+") {
     return mathNode.Status.noChange(node);
   }
   if (node.args.some(node => !mathNode.Type.isConstantOrConstantFraction(node))) {
@@ -90,11 +90,11 @@ function groupConstantsAndFractions(node) {
   let constants = node.args.filter(mathNode.Type.isConstant);
 
   if (fractions.length === 0 || constants.length === 0) {
-    throw Error('expected both integer fractions and constants, got ' + node);
+    throw Error("expected both integer fractions and constants, got " + node);
   }
 
   if (fractions.length + constants.length !== node.args.length) {
-    throw Error('can only evaluate integer fractions and constants');
+    throw Error("can only evaluate integer fractions and constants");
   }
 
   constants = constants.map(node => {
@@ -105,7 +105,7 @@ function groupConstantsAndFractions(node) {
   });
   // wrap in parenthesis if there's more than one, to group them
   if (constants.length > 1) {
-    constants = mathNode.Creator.parenthesis(mathNode.Creator.operator('+', constants));
+    constants = mathNode.Creator.parenthesis(mathNode.Creator.operator("+", constants));
   }
   else {
     constants = constants[0];
@@ -119,13 +119,13 @@ function groupConstantsAndFractions(node) {
   });
   // wrap in parenthesis if there's more than one, to group them
   if (fractions.length > 1) {
-    fractions = mathNode.Creator.parenthesis(mathNode.Creator.operator('+', fractions));
+    fractions = mathNode.Creator.parenthesis(mathNode.Creator.operator("+", fractions));
   }
   else {
     fractions = fractions[0];
   }
 
-  const newNode = mathNode.Creator.operator('+', [constants, fractions]);
+  const newNode = mathNode.Creator.operator("+", [constants, fractions]);
   return mathNode.Status.nodeChanged(
     ChangeTypes.COLLECT_LIKE_TERMS, node, newNode);
 }

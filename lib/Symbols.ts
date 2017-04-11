@@ -1,4 +1,4 @@
-import mathNode = require('./mathNode');
+import mathNode = require("./mathNode");
 
 class Symbols {
     // returns the set of all the symbols in an equation
@@ -23,15 +23,15 @@ class Symbols {
 // e.g. 4x^2 + 2x + y + 2 with `symbolName=x` would return 2x
     static getLastSymbolTerm = (node, symbolName) => {
         // First check if the node itself is a polyomial term with symbolName
-        if (this.isSymbolTerm(node, symbolName)) {
+        if (Symbols.isSymbolTerm(node, symbolName)) {
             return node;
         }
         // Otherwise, it's a sum of terms. Look through the operands for a term
         // with `symbolName`
-        else if (mathNode.Type.isOperator(node, '+')) {
+        else if (mathNode.Type.isOperator(node, "+")) {
             for (let i = node.args.length - 1; i >= 0; i--) {
                 const child = node.args[i];
-                if (this.isSymbolTerm(child, symbolName)) {
+                if (Symbols.isSymbolTerm(child, symbolName)) {
                     return child;
                 }
             }
@@ -46,12 +46,12 @@ class Symbols {
 // e.g. 4x^2 + 2x + 2/4 with `symbolName=x` would return 2/4
 // e.g. 4x^2 + 2x + y with `symbolName=x` would return y
     static getLastNonSymbolTerm = (node, symbolName) => {
-        if (this.isSymbolTerm(node, symbolName)) {
+        if (Symbols.isSymbolTerm(node, symbolName)) {
             return new mathNode.PolynomialTerm(node).getCoeffNode();
         } else if (mathNode.Type.isOperator(node)) {
             for (let i = node.args.length - 1; i >= 0; i--) {
                 const child = node.args[i];
-                if (!this.isSymbolTerm(child, symbolName)) {
+                if (!Symbols.isSymbolTerm(child, symbolName)) {
                     return child;
                 }
             }
@@ -61,7 +61,7 @@ class Symbols {
     };
 
 // Returns if `node` is a polynomial term with symbol `symbolName`
-    isSymbolTerm(node, symbolName) {
+    static isSymbolTerm(node: mathjs.MathNode, symbolName) {
         if (mathNode.PolynomialTerm.isPolynomialTerm(node)) {
             const polyTerm = new mathNode.PolynomialTerm(node);
             if (polyTerm.getSymbolName() === symbolName) {

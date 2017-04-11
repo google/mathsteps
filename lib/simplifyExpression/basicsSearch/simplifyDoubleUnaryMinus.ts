@@ -1,11 +1,10 @@
-import clone = require('../../util/clone');
-import ChangeTypes = require('../../ChangeTypes');
-import mathNode = require('../../mathnode');
+import clone = require("../../util/clone");
+import ChangeTypes = require("../../ChangeTypes");
+import mathNode = require("../../mathnode");
 
 // Simplifies two unary minuses in a row by removing both of them.
 // e.g. -(- 4) --> 4
-function simplifyDoubleUnaryMinus(node: any);
-function simplifyDoubleUnaryMinus(node) {
+function simplifyDoubleUnaryMinus(node: mathjs.MathNode) {
   if (!mathNode.Type.isUnaryMinus(node)) {
     return mathNode.Status.noChange(node);
   }
@@ -25,7 +24,7 @@ function simplifyDoubleUnaryMinus(node) {
   // e.g. -(-(5+2))
   else if (mathNode.Type.isParenthesis(unaryArg)) {
     const parenthesisNode = unaryArg;
-    const parenthesisContent = parenthesisNode.content;
+    const parenthesisContent = parenthesisNode;
     if (mathNode.Type.isUnaryMinus(parenthesisContent)) {
       const newNode = mathNode.Creator.parenthesis(parenthesisContent.args[0]);
       return mathNode.Status.nodeChanged(

@@ -1,8 +1,7 @@
-import mathNode = require('../mathnode');
-import resolvesToConstant = require('./resolvesToConstant');
+import mathNode = require("../mathnode");
+import resolvesToConstant = require("./resolvesToConstant");
 
-function hasUnsupportedNodes(node: any);
-function hasUnsupportedNodes(node) {
+function hasUnsupportedNodes(node: mathjs.MathNode) {
   if (mathNode.Type.isParenthesis(node)) {
     return hasUnsupportedNodes(node.content);
   }
@@ -15,7 +14,7 @@ function hasUnsupportedNodes(node) {
   else if (mathNode.Type.isSymbol(node) || mathNode.Type.isConstant(node)) {
     return false;
   }
-  else if (mathNode.Type.isFunction(node, 'abs')) {
+  else if (mathNode.Type.isFunction(node, "abs")) {
     if (node.args.length !== 1) {
       return true;
     }
@@ -24,7 +23,7 @@ function hasUnsupportedNodes(node) {
     }
     return !resolvesToConstant(node.args[0]);
   }
-  else if (mathNode.Type.isFunction(node, 'nthRoot')) {
+  else if (mathNode.Type.isFunction(node, "nthRoot")) {
     return node.args.some(hasUnsupportedNodes) || node.args.length < 1;
   }
   else {
