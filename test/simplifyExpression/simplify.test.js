@@ -177,7 +177,7 @@ describe('division of powers support', function() {
     ['2^5/2^4', '2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-})
+});
 
 describe('keeping parens in important places, on printing', function() {
   testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');

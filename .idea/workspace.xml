@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="595609be-2cb9-4478-970c-0a364f5ac749" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/checks/canDivideLikeTermConstantNodes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/checks/canDivideLikeTermPolynomialNodes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/divideLikeTerms.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/canDivideLikeTermConstantNodes.test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/canDivideLikeTermPolynomialNodes.test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/checks/index.js" afterPath="$PROJECT_DIR$/lib/checks/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/index.js" afterPath="$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/simplifyExpression/collectAndCombineSearch/collectAndCombineSearch.test.js" afterPath="$PROJECT_DIR$/test/simplifyExpression/collectAndCombineSearch/collectAndCombineSearch.test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/simplifyExpression/simplify.test.js" afterPath="$PROJECT_DIR$/test/simplifyExpression/simplify.test.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,6 +19,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="simplify.test.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/simplifyExpression/simplify.test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="179" column="3" lean-forward="false" selection-start-line="179" selection-start-column="3" selection-end-line="179" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="multiplyLikeTerms.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/multiplyLikeTerms.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -36,11 +39,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="divideLikeTerms.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="divideLikeTerms.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/divideLikeTerms.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
               <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="53" lean-forward="false" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -171,14 +184,14 @@
         <option value="$PROJECT_DIR$/lib/TreeSearch.js" />
         <option value="$PROJECT_DIR$/test/canMultiplyLikeTermConstantNodes.test.js" />
         <option value="$PROJECT_DIR$/test/canDivideLikeTermConstantNodes.test.js" />
-        <option value="$PROJECT_DIR$/test/simplifyExpression/simplify.test.js" />
         <option value="$PROJECT_DIR$/test/simplifyExpression/collectAndCombineSearch/collectAndCombineSearch.test.js" />
-        <option value="$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/index.js" />
         <option value="$PROJECT_DIR$/lib/checks/index.js" />
         <option value="$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/divideLikeTerms.js" />
         <option value="$PROJECT_DIR$/lib/checks/canDivideLikeTermConstantNodes.js" />
         <option value="$PROJECT_DIR$/lib/checks/canDivideLikeTermPolynomialNodes.js" />
         <option value="$PROJECT_DIR$/test/canDivideLikeTermPolynomialNodes.test.js" />
+        <option value="$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/index.js" />
+        <option value="$PROJECT_DIR$/test/simplifyExpression/simplify.test.js" />
       </list>
     </option>
   </component>
@@ -194,10 +207,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-11" />
-    <option name="width" value="1857" />
-    <option name="height" value="1092" />
+    <option name="x" value="411" />
+    <option name="y" value="129" />
+    <option name="width" value="1851" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -336,49 +349,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mathsteps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mathsteps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mathsteps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mathsteps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="checks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/mathsteps2/mathsteps" />
+    <property name="last_opened_file_path" value="$USER_HOME$/albert/albert-new" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
@@ -512,7 +489,7 @@
       <workItem from="1492015691458" duration="207000" />
       <workItem from="1492016747147" duration="1027000" />
       <workItem from="1492068854530" duration="7039000" />
-      <workItem from="1492077689990" duration="2489000" />
+      <workItem from="1492077689990" duration="3940000" />
     </task>
     <task id="LOCAL-00001" summary="Added support for multiplication of powers with integer as base, with corresponding tests.">
       <created>1492068942886</created>
@@ -535,19 +512,27 @@
       <option name="project" value="LOCAL" />
       <updated>1492074808637</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added support for division with powers too, for better pedagogical approach">
+      <created>1492080213487</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1492080213487</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58175000" />
+    <option name="totallyTimeSpent" value="59626000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <frame x="411" y="129" width="1851" height="1040" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25013506" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925585" sideWeight="0.5040431" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925585" sideWeight="0.49595687" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34471717" sideWeight="0.50405186" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34471717" sideWeight="0.49594814" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -573,7 +558,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added support for multiplication of powers with integer as base, with corresponding tests." />
     <MESSAGE value="Fixed errors from the CI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed errors from the CI" />
+    <MESSAGE value="Added support for division with powers too, for better pedagogical approach" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for division with powers too, for better pedagogical approach" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -789,21 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/simplifyExpression/simplify.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3096">
-          <caret line="172" column="0" lean-forward="false" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="47" column="3" lean-forward="true" selection-start-line="47" selection-start-column="3" selection-end-line="47" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/ChangeTypes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -912,6 +883,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/simplifyExpression/collectAndCombineSearch/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="53" lean-forward="false" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/simplifyExpression/simplify.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="179" column="3" lean-forward="false" selection-start-line="179" selection-start-column="3" selection-end-line="179" selection-end-column="3" />
           <folding />
         </state>
       </provider>
