@@ -13,10 +13,12 @@
     "eslint": "^3.10.2",
     "eslint-config-google": "^0.7.0",
     "eslint-plugin-sort-requires": "^2.1.0",
+    "flow-bin": "^0.43.1",
     "mocha": "2.4.5"
   },
   "scripts": {
     "lint": "node_modules/.bin/eslint .",
+    "flow": "flow",
     "test": "node_modules/.bin/mocha --recursive",
     "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit"
   },
