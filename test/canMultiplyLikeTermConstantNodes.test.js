@@ -1,5 +1,4 @@
 const canMultiplyLikeTermConstantNodes = require('../lib/checks/canMultiplyLikeTermConstantNodes');
-const multiplyLikeTerms  = require('../lib/simplifyExpression/collectAndCombineSearch/multiplyLikeTerms')
 
 
 const TestUtil = require('./TestUtil');
