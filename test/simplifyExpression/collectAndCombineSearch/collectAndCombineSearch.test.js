@@ -68,3 +68,11 @@ describe('collect and multiply like terms', function() {
   ];
   tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
 });
+
+describe('collect and divide multiply like terms', function() {
+  const tests = [
+    ['10^5 / 10^2', '10^3'],
+    ['2^4 / 2^2', '2^2']
+  ];
+  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
+});
