@@ -29,3 +29,10 @@ describe('canSimplifyPolynomialTerms addition', function() {
   ];
   tests.forEach(t => testCanCombine(t[0], t[1]));
 });
+
+describe('canSimplifyPolynomialTerms denominator in numerator', function() {
+  const tests = [
+    ['(2x + 3)/(2x + 2)', true],
+  ];
+  tests.forEach(t => testCanCombine(t[0], t[1]));
+});

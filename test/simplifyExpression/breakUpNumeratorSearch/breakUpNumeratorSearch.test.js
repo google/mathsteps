@@ -11,6 +11,7 @@ describe('breakUpNumerator', function() {
     ['(x+3+y)/3', '(x / 3 + 3/3 + y / 3)'],
     ['(2+x)/4', '(2/4 + x / 4)'],
     ['2(x+3)/3', '2 * (x / 3 + 3/3)'],
+    ['(2x + 3)/(2x + 2)', '(1 / (2x + 2) + (2x + 2) / (2x + 2))'],
   ];
   tests.forEach(t => testBreakUpNumeratorSearch(t[0], t[1]));
 });
