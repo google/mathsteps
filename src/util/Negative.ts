@@ -2,7 +2,7 @@
 // Returns if the given node is negative. Treats a unary minus as a negative,
 // as well as a negative constant value or a constant fraction that would
 // evaluate to a negative number
-isNegative(node: mathjs.MathNode) {
+function isNegative(node) {
   if (Node.Type.isUnaryMinus(node)) {
     return !Negative.isNegative(node.args[0]);
   }

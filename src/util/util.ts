@@ -1,5 +1,5 @@
-
-Util.appendToArrayInObject = function(dict, key, value) {
+namespace util {
+function appendToArrayInObject(dict, key, value) {
   if (dict[key]) {
     dict[key].push(value);
   }
@@ -8,3 +8,4 @@ Util.appendToArrayInObject = function(dict, key, value) {
   }
   return dict;
 };
+}

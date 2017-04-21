@@ -1,12 +1,12 @@
 namespace factor{
     //returns the 
-    export getPrimeFactors(){
+    export function getPrimeFactors(number: number){
         
     }
-    export getFactorPairs(){
+    export function getFactorPairs(number: number){
 
     }
-    export factorQuadratic{
+    export function factorQuadratic{
 
     }
     
