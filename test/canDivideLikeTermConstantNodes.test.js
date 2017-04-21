@@ -4,10 +4,10 @@ const canDivideLikeTermConstantNodes = require('../lib/checks/canDivideLikeTermC
 const TestUtil = require('./TestUtil');
 
 function testCanBeDividedConstants(expr, multipliable) {
-  TestUtil.testBooleanFunction(canDivideLikeTermConstantNodes, expr, multipliable);
+  TestUtil.testBooleanFunction(canDivideLikeTermConstantNodes.canDivideLikeTermConstantNodes, expr, multipliable);
 }
 
-describe('can multiply like term constants', () => {
+describe('can divide like term constants', () => {
   const tests = [
     ['3^2 / 3^5', true],
     ['2^3 / 3^2', false],
