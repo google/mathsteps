@@ -1,5 +1,5 @@
 namespace util {
-function appendToArrayInObject(dict, key, value) {
+function appendToArrayInObject(dict: Array<any>, key: number, value: any) {
   if (dict[key]) {
     dict[key].push(value);
   }
