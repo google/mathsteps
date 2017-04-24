@@ -64,6 +64,11 @@ describe('combineConstantPowerTerms multiplication', function() {
         '2^(1 + 3)',
         '2^4'],
     ],
+    ['3^3 * 3 * 3',
+      ['3^3 * 3^1 * 3^1',
+        '3^(3 + 1 + 1)',
+        '3^5'],
+    ],
   ];
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
 });
@@ -79,7 +84,7 @@ describe('collectAndCombineSearch with no substeps', function () {
 describe('collect and multiply like terms', function() {
   const tests = [
     ['10^3 * 10^2', '10^5'],
-    ['2^4 * 2 * 2^4', '2^9']
+    ['2^4 * 2 * 2^4 * 2', '2^10']
   ];
   tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
 });
