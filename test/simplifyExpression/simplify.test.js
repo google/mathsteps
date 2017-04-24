@@ -136,7 +136,7 @@ describe('absolute value support', function() {
     ['abs(5/18-abs(9/-18))', '2/9'],
     // handle parens around abs()
     ['( abs( -3) )/(3)', '1'],
-    ['- abs( -40)', '-40'],
+      ['- abs( -40)', '-40'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
@@ -158,7 +158,7 @@ describe('nthRoot support', function() {
 describe('handles unnecessary parens at root level', function() {
   const tests = [
     ['(x+(y))', 'x + y'],
-    ['((x+y) + ((z^3)))', 'x + y + z^3'],
+      ['((x+y) + ((z^3)))', 'x + y + z^3'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
