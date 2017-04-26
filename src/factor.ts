@@ -1,4 +1,5 @@
-import * as nodeHelper from "../nodeHelper";
+import Negative from "./Negative";
+import * as nodeHelper from "./nodeHelper";
     //returns all prime factors of a number
     export function getPrimeFactors(number: number): number[] {
         let factors = [];

@@ -1,6 +1,6 @@
 // The text to identify rules for each possible step that can be taken
 
-enum ChangeTypes{
+export enum ChangeTypes{
   NO_CHANGE,
 
   // ARITHMETIC

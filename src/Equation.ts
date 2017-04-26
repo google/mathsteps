@@ -1,4 +1,4 @@
-import * as nodeHelper from "../nodeHelper";
+import * as nodeHelper from "./nodeHelper";
 // This represents an equation, made up of the leftNode (LHS), the
 // rightNode (RHS) and a comparator (=, <, >, <=, or >=)
 export default class Equation {
