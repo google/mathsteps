@@ -4,7 +4,7 @@ const canDivideLikeTermConstantNodes = require('../lib/checks/canDivideLikeTermC
 const TestUtil = require('./TestUtil');
 
 function testCanBeDividedConstants(expr, multipliable) {
-  TestUtil.testBooleanFunction(canDivideLikeTermConstantNodes.canDivideLikeTermConstantNodes, expr, multipliable);
+  TestUtil.testBooleanFunction(canDivideLikeTermConstantNodes, expr, multipliable);
 }
 
 describe('can divide like term constants', () => {
