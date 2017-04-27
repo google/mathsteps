@@ -4,7 +4,7 @@ const canMultiplyLikeTermConstantNodes = require('../lib/checks/canMultiplyLikeT
 const TestUtil = require('./TestUtil');
 
 function testCanBeMultipliedConstants(expr, multipliable) {
-  TestUtil.testBooleanFunction(canMultiplyLikeTermConstantNodes.canMultiplyLikeTermConstantNodes, expr, multipliable);
+  TestUtil.testBooleanFunction(canMultiplyLikeTermConstantNodes, expr, multipliable);
 }
 
 describe('can multiply like term constants', () => {
