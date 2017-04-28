@@ -1,10 +1,10 @@
 {
   "name": "mathsteps",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
-    "mathjs": "3.8.0"
+    "mathjs": "3.11.2"
   },
   "engines": {
     "node": ">=6.0.0"
