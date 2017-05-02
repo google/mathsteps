@@ -1,6 +1,5 @@
 const canMultiplyLikeTermConstantNodes = require('../lib/checks/canMultiplyLikeTermConstantNodes');
 
-
 const TestUtil = require('./TestUtil');
 
 function testCanBeMultipliedConstants(expr, multipliable) {
