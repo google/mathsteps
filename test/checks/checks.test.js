@@ -33,6 +33,9 @@ describe('canSimplifyPolynomialTerms addition', function() {
 describe('canSimplifyPolynomialTerms denominator in numerator', function() {
   const tests = [
     ['(2x + 3)/(2x + 2)', true],
+    ['(2x+3)/(2x)', false],
+    ['(5x + 3)/(4)', false],
+    ['(2x)/(2x + 3)', true],
   ];
   tests.forEach(t => testCanCombine(t[0], t[1]));
 });
