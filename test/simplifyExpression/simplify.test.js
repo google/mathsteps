@@ -163,22 +163,6 @@ describe('handles unnecessary parens at root level', function() {
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
-describe('multiplication of powers support', function() {
-  const tests = [
-    ['10^3 * 10^2', '100000'],
-    ['2^3*2^4', '128'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
-
-describe('division of powers support', function() {
-  const tests = [
-    ['10^3 / 10^2', '10'],
-    ['2^5/2^4', '2'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
-
 describe('keeping parens in important places, on printing', function() {
   testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');
 });
