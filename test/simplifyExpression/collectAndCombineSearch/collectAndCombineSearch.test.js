@@ -89,22 +89,6 @@ describe('combineConstantPowerTerms multiplication', function() {
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
 });
 
-describe('combineConstantPowerTerms division', function() {
-  const tests = [
-    ['10^2 / 10',
-      ['10^2 / (10^1)',
-        '10^(2 - 1)',
-        '10^1'],
-    ],
-    ['2 / 2^3',
-      ['2^1 / (2^3)',
-        '2^(1 - 3)',
-        '2^-2'],
-    ],
-  ];
-  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
-});
-
 describe('collectAndCombineSearch with no substeps', function () {
   const tests = [
     ['2x + 4x + x', '7x'],
