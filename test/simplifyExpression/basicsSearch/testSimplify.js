@@ -1,13 +1,11 @@
-const assert = require('assert');
-const math = require('mathjs');
+import assert from 'assert';
 
-const flatten = require('../../../lib/util/flattenOperands');
-const print = require('../../../lib/util/print');
+//const flatten = require('../../../lib/util/flattenOperands');
+import {print, parse} from 'math-parser';
 
-
-function testSimplify(exprStr, outputStr, simplifyOperation) {
+export function testSimplify(exprStr, outputStr, simplifyOperation) {
   it(exprStr + ' -> ' + outputStr, function () {
-    const inputNode = flatten(math.parse(exprStr));
+    const inputNode = parse(exprStr);
     const newNode = simplifyOperation(inputNode).newNode;
     assert.equal(
       print(newNode),
@@ -15,4 +13,3 @@ function testSimplify(exprStr, outputStr, simplifyOperation) {
   });
 }
 
-module.exports = testSimplify;

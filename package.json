@@ -4,23 +4,30 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
-    "math-node": "^0.0.1",
+    "math-nodes": "^0.0.1",
     "math-parser": "^0.5.3",
-    "math-traverse": "^0.2.0"
+    "math-traverse": "^0.2.0",
+    "math-rules": "^0.1.2"
   },
   "engines": {
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.10.2",
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "eslint": "^3.15.0",
     "eslint-config-google": "^0.7.0",
     "eslint-plugin-sort-requires": "^2.1.0",
-    "mocha": "2.4.5"
+    "mocha": "^3.2.0",
+    "webpack": "^2.2.1"
   },
   "scripts": {
     "lint": "node_modules/.bin/eslint .",
-    "test": "node_modules/.bin/mocha --recursive",
-    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit"
+    "test": "mocha --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
-const canAddLikeTermPolynomialNodes = require('../lib/checks/canAddLikeTermPolynomialNodes');
+import {canAddLikeTermPolynomialNodes} from '../lib/checks/canAddLikeTermPolynomialNodes.js';
 
-const TestUtil = require('./TestUtil');
+import {TestUtil} from 'TestUtil.js';
 
 function testCanBeAdded(expr, addable) {
   TestUtil.testBooleanFunction(canAddLikeTermPolynomialNodes, expr, addable);
