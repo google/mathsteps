@@ -32,10 +32,23 @@ describe('canSimplifyPolynomialTerms addition', function() {
 
 describe('canSimplifyPolynomialTerms denominator in numerator', function() {
   const tests = [
+    ['(x+1)/(x-2)', true],
+    ['(2x)/(x+4)', true],
+    ['(x)/(x+4)', true],
+    ['(x)/(2x+4)', true],
+    ['(x+3)/(x)', false], // Normal breakup function already solves this
     ['(2x + 3)/(2x + 2)', true],
-    ['(2x+3)/(2x)', false],
-    ['(5x + 3)/(4)', false],
-    ['(2x)/(2x + 3)', true],
+    ['(2x+3)/(2x)', false], // Normal breakup function already solves this
+    ['(2x)/(2x + 2)', true],
+    ['(5x + 3)/(4)', false], // Normal breakup function already solves this
+    // Not supported yet
+    ['(2x)/(2 + 2x)', false],
+    ['(2 + 2x)/(3x + 4)', false],
+    ['(x + 3)/(2x^2 + 5)', false],
+    ['(3x^2 + 3)/(2x^2 + 5)', false],
+    ['(5x^2 + 3)/(2x + 5)', false],
+    ['(5x^2-4x + 3)/(2x + 5)', false],
+    ['(-4x + 3)/(2x^2 + 5x +7)', false],
   ];
   tests.forEach(t => testCanCombine(t[0], t[1]));
 });
