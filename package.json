@@ -7,7 +7,7 @@
     "math-nodes": "^0.0.4",
     "math-parser": "^0.6.2",
     "math-traverse": "^0.2.0",
-    "math-rules": "^0.2.1"
+    "math-rules": "^0.2.2"
   },
   "engines": {
     "node": ">=6.0.0"
