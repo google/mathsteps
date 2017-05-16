@@ -1,7 +1,6 @@
-const removeDivisionByOne = require('../../../lib/simplifyExpression/basicsSearch/removeDivisionByOne');
-
-const testSimplify = require('./testSimplify');
+import {basics} from '../../../lib/simplifyExpression/search.js';
+import testSimplify from './testSimplify.js';
 
 describe('removeDivisionByOne', function() {
-  testSimplify('x/1', 'x', removeDivisionByOne);
+  testSimplify('x/1', 'x', basics);
 });

@@ -1,11 +1,10 @@
 import assert from 'assert';
-
-//const flatten = require('../../../lib/util/flattenOperands');
+import {flattenOperands as flatten} from 'math-rules'; 
 import {print, parse} from 'math-parser';
 
-export function testSimplify(exprStr, outputStr, simplifyOperation) {
+export default function testSimplify(exprStr, outputStr, simplifyOperation) {
   it(exprStr + ' -> ' + outputStr, function () {
-    const inputNode = parse(exprStr);
+    const inputNode = flatten(parse(exprStr));
     const newNode = simplifyOperation(inputNode).newNode;
     assert.equal(
       print(newNode),
