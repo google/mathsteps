@@ -46,7 +46,7 @@ describe('can simplify with division', function () {
     ['2x * 5x / 2', '5x^2'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x * 4x / 2 / 4', 'x^2'],
-    ['2x * y / z * 10', '20x * y / z'],
+    ['2x * y / z * 10', '(20x * y) / z'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
@@ -136,7 +136,7 @@ describe('absolute value support', function() {
     ['abs(5/18-abs(9/-18))', '2/9'],
     // handle parens around abs()
     ['( abs( -3) )/(3)', '1'],
-    ['- abs( -40)', '-40'],
+      ['- abs( -40)', '-40'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
@@ -158,7 +158,7 @@ describe('nthRoot support', function() {
 describe('handles unnecessary parens at root level', function() {
   const tests = [
     ['(x+(y))', 'x + y'],
-    ['((x+y) + ((z^3)))', 'x + y + z^3'],
+      ['((x+y) + ((z^3)))', 'x + y + z^3'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
