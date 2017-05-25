@@ -4,10 +4,11 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
-    "math-nodes": "^0.0.4",
-    "math-parser": "^0.6.2",
-    "math-traverse": "^0.2.0",
-    "math-rules": "^0.2.2"
+    "math-evaluator": "^0.0.4",
+    "math-nodes": "^0.1.0",
+    "math-parser": "^0.9.0",
+    "math-rules": "^0.2.10",
+    "math-traverse": "^0.2.1"
   },
   "engines": {
     "node": ">=6.0.0"
