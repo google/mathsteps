@@ -1,7 +1,7 @@
 const assert = require('assert');
-const math = require('mathjs');
 
 const flatten = require('../lib/util/flattenOperands');
+const parse = require('../lib/util/parse');
 const print = require('../lib/util/print');
 
 // TestUtil contains helper methods to share code across tests
@@ -9,7 +9,8 @@ const TestUtil = {};
 
 // Tests a function that takes an input string and check its output
 TestUtil.testFunctionOutput = function (fn, input, output) {
-  it(input + ' -> ' + output,  () => {
+  const inputStr = typeof input === 'object' ? print(input) : input;
+  it(inputStr + ' -> ' + output,  () => {
     assert.deepEqual(fn(input),output);
   });
 };
@@ -17,7 +18,7 @@ TestUtil.testFunctionOutput = function (fn, input, output) {
 // tests a function that takes in a node and returns a boolean value
 TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBooleanValue) {
   it(exprString + ' ' + expectedBooleanValue, () => {
-    const inputNode = flatten(math.parse(exprString));
+    const inputNode = flatten(parse(exprString));
     assert.equal(simplifier(inputNode),expectedBooleanValue);
   });
 };
@@ -26,8 +27,10 @@ TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBoolean
 TestUtil.testSimplification = function (simplifyingFunction, exprString,
                                         expectedOutputString) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
+    const outputAST = simplifyingFunction(flatten(parse(exprString))).newNode;
+    // console.log(JSON.stringify(outputAST, null, 2));
     assert.deepEqual(
-      print(simplifyingFunction(flatten(math.parse(exprString))).newNode),
+      print(outputAST),
       expectedOutputString);
   });
 };
@@ -36,7 +39,7 @@ TestUtil.testSimplification = function (simplifyingFunction, exprString,
 TestUtil.testSubsteps = function (fn, exprString, outputList,
                                     outputStr) {
   it(exprString + ' -> ' + outputStr, () => {
-    const status = fn(flatten(math.parse(exprString)));
+    const status = fn(flatten(parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);

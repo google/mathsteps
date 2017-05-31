@@ -6,17 +6,17 @@ const solveEquation = require('../../lib/solveEquation');
 const NO_STEPS = 'no-steps';
 
 function testSolve(equationString, outputStr, debug=false) {
-  const steps = solveEquation(equationString, debug);
-  let lastStep;
-  if (steps.length === 0) {
-    lastStep = NO_STEPS;
-  }
-  else {
-    lastStep = steps[steps.length -1].newEquation.print();
-  }
-  it(equationString + ' -> ' + outputStr, (done) => {
+  it(equationString + ' -> ' + outputStr, () => {
+    const steps = solveEquation(equationString, debug);
+    let lastStep;
+    if (steps.length === 0) {
+      lastStep = NO_STEPS;
+    }
+    else {
+      lastStep = steps[steps.length - 1].newEquation.print();
+    }
     assert.equal(lastStep, outputStr);
-    done();
+    // done();
   });
 }
 
@@ -76,9 +76,9 @@ describe('solveEquation for non = comparators', function() {
 });
 
 function testSolveConstantEquation(equationString, expectedChange, debug=false) {
-  const steps = solveEquation(equationString, debug);
-  const actualChange = steps[steps.length -1].changeType;
   it(equationString + ' -> ' + expectedChange, (done) => {
+    const steps = solveEquation(equationString, debug);
+    const actualChange = steps[steps.length - 1].changeType;
     assert.equal(actualChange, expectedChange);
     done();
   });

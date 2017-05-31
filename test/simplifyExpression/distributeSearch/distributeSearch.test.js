@@ -8,18 +8,18 @@ function testDistribute(exprStr, outputStr) {
 
 describe('distribute - into paren with addition', function () {
   const tests = [
-    ['-(x+3)', '(-x - 3)'],
-    ['-(x - 3)', '(-x + 3)'],
-    ['-(-x^2 + 3y^6)' , '(x^2 - 3y^6)'],
+    ['-(x+3)', '-x - 3'],
+    ['-(x - 3)', '-x + 3'],
+    ['-(-x^2 + 3y^6)' , 'x^2 - 3y^6'],
   ];
   tests.forEach(t => testDistribute(t[0], t[1]));
 });
 
 describe('distribute - into paren with multiplication/division', function () {
   const tests = [
-    ['-(x*3)', '(-x * 3)'],
-    ['-(-x * 3)', '(x * 3)'],
-    ['-(-x^2 * 3y^6)', '(x^2 * 3y^6)'],
+    ['-(x*3)', '-x * 3'],
+    ['-(-x * 3)', 'x * 3'],
+    ['-(-x^2 * 3y^6)', 'x^2 * 3y^6'],
   ];
   tests.forEach(t => testDistribute(t[0], t[1]));
 });
@@ -32,20 +32,20 @@ function testDistributeSteps(exprString, outputList) {
 describe('distribute', function () {
   const tests = [
     ['x*(x+2+y)',
-      ['(x * x + x * 2 + x * y)',
-        '(x^2 + 2x + x * y)']
+      ['x * x + x * 2 + x * y',
+        'x^2 + 2x + x * y']
     ],
     ['(x+2+y)*x*7',
       ['(x * x + 2x + y * x) * 7',
         '(x^2 + 2x + y * x) * 7']
     ],
     ['(5+x)*(x+3)',
-      ['(5 * (x + 3) + x * (x + 3))',
-        '((5x + 15) + (x^2 + 3x))']
+      ['5 * (x + 3) + x * (x + 3)',
+        '5x + 15 + x^2 + 3x']
     ],
     ['-2x^2 * (3x - 4)',
-      ['(-2x^2 * 3x - 2x^2 * -4)',
-        '(-6x^3 + 8x^2)']
+      ['-2x^2 * 3x - 2x^2 * -4',
+        '-6x^3 + 8x^2']
     ],
   ];
   tests.forEach(t => testDistributeSteps(t[0], t[1]));

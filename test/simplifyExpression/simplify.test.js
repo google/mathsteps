@@ -1,6 +1,6 @@
 const assert = require('assert');
-const math = require('mathjs');
 
+const parse = require('../../lib/util/parse');
 const print = require('../../lib/util/print');
 
 const simplify = require('../../lib/simplifyExpression/simplify');
@@ -8,7 +8,7 @@ const simplify = require('../../lib/simplifyExpression/simplify');
 function testSimplify(exprStr, outputStr, debug=false) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplify(math.parse(exprStr), debug)),
+      print(simplify(parse(exprStr), debug)),
       outputStr);
   });
 }
@@ -27,11 +27,11 @@ describe('simplify (arithmetic)', function () {
 describe('collects and combines like terms', function() {
   const tests = [
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
-    ['2x^2 * y * x * y^3', '2x^3 * y^4'],
+    ['2x^2 * y * x * y^3', '2x^3y^4'],
     ['4y*3*5', '60y'],
     ['(2x^2 - 4) + (4x^2 + 3)', '6x^2 - 1'],
     ['(2x^1 + 4) + (4x^2 + 3)', '4x^2 + 2x + 7'],
-    ['y * 2x * 10', '20x * y'],
+    ['y * 2x * 10', '20xy'],
     ['x^y * x^z', 'x^(y + z)'],
     ['x^(3+y) + x^(3+y)+ 4', '2x^(3 + y) + 4'],
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
@@ -46,7 +46,7 @@ describe('can simplify with division', function () {
     ['2x * 5x / 2', '5x^2'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x * 4x / 2 / 4', 'x^2'],
-    ['2x * y / z * 10', '20x * y / z'],
+    ['2x * y / z * 10', '20 * x * y / z'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],

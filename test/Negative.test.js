@@ -1,6 +1,5 @@
-const math = require('mathjs');
-
 const flatten = require('../lib/util/flattenOperands');
+const parse = require("../lib/util/parse");
 const print = require('../lib/util/print');
 
 const Negative = require('../lib/Negative');
@@ -8,7 +7,7 @@ const Negative = require('../lib/Negative');
 const TestUtil = require('./TestUtil');
 
 function testNegate(exprString, outputStr) {
-  const inputStr = Negative.negate(flatten(math.parse(exprString)));
+  const inputStr = Negative.negate(flatten(parse(exprString)));
   TestUtil.testFunctionOutput(print, inputStr, outputStr);
 }
 
