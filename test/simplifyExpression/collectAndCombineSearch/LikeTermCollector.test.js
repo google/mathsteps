@@ -39,7 +39,7 @@ function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
   });
 }
 
-describe('can collect like terms for addition', function () {
+describe.skip('can collect like terms for addition', function () {
   const tests = [
     ['2+2', false, 'because only one type'],
     ['x^2+x^2', false, 'because only one type'],
@@ -51,7 +51,7 @@ describe('can collect like terms for addition', function () {
   tests.forEach(t => testCanCollectLikeTerms(t[0], t[1], t[2]));
 });
 
-describe('can collect like terms for multiplication', function () {
+describe.skip('can collect like terms for multiplication', function () {
   const tests = [
     ['2*2', false, 'because only one type'],
     ['x^2 * 2x^2', true],
@@ -61,7 +61,7 @@ describe('can collect like terms for multiplication', function () {
   tests.forEach(t => testCanCollectLikeTerms(t[0], t[1], t[2]));
 });
 
-describe('basic addition collect like terms, no exponents or coefficients', function() {
+describe.skip('basic addition collect like terms, no exponents or coefficients', function() {
   const tests = [
     ['2+x+7', 'x + (2 + 7)'],
     ['x + 4 + x + 5', '(x + x) + (4 + 5)'],
@@ -75,7 +75,7 @@ describe('basic addition collect like terms, no exponents or coefficients', func
   tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
 });
 
-describe('collect like terms with exponents and coefficients', function() {
+describe.skip('collect like terms with exponents and coefficients', function() {
   const tests = [
     ['x^2 + x + x^2 + x', '(x^2 + x^2) + (x + x)'],
     ['y^2 + 5 + y^2 + 5', '(y^2 + y^2) + (5 + 5)'],
@@ -85,7 +85,7 @@ describe('collect like terms with exponents and coefficients', function() {
   tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
 });
 
-describe('collect like terms for multiplication', function() {
+describe.skip('collect like terms for multiplication', function() {
   const tests = [
     ['2x^2 * y * x * y^3', '2 * (x^2 * x) * (y * y^3)'],
     ['y^2 * 5 * y * 9', '(5 * 9) * (y^2 * y)'],

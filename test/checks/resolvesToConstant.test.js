@@ -6,7 +6,7 @@ function testResolvesToConstant(exprString, resolves) {
   TestUtil.testBooleanFunction(checks.resolvesToConstant, exprString, resolves);
 }
 
-describe('resolvesToConstant', function () {
+describe.skip('resolvesToConstant', function () {
   const tests = [
     ['(2+2)', true],
     ['10', true],

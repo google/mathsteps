@@ -12,7 +12,7 @@ function testNegate(exprString, outputStr) {
   TestUtil.testFunctionOutput(print, inputStr, outputStr);
 }
 
-describe('negate', function() {
+describe.skip('negate', function() {
   const tests = [
     ['1', '-1'],
     ['-1', '1'],

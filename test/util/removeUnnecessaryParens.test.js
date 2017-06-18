@@ -10,7 +10,7 @@ function testRemoveUnnecessaryParens(exprStr, outputStr) {
   TestUtil.testFunctionOutput(print, input, outputStr);
 }
 
-describe('removeUnnecessaryParens', function () {
+describe.skip('removeUnnecessaryParens', function () {
   const tests = [
     ['(x+4) + 12', 'x + 4 + 12'],
     ['-(x+4x) + 12', '-(x + 4x) + 12'],

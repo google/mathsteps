@@ -4,6 +4,8 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
+    "math-parser": "^0.10.5",
+    "math-rules": "^0.2.13",
     "mathjs": "3.11.2"
   },
   "engines": {

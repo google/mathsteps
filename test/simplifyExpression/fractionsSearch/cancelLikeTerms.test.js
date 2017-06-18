@@ -6,7 +6,7 @@ function testCancelLikeTerms(exprStr, expectedStr) {
   TestUtil.testSimplification(cancelLikeTerms, exprStr, expectedStr);
 }
 
-describe('cancel like terms', function () {
+describe.skip('cancel like terms', function () {
   const tests = [
     ['2/2', '1'],
     ['x^2/x^2', '1'],

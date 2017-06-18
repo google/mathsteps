@@ -6,7 +6,7 @@ function testCanBeAdded(expr, addable) {
   TestUtil.testBooleanFunction(canAddLikeTermPolynomialNodes, expr, addable);
 }
 
-describe('can add like term polynomials', () => {
+describe.skip('can add like term polynomials', () => {
   const tests = [
     ['x^2 + x^2', true],
     ['x + x', true],
