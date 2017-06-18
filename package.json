@@ -4,8 +4,10 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
+    "math-nodes": "^0.1.7",
     "math-parser": "^0.10.5",
     "math-rules": "^0.2.13",
+    "math-traverse": "^0.2.2",
     "mathjs": "3.11.2"
   },
   "engines": {

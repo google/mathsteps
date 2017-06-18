@@ -2,7 +2,7 @@ const reduceMultiplicationByZero = require('../../../lib/simplifyExpression/basi
 
 const testSimplify = require('./testSimplify');
 
-describe.skip('reduce multiplication by 0', function () {
+describe('reduce multiplication by 0', function () {
   const tests = [
     ['0x', '0'],
     ['2*0*z^2','0'],
