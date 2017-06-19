@@ -1,3 +1,4 @@
+const assert = require('assert');
 const math = require('mathjs');
 
 const flatten = require('../lib/util/flattenOperands');
@@ -5,11 +6,11 @@ const print = require('../lib/util/print');
 
 const Negative = require('../lib/Negative');
 
-const TestUtil = require('./TestUtil');
-
 function testNegate(exprString, outputStr) {
-  const inputStr = Negative.negate(flatten(math.parse(exprString)));
-  TestUtil.testFunctionOutput(print, inputStr, outputStr);
+  it(exprString + ' -> ' + outputStr,  () => {
+    const inputStr = Negative.negate(flatten(math.parse(exprString)));
+    assert.deepEqual(print(inputStr), outputStr);
+  });
 }
 
 describe.skip('negate', function() {

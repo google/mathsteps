@@ -1,17 +1,23 @@
 const assert = require('assert');
-const math = require('mathjs');
 
-const print = require('../../lib/util/print');
+const {parse, print} = require('math-parser');
 
 const simplify = require('../../lib/simplifyExpression/simplify');
 
 function testSimplify(exprStr, outputStr, debug=false) {
   it(exprStr + ' -> ' + outputStr, function () {
-    assert.deepEqual(
-      print(simplify(math.parse(exprStr), debug)),
+    assert.deepEqual(print(simplify(parse(exprStr), debug)),
       outputStr);
   });
 }
+
+describe('simplify (basics)', function () {
+  const tests = [
+    ['x + 0', 'x'],
+    ['2 * 0 * x', '0'],
+  ];
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
+});
 
 describe.skip('simplify (arithmetic)', function () {
   const tests = [
