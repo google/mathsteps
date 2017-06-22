@@ -6,7 +6,7 @@ function testArithmeticSearch(exprStr, outputStr) {
   TestUtil.testSimplification(arithmeticSearch, exprStr, outputStr);
 }
 
-describe('evaluate arithmeticSearch', function () {
+describe.skip('evaluate arithmeticSearch', function () {
   const tests = [
     ['2+2', '4'],
     ['2*3*5', '30'],

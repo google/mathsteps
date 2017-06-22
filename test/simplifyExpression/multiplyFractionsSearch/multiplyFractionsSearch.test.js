@@ -6,7 +6,7 @@ function testMultiplyFractionsSearch(exprString, outputStr) {
   TestUtil.testSimplification(multiplyFractionsSearch, exprString, outputStr);
 }
 
-describe('multiplyFractions', function () {
+describe.skip('multiplyFractions', function () {
   const tests = [
     ['3 * 1/5 * 5/9', '(3 * 1 * 5) / (5 * 9)'],
     ['3/7 * 10/11', '(3 * 10) / (7 * 11)'],

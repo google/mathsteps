@@ -6,7 +6,7 @@ function testCanBeMultipliedConstants(expr, multipliable) {
   TestUtil.testBooleanFunction(canMultiplyLikeTermConstantNodes, expr, multipliable);
 }
 
-describe('can multiply like term constants', () => {
+describe.skip('can multiply like term constants', () => {
   const tests = [
     ['3^2 * 3^5', true],
     ['2^3 * 3^2', false],

@@ -6,21 +6,21 @@ const solveEquation = require('../../lib/solveEquation');
 const NO_STEPS = 'no-steps';
 
 function testSolve(equationString, outputStr, debug=false) {
-  const steps = solveEquation(equationString, debug);
-  let lastStep;
-  if (steps.length === 0) {
-    lastStep = NO_STEPS;
-  }
-  else {
-    lastStep = steps[steps.length -1].newEquation.print();
-  }
   it(equationString + ' -> ' + outputStr, (done) => {
+    const steps = solveEquation(equationString, debug);
+    let lastStep;
+    if (steps.length === 0) {
+      lastStep = NO_STEPS;
+    }
+    else {
+      lastStep = steps[steps.length -1].newEquation.print();
+    }
     assert.equal(lastStep, outputStr);
     done();
   });
 }
 
-describe('solveEquation for =', function () {
+describe.skip('solveEquation for =', function () {
   const tests = [
     // can't solve this because two symbols: g and x -- so there's no steps
     ['g *( x ) = ( x - 4) ^ ( 2) - 3', NO_STEPS],
@@ -64,7 +64,7 @@ describe('solveEquation for =', function () {
   tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
 
-describe('solveEquation for non = comparators', function() {
+describe.skip('solveEquation for non = comparators', function() {
   const tests = [
     ['x + 2 > 3', 'x > 1'],
     ['2x < 6', 'x < 3'],
@@ -76,15 +76,15 @@ describe('solveEquation for non = comparators', function() {
 });
 
 function testSolveConstantEquation(equationString, expectedChange, debug=false) {
-  const steps = solveEquation(equationString, debug);
-  const actualChange = steps[steps.length -1].changeType;
   it(equationString + ' -> ' + expectedChange, (done) => {
+    const steps = solveEquation(equationString, debug);
+    const actualChange = steps[steps.length -1].changeType;
     assert.equal(actualChange, expectedChange);
     done();
   });
 }
 
-describe('constant comparison support', function () {
+describe.skip('constant comparison support', function () {
   const tests = [
     ['1 = 2', ChangeTypes.STATEMENT_IS_FALSE],
     ['3 + 5 = 8', ChangeTypes.STATEMENT_IS_TRUE],
@@ -122,7 +122,7 @@ function testEquationError(equationString, debug=false) {
   });
 }
 
-describe('solveEquation errors', function() {
+describe.skip('solveEquation errors', function() {
   const tests = [
     ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)']
   ];
