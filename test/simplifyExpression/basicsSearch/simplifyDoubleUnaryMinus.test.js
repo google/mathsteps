@@ -3,10 +3,11 @@ const simplifyDoubleUnaryMinus = require('../../../lib/simplifyExpression/basics
 const testSimplify = require('./testSimplify');
 
 
-describe.skip('simplifyDoubleUnaryMinus', function() {
-  var tests = [
+describe('simplifyDoubleUnaryMinus', function() {
+  const tests = [
       ['--5', '5'],
-      ['--x', 'x']
+      ['--x', 'x'],
+      ['-(-(5+2))', '5 + 2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], simplifyDoubleUnaryMinus));
 });

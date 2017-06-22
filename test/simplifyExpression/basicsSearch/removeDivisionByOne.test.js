@@ -2,6 +2,11 @@ const removeDivisionByOne = require('../../../lib/simplifyExpression/basicsSearc
 
 const testSimplify = require('./testSimplify');
 
-describe.skip('removeDivisionByOne', function() {
-  testSimplify('x/1', 'x', removeDivisionByOne);
+describe('removeDivisionByOne', function() {
+  const tests = [
+    ['x/1', 'x'],
+    ['x/-1', '-x'],
+    ['-x/-1', 'x']
+  ];
+  tests.forEach(t => testSimplify(t[0], t[1], removeDivisionByOne));
 });
