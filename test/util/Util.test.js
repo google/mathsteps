@@ -2,7 +2,7 @@ const assert = require('assert');
 
 const Util = require('../../lib/util/Util');
 
-describe('appendToArrayInObject', function () {
+describe.skip('appendToArrayInObject', function () {
   it('creates empty array', function () {
     const object = {};
     Util.appendToArrayInObject(object, 'key', 'value');

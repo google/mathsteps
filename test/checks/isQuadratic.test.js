@@ -5,7 +5,7 @@ function testIsQuadratic(input, output) {
   TestUtil.testBooleanFunction(checks.isQuadratic, input, output);
 }
 
-describe('isQuadratic', function () {
+describe.skip('isQuadratic', function () {
   const tests = [
     ['2 + 2', false],
     ['x', false],
