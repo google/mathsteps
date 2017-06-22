@@ -2,6 +2,9 @@ const reduceExponentByZero = require('../../../lib/simplifyExpression/basicsSear
 
 const testSimplify = require('./testSimplify');
 
-describe.skip('reduceExponentByZero', function() {
-  testSimplify('(x+3)^0', '1', reduceExponentByZero);
+describe('reduceExponentByZero', function () {
+    const tests = [
+        ['(x+3)^0', '1'],
+    ];
+    tests.forEach(t => testSimplify(t[0], t[1], reduceExponentByZero));
 });
