@@ -3,7 +3,7 @@ const removeDivisionByOne = require('../../../lib/simplifyExpression/basicsSearc
 const testSimplify = require('./testSimplify');
 
 describe('removeDivisionByOne', function() {
-    var tests = [
+    const tests = [
         ['x/1', 'x'],
         ['x/-1', '-x'],
         ['-x/-1', 'x']

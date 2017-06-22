@@ -4,7 +4,7 @@ const testSimplify = require('./testSimplify');
 
 
 describe('simplifyDoubleUnaryMinus', function() {
-  var tests = [
+  const tests = [
       ['--5', '5'],
       ['--x', 'x'],
       ['-(-(5+2))', '5 + 2'],
