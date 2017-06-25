@@ -11,7 +11,7 @@ function testSimplify(exprStr, outputStr, debug=false) {
   });
 }
 
-describe('simplify (basics)', function () {
+describe.skip('simplify (basics)', function () {
   const tests = [
     ['x + 0', 'x'],
     ['2 * 0 * x', '0'],
