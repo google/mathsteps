@@ -2,8 +2,8 @@ const assert = require('assert');
 
 const {parse, print} = require('math-parser');
 
-const ChangeTypes = require('../../../lib/ChangeTypes');
 const basics = require('../../../lib/simplifyExpression/basicsSearch/basicRules');
+const ChangeTypes = require('../../../lib/ChangeTypes');
 
 describe('basic rules', function() {
   describe('resolve double negation', function() {
@@ -136,7 +136,7 @@ describe('basic rules', function() {
 function testSimplify(exprStr, outputStr, simplifyOperation, changeType, reverse) {
   it(exprStr + ' -> ' + outputStr, function () {
     const inputNode = parse(exprStr);
-    const newNode = basics.applyRule(inputNode, simplifyOperation, changeType, reverse).newNode
+    const newNode = basics.applyRule(inputNode, simplifyOperation, changeType, reverse).newNode;
     assert.equal(
       print(newNode),
       outputStr);
