@@ -2,10 +2,6 @@ const arithmeticSearch = require('../../../lib/simplifyExpression/arithmeticSear
 
 const TestUtil = require('../../TestUtil');
 
-function testArithmeticSearch(exprStr, outputStr) {
-  TestUtil.testSimplification(arithmeticSearch, exprStr, outputStr);
-}
-
 describe('evaluate arithmeticSearch', function () {
   const tests = [
     ['2+2', '4'],
@@ -18,5 +14,5 @@ describe('evaluate arithmeticSearch', function () {
     ['(-2)^2', '4'],
     ['1 + 2 + y', '3 + y'],
   ];
-  tests.forEach(t => testArithmeticSearch(t[0], t[1]));
+  tests.forEach(t => TestUtil.testSimplification(arithmeticSearch, t[0], t[1]));
 });
