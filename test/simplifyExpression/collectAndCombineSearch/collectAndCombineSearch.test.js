@@ -10,6 +10,18 @@ function testSimpleCollectAndCombineSearch(exprString, outputStr) {
   TestUtil.testSimplification(collectAndCombineSearch, exprString, outputStr);
 }
 
+describe('multiplyPolynomialTerms', function() {
+  const tests = [
+    ['x^2 * x * x', 'x^4'],
+    ['x^2 * x^1', 'x^3'],
+    ['x^3 * y^2', 'x^3 y^2'],
+    ['x^3 + x^1 + x^1 * x^1 * y^3', 'x^3 + x^1 + x^2 y^3'],
+    ['x^1 * x^1 * (x+1)^2 * (x+1)^3', 'x^2 (x + 1)^5'],
+    ['x^1 * x^3 * (2x+3)^2', 'x^4 (2 x + 3)^2'],
+  ]
+  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]))
+})
+
 describe.skip('combinePolynomialTerms multiplication', function() {
   const tests = [
     ['x^2 * x * x',
