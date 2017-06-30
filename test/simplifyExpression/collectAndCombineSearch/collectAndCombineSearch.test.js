@@ -31,10 +31,7 @@ describe.skip('multiplyPolynomialTerms', function() {
   const tests = [
     ['x^2 * x * x', 'x^4'],
     ['x^2 * x^1', 'x^3'],
-    ['x^3 * y^2', 'x^3 y^2'],
-    ['x^3 + x^1 + x^1 * x^1 * y^3', 'x^3 + x^1 + x^2 y^3'],
-    ['x^1 * x^1 * (x+1)^2 * (x+1)^3', 'x^2 (x + 1)^5'],
-    ['x^1 * x^3 * (2x+4)^2', 'x^4 (2 x + 3)^2'],
+    ['x^3 * y^2', 'x^3 * y^2'],
   ]
   tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]))
 })
@@ -70,27 +67,25 @@ describe.skip('collect and combine with no substeps', function() {
   tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]))
 })
 
-describe.skip('combinePolynomialTerms multiplication', function() {
+describe('combinePolynomialTerms multiplication', function() {
   const tests = [
-    /*
     ['x^2 * x * x',
       ['x^2 * x^1 * x^1',
         'x^(2 + 1 + 1)',
         'x^4'],
-    ],*/
-    /*
+    ],
     ['y * y^3',
       ['y^1 * y^3',
         'y^(1 + 3)',
         'y^4'],
     ],
+    /*
     ['2x * x^2 * 5x',
       ['(2 * 5) * (x * x^2 * x)',
         '10 * (x * x^2 * x)',
         '10x^4'],
       '10x^4'
-    ],
-    */
+    ],*/
   ];
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
 });
@@ -131,7 +126,7 @@ describe.skip('combineConstantPowerTerms multiplication', function() {
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
 });
 
-describe.skip('collect and multiply like terms', function() {
+describe('product rule', function() {
   const tests = [
     ['10^3 * 10^2', '10^5'],
     ['2^4 * 2 * 2^4 * 2', '2^10']
