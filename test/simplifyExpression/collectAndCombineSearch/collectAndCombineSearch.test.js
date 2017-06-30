@@ -52,11 +52,39 @@ describe('combinePolynomialTerms addition', function() {
   ];
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1]));
 });
+describe('combineConstantPowerTerms multiplication', function() {
+  const tests = [
+    ['10^2 * 10',
+      ['10^2 * 10^1',
+        '10^(2 + 1)',
+        '10^3'],
+    ],
+    ['2 * 2^3',
+      ['2^1 * 2^3',
+        '2^(1 + 3)',
+        '2^4'],
+    ],
+    ['3^3 * 3 * 3',
+      ['3^3 * 3^1 * 3^1',
+        '3^(3 + 1 + 1)',
+        '3^5'],
+    ],
+  ];
+  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
+});
 
 describe('collectAndCombineSearch with no substeps', function () {
   const tests = [
     ['2x + 4x + x', '7x'],
     ['x * x^2 * x', 'x^4']
+  ];
+  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
+});
+
+describe('collect and multiply like terms', function() {
+  const tests = [
+    ['10^3 * 10^2', '10^5'],
+    ['2^4 * 2 * 2^4 * 2', '2^10']
   ];
   tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
 });
