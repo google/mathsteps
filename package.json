@@ -26,10 +26,10 @@
   },
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack.config.js --display-max-modules 0",
-    "lint": "node_modules/.bin/eslint .",
+    "lint": "node_modules/.bin/eslint ./lib",
     "prebuild": "rm -rf ./build",
     "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit",
-    "test": "node_modules/.bin/mocha --recursive",
+    "test": "node_modules/.bin/mocha --recursive"
   },
   "repository": {
     "type": "git",
