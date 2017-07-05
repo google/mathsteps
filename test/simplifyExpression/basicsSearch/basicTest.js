@@ -18,14 +18,14 @@ describe('basic rules', function() {
                                     ChangeTypes.RESOLVE_DOUBLE_NEGATION));
   });
 
-  describe.skip('rearrange coefficient', function() {
+  describe('rearrange coefficient', function() {
     const tests = [
       ['y^3 * 5', '5 y^3'],
       ['yz * 3', '3 yz'],
-      // TODO: handle this case better
-      //['3x^2 * 5', '5 (3 x^2)']
+      ['3x^2 * 5', '5 (3 x^2)']
     ];
-    tests.forEach(t => testSimplify(t[0], t[1], basics.REARRANGE_COEFF));
+    tests.forEach(t => testSimplify(t[0], t[1], basics.REARRANGE_COEFF,
+                                   ChangeTypes.REARRANGE_COEFF));
   });
 
   describe('division by negative one', function() {
@@ -109,8 +109,8 @@ describe('basic rules', function() {
   describe('remove exponent by base one', function() {
     const tests = [
       ['1 ^ 2', '1'],
-      //['1 ^ x', '1'],
-      //['1 ^ (x + 1)', '1'],
+      ['1 ^ x', '1'],
+      ['1 ^ (x + 1)', '1'],
     ];
     tests.forEach(t => testSimplify(t[0], t[1], basics.REMOVE_EXPONENT_BASE_ONE,
                                     ChangeTypes.REMOVE_EXPONENT_BASE_ONE));
