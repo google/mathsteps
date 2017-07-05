@@ -4,20 +4,20 @@
   "description": "Step by step math solutions",
   "main": "index.js",
   "dependencies": {
-    "math-nodes": "^0.1.7",
+    "math-nodes": "^0.1.12",
     "math-parser": "^0.10.5",
     "math-rules": "^0.2.14",
     "math-traverse": "^0.2.2",
-    "mathjs": "3.11.2"
+    "mathjs": "3.14.1"
   },
   "engines": {
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.10.2",
-    "eslint-config-google": "^0.7.0",
+    "eslint": "^4.1.1",
+    "eslint-config-google": "^0.8.0",
     "eslint-plugin-sort-requires": "^2.1.0",
-    "mocha": "2.4.5"
+    "mocha": "3.4.2"
   },
   "scripts": {
     "lint": "node_modules/.bin/eslint .",

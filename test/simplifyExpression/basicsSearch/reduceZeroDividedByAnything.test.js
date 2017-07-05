@@ -2,7 +2,7 @@ const reduceZeroDividedByAnything = require('../../../lib/simplifyExpression/bas
 
 const testSimplify = require('./testSimplify');
 
-describe.skip('simplify basics', function () {
+describe('simplify basics', function () {
   const tests = [
     ['0/5', '0'],
     ['0/(x+6+7+x^2+2^y)', '0'],

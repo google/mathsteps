@@ -2,6 +2,6 @@ const removeExponentByOne = require('../../../lib/simplifyExpression/basicsSearc
 
 const testSimplify = require('./testSimplify');
 
-describe.skip('removeExponentByOne', function() {
+describe('removeExponentByOne', function() {
   testSimplify('x^1', 'x', removeExponentByOne);
 });

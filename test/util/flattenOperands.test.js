@@ -94,4 +94,3 @@ describe('subtraction', function () {
   ];
   tests.forEach(t => testFlatten(t[0], t[1]));
 });
-
