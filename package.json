@@ -8,6 +8,7 @@
     "math-parser": "^0.10.5",
     "math-rules": "^0.2.14",
     "math-traverse": "^0.2.2",
+    "math-evaluator": "^0.0.9",
     "mathjs": "3.11.2"
   },
   "engines": {
