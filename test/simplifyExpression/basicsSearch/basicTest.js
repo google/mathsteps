@@ -61,9 +61,9 @@ describe('basic rules', function() {
 
   describe('reduce exponent by zero', function() {
     const tests = [
-      ['2 ^ 0', '1'],
-      ['x ^ 0', '1'],
-      ['(x + 1) ^ 0', '1'],
+      ['2^0', '1'],
+      ['x^0', '1'],
+      ['(x + 1)^0', '1'],
     ];
     tests.forEach(t => testSimplify(t[0], t[1], basics.REMOVE_EXPONENT_BY_ZERO,
                                     ChangeTypes.REMOVE_EXPONENT_BY_ZERO));
