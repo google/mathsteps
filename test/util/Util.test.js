@@ -9,7 +9,7 @@ describe.skip('appendToArrayInObject', function () {
     assert.deepEqual(
       object,
       {'key': ['value']}
-     );
+    );
   });
   it('appends to array if it exists', function () {
     const object = {'key': ['old_value']};
@@ -17,6 +17,6 @@ describe.skip('appendToArrayInObject', function () {
     assert.deepEqual(
       object,
       {'key': ['old_value', 'new_value']}
-     );
+    );
   });
 });
