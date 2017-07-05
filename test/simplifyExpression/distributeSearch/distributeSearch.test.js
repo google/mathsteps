@@ -1,3 +1,4 @@
+/*
 const distributeSearch = require('../../../lib/simplifyExpression/distributeSearch');
 
 const TestUtil = require('../../TestUtil');
@@ -87,3 +88,4 @@ describe.skip('distribute with fractions', function () {
 
   multiStepTests.forEach(t => testDistributeSteps(t[0], t[1]));
 });
+*/
