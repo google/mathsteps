@@ -20,26 +20,26 @@ describe('flattens + and *', function () {
     ['2+2', parse('2+2')],
     ['2+2+7', b.add(b.number('2'), b.number('2'), b.number('7'))],
     ['9*8*6+3+4',
-     b.add(
+      b.add(
        b.mul(b.number('9'), b.number('8'), b.number('6')),
        b.number('3'),
        b.number('4'))],
     ['5*(2+3+2)*10', parse('5*(2+3+2)*10')],
     // keeps the polynomial term
     ['9x*8*6+3+4',
-     b.add(
+      b.add(
        b.mul(parse('9x'), b.number('8'), b.number('6')),
        b.number('3'),
        b.number('4'))],
     ['9x*8*6+3y^2+4',
-     b.add(
+      b.add(
        b.mul(parse('9x'), b.number('8'), b.number('6')),
        parse('3y^2'),
        b.number('4'))],
     // doesn't flatten
     ['2 x ^ (2 + 1) * y', parse('2 x ^ (2 + 1) * y')],
     ['2 x ^ (2 + 1 + 2) * y',
-     b.mul(
+      b.mul(
        b.implicitMul(b.number('2'),
                      b.pow(b.identifier('x'),
                            b.add(b.number('2'), b.number('1'), b.number('2')))),
@@ -54,14 +54,14 @@ describe('flattens division', function () {
   const tests = [
     // groups x/4 and continues to flatten *
     ['2 x / 4 * 6 ',
-     b.mul(b.div(parse('2x'), parse('4')), b.number('6'))],
+      b.mul(b.div(parse('2x'), parse('4')), b.number('6'))],
     ['2*3/4/5*6',
-     b.mul(b.number('2'), parse('3/4/5'), b.number('6'))],
+      b.mul(b.number('2'), parse('3/4/5'), b.number('6'))],
     // combines coefficient with x
     ['x / (4 * x) / 8',
-     parse('x / (4x) / 8')],
+      parse('x / (4x) / 8')],
     ['2 x * 4 x / 8',
-     b.mul(
+      b.mul(
        parse('2x'),
        b.div(parse('4x'), b.number('8'))
      )
@@ -73,7 +73,7 @@ describe('flattens division', function () {
 describe('subtraction', function () {
   const tests = [
     ['1 + 2 - 3 - 4 + 5',
-     b.add(
+      b.add(
        b.number('1'),
        b.number('2'),
        b.neg(b.number('3'), {wasMinus: true}),
@@ -82,10 +82,10 @@ describe('subtraction', function () {
      )
     ],
     ['x - 3',
-     b.add(b.identifier('x'), b.neg(b.number('3'), {wasMinus: true}))
+      b.add(b.identifier('x'), b.neg(b.number('3'), {wasMinus: true}))
     ],
     ['x + 4 - (y+4)',
-     b.add(
+      b.add(
        b.identifier('x'),
        b.number(4),
        b.neg(parse('y+4'), {wasMinus: true})
