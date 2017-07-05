@@ -17,7 +17,6 @@ TestUtil.testFunctionOutput = function (fn, input, output) {
 // tests a function that takes in a node and returns a boolean value
 TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBooleanValue) {
   it(exprString + ' ' + expectedBooleanValue, () => {
-    // const inputNode = flatten(parse(exprString));
     const inputNode = parse(exprString);
     assert.equal(simplifier(inputNode),expectedBooleanValue);
   });
