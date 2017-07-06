@@ -68,18 +68,18 @@ describe('nthRoot steps', function () {
         '2 * 3 * x']
     ],
     ['nthRoot(32, 3)',
-     ['nthRoot(2 * 2 * 2 * 2 * 2, 3)',
-      'nthRoot((2 * 2 * 2) * (2 * 2), 3)',
-      'nthRoot(2 ^ 3 * 2 ^ 2, 3)',
-      'nthRoot(2 ^ 3, 3) * nthRoot(2 ^ 2, 3)',
-      '2 * nthRoot(2 ^ 2, 3)']
+      ['nthRoot(2 * 2 * 2 * 2 * 2, 3)',
+        'nthRoot((2 * 2 * 2) * (2 * 2), 3)',
+        'nthRoot(2 ^ 3 * 2 ^ 2, 3)',
+        'nthRoot(2 ^ 3, 3) * nthRoot(2 ^ 2, 3)',
+        '2 * nthRoot(2 ^ 2, 3)']
     ],
     ['nthRoot(32, 4)',
-     ['nthRoot(2 * 2 * 2 * 2 * 2, 4)',
-      'nthRoot((2 * 2 * 2 * 2) * 2, 4)',
-      'nthRoot(2 ^ 4 * 2, 4)',
-      'nthRoot(2 ^ 4, 4) * nthRoot(2, 4)',
-      '2 * nthRoot(2, 4)']
+      ['nthRoot(2 * 2 * 2 * 2 * 2, 4)',
+        'nthRoot((2 * 2 * 2 * 2) * 2, 4)',
+        'nthRoot(2 ^ 4 * 2, 4)',
+        'nthRoot(2 ^ 4, 4) * nthRoot(2, 4)',
+        '2 * nthRoot(2, 4)']
     ],
   ];
   tests.forEach(t => testNthRootSteps(t[0], t[1]));
