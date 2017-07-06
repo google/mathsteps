@@ -164,5 +164,5 @@ describe('handles unnecessary parens at root level', function() {
 });
 
 describe('keeping parens in important places, on printing', function() {
-  testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');
+  testSimplify('2 / (3x^2) + 5', '2 / (3x^2) + 5');
 });
