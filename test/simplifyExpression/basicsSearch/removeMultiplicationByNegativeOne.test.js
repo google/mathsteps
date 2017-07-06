@@ -2,7 +2,7 @@ const removeMultiplicationByNegativeOne = require('../../../lib/simplifyExpressi
 
 const testSimplify = require('./testSimplify');
 
-describe.skip('removeMultiplicationByNegativeOne', function() {
+describe('removeMultiplicationByNegativeOne', function() {
   const tests = [
     ['-1*x', '-x'],
     ['x^2*-1', '-x^2'],

@@ -2,6 +2,6 @@ const removeDivisionByOne = require('../../../lib/simplifyExpression/basicsSearc
 
 const testSimplify = require('./testSimplify');
 
-describe.skip('removeDivisionByOne', function() {
+describe('removeDivisionByOne', function() {
   testSimplify('x/1', 'x', removeDivisionByOne);
 });
