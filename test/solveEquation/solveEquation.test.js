@@ -114,17 +114,3 @@ describe('constant comparison support', function () {
   ];
   tests.forEach(t => testSolveConstantEquation(t[0], t[1], t[2]));
 });
-
-function testEquationError(equationString, debug=false) {
-  it(equationString + ' throws error', (done) => {
-    assert.throws(() => solveEquation(equationString, debug),Error);
-    done();
-  });
-}
-
-describe('solveEquation errors', function() {
-  const tests = [
-    ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)']
-  ];
-  tests.forEach(t => testEquationError(t[0], t[1]));
-});
