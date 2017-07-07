@@ -81,6 +81,12 @@ describe('nthRoot steps', function () {
         'nthRoot(2 ^ 4, 4) * nthRoot(2, 4)',
         '2 * nthRoot(2, 4)']
     ],
+    ['nthRoot(2 * 2 * 3 * 2, 3)',
+      ['nthRoot((2 * 2 * 2) * 3, 3)',
+        'nthRoot(2 ^ 3 * 3, 3)',
+        'nthRoot(2 ^ 3, 3) * nthRoot(3, 3)',
+        '2 * nthRoot(3, 3)']
+    ],
   ];
   tests.forEach(t => testNthRootSteps(t[0], t[1]));
 });
