@@ -13,6 +13,8 @@ describe('multiplyFractions', function () {
     ['2 * 5/x', '(2 * 5) / x'],
     ['2 * (5/x)', '(2 * 5) / x'],
     ['(5/x) * (2/x)', '(5 * 2) / (x * x)'],
+    ['(5/x) * x', '(5x) / x'],
+    ['2x * 9/x', '(2x * 9) / x'],
   ];
   tests.forEach(t => testMultiplyFractionsSearch(t[0], t[1]));
 });
