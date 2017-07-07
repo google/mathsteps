@@ -33,6 +33,7 @@ describe('arithmetic stepping', function() {
     ['(2+2)*5', '4 * 5'],
     ['5*(2+2)', '5 * 4'],
     ['2*(2+2) + 2^3', '2 * 4 + 2^3'],
+    ['6*6', '36'],
   ];
   tests.forEach(t => testOneStep(t[0], t[1]));
 });
