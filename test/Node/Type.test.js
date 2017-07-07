@@ -5,7 +5,7 @@ const Node = require('../../lib/node');
 
 const constNode = Node.Creator.constant;
 
-describe('Node.Type works', function () {
+describe.skip('Node.Type works', function () {
   it('(2+2) parenthesis', function () {
     assert.deepEqual(
       Node.Type.isParenthesis(math.parse('(2+2)')),
@@ -68,7 +68,7 @@ describe('Node.Type works', function () {
   // });
 });
 
-describe('isConstantOrConstantFraction', function () {
+describe.skip('isConstantOrConstantFraction', function () {
   it('2 true', function () {
     assert.deepEqual(
       Node.Type.isConstantOrConstantFraction(math.parse('2')),
@@ -86,7 +86,7 @@ describe('isConstantOrConstantFraction', function () {
   });
 });
 
-describe('isIntegerFraction', function () {
+describe.skip('isIntegerFraction', function () {
   it('4/5 true', function () {
     assert.deepEqual(
       Node.Type.isIntegerFraction(math.parse('4/5')),

@@ -19,7 +19,7 @@ function testFactor(expressionString, outputStr, debug=false) {
   });
 }
 
-describe('factor expressions', function () {
+describe.skip('factor expressions', function () {
   const tests = [
     ['x^2', NO_STEPS],
     ['x^2 + 2x', 'x * (x + 2)'],

@@ -6,7 +6,7 @@ function testNthRoot(exprString, outputStr) {
   TestUtil.testSimplification(nthRoot, exprString, outputStr);
 }
 
-describe('simplify nthRoot', function () {
+describe.skip('simplify nthRoot', function () {
   const tests = [
     ['nthRoot(4)', '2'],
     ['nthRoot(8, 3)', '2'],
@@ -36,7 +36,7 @@ function testNthRootSteps(exprString, outputList) {
   TestUtil.testSubsteps(nthRoot, exprString, outputList, lastString);
 }
 
-describe('nthRoot steps', function () {
+describe.skip('nthRoot steps', function () {
   const tests = [
     ['nthRoot(12)',
       ['nthRoot(2 * 2 * 3)',

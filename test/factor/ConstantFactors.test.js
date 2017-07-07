@@ -6,7 +6,7 @@ function testPrimeFactors(input, output) {
   TestUtil.testFunctionOutput(ConstantFactors.getPrimeFactors, input, output);
 }
 
-describe('prime factors', function() {
+describe.skip('prime factors', function() {
   const tests = [
     [1, [1]],
     [-1, [-1, 1]],
@@ -27,7 +27,7 @@ function testFactorPairs(input, output) {
   TestUtil.testFunctionOutput(ConstantFactors.getFactorPairs, input, output);
 }
 
-describe('factor pairs', function() {
+describe.skip('factor pairs', function() {
   const tests = [
     [1, [[-1, -1], [1, 1]]],
     [5, [[-1, -5], [1, 5]]],

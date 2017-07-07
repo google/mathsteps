@@ -1,8 +1,8 @@
 const assert = require('assert');
-const math = require('mathjs');
+
+const {parse, print} = require('math-parser');
 
 const flatten = require('../lib/util/flattenOperands');
-const print = require('../lib/util/print');
 
 // TestUtil contains helper methods to share code across tests
 const TestUtil = {};
@@ -17,7 +17,8 @@ TestUtil.testFunctionOutput = function (fn, input, output) {
 // tests a function that takes in a node and returns a boolean value
 TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBooleanValue) {
   it(exprString + ' ' + expectedBooleanValue, () => {
-    const inputNode = flatten(math.parse(exprString));
+    // const inputNode = flatten(parse(exprString));
+    const inputNode = parse(exprString);
     assert.equal(simplifier(inputNode),expectedBooleanValue);
   });
 };
@@ -27,7 +28,7 @@ TestUtil.testSimplification = function (simplifyingFunction, exprString,
                                         expectedOutputString) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
     assert.deepEqual(
-      print(simplifyingFunction(flatten(math.parse(exprString))).newNode),
+      print(simplifyingFunction(flatten(parse(exprString))).newNode),
       expectedOutputString);
   });
 };
@@ -36,7 +37,7 @@ TestUtil.testSimplification = function (simplifyingFunction, exprString,
 TestUtil.testSubsteps = function (fn, exprString, outputList,
                                     outputStr) {
   it(exprString + ' -> ' + outputStr, () => {
-    const status = fn(flatten(math.parse(exprString)));
+    const status = fn(flatten(parse(exprString)));
     const substeps = status.substeps;
 
     assert.deepEqual(substeps.length, outputList.length);

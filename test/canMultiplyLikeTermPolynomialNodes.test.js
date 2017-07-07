@@ -6,7 +6,7 @@ function testCanBeMultiplied(expr, multipliable) {
   TestUtil.testBooleanFunction(canMultiplyLikeTermPolynomialNodes, expr, multipliable);
 }
 
-describe('can multiply like term polynomials', () => {
+describe.skip('can multiply like term polynomials', () => {
   const tests = [
     ['x^2 * x * x', true],
     ['x^2 * 3x * x', false],
