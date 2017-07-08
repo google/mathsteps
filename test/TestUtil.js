@@ -58,6 +58,6 @@ TestUtil.testSubsteps = function (fn, exprString, outputList,
 TestUtil.removeComments = function(node) {
   node.filter(node => node.comment !== undefined).forEach(
     node => delete node.comment);
-}
+};
 
 module.exports = TestUtil;
