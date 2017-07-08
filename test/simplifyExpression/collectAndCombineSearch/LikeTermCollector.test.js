@@ -95,3 +95,12 @@ describe('collect like terms for multiplication', function() {
   ];
   tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
 });
+
+describe('collect like terms for nthRoot multiplication', function() {
+  const tests = [
+    ['nthRoot(x, 2) * nthRoot(x, 2)', 'nthRoot(x, 2) * nthRoot(x, 2)'],
+    ['nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 3)', '(nthRoot(x, 2) * nthRoot(x, 2)) * nthRoot(x, 3)'],
+    ['nthRoot(2x, 2) * nthRoot(2x, 2) * nthRoot(y, 4) * nthRoot(y^3, 4)', '(nthRoot(2 x, 2) * nthRoot(2 x, 2)) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))'],
+  ];
+  tests.forEach(t => testCollectLikeTerms(t[0], t[1]));
+});

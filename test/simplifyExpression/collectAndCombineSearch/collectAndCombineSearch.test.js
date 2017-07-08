@@ -10,6 +10,21 @@ function testSimpleCollectAndCombineSearch(exprString, outputStr) {
   TestUtil.testSimplification(collectAndCombineSearch, exprString, outputStr);
 }
 
+describe('combineNthRoots multiplication', function() {
+  const tests = [
+    ['nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 3)',
+      ['(nthRoot(x, 2) * nthRoot(x, 2)) * nthRoot(x, 3)',
+        'nthRoot(x * x, 2) * nthRoot(x, 3)'],
+    ],
+    ['nthRoot(2x, 2) * nthRoot(2x, 2) * nthRoot(y, 4) * nthRoot(y^3, 4)',
+      ['(nthRoot(2 x, 2) * nthRoot(2 x, 2)) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
+        'nthRoot(2 x * 2 x, 2) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
+        'nthRoot(2 x * 2 x, 2) * nthRoot(y * y ^ 3, 4)'],
+    ]
+  ];
+  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
+});
+
 describe('combinePolynomialTerms multiplication', function() {
   const tests = [
     ['x^2 * x * x',
