@@ -108,3 +108,12 @@ describe('isIntegerFraction', function () {
       false);
   });
 });
+
+
+describe('isMixedNumber', function () {
+  const tests = [
+    ['5(1/6)'],
+    ['2(2/3)'],
+  ];
+  tests.forEach(t => assert(Node.Type.isMixedNumber(math.parse(t[0]))));
+});
