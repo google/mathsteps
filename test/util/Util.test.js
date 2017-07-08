@@ -20,3 +20,10 @@ describe('appendToArrayInObject', function () {
      );
   });
 });
+
+// Remove some property used in mathjs that we don't need and prevents node
+// equality checks from passing
+function removeComments(node) {
+  node.filter(node => node.comment !== undefined).forEach(
+    node => delete node.comment);
+}

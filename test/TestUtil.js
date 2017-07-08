@@ -53,4 +53,11 @@ TestUtil.testSubsteps = function (fn, exprString, outputList,
   });
 };
 
+// Remove some property used in mathjs that we don't need and prevents node
+// equality checks from passing
+TestUtil.removeComments = function(node) {
+  node.filter(node => node.comment !== undefined).forEach(
+    node => delete node.comment);
+}
+
 module.exports = TestUtil;

@@ -2,6 +2,7 @@ const assert = require('assert');
 const math = require('mathjs');
 
 const Node = require('../../lib/node');
+const TestUtil = require('../TestUtil');
 
 const constNode = Node.Creator.constant;
 
@@ -106,5 +107,40 @@ describe('isIntegerFraction', function () {
     assert.deepEqual(
       Node.Type.isIntegerFraction(math.parse('5')),
       false);
+  });
+});
+
+describe('isFraction', function () {
+  it('2/3 true', function () {
+    assert.deepEqual(
+      Node.Type.isFraction(math.parse('2/3')),
+      true);
+  });
+  it('-2/3 true', function () {
+    assert.deepEqual(
+      Node.Type.isFraction(math.parse('-2/3')),
+      true);
+  });
+  it('(2/3) true', function () {
+    assert.deepEqual(
+      Node.Type.isFraction(math.parse('(2/3)')),
+      true);
+  });
+});
+
+describe('getFraction', function () {
+  it('2/3 2/3', function () {
+    assert.deepEqual(
+      Node.Type.getFraction(math.parse('2/3')),
+      math.parse('2/3'));
+  });
+
+  var expectedFraction = math.parse('2/3');
+  TestUtil.removeComments(expectedFraction);
+
+  it('(2/3) 2/3', function () {
+    assert.deepEqual(
+      Node.Type.getFraction(math.parse('(2/3)')),
+      expectedFraction);
   });
 });
