@@ -28,4 +28,3 @@ describe('cancel like terms', function () {
 
   tests.forEach(t => testCancelLikeTerms(t[0], t[1]));
 });
-
