@@ -25,11 +25,11 @@ describe('simplifyFraction', function() {
 describe('simplifyFraction', function() {
   const tests = [
     ['15/6',
-     ['15/3 / (6/3)'],
+     ['(5 * 3) / (2 * 3)'],
       '5/2',
     ],
     ['24/40',
-     ['24/8 / (40/8)'],
+     ['(3 * 8) / (5 * 8)'],
       '3/5',
     ]
   ];
