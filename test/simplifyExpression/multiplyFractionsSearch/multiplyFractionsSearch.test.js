@@ -21,6 +21,7 @@ describe('multiplyFractions', function () {
     ['x * 2y / x', '(x * 2y) / x'],
     ['x/z * 1/2', '(x * 1) / (z * 2)'],
     ['(6y / x) * 4x', '(6y * 4x) / x'],
+    ['2x * y / z * 10', '(2x * y * 10) / z'],
 
     // TODO: This should work too, but right now we don't handle
     // unary minus around parenthesis
