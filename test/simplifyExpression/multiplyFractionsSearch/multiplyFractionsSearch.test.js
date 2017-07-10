@@ -22,10 +22,9 @@ describe('multiplyFractions', function () {
     ['x/z * 1/2', '(x * 1) / (z * 2)'],
     ['(6y / x) * 4x', '(6y * 4x) / x'],
     ['2x * y / z * 10', '(2x * y * 10) / z'],
-
-    // TODO: This should work too, but right now we don't handle
-    // unary minus around parenthesis
-    // -(1/2) * (1/2)
+    ['-(1/2) * (1/2)', '(-1 * 1) / (2 * 2)'],
+    ['x * -(1/x)', '(x * -1) / x'],
+    ['-(5/y) * -(x/y)', '(-5 * -x) / (y * y)'],
   ];
   tests.forEach(t => testMultiplyFractionsSearch(t[0], t[1]));
 });
