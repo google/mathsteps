@@ -123,6 +123,8 @@ describe('cancelling out', function() {
     ['(-x)/(x)', '-1'],
     ['(x)/(-x)', '-1'],
     ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
+    ['(1+2a)/a', '1 / a + 2'],
+    ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', 'x^4 * -1 / (x^2) + y'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
