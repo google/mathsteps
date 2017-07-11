@@ -114,22 +114,22 @@ describe('isIntegerFraction', function () {
 describe('isFraction', function () {
   it('2/3 true', function () {
     assert.deepEqual(
-      Node.Helper.isFraction(math.parse('2/3')),
+      Node.CustomType.isFraction(math.parse('2/3')),
       true);
   });
   it('-2/3 true', function () {
     assert.deepEqual(
-      Node.Helper.isFraction(math.parse('-2/3')),
+      Node.CustomType.isFraction(math.parse('-2/3')),
       true);
   });
   it('-(2/3) true', function () {
     assert.deepEqual(
-      Node.Helper.isFraction(math.parse('-(2/3)')),
+      Node.CustomType.isFraction(math.parse('-(2/3)')),
       true);
   });
   it('(2/3) true', function () {
     assert.deepEqual(
-      Node.Helper.isFraction(math.parse('(2/3)')),
+      Node.CustomType.isFraction(math.parse('(2/3)')),
       true);
   });
 });
@@ -137,7 +137,7 @@ describe('isFraction', function () {
 describe('getFraction', function () {
   it('2/3 2/3', function () {
     assert.deepEqual(
-      Node.Helper.getFraction(math.parse('2/3')),
+      Node.CustomType.getFraction(math.parse('2/3')),
       math.parse('2/3'));
   });
 
@@ -146,7 +146,7 @@ describe('getFraction', function () {
 
   it('(2/3) 2/3', function () {
     assert.deepEqual(
-      Node.Helper.getFraction(math.parse('(2/3)')),
+      Node.CustomType.getFraction(math.parse('(2/3)')),
       expectedFraction);
   });
 
@@ -159,7 +159,7 @@ describe('getFraction', function () {
 
   it('-(2/3) -2/3', function () {
     assert.deepEqual(
-      Node.Helper.getFraction(math.parse('-(2/3)')),
+      Node.CustomType.getFraction(math.parse('-(2/3)')),
       negativeExpectedFraction);
   });
 });
