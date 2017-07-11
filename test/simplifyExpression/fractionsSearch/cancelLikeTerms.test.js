@@ -23,7 +23,10 @@ describe('cancel like terms', function () {
     ['-x / -x', '1'],
     ['2/ (4x)', '1 / (2x)'],
     ['2/ (4x^2)', '1 / (2x^2)'],
+    ['2 a / a', '2'],
     ['(35 * nthRoot (7)) / (5 * nthRoot(5))','(7 * nthRoot(7)) / nthRoot(5)'],
+    ['3/(9r^2)', '1 / (3r^2)'],
+    ['6/(2x)', '3 / (x)']
   ];
 
   tests.forEach(t => testCancelLikeTerms(t[0], t[1]));
