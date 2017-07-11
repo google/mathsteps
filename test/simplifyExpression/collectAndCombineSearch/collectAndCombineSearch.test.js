@@ -91,6 +91,8 @@ describe('combineConstantPowerTerms multiplication', function() {
 describe('collectAndCombineSearch with no substeps', function () {
   const tests = [
     ['nthRoot(x, 2) * nthRoot(x, 2)', 'nthRoot(x * x, 2)'],
+    ['-nthRoot(x, 2) * nthRoot(x, 2)', '-1 * nthRoot(x * x, 2)'],
+    ['-nthRoot(x, 2) * -nthRoot(x, 2)', '1 * nthRoot(x * x, 2)'],
     ['2x + 4x + x', '7x'],
     ['x * x^2 * x', 'x^4']
   ];
