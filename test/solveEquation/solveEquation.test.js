@@ -76,14 +76,18 @@ describe('solveEquation for =', function () {
     ['2^7 (x + 2) = 0', 'x = -2'],
     ['(x + y) (x + 2) = 0', 'x = -y'],
     ['(33 + 89) (x - 99) = 0', 'x = 99'],
+    // TODO: fix these (answers are either wrong or don't show steps)
+    // ['(x + y) (y + 2) = 0', 'y = -y'],
+    // ['((x-2)^2) = 0', 'NO_STEPS'],
     // Combinations
     ['x^2 (x - 5)^2 = 0', 'x = 0'],
+    ['x^2 = 0', 'x = 0'],
     // TODO: no steps because we need to up our factoring support
     ['x^6 - x', NO_STEPS],
     ['4x^2 - 81', NO_STEPS],
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
-    // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
+    // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']*/
   ];
   tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
