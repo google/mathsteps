@@ -24,6 +24,18 @@ describe('combineNthRoots multiplication', function() {
       ['(nthRoot(2 x, 2) * nthRoot(2 x, 2)) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
         'nthRoot(2 x * 2 x, 2) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
         'nthRoot(2 x * 2 x, 2) * nthRoot(y * y ^ 3, 4)'],
+    ],
+    ['nthRoot(x) * nthRoot(x)',
+      [],
+      'nthRoot(x * x, 2)'
+    ],
+    ['nthRoot(3) * nthRoot(3)',
+      [],
+      'nthRoot(3 * 3, 2)'
+    ],
+    ['nthRoot(5) * nthRoot(9x, 2)',
+      [],
+      'nthRoot(5 * 9 x, 2)'
     ]
   ];
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
