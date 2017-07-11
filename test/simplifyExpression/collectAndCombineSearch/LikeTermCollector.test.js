@@ -73,7 +73,7 @@ describe('basic addition collect like terms, no exponents or coefficients', func
     ['x + 4 + x + 2^x + 5', '(x + x) + (4 + 5) + 2^x',
       'because 2^x is an \'other\''],
     ['z + 2*(y + x) + 4 + z', '(z + z) + 4 + 2 * (y + x)',
-     ' 2*(y + x) is an \'other\' cause it has parens'],
+      ' 2*(y + x) is an \'other\' cause it has parens'],
     ['nthRoot(2) + 100 + nthRoot(2)', '(nthRoot(2) + nthRoot(2)) + 100'],
     ['y + nthRoot(x, 2) + 4y + nthRoot(x, 2)', '(nthRoot(x, 2) + nthRoot(x, 2)) + (y + 4y)'],
     ['nthRoot(x, 2) + 2 + nthRoot(x, 2) + 5', '(nthRoot(x, 2) + nthRoot(x, 2)) + (2 + 5)'],
