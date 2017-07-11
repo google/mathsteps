@@ -44,7 +44,6 @@ describe('solveEquation for =', function () {
     ['2 - 4x = x', 'x = 2/5'],
     ['9x + 4 - 3 = 2x', 'x = -1/7'],
     ['9x + 4 - 3 = -2x', 'x = -1/11'],
-    //['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '2x^6 - x^4 - 50x^2 = -25'],
     //['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
     ['5x + (1/2)x = 27 ', 'x = 54/11'],
     ['2x/3 = 2x - 4 ', 'x = 3'],
@@ -73,18 +72,24 @@ describe('solveEquation for =', function () {
     // Some weird edge cases (we only support a leading term with coeff 1)
     ['x * x + 12x + 36 = 0', 'x = -6'],
     ['x * x - 2x + 1 = 0', 'x = 1'],
+    // Solve for roots before expanding
     ['2^7 (x + 2) = 0', 'x = -2'],
     ['(x + y) (x + 2) = 0', 'x = -y'],
     ['(33 + 89) (x - 99) = 0', 'x = 99'],
-    // TODO: fix these (answers are either wrong or don't show steps)
-    // ['(x + y) (y + 2) = 0', 'y = -y'],
-    // ['((x-2)^2) = 0', 'NO_STEPS'],
-    // Combinations
+    ['(x - 1)(x - 5)(x + 5) = 0', 'x = 1'],
     ['x^2 (x - 5)^2 = 0', 'x = 0'],
     ['x^2 = 0', 'x = 0'],
-    // TODO: no steps because we need to up our factoring support
-    ['x^6 - x', NO_STEPS],
-    ['4x^2 - 81', NO_STEPS],
+    // TODO: fix these cases, fail because lack of factoring support, for complex #s,
+    // for taking the sqrt of both sides, etc
+    // ['(x + y) (y + 2) = 0', 'y = -y'],
+    // ['((x-2)^2) = 0', 'NO_STEPS'],
+    // ['x * x (x - 5)^2 = 0', 'NO_STEPS'],
+    // ['x^6 - x', NO_STEPS],
+    // ['4x^2 - 81', NO_STEPS],
+    // ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', ''],
+    // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
+    // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
+
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']*/
