@@ -57,12 +57,12 @@ describe('solveEquation for =', function () {
     ['( u )/( 0.3) = 4u + 6.28', 'u = -9.42'],
     ['- q - 4.36= ( 2.2q )/( 1.8)', 'q = -1.962'],
     // Returns only one solution
-    ['5x^2 - 5x - 30 = 0', 'x = -2'],
-    ['x^2 + 3x + 2 = 0', 'x = -1'],
-    ['x^2 - x = 0', 'x = 0'],
-    ['x^2 + 2x - 15 = 0', 'x = 3'],
-    ['x^2 + 2x = 0', 'x = 0'],
-    ['x^2 - 4 = 0', 'x = -2'],
+    ['5x^2 - 5x - 30 = 0', 'x = [-2, 3]'],
+    ['x^2 + 3x + 2 = 0', 'x = [-1, -2]'],
+    ['x^2 - x = 0', 'x = [0, 1]'],
+    ['x^2 + 2x - 15 = 0', 'x = [3, -5]'],
+    ['x^2 + 2x = 0', 'x = [0, -2]'],
+    ['x^2 - 4 = 0', 'x = [-2, 2]'],
     // Perfect square
     ['x^2 + 2x + 1 = 0', 'x = -1'],
     ['x^2 + 4x + 4 = 0', 'x = -2'],
@@ -74,10 +74,10 @@ describe('solveEquation for =', function () {
     ['x * x - 2x + 1 = 0', 'x = 1'],
     // Solve for roots before expanding
     ['2^7 (x + 2) = 0', 'x = -2'],
-    ['(x + y) (x + 2) = 0', 'x = -y'],
+    ['(x + y) (x + 2) = 0', 'x = [-y, -2]'],
     ['(33 + 89) (x - 99) = 0', 'x = 99'],
-    ['(x - 1)(x - 5)(x + 5) = 0', 'x = 1'],
-    ['x^2 (x - 5)^2 = 0', 'x = 0'],
+    ['(x - 1)(x - 5)(x + 5) = 0', 'x = [1, 5, -5]'],
+    ['x^2 (x - 5)^2 = 0', 'x = [0, 5]'],
     ['x^2 = 0', 'x = 0'],
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
