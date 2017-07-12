@@ -69,6 +69,10 @@ describe('solveEquation for =', function () {
     ['x^2 - 6x + 9 = 0', 'x = 3'],
     ['(x + 4)^2 = 0', 'x = -4'],
     ['(x - 5)^2 = 0', 'x = 5'],
+    // Difference of squares
+    ['4x^2 - 81 = 0', 'x = [-9 / 2, 9 / 2]'],
+    ['x^2 - 9 = 0', 'x = [-3, 3]'],
+    ['16y^2 - 25 = 0', 'y = [-5 / 4, 5 / 4]'],
     // Some weird edge cases (we only support a leading term with coeff 1)
     ['x * x + 12x + 36 = 0', 'x = -6'],
     ['x * x - 2x + 1 = 0', 'x = 1'],
@@ -85,7 +89,7 @@ describe('solveEquation for =', function () {
     // ['((x-2)^2) = 0', 'NO_STEPS'],
     // ['x * x (x - 5)^2 = 0', 'NO_STEPS'],
     // ['x^6 - x', NO_STEPS],
-    // ['4x^2 - 81', NO_STEPS],
+    // ['4x^2 - 25y^2', ''],
     // ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', ''],
     // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
     // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
