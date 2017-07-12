@@ -87,3 +87,16 @@ describe('distribute with fractions', function () {
 
   multiStepTests.forEach(t => testDistributeSteps(t[0], t[1]));
 });
+
+describe('expand base', function () {
+  const tests = [
+    ['(nthRoot(x, 2))^2','nthRoot(x, 2) * nthRoot(x, 2)'],
+    ['(nthRoot(x, 2))^3','nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
+    ['3 * (nthRoot(x, 2))^4', '3 * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
+    ['(nthRoot(x, 2) + nthRoot(x, 3))^2', '(nthRoot(x, 2) + nthRoot(x, 3)) * (nthRoot(x, 2) + nthRoot(x, 3))'],
+    ['(2x + 3)^2', '(2x + 3) * (2x + 3)'],
+    ['(x + 3 + 4)^2', '(x + 3 + 4) * (x + 3 + 4)']
+  ];
+
+  tests.forEach(t => testDistribute(t[0], t[1]));
+});
