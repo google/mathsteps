@@ -57,6 +57,7 @@ describe('solveEquation for =', function () {
     ['2(x+3)/3 = 2', 'x = 0'],
     ['( u )/( 0.3) = 4u + 6.28', 'u = -9.42'],
     ['- q - 4.36= ( 2.2q )/( 1.8)', 'q = -1.962'],
+    ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
