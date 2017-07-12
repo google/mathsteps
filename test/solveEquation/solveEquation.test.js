@@ -124,7 +124,6 @@ function testEquationError(equationString, debug=false) {
 
 describe('solveEquation errors', function() {
   const tests = [
-    ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)']
   ];
   tests.forEach(t => testEquationError(t[0], t[1]));
 });
