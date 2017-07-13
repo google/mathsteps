@@ -44,13 +44,10 @@ describe('solveEquation for =', function () {
     ['2 - 4x = x', 'x = 2/5'],
     ['9x + 4 - 3 = 2x', 'x = -1/7'],
     ['9x + 4 - 3 = -2x', 'x = -1/11'],
-    //['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
     ['5x + (1/2)x = 27 ', 'x = 54/11'],
     ['2x/3 = 2x - 4 ', 'x = 3'],
     ['(-2/3)x + 3/7 = 1/2', 'x = -3/28'],
     ['-9/4v + 4/5 = 7/8 ', 'v = -1/30'],
-    // TODO: update test once we have root support
-    ['x^2 - 2 = 0', 'x^2 = 2'],
     ['x/(2/3) = 1', 'x = 2/3'],
     ['(x+1)/3 = 4', 'x = 11'],
     ['2(x+3)/3 = 2', 'x = 0'],
@@ -83,8 +80,24 @@ describe('solveEquation for =', function () {
     ['(x - 1)(x - 5)(x + 5) = 0', 'x = [1, 5, -5]'],
     ['x^2 (x - 5)^2 = 0', 'x = [0, 5]'],
     ['x^2 = 0', 'x = 0'],
+    // Nth root support
+    // TODO: + or - for sqrt roots
+    ['x^2 - 2 = 0', 'x = nthRoot(2, 2)'],
+    ['x^2 = 1', 'x = 1'],
+    ['x^3 - 3 = 0', 'x = nthRoot(3, 3)'],
+    ['(x^2 - 2) (x^2 - 5) = 0', 'x = [nthRoot(2, 2), nthRoot(5, 2)]'],
+    ['(x^2 + 2) (x^3 - 7) = 0', 'x = [nthRoot(-2, 2), nthRoot(7, 3)]'],
+    ['x^2 + 1 = 0', 'x = nthRoot(-1, 2)'],
+    ['(y + 1)^2 = 1', 'y = 0'],
+    ['(y + 1)^3 = 8', 'y = 1'],
+    ['(2x + 1)^3 = 1', 'x = 0'],
+    ['(3x + 2)^2 = 2', 'x = nthRoot(2, 2) / 3 - 4/3'],
+    ['']
+    // TODO: fix this
+    // ['(3x + 2)^2 + 2 = 1']
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
+    // ['x^2 + 2x = 1', ''],
     // ['(x + y) (y + 2) = 0', 'y = -y'],
     // ['((x-2)^2) = 0', 'NO_STEPS'],
     // ['x * x (x - 5)^2 = 0', 'NO_STEPS'],
