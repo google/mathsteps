@@ -62,27 +62,31 @@ describe('solveEquation for =', function () {
     ['x^2 + 2x = 0', 'x = [0, -2]'],
     ['x^2 - 4 = 0', 'x = [-2, 2]'],
     // Perfect square
-    ['x^2 + 2x + 1 = 0', 'x = -1'],
-    ['x^2 + 4x + 4 = 0', 'x = -2'],
-    ['x^2 - 6x + 9 = 0', 'x = 3'],
-    ['(x + 4)^2 = 0', 'x = -4'],
-    ['(x - 5)^2 = 0', 'x = 5'],
+    ['x^2 + 2x + 1 = 0', 'x = [-1, -1]'],
+    ['x^2 + 4x + 4 = 0', 'x = [-2, -2]'],
+    ['x^2 - 6x + 9 = 0', 'x = [3, 3]'],
+    ['(x + 4)^2 = 0', 'x = [-4, -4]'],
+    ['(x - 5)^2 = 0', 'x = [5, 5]'],
     // Difference of squares
     ['4x^2 - 81 = 0', 'x = [-9 / 2, 9 / 2]'],
     ['x^2 - 9 = 0', 'x = [-3, 3]'],
     ['16y^2 - 25 = 0', 'y = [-5 / 4, 5 / 4]'],
     // Some weird edge cases (we only support a leading term with coeff 1)
-    ['x * x + 12x + 36 = 0', 'x = -6'],
-    ['x * x - 2x + 1 = 0', 'x = 1'],
+    ['x * x + 12x + 36 = 0', 'x = [-6, -6]'],
+    ['x * x - 2x + 1 = 0', 'x = [1, 1]'],
     ['0 = x^2 + 3x + 2', 'x = [-1, -2]'],
     ['0 = x * x + 3x + 2', 'x = [-1, -2]'],
+    ['x * x + (x + x) + 1 = 0', 'x = [-1, -1]'],
+    ['0 = x * x + (x + x) + 1', 'x = [-1, -1]'],
+    ['(x^3 / x) + (3x - x) + 1 = 0', 'x = [-1, -1]'],
+    ['0 = (x^3 / x) + (3x - x) + 1', 'x = [-1, -1]'],
     // Solve for roots before expanding
     ['2^7 (x + 2) = 0', 'x = -2'],
     ['(x + y) (x + 2) = 0', 'x = [-y, -2]'],
     ['(33 + 89) (x - 99) = 0', 'x = 99'],
     ['(x - 1)(x - 5)(x + 5) = 0', 'x = [1, 5, -5]'],
-    ['x^2 (x - 5)^2 = 0', 'x = [0, 5]'],
-    ['x^2 = 0', 'x = 0'],
+    ['x^2 (x - 5)^2 = 0', 'x = [0, 0, 5, 5]'],
+    ['x^2 = 0', 'x = [0, 0]'],
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
@@ -93,6 +97,7 @@ describe('solveEquation for =', function () {
     // ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', ''],
     // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
     // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
+    // ['x^2 = -2x - 1', 'x = -1'],
     ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
