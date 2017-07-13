@@ -74,6 +74,8 @@ describe('solveEquation for =', function () {
     // Some weird edge cases (we only support a leading term with coeff 1)
     ['x * x + 12x + 36 = 0', 'x = -6'],
     ['x * x - 2x + 1 = 0', 'x = 1'],
+    ['0 = x^2 + 3x + 2', 'x = [-1, -2]'],
+    ['0 = x * x + 3x + 2', 'x = [-1, -2]'],
     // Solve for roots before expanding
     ['2^7 (x + 2) = 0', 'x = -2'],
     ['(x + y) (x + 2) = 0', 'x = [-y, -2]'],
