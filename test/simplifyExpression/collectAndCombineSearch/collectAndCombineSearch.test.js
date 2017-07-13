@@ -63,6 +63,22 @@ describe('combinePolynomialTerms multiplication', function() {
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
 });
 
+describe('combinePolynomialPowerTerms division', function() {
+  const tests = [
+    ['x^2 / x',
+      ['x^2 / (x^1)',
+        'x^(2 - 1)',
+        'x^1'],
+    ],
+    ['y / y^3',
+      ['y^1 / (y^3)',
+        'y^(1 - 3)',
+        'y^-2'],
+    ],
+  ];
+  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
+});
+
 describe('combinePolynomialTerms addition', function() {
   const tests = [
     ['x+x',
@@ -119,6 +135,18 @@ describe('collect and multiply like terms', function() {
   const tests = [
     ['10^3 * 10^2', '10^5'],
     ['2^4 * 2 * 2^4 * 2', '2^10']
+  ];
+  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
+});
+
+describe('collect and divide multiply like terms', function() {
+  const tests = [
+    ['10^5 / 10^2', '10^3'],
+    ['2^4 / 2^2', '2^2'],
+    ['2^3 / 2^4', '2^-1'],
+    ['x^3 / x^4', 'x^-1'],
+    ['y^5 / y^2', 'y^3'],
+    ['z^4 / z^2', 'z^2'],
   ];
   tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
 });
