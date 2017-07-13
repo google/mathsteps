@@ -104,9 +104,9 @@ describe('distribution', function () {
     // -> x * x -> x
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
-    // ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
-    // ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
-    // TODO: fix when base has multiplication
+    ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
+    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
+    // TODO: base should multiply first and then distribute happens
     //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
