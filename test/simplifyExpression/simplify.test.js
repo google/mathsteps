@@ -106,7 +106,7 @@ describe('distribution', function () {
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
     ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
     ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
-    // TODO: base should multiply first and then distribute happens
+    // TODO: expand power for base with multiplication
     //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
