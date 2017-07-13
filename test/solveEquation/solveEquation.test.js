@@ -93,7 +93,7 @@ describe('solveEquation for =', function () {
     // ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', ''],
     // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
     // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
-
+    ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
@@ -161,7 +161,6 @@ function testEquationError(equationString, debug=false) {
 
 describe('solveEquation errors', function() {
   const tests = [
-    ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)']
   ];
   tests.forEach(t => testEquationError(t[0], t[1]));
 });
