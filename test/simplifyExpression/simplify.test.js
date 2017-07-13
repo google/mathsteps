@@ -92,12 +92,6 @@ describe('distribution', function () {
     ['- x*y^4 (6x * y^2 + 5x*y - 3x)',
       '-6x^2 * y^6 - 5x^2 * y^5 + 3x^2 * y^4'],
     ['(nthRoot(x, 2))^2', 'x'],
-    // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
-    // ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
-    // ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
-    // TODO: fix when base has multiplication
-    // ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
-    // ['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
     ['(nthRoot(x, 2))^4', 'x^2'],
     ['3 * (nthRoot(x, 2))^2', '3x'],
     ['(nthRoot(x, 2))^6 * (nthRoot(x, 3))^3', 'x^4'],
@@ -105,6 +99,15 @@ describe('distribution', function () {
     ['(3x + 5)^2', '9x^2 + 30x + 25'],
     ['(2x + 3)^2','4x^2 + 12x + 9'],
     ['(x + 3 + 4)^2', 'x^2 + 14x + 49'],
+    // TODO: ideally this can happen in one step
+    // the current substeps are (nthRoot(x^2, 2))^2 -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
+    // -> x * x -> x
+    ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
+    // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
+    // ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
+    // ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
+    // TODO: fix when base has multiplication
+    //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });

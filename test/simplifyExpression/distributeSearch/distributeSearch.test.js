@@ -95,7 +95,15 @@ describe('expand base', function () {
     ['3 * (nthRoot(x, 2))^4', '3 * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
     ['(nthRoot(x, 2) + nthRoot(x, 3))^2', '(nthRoot(x, 2) + nthRoot(x, 3)) * (nthRoot(x, 2) + nthRoot(x, 3))'],
     ['(2x + 3)^2', '(2x + 3) * (2x + 3)'],
-    ['(x + 3 + 4)^2', '(x + 3 + 4) * (x + 3 + 4)']
+    ['(x + 3 + 4)^2', '(x + 3 + 4) * (x + 3 + 4)'],
+    // These should not expand
+    // Needs to have a positive integer exponent > 1
+    ['x + 2', 'x + 2'],
+    ['(x + 2)^-1', '(x + 2)^-1'],
+    ['(x + 1)^x', '(x + 1)^x'],
+    ['(x + 1)^(2x)', '(x + 1)^(2x)'],
+    ['(x + 1)^(1/2)', '(x + 1)^(1/2)'],
+    ['(x + 1)^2.5', '(x + 1)^2.5'],
   ];
 
   tests.forEach(t => testDistribute(t[0], t[1]));
