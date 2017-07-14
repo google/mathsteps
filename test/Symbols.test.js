@@ -27,7 +27,7 @@ describe('getLastSymbolTerm', function() {
   tests.forEach(t => runTest(Symbols.getLastSymbolTerm, t[0], t[1]));
 });
 
-describe('getLastDenominatorSymbolTerm', function() {
+describe('getLastDenominatorWithSymbolTerm', function() {
   const tests = [
     ['1/x', 'x'],
     ['1/(x+2)', '(x + 2)'],
@@ -35,6 +35,6 @@ describe('getLastDenominatorSymbolTerm', function() {
     ['1/(x+2) + 3x/(1+x)', '(1 + x)'],
   ];
 
-  tests.forEach(t => runTest(Symbols.getLastDenominatorSymbolTerm, t[0], t[1]));
+  tests.forEach(t => runTest(Symbols.getLastDenominatorWithSymbolTerm, t[0], t[1]));
 });
 
