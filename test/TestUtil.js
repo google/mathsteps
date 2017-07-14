@@ -10,7 +10,7 @@ const TestUtil = {};
 // Takes in an input string and returns a flattened and parsed node
 TestUtil.flattenAndParse = function (exprString) {
   return flatten(math.parse(exprString));
-}
+};
 
 // Tests a function that takes an input string and check its output
 TestUtil.testFunctionOutput = function (fn, input, output) {
