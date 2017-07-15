@@ -97,13 +97,23 @@ describe('expand base', function () {
     ['(2x + 3)^2', '(2x + 3) * (2x + 3)'],
     ['(x + 3 + 4)^2', '(x + 3 + 4) * (x + 3 + 4)'],
     // These should not expand
-    // Needs to have a positive integer exponent > 1
     ['x + 2', 'x + 2'],
-    ['(x + 2)^-1', '(x + 2)^-1'],
     ['(x + 1)^x', '(x + 1)^x'],
     ['(x + 1)^(2x)', '(x + 1)^(2x)'],
     ['(x + 1)^(1/2)', '(x + 1)^(1/2)'],
     ['(x + 1)^2.5', '(x + 1)^2.5'],
+    ['1 / (x + 1)^x', '1 / ((x + 1)^x)']
+  ];
+
+  tests.forEach(t => testDistribute(t[0], t[1]));
+});
+
+describe('distribute negative exponent', function () {
+  const tests = [
+    ['(x y)^-1', '1 / ((x * y)^1)'],
+    ['(x y)^-x', '1 / ((x * y)^x)'],
+    ['(x y)^(-2x^2)','1 / ((x * y)^(2x^2))'],
+    ['(x y)^(-(x + 1))', '1 / ((x * y)^((x + 1)))'],
   ];
 
   tests.forEach(t => testDistribute(t[0], t[1]));
@@ -130,10 +140,6 @@ describe('distribute exponent', function () {
     // Works for decimal exponents too
     ['(x^2 y)^2.5', 'x^(2 * 2.5) * y^2.5'],
     ['((x + 1) x^2)^2.2', '(x + 1)^2.2 * x^(2 * 2.2)'],
-    // negative exponents do not change
-    // TODO: maybe we can return the reciprical here?
-    //['(x y)^-1', '(x * y)^-1'],
-    //['(x^2 y^2 z^2)^-3', '(x^2 * y^2 * z^2)^-3'],
   ];
 
   tests.forEach(t => testDistribute(t[0], t[1]));
