@@ -108,3 +108,33 @@ describe('expand base', function () {
 
   tests.forEach(t => testDistribute(t[0], t[1]));
 });
+
+describe('distribute exponent', function () {
+  const tests = [
+    // When terms are polynomialTerms
+    ['(x^2 y^2)^2', 'x^(2 * 2) * y^(2 * 2)',],
+    ['(x y)^2', 'x^2 * y^2'],
+    ['(x y z)^2', 'x^2 * y^2 * z^2'],
+    ['(x^2 y z^2)^2', 'x^(2 * 2) * y^2 * z^(2 * 2)'],
+    // When terms have coefficients
+    ['(2x y)^2', '2^2 * x^2 * y^2'],
+    ['(2x^2 * 3y^2)^2', '2^2 * x^(2 * 2) * 3^2 * y^(2 * 2)'],
+    ['(x^2 * 3x * y^2)^3', 'x^(2 * 3) * 3^3 * x^3 * y^(2 * 3)'],
+    // When terms are polynomials or power nodes
+    ['((x + 1)^2 (x + 1)^2)^2', '(x + 1)^(2 * 2) * (x + 1)^(2 * 2)'],
+    ['((x + y)^3 * (x + 1))^3', '(x + y)^(3 * 3) * (x + 1)^3'],
+    ['((x + 1) (y + 1) (z + 1))^2', '(x + 1)^2 * (y + 1)^2 * (z + 1)^2'],
+    // Combination of terms
+    ['(2x * (x + 1))^2', '2^2 * x^2 * (x + 1)^2'],
+    ['((x + 1) * 2y^2 * 2)^2', '(x + 1)^2 * 2^2 * y^(2 * 2) * 2^2'],
+    // Works for decimal exponents too
+    ['(x^2 y)^2.5', 'x^(2 * 2.5) * y^2.5'],
+    ['((x + 1) x^2)^2.2', '(x + 1)^2.2 * x^(2 * 2.2)'],
+    // negative exponents do not change
+    // TODO: maybe we can return the reciprical here?
+    //['(x y)^-1', '(x * y)^-1'],
+    //['(x^2 y^2 z^2)^-3', '(x^2 * y^2 * z^2)^-3'],
+  ];
+
+  tests.forEach(t => testDistribute(t[0], t[1]));
+});
