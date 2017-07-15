@@ -105,12 +105,20 @@ describe('distribution', function () {
     ['(x y z)^-a', '1 / (x^a * y^a * z^a)'],
     // Distributing exponents to base
     ['(x y)^2', 'x^2 * y^2'],
+    ['(x y)^(2x)' ,'x^2 * x * y^2 * x'],
     ['((x + 1) y)^2', 'x^2 * y^2 + 2x * y^2 + y^2'],
     ['(2x * y * z)^2', '4x^2 * y^2 * z^2'],
-    // TODO: add nthRoot
     ['(2x^2 * 3y^2)^2', '36x^4 * y^4'],
     ['((x + 1)^2 (x + 1)^2)^2', 'x^8 + 8x^7 + 28x^6 + 56x^5 + 70x^4 + 56x^3 + 28x^2 + 8x + 1'],
     ['(x * y * (2x + 1))^2', '4x^4 * y^2 + 2x^3 * y^2 + 2x^3 * y^2 + x^2 * y^2'],
+    ['((x + 1) * 2y^2 * 2)^2', '16x^2 * y^4 + 16y^4 * x + 16y^4 * x + 16y^4'],
+    ['(2x * (x + 1))^2', '4x^4 + 8x^3 + 4x^2'],
+    ['(x^2 y)^2.5', 'x^5 * y^2.5'],
+    // Fractional exponents
+    ['(x^2 y^2)^(1/2)', 'x * y'],
+    ['(x^3 y^3)^(1/3)', 'x * y'],
+    ['(2x^2 * y^2)^(1/2)', '2^1 / 2 * x * y'],
+    // TODO: add nthRoot support
     // TODO: ideally this can happen in one step
     // the current substeps are (nthRoot(x^2, 2))^2 -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
     // -> x * x -> x
