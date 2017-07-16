@@ -46,7 +46,7 @@ describe('can simplify with division', function () {
     ['2x * 5x / 2', '5x^2'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x * 4x / 2 / 4', 'x^2'],
-    ['2x * y / z * 10', '20x * y / z'],
+    ['2x * y / z * 10', '(20x * y) / z'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
@@ -91,6 +91,23 @@ describe('distribution', function () {
     ['(x-2)(x-4)', 'x^2 - 6x + 8'],
     ['- x*y^4 (6x * y^2 + 5x*y - 3x)',
       '-6x^2 * y^6 - 5x^2 * y^5 + 3x^2 * y^4'],
+    ['(nthRoot(x, 2))^2', 'x'],
+    ['(nthRoot(x, 2))^4', 'x^2'],
+    ['3 * (nthRoot(x, 2))^2', '3x'],
+    ['(nthRoot(x, 2))^6 * (nthRoot(x, 3))^3', 'x^4'],
+    ['(x - 2)^2', 'x^2 - 4x + 4'],
+    ['(3x + 5)^2', '9x^2 + 30x + 25'],
+    ['(2x + 3)^2','4x^2 + 12x + 9'],
+    ['(x + 3 + 4)^2', 'x^2 + 14x + 49'],
+    // TODO: ideally this can happen in one step
+    // the current substeps are (nthRoot(x^2, 2))^2 -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
+    // -> x * x -> x
+    ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
+    // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
+    ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
+    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
+    // TODO: expand power for base with multiplication
+    //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
@@ -123,6 +140,9 @@ describe('cancelling out', function() {
     ['(-x)/(x)', '-1'],
     ['(x)/(-x)', '-1'],
     ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
+    ['(1+2a)/a', '1 / a + 2'],
+    ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', '-x^2 + y'],
+    ['6 / (2x^2)', '3 / (x^2)'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
@@ -164,5 +184,5 @@ describe('handles unnecessary parens at root level', function() {
 });
 
 describe('keeping parens in important places, on printing', function() {
-  testSimplify('2 / (2x^2) + 5', '2 / (2x^2) + 5');
+  testSimplify('2 / (3x^2) + 5', '2 / (3x^2) + 5');
 });

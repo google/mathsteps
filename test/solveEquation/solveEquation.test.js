@@ -80,6 +80,7 @@ describe('solveEquation for =', function () {
     ['(x - 1)(x - 5)(x + 5) = 0', 'x = [1, 5, -5]'],
     ['x^2 (x - 5)^2 = 0', 'x = [0, 5]'],
     ['x^2 = 0', 'x = 0'],
+    ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
     // Nth root support
     // TODO: + or - for sqrt roots
     ['x^2 - 2 = 0', 'x = nthRoot(2, 2)'],
@@ -91,8 +92,7 @@ describe('solveEquation for =', function () {
     ['(y + 1)^2 = 1', 'y = 0'],
     ['(y + 1)^3 = 8', 'y = 1'],
     ['(2x + 1)^3 = 1', 'x = 0'],
-    ['(3x + 2)^2 = 2', 'x = nthRoot(2, 2) / 3 - 4/3'],
-    ['']
+    ['(3x + 2)^2 = 2', 'x = nthRoot(2, 2) / 3 - 2/3'],
     // TODO: fix this
     // ['(3x + 2)^2 + 2 = 1']
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
@@ -106,7 +106,6 @@ describe('solveEquation for =', function () {
     // ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', ''],
     // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
     // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
-
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
@@ -174,7 +173,6 @@ function testEquationError(equationString, debug=false) {
 
 describe('solveEquation errors', function() {
   const tests = [
-    ['( x + 2) ^ ( 2) - x ^ ( 2) = 4( x + 1)']
   ];
   tests.forEach(t => testEquationError(t[0], t[1]));
 });

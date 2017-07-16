@@ -5,6 +5,7 @@ const flattenOperands = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 
 const Node = require('../../lib/node');
+const TestUtil = require('../TestUtil');
 
 function testFlatten(exprStr, afterNode, debug=false) {
   const flattened = flattenOperands(math.parse(exprStr));
@@ -12,8 +13,8 @@ function testFlatten(exprStr, afterNode, debug=false) {
     // eslint-disable-next-line
     console.log(print(flattened));
   }
-  removeComments(flattened);
-  removeComments(afterNode);
+  TestUtil.removeComments(flattened);
+  TestUtil.removeComments(afterNode);
   it(print(flattened), function() {
     assert.deepEqual(flattened, afterNode);
   });
@@ -94,10 +95,16 @@ describe('subtraction', function () {
   tests.forEach(t => testFlatten(t[0], t[1]));
 });
 
-
-// Remove some property used in mathjs that we don't need and prevents node
-// equality checks from passing
-function removeComments(node) {
-  node.filter(node => node.comment !== undefined).forEach(
-    node => delete node.comment);
-}
+describe('flattens nested functions', function () {
+  const tests = [
+    ['nthRoot(11)(x+y)',
+      math.parse('nthRoot(11) * (x+y)')],
+    ['abs(3)(1+2)',
+      math.parse('abs(3) * (1+2)')],
+    ['nthRoot(2)(nthRoot(18)+4*nthRoot(3))',
+      math.parse('nthRoot(2) * (nthRoot(18)+4*nthRoot(3))')],
+    ['nthRoot(6,3)(10+4x)',
+      math.parse('nthRoot(6,3) * (10+4x)')]
+  ];
+  tests.forEach(t => testFlatten(t[0], t[1]));
+});

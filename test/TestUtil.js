@@ -7,6 +7,11 @@ const print = require('../lib/util/print');
 // TestUtil contains helper methods to share code across tests
 const TestUtil = {};
 
+// Takes in an input string and returns a flattened and parsed node
+TestUtil.flattenAndParse = function (exprString) {
+  return flatten(math.parse(exprString));
+};
+
 // Tests a function that takes an input string and check its output
 TestUtil.testFunctionOutput = function (fn, input, output) {
   it(input + ' -> ' + output,  () => {
@@ -51,6 +56,13 @@ TestUtil.testSubsteps = function (fn, exprString, outputList,
         outputStr);
     }
   });
+};
+
+// Remove some property used in mathjs that we don't need and prevents node
+// equality checks from passing
+TestUtil.removeComments = function(node) {
+  node.filter(node => node.comment !== undefined).forEach(
+    node => delete node.comment);
 };
 
 module.exports = TestUtil;
