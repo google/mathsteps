@@ -1,33 +1,27 @@
-const convertMixedNumberToImproperFraction = require(
-  '../../../lib/simplifyExpression/basicsSearch/convertMixedNumberToImproperFraction');
-const mixedNumber = require('../../../lib/simplifyExpression/basicsSearch/mixedNumber');
-const TestUtil = require('../../TestUtil');
+const MixedNumber = require('../../lib/node/MixedNumber');
+const TestUtil = require('../TestUtil');
 
 function testIsMixedNumber(input, output) {
-  TestUtil.testBooleanFunction(mixedNumber.isMixedNumber, input, output);
+  TestUtil.testBooleanFunction(MixedNumber.isMixedNumber, input, output);
 }
 
 function testIsNegativeMixedNumber(input, output) {
-  TestUtil.testBooleanFunction(mixedNumber.isNegativeMixedNumber, input, output);
+  TestUtil.testBooleanFunction(MixedNumber.isNegativeMixedNumber, input, output);
 }
 
 function testGetWholeNumber(input, output) {
   input = TestUtil.flattenAndParse(input);
-  TestUtil.testFunctionOutput(mixedNumber.getWholeNumber, input, output);
+  TestUtil.testFunctionOutput(MixedNumber.getWholeNumber, input, output);
 }
 
 function testGetNumerator(input, output) {
   input = TestUtil.flattenAndParse(input);
-  TestUtil.testFunctionOutput(mixedNumber.getNumerator, input, output);
+  TestUtil.testFunctionOutput(MixedNumber.getNumerator, input, output);
 }
 
 function testGetDenominator(input, output) {
   input = TestUtil.flattenAndParse(input);
-  TestUtil.testFunctionOutput(mixedNumber.getDenominator, input, output);
-}
-
-function testConvertMixedNumberToImproperFraction(exprString, outputList, outputStr) {
-  TestUtil.testSubsteps(convertMixedNumberToImproperFraction, exprString, outputList, outputStr);
+  TestUtil.testFunctionOutput(MixedNumber.getDenominator, input, output);
 }
 
 describe('isMixedNumber', function () {
@@ -76,28 +70,4 @@ describe('getDenominator', function () {
     ['-1(7)/(8)', 8],
   ];
   tests.forEach(t => testGetDenominator(t[0], t[1]));
-});
-
-describe('convertMixedNumberToImproperFraction', function() {
-  const tests = [
-    ['1(2)/(3)',
-      ['((1 * 3) + 2) / 3',
-        '(3 + 2) / 3',
-        '5/3'],
-      '5/3'
-    ],
-    ['19(4)/(8)',
-      ['((19 * 8) + 4) / 8',
-        '(152 + 4) / 8',
-        '156/8'],
-      '156/8'
-    ],
-    ['-5(10)/(11)',
-      ['-((5 * 11) + 10) / 11',
-        '-(55 + 10) / 11',
-        '-65/11'],
-      '-65/11'
-    ],
-  ];
-  tests.forEach(t => testConvertMixedNumberToImproperFraction(t[0], t[1], t[2]));
 });
