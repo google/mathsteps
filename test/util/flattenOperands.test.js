@@ -94,3 +94,17 @@ describe('subtraction', function () {
   ];
   tests.forEach(t => testFlatten(t[0], t[1]));
 });
+
+describe('flattens nested functions', function () {
+  const tests = [
+    ['nthRoot(11)(x+y)',
+      math.parse('nthRoot(11) * (x+y)')],
+    ['abs(3)(1+2)',
+      math.parse('abs(3) * (1+2)')],
+    ['nthRoot(2)(nthRoot(18)+4*nthRoot(3))',
+      math.parse('nthRoot(2) * (nthRoot(18)+4*nthRoot(3))')],
+    ['nthRoot(6,3)(10+4x)',
+      math.parse('nthRoot(6,3) * (10+4x)')]
+  ];
+  tests.forEach(t => testFlatten(t[0], t[1]));
+});
