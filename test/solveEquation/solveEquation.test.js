@@ -87,6 +87,7 @@ describe('solveEquation for =', function () {
     ['(x - 1)(x - 5)(x + 5) = 0', 'x = [1, 5, -5]'],
     ['x^2 (x - 5)^2 = 0', 'x = [0, 0, 5, 5]'],
     ['x^2 = 0', 'x = [0, 0]'],
+    ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
@@ -98,7 +99,6 @@ describe('solveEquation for =', function () {
     // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
     // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
     // ['x^2 = -2x - 1', 'x = -1'],
-    ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
