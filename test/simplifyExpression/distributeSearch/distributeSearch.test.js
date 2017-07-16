@@ -124,6 +124,7 @@ describe('distribute exponent', function () {
     ['(x y)^2', 'x^2 * y^2'],
     ['(x y z)^2', 'x^2 * y^2 * z^2'],
     ['(x^2 y z^2)^2', 'x^(2 * 2) * y^2 * z^(2 * 2)'],
+    ['(x^2)^2', 'x^(2 * 2)'],
     // When terms have coefficients
     ['(2x y)^2', '2^2 * x^2 * y^2'],
     ['(2x^2 * 3y^2)^2', '2^2 * x^(2 * 2) * 3^2 * y^(2 * 2)'],
@@ -143,6 +144,13 @@ describe('distribute exponent', function () {
     ['nthRoot(x, 2)^2', 'x^1'],
     ['nthRoot(x, 3)^2', 'x^(1/3 * 2)'],
     ['nthRoot(x^2, 2)^(1/2)', 'x^2^(1/2 * 1/2)'],
+    // Multiplying nthRoots
+    ['(nthRoot(x, 2) * nthRoot(x, 3))^2', 'nthRoot(x, 2)^2 * nthRoot(x, 3)^2'],
+    ['(nthRoot(x, 2)^2 * nthRoot(x, 2))^2', 'nthRoot(x, 2)^(2 * 2) * nthRoot(x, 2)^2'],
+    // Does not change
+    ['2^2', '2^2'],
+    ['x^2', 'x^2'],
+    ['x', 'x'],
   ];
 
   tests.forEach(t => testDistribute(t[0], t[1]));

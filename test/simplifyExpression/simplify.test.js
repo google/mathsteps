@@ -119,15 +119,13 @@ describe('distribution', function () {
     ['(x^2 y^2)^(1/2)', 'x * y'],
     ['(x^3 y^3)^(1/3)', 'x * y'],
     ['(2x^2 * y^2)^(1/2)', '2^1 / 2 * x * y'],
-    // TODO: add nthRoot support
-    // TODO: ideally this can happen in one step
-    // the current substeps are (nthRoot(x^2, 2))^2 -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
-    // -> x * x -> x
+    // nthRoot to a power
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     ['(nthRoot(x, 2))^3', 'x^3 / 2'],
     ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x, 2) * x'],
-    // TODO: expand power for base with multiplication
-    //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
+    ['(nthRoot(x, 2) * nthRoot(x, 3))^2', 'x^5 / 3'],
+    ['nthRoot(x, 2)^(1/2)', 'x^1 / 4'],
+    ['(nthRoot(x^2, 2)^2 * nthRoot(x, 3)^3)^2', 'x^6'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
