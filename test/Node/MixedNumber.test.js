@@ -9,19 +9,19 @@ function testIsNegativeMixedNumber(input, output) {
   TestUtil.testBooleanFunction(MixedNumber.isNegativeMixedNumber, input, output);
 }
 
-function testGetWholeNumber(input, output) {
+function testGetWholeNumberValue(input, output) {
   input = TestUtil.flattenAndParse(input);
-  TestUtil.testFunctionOutput(MixedNumber.getWholeNumber, input, output);
+  TestUtil.testFunctionOutput(MixedNumber.getWholeNumberValue, input, output);
 }
 
-function testGetNumerator(input, output) {
+function testGetNumeratorValue(input, output) {
   input = TestUtil.flattenAndParse(input);
-  TestUtil.testFunctionOutput(MixedNumber.getNumerator, input, output);
+  TestUtil.testFunctionOutput(MixedNumber.getNumeratorValue, input, output);
 }
 
-function testGetDenominator(input, output) {
+function testGetDenominatorValue(input, output) {
   input = TestUtil.flattenAndParse(input);
-  TestUtil.testFunctionOutput(MixedNumber.getDenominator, input, output);
+  TestUtil.testFunctionOutput(MixedNumber.getDenominatorValue, input, output);
 }
 
 describe('isMixedNumber', function () {
@@ -51,7 +51,7 @@ describe('getWholeNumber', function () {
     ['19(2)/(3)', 19],
     ['-1(7)/(8)', 1],
   ];
-  tests.forEach(t => testGetWholeNumber(t[0], t[1]));
+  tests.forEach(t => testGetWholeNumberValue(t[0], t[1]));
 });
 
 describe('getNumerator', function () {
@@ -60,7 +60,7 @@ describe('getNumerator', function () {
     ['19(2)/(3)', 2],
     ['-1(7)/(8)', 7],
   ];
-  tests.forEach(t => testGetNumerator(t[0], t[1]));
+  tests.forEach(t => testGetNumeratorValue(t[0], t[1]));
 });
 
 describe('getDenominator', function () {
@@ -69,5 +69,5 @@ describe('getDenominator', function () {
     ['19(2)/(3)', 3],
     ['-1(7)/(8)', 8],
   ];
-  tests.forEach(t => testGetDenominator(t[0], t[1]));
+  tests.forEach(t => testGetDenominatorValue(t[0], t[1]));
 });
