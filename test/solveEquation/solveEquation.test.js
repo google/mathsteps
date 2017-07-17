@@ -87,6 +87,7 @@ describe('solveEquation for =', function () {
     ['(x - 1)(x - 5)(x + 5) = 0', 'x = [1, 5, -5]'],
     ['x^2 (x - 5)^2 = 0', 'x = [0, 0, 5, 5]'],
     ['x^2 = 0', 'x = [0, 0]'],
+    ['x^(2) = 0', 'x = [0, 0]'],
     ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
