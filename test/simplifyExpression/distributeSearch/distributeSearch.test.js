@@ -136,6 +136,8 @@ describe('distribute exponent', function () {
     // When terms are division nodes
     ['(x/y)^2', 'x^2 / (y^2)'],
     ['(2/3)^2', '2^2 / (3^2)'],
+    ['(-5/6)^2', '-5^2 / (6^2)'],
+    ['((-5x)/7)^3', '(-5x)^3 / (7^3)'],
     ['((2x)/y)^3', '(2x)^3 / (y^3)'],
     ['((4x)/(5y))^3', '(4x)^3 / ((5y)^3)'],
     // Combination of terms
