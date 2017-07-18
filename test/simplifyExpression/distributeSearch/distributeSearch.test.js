@@ -72,7 +72,7 @@ describe('distribute with fractions', function () {
 
     ['(2x + x^2) * (1/x + 4x)',
       ['(2x * (1 / x + 4x) + x^2 * (1 / x + 4x))',
-         '((2x * 1 / x + 8x^2) + (x^2 * 1 / x + 4x^3))']
+        '((2x * 1 / x + 8x^2) + (x^2 * 1 / x + 4x^3))']
     ],
 
     ['(x - 4) * ((3x^2)/ (x^2 - 4) + 1)',
