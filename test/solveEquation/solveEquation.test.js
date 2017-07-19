@@ -48,8 +48,6 @@ describe('solveEquation for =', function () {
     ['2x/3 = 2x - 4 ', 'x = 3'],
     ['(-2/3)x + 3/7 = 1/2', 'x = -3/28'],
     ['-9/4v + 4/5 = 7/8 ', 'v = -1/30'],
-    // TODO: update test once we have root support
-    ['x^2 - 2 = 0', 'x^2 = 2'],
     ['x/(2/3) = 1', 'x = 2/3'],
     ['(x+1)/3 = 4', 'x = 11'],
     ['2(x+3)/3 = 2', 'x = 0'],
@@ -89,8 +87,23 @@ describe('solveEquation for =', function () {
     ['x^2 = 0', 'x = [0, 0]'],
     ['x^(2) = 0', 'x = [0, 0]'],
     ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
+    // Nth root support
+    // TODO: + or - for sqrt roots
+    ['x^2 - 2 = 0', 'x = nthRoot(2, 2)'],
+    ['x^2 = 1', 'x = 1'],
+    ['x^3 - 3 = 0', 'x = nthRoot(3, 3)'],
+    ['(x^2 - 2) (x^2 - 5) = 0', 'x = [nthRoot(2, 2), nthRoot(5, 2)]'],
+    ['(x^2 + 2) (x^3 - 7) = 0', 'x = [nthRoot(-2, 2), nthRoot(7, 3)]'],
+    ['x^2 + 1 = 0', 'x = nthRoot(-1, 2)'],
+    ['(y + 1)^2 = 1', 'y = 0'],
+    ['(y + 1)^3 = 8', 'y = 1'],
+    ['(2x + 1)^3 = 1', 'x = 0'],
+    ['(3x + 2)^2 = 2', 'x = nthRoot(2, 2) / 3 - 2/3'],
+    // TODO: fix this
+    // ['(3x + 2)^2 + 2 = 1']
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
+    // ['x^2 + 2x = 1', ''],
     // ['(x + y) (y + 2) = 0', 'y = -y'],
     // ['((x-2)^2) = 0', 'NO_STEPS'],
     // ['x * x (x - 5)^2 = 0', 'NO_STEPS'],
@@ -98,8 +111,8 @@ describe('solveEquation for =', function () {
     // ['4x^2 - 25y^2', ''],
     // ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', ''],
     // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
-    // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
-    // ['x^2 = -2x - 1', 'x = -1'],
+    // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '']
+    // ['x^2 = -2x - 1', 'x = -1']
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
