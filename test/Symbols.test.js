@@ -33,6 +33,8 @@ describe('getLastDenominatorWithSymbolTerm', function() {
     ['1/(x+2)', '(x + 2)'],
     ['1/(x+2) + 3x', '(x + 2)'],
     ['1/(x+2) + 3x/(1+x)', '(1 + x)'],
+    ['1/(x+2) + (x+1)/(2x+3)', '(2x + 3)'],
+    ['1/x + x/5', 'x'],
   ];
 
   tests.forEach(t => runTest(Symbols.getLastDenominatorWithSymbolTerm, t[0], t[1]));
