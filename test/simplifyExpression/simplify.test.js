@@ -50,6 +50,7 @@ describe('can simplify with division', function () {
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
+    ['((2+x)(3+x))/(2+x)', '3 + x'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
   // TODO: factor the numerator to cancel out with denominator
@@ -120,6 +121,7 @@ describe('fractions', function() {
     ['2 + 5/2 + 3', '15/2'],
     ['9/18-5/18', '2/9'],
     ['2(x+3)/3', '2x / 3 + 2'],
+    ['(2 / x) * x', '2'],
     ['5/18 - 9/18', '-2/9'],
     ['9/18', '1/2'],
     ['x/(2/3) + 5', '3/2 x + 5'],

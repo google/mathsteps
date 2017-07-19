@@ -9,7 +9,6 @@ function testIsPolynomialTerm(exprStr, isTerm) {
 describe('classifies symbol terms correctly', function() {
   const tests = [
     ['x', true],
-    ['x', true],
     ['x^2', true],
     ['y^55', true],
     ['y^4/4', true],

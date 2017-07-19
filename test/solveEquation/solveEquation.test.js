@@ -24,7 +24,8 @@ describe('solveEquation for =', function () {
   const tests = [
     // can't solve this because two symbols: g and x -- so there's no steps
     ['g *( x ) = ( x - 4) ^ ( 2) - 3', NO_STEPS],
-    // can't solve this because we don't deal with the complicated fraction yet
+    // can't solve this because we don't deal with inequalities yet
+    // See: https://www.cymath.com/answer.php?q=(%20x%20)%2F(%202x%20%2B%207)%20%3E%3D%204
     ['( x )/( 2x + 7) >= 4', NO_STEPS],
     ['y - x - 2 = 3*2', 'y = 8 + x'],
     ['2y - x - 2 = x', 'y = x + 1'],
@@ -89,6 +90,12 @@ describe('solveEquation for =', function () {
     ['x^2 = 0', 'x = [0, 0]'],
     ['x^(2) = 0', 'x = [0, 0]'],
     ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
+    ['2/x = 1', 'x = 2'],
+    ['2/(4x) = 1', 'x = 1/2'],
+    ['2/(8 - 4x) = 1/2', 'x = 1'],
+    ['2/(1 + 1 + 4x) = 1/3', 'x = 1'],
+    ['(3 + x) / (x^2 + 3) = 1', 'x = [0, 1]'],
+    ['6/x + 8/(2x) = 10', 'x = 1'],
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
