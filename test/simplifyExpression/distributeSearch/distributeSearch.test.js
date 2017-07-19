@@ -74,12 +74,12 @@ describe('distribute with fractions', function () {
     // we are cancelling like terms, so distribute the non-fraction term
     // into the numerator(s), in order to make it easy to cancel out
     ['(1 / (x + 2) + 4x) * (x + 2)',
-     ['((1 * (x + 2)) / (x + 2) + 4x * (x + 2))',
-      '((1 * (x + 2)) / (x + 2) + (4x^2 + 8x))']
+      ['((1 * (x + 2)) / (x + 2) + 4x * (x + 2))',
+        '((1 * (x + 2)) / (x + 2) + (4x^2 + 8x))']
     ],
     ['(2x + x^2) * (3 / (2x + x^2) + (1 / x))',
       ['((3 * (2x + x^2)) / (2x + x^2) + (1 / x) * (2x + x^2))',
-       '((3 * (2x + x^2)) / (2x + x^2) + ((1 / x) * 2x + (1 / x) * x^2))']
+        '((3 * (2x + x^2)) / (2x + x^2) + ((1 / x) * 2x + (1 / x) * x^2))']
     ],
 
     // we are not cancelling like terms, so distribute fractions as usual
