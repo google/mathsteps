@@ -53,32 +53,49 @@ describe('distribute', function () {
 
 describe('distribute with fractions', function () {
   const tests = [
-    // distribute the non-fraction term into the numerator(s)
+    // we are cancelling like terms, so distribute the non-fraction term
+    // into the numerator(s), in order to make it easy to cancel out
+    ['(1 / (x + 2) + 4x) * (x + 2)',
+      '((1 * (x + 2)) / (x + 2) + (4x^2 + 8x))'],
     ['(3 / x^2 + x / (x^2 + 3)) * (x^2 + 3)',
       '((3 * (x^2 + 3)) / (x^2) + (x * (x^2 + 3)) / (x^2 + 3))',
     ],
 
-    // if both groupings have fraction, the rule does not apply
+    // we are not cancelling like terms, so distribute fractions as usual
+    ['4 * (1 / 2 + x)',
+      '(4 * 1/2 + 4x)'
+    ],
     ['(3 / x^2 + x / (x^2 + 3)) * (5 / x + x^5)',
       '((3 / (x^2) * 5 / x + 3 / (x^2) * x^5) + (x / (x^2 + 3) * 5 / x + x / (x^2 + 3) * x^5))',
     ],
   ];
 
   const multiStepTests = [
+    // we are cancelling like terms, so distribute the non-fraction term
+    // into the numerator(s), in order to make it easy to cancel out
+    ['(1 / (x + 2) + 4x) * (x + 2)',
+      ['((1 * (x + 2)) / (x + 2) + 4x * (x + 2))',
+        '((1 * (x + 2)) / (x + 2) + (4x^2 + 8x))']
+    ],
+    ['(2x + x^2) * (3 / (2x + x^2) + (1 / x))',
+      ['((3 * (2x + x^2)) / (2x + x^2) + (1 / x) * (2x + x^2))',
+        '((3 * (2x + x^2)) / (2x + x^2) + ((1 / x) * 2x + (1 / x) * x^2))']
+    ],
 
-    ['(2 / x +  3x^2) * (x^3 + 1)',
-      ['((2 * (x^3 + 1)) / x + 3x^2 * (x^3 + 1))',
-        '((2 * (x^3 + 1)) / x + (3x^5 + 3x^2))']
+    // we are not cancelling like terms, so distribute fractions as usual
+    ['(2 / x + 3x^2) * (x^3 + 1)',
+      ['(2 / x * (x^3 + 1) + 3x^2 * (x^3 + 1))',
+        '((2 / x * x^3 + 2 / x * 1) + (3x^5 + 3x^2))']
     ],
 
     ['(2x + x^2) * (1 / (x^2 -4) + 4x^2)',
-      ['((1 * (2x + x^2)) / (x^2 - 4) + 4x^2 * (2x + x^2))',
-        '((1 * (2x + x^2)) / (x^2 - 4) + (8x^3 + 4x^4))']
+      ['(2x * (1 / (x^2 - 4) + 4x^2) + x^2 * (1 / (x^2 - 4) + 4x^2))',
+        '((2x * 1 / (x^2 - 4) + 8x^3) + (x^2 * 1 / (x^2 - 4) + 4x^4))']
     ],
 
     ['(2x + x^2) * (3x^2 / (x^2 -4) + 4x^2)',
-      ['((3x^2 * (2x + x^2)) / (x^2 - 4) + 4x^2 * (2x + x^2))',
-        '((3x^2 * (2x + x^2)) / (x^2 - 4) + (8x^3 + 4x^4))']
+      ['(2x * (3x^2 / (x^2 - 4) + 4x^2) + x^2 * (3x^2 / (x^2 - 4) + 4x^2))',
+        '((2x * 3x^2 / (x^2 - 4) + 8x^3) + (x^2 * 3x^2 / (x^2 - 4) + 4x^4))']
     ],
 
   ];
