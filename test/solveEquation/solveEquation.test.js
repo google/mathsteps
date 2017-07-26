@@ -5,8 +5,8 @@ const solveEquation = require('../../lib/solveEquation');
 
 const NO_STEPS = 'no-steps';
 
-function testSolve(equationString, outputStr, debug=false) {
-  const steps = solveEquation(equationString, debug);
+function testSolve(equationString, outputStr, debug=false, scope={}) {
+  const steps = solveEquation(equationString, debug, scope);
   let lastStep;
   if (steps.length === 0) {
     lastStep = NO_STEPS;
@@ -96,6 +96,8 @@ describe('solveEquation for =', function () {
     ['2/(1 + 1 + 4x) = 1/3', 'x = 1'],
     ['(3 + x) / (x^2 + 3) = 1', 'x = [0, 1]'],
     ['6/x + 8/(2x) = 10', 'x = 1'],
+    // Use of nested scope (i.e., baz depends on bar)
+    ['2y = baz - x^2', 'y = 400', false, {baz: '(bar^2)', x: 10, bar: '(foo + x)', foo: 20 }]
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
@@ -111,7 +113,7 @@ describe('solveEquation for =', function () {
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
   ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
+  tests.forEach(t => testSolve(t[0], t[1], t[2], t[3]));
 });
 
 describe('solveEquation for non = comparators', function() {
