@@ -1,4 +1,4 @@
-const solveEquation = require('../../../lib/solveEquation');
+const simplifyExpression = require('../../../lib/simplifyExpression');
 
 const scope = {
   x: 10,
@@ -7,4 +7,4 @@ const scope = {
   baz: 'bar^2'
 };
 
-solveEquation('2x + 3x = 35', false, scope);
+simplifyExpression('2x + bar', false, scope);
