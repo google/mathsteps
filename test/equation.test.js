@@ -45,7 +45,7 @@ describe('Equation constructor', () => {
 describe('Latex printer', () => {
   const tests = [
     ['2*x^2 + x', '4', '=', '2{x}^{2}+ x = 4'],
-    ['x^2 + 2*x + 2', '0', '>=', '{ x}^{2}+2x+2 >= 0'],
+    ['x^2 + 2*y + 2', '0', '>=', '{ x}^{2}+2y+2 >= 0'],
     ['2*x + -1', '0', '<=', '2x - 1 <= 0']
   ];
   tests.forEach(t => testLatexPrint(t[0], t[1], t[2], t[3]));
