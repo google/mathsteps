@@ -3,5 +3,5 @@ node_modules
 *.log
 .DS_Store
 .idea
-yarn.lock
-./.vscode
+settings.json
+.vscode/
