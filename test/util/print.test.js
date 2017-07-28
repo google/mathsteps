@@ -15,6 +15,11 @@ function testPrintStr(exprStr, outputStr) {
   TestUtil.testFunctionOutput(print, input, outputStr);
 }
 
+function testLatexPrintStr(exprStr, outputStr) {
+  const input = math.parse(exprStr);
+  TestUtil.testFunctionOutput(print.latex, input, outputStr);
+}
+
 function testPrintNode(node, outputStr) {
   TestUtil.testFunctionOutput(print, node, outputStr);
 }
@@ -27,6 +32,16 @@ describe('print asciimath', function () {
     ['-2/3', '-2/3'],
   ];
   tests.forEach(t => testPrintStr(t[0], t[1]));
+});
+
+describe('print latex', function() {
+  const tests = [
+    ['2+3+4', '2+3+4'],
+    ['2 + (4 - x) + - 4', '2+\\left(4-x\\right)-4'],
+    ['2/3 x^2', '\\frac{2}{3}~{x}^{2}'],
+    ['-2/3', '\\frac{-2}{3}'],
+  ];
+  tests.forEach(t => testLatexPrintStr(t[0],t[1]));
 });
 
 describe('print with parenthesis', function () {
