@@ -109,7 +109,6 @@ describe('solveEquation for =', function () {
     // TODO: figure out what to do about errors from rounding midway through
     // this gives us 6.3995 when it should actually be 6.4 :(
     // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
-    // ['( u )/( 0.3) = 4u + 6.28', 'u = -9.42'], //Commented out for bug #162
   ];
   tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
