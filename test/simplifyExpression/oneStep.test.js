@@ -18,11 +18,11 @@ function testOneStep(exprStr, outputStr, debug=false) {
     // eslint-disable-next-line
     console.log(nodeStatus.changeType);
     // eslint-disable-next-line
-    console.log(print(nodeStatus.newNode));
+    console.log(print.ascii(nodeStatus.newNode));
   }
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(nodeStatus.newNode),
+      print.ascii(nodeStatus.newNode),
       outputStr);
   });
 }

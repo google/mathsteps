@@ -93,7 +93,7 @@ We're excited to see your [pull request](https://help.github.com/articles/about-
   before you get started, so others are aware that you're working on it. If
   there's no existing issue for the change you'd like to make, you can
   [create a new issue](https://github.com/socraticorg/mathsteps/issues/new).
-  
+
 - The best issues to work on are [these issues that are not assigned or long term goals](https://github.com/socraticorg/mathsteps/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aopen%20-label%3Aassigned%20%20-label%3Aquestion%20%20-label%3A%22longer%20term%20goals%22%20%20-label%3A%22needs%20further%20discussion%22%20)
 
 - Make sure all the unit tests pass (with `npm test`) before creating the pull
@@ -110,7 +110,7 @@ We're excited to see your [pull request](https://help.github.com/articles/about-
   which makes sure tests are passing and the code is eslint-compliant.
 - If you want to see what the expression tree looks like at any point in the
   code (for debugging), you can log a `node` as an expression string (e.g.
-  '2x + 5') with `console.log(print(node))`, and you can log the full tree
+  '2x + 5') with `console.log(print.ascii(node))`, and you can log the full tree
   structure with `console.log(JSON.stringify(node, null, 2))`
 
 
