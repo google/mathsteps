@@ -8,7 +8,7 @@ const simplify = require('../../lib/simplifyExpression/simplify');
 function testSimplify(exprStr, outputStr, debug=false) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print(simplify(math.parse(exprStr), debug)),
+      print.ascii(simplify(math.parse(exprStr), debug)),
       outputStr);
   });
 }

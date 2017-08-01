@@ -9,7 +9,7 @@ function runTest(functionToTest, exprString, expectedOutput, symbolName) {
     const expression = math.parse(exprString);
     const foundSymbol = functionToTest(expression, symbolName);
     assert.deepEqual(
-      print(foundSymbol),
+      print.ascii(foundSymbol),
       expectedOutput
     );
   });
@@ -56,4 +56,3 @@ describe('getLastDenominatorWithSymbolTerm', function() {
 
   tests.forEach(t => runTest(Symbols.getLastDenominatorWithSymbolTerm, t[0], t[1], t[2]));
 });
-

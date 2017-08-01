@@ -12,7 +12,7 @@ function testSolve(equationString, outputStr, debug=false) {
     lastStep = NO_STEPS;
   }
   else {
-    lastStep = steps[steps.length -1].newEquation.print();
+    lastStep = steps[steps.length -1].newEquation.ascii();
   }
   it(equationString + ' -> ' + outputStr, (done) => {
     assert.equal(lastStep, outputStr);

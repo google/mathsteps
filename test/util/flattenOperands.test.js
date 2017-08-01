@@ -1,21 +1,20 @@
 const assert = require('assert');
 const math = require('mathjs');
 
-const flattenOperands = require('../../lib/util/flattenOperands');
 const print = require('../../lib/util/print');
 
 const Node = require('../../lib/node');
 const TestUtil = require('../TestUtil');
 
 function testFlatten(exprStr, afterNode, debug=false) {
-  const flattened = flattenOperands(math.parse(exprStr));
+  const flattened = TestUtil.flattenAndParse(exprStr);
   if (debug) {
     // eslint-disable-next-line
-    console.log(print(flattened));
+    console.log(print.ascii(flattened));
   }
   TestUtil.removeComments(flattened);
   TestUtil.removeComments(afterNode);
-  it(print(flattened), function() {
+  it(print.ascii(flattened), function() {
     assert.deepEqual(flattened, afterNode);
   });
 }

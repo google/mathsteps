@@ -32,7 +32,7 @@ TestUtil.testSimplification = function (simplifyingFunction, exprString,
                                         expectedOutputString) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
     assert.deepEqual(
-      print(simplifyingFunction(flatten(math.parse(exprString))).newNode),
+      print.ascii(simplifyingFunction(flatten(math.parse(exprString))).newNode),
       expectedOutputString);
   });
 };
@@ -47,12 +47,12 @@ TestUtil.testSubsteps = function (fn, exprString, outputList,
     assert.deepEqual(substeps.length, outputList.length);
     substeps.forEach((step, i) => {
       assert.deepEqual(
-        print(step.newNode),
+        print.ascii(step.newNode),
         outputList[i]);
     });
     if (outputStr) {
       assert.deepEqual(
-        print(status.newNode),
+        print.ascii(status.newNode),
         outputStr);
     }
   });

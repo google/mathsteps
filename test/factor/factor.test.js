@@ -11,7 +11,7 @@ function testFactor(expressionString, outputStr, debug=false) {
     lastStep = NO_STEPS;
   }
   else {
-    lastStep = print(steps[steps.length -1].newNode);
+    lastStep = print.ascii(steps[steps.length -1].newNode);
   }
   it(expressionString + ' -> ' + outputStr, (done) => {
     assert.equal(lastStep, outputStr);

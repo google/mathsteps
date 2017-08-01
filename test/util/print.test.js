@@ -12,16 +12,16 @@ const symbolNode = Node.Creator.symbol;
 
 function testPrintStr(exprStr, outputStr) {
   const input = math.parse(exprStr);
-  TestUtil.testFunctionOutput(print, input, outputStr);
+  TestUtil.testFunctionOutput(print.ascii, input, outputStr);
 }
 
 function testLatexPrintStr(exprStr, outputStr) {
-  const input = math.parse(exprStr);
+  const input = TestUtil.flattenAndParse(exprStr);
   TestUtil.testFunctionOutput(print.latex, input, outputStr);
 }
 
 function testPrintNode(node, outputStr) {
-  TestUtil.testFunctionOutput(print, node, outputStr);
+  TestUtil.testFunctionOutput(print.ascii, node, outputStr);
 }
 
 describe('print asciimath', function () {
@@ -37,9 +37,10 @@ describe('print asciimath', function () {
 describe('print latex', function() {
   const tests = [
     ['2+3+4', '2+3+4'],
-    ['2 + (4 - x) + - 4', '2+\\left(4-x\\right)-4'],
-    ['2/3 x^2', '\\frac{2}{3}~{x}^{2}'],
+    ['2 + (4 - x) - 4', '2+\\left(4 -  x\\right) - 4'],
+    ['2/3 x^2', '\\frac{2}{3}~{ x}^{2}'],
     ['-2/3', '\\frac{-2}{3}'],
+    ['2*x+4*y', '2~ x+4~ y'],
   ];
   tests.forEach(t => testLatexPrintStr(t[0],t[1]));
 });
