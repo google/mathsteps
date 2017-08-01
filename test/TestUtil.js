@@ -8,7 +8,7 @@ const print = require('../lib/util/print');
 const TestUtil = {};
 
 // Takes in an input string and returns a flattened and parsed node
-TestUtil.flattenAndParse = function (exprString) {
+TestUtil.parseAndFlatten = function (exprString) {
   return flatten(math.parse(exprString));
 };
 

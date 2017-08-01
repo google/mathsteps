@@ -14,7 +14,7 @@ function testCollectLikeTerms(exprStr, outputStr, explanation='', debug=false) {
   }
 
   it(description, () => {
-    const exprTree = TestUtil.flattenAndParse(exprStr);
+    const exprTree = TestUtil.parseAndFlatten(exprStr);
     const collected = print.ascii(LikeTermCollector.collectLikeTerms(exprTree).newNode);
     if (debug) {
       // eslint-disable-next-line
@@ -32,7 +32,7 @@ function testCanCollectLikeTerms(exprStr, canCollect, explanation) {
   }
 
   it(description , () => {
-    const exprTree = TestUtil.flattenAndParse(exprStr);
+    const exprTree = TestUtil.parseAndFlatten(exprStr);
     assert.equal(
       LikeTermCollector.canCollectLikeTerms(exprTree),
       canCollect);

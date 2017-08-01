@@ -6,7 +6,7 @@ const TestUtil = require('../../TestUtil');
 
 function testSimplify(exprStr, outputStr, simplifyOperation) {
   it(exprStr + ' -> ' + outputStr, function () {
-    const inputNode = TestUtil.flattenAndParse(exprStr);
+    const inputNode = TestUtil.parseAndFlatten(exprStr);
     const newNode = simplifyOperation(inputNode).newNode;
     assert.equal(
       print.ascii(newNode),

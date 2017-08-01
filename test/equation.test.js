@@ -13,8 +13,8 @@ function constructAndPrintEquation(left, right, comp) {
 }
 
 function constructAndPrintLatexEquation(left, right, comp) {
-  const rightNode = TestUtil.flattenAndParse(right);
-  const leftNode = TestUtil.flattenAndParse(left);
+  const rightNode = TestUtil.parseAndFlatten(right);
+  const leftNode = TestUtil.parseAndFlatten(left);
   const equation = new Equation(leftNode, rightNode, comp);
   return equation.latex();
 }
@@ -48,7 +48,7 @@ describe('Latex printer', () => {
   const tests = [
     ['2*x^2 + x', '4', '=', '2~{ x}^{2}+ x = 4'],
     ['x^2 + 2*y + 2', '0', '>=', '{ x}^{2}+2~ y+2 >= 0'],
-    ['2*x - 1', '0', '<=', '2~ x - 1 <= 0']
+    ['2x - 1', '0', '<=', '2~ x - 1 <= 0']
   ];
   tests.forEach(t => testLatexprint(t[0], t[1], t[2], t[3]));
 });

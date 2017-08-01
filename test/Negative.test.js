@@ -5,7 +5,7 @@ const Negative = require('../lib/Negative');
 const TestUtil = require('./TestUtil');
 
 function testNegate(exprString, outputStr) {
-  const inputStr = Negative.negate(TestUtil.flattenAndParse(exprString));
+  const inputStr = Negative.negate(TestUtil.parseAndFlatten(exprString));
   TestUtil.testFunctionOutput(print.ascii, inputStr, outputStr);
 }
 

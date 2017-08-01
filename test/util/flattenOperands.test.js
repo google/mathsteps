@@ -7,7 +7,7 @@ const Node = require('../../lib/node');
 const TestUtil = require('../TestUtil');
 
 function testFlatten(exprStr, afterNode, debug=false) {
-  const flattened = TestUtil.flattenAndParse(exprStr);
+  const flattened = TestUtil.parseAndFlatten(exprStr);
   if (debug) {
     // eslint-disable-next-line
     console.log(print.ascii(flattened));
