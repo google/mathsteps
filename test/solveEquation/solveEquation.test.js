@@ -97,7 +97,20 @@ describe('solveEquation for =', function () {
     ['(3 + x) / (x^2 + 3) = 1', 'x = [0, 1]'],
     ['6/x + 8/(2x) = 10', 'x = 1'],
     // Use of nested scope (i.e., baz depends on bar)
-    ['2y = baz - x^2', 'y = 400', false, {baz: '(bar^2)', x: 10, bar: '(foo + x)', foo: 20 }]
+    ['2y = baz - x^2', 'y = 400', false, {baz: '(bar^2)', x: 10, bar: '(foo + x)', foo: 20 }],
+    // Symbol nested inside UnaryMinus node type
+    ['y = GrossVal * (1 - (FeePct + CCPct)) - TransferFee', 'y = 11471675.7525', false,
+      {
+        CCPct: 0.015,
+        FeePct: 0.05,
+        GrossVal: 'TotalSales * Margin * Multiple',
+        Margin: 0.15,
+        Multiple: 10,
+        PreTaxNetVal: 'GrossVal * (1 - (FeePct + CCPct)) - TransferFee',
+        TotalSales: 8239341,
+        TransferFee: 84000,
+      }
+    ]
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
