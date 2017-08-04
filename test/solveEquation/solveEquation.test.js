@@ -12,7 +12,7 @@ function testSolve(equationString, outputStr, debug=false, scope={}) {
     lastStep = NO_STEPS;
   }
   else {
-    lastStep = steps[steps.length -1].newEquation.print();
+    lastStep = steps[steps.length -1].newEquation.ascii();
   }
   it(equationString + ' -> ' + outputStr, (done) => {
     assert.equal(lastStep, outputStr);
@@ -54,7 +54,6 @@ describe('solveEquation for =', function () {
     ['x/(2/3) = 1', 'x = 2/3'],
     ['(x+1)/3 = 4', 'x = 11'],
     ['2(x+3)/3 = 2', 'x = 0'],
-    ['( u )/( 0.3) = 4u + 6.28', 'u = -9.42'],
     ['- q - 4.36= ( 2.2q )/( 1.8)', 'q = -1.962'],
     ['5x^2 - 5x - 30 = 0', 'x = [-2, 3]'],
     ['x^2 + 3x + 2 = 0', 'x = [-1, -2]'],
