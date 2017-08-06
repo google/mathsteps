@@ -43,10 +43,10 @@ describe('Node.Type works', function () {
       Node.Type.isOperator(math.parse('-x')),
       false);
   });
-  it('-x symbol', function () {
+  it('-x not symbol', function () {
     assert.deepEqual(
       Node.Type.isSymbol(math.parse('-x')),
-      true);
+      false);
   });
   it('y symbol', function () {
     assert.deepEqual(
