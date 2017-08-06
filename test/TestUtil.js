@@ -12,10 +12,12 @@ TestUtil.parseAndFlatten = function (exprString) {
   return flatten(parse(exprString));
 };
 
-// Tests a function that takes an input string and check its output
-TestUtil.testFunctionOutput = function (fn, input, output) {
-  it(print.ascii(input) + ' -> ' + output,  () => {
-    assert.deepEqual(fn(input),output);
+// Tests a function that takes a node by parsing an input string first, and
+// compares the printed output node to an expected string
+TestUtil.testNodeFunction = function (fn, inputString, outputString) {
+  it(`${inputString} -> ${outputString}`,  () => {
+    const input = TestUtil.parseAndFlatten(inputString);
+    assert.deepEqual(print.ascii(fn(input)), outputString);
   });
 };
 

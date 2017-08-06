@@ -9,19 +9,19 @@ function testIsNegativeMixedNumber(input, output) {
   TestUtil.testBooleanFunction(MixedNumber.isNegativeMixedNumber, input, output);
 }
 
-function testGetWholeNumberValue(input, output) {
-  input = TestUtil.parseAndFlatten(input);
-  TestUtil.testFunctionOutput(MixedNumber.getWholeNumberValue, input, output);
+function testGetWholeNumberValue(inputString, outputString) {
+  TestUtil.testNodeFunction(
+    MixedNumber.getWholeNumberValue, inputString, outputString);
 }
 
-function testGetNumeratorValue(input, output) {
-  input = TestUtil.parseAndFlatten(input);
-  TestUtil.testFunctionOutput(MixedNumber.getNumeratorValue, input, output);
+function testGetNumeratorValue(inputString, outputString) {
+  TestUtil.testNodeFunction(
+    MixedNumber.getNumeratorValue, inputString, outputString);
 }
 
-function testGetDenominatorValue(input, output) {
-  input = TestUtil.parseAndFlatten(input);
-  TestUtil.testFunctionOutput(MixedNumber.getDenominatorValue, input, output);
+function testGetDenominatorValue(inputString, outputString) {
+  TestUtil.testNodeFunction(
+    MixedNumber.getDenominatorValue, inputString, outputString);
 }
 
 // TODO(porting): we can probably remove this - it's kinda weird and is only

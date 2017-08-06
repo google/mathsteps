@@ -1,9 +1,8 @@
+const assert = require('assert');
 const {parse} = require('math-parser');
 
 const Node = require('../../lib/node');
 const print = require('../../lib/util/print');
-
-const TestUtil = require('../TestUtil');
 
 // to create nodes, for testing
 const opNode = Node.Creator.operator;
@@ -11,17 +10,21 @@ const constNode = Node.Creator.constant;
 const symbolNode = Node.Creator.symbol;
 
 function testPrintStr(exprStr, outputStr) {
-  const input = parse(exprStr);
-  TestUtil.testFunctionOutput(print.ascii, input, outputStr);
+  it(`tests printing ${exprStr} as ${outputStr}`,  () => {
+    assert.deepEqual(print.ascii(parse(exprStr)), outputStr);
+  });
 }
 
 function testLatexPrintStr(exprStr, outputStr) {
-  const input = TestUtil.parseAndFlatten(exprStr);
-  TestUtil.testFunctionOutput(print.latex, input, outputStr);
+  it(`tests printing ${exprStr} as ${outputStr}`,  () => {
+    assert.deepEqual(print.latex(parse(exprStr)), outputStr);
+  });
 }
 
 function testPrintNode(node, outputStr) {
-  TestUtil.testFunctionOutput(print.ascii, node, outputStr);
+  it(`tests printing ${outputStr}`,  () => {
+    assert.deepEqual(print.latex(node), outputStr);
+  });
 }
 
 describe('print asciimath', function () {
