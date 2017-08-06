@@ -19,13 +19,12 @@ function testSolve(equationString, outputStr, debug=false) {
   });
 }
 
-describe('solveEquation for =', function () {
+describe('solveEquation for =\n', function () {
   const tests = [
     // can't solve this because two symbols: g and x -- so there's no steps
     ['g *( x ) = ( x - 4) ^ ( 2) - 3', NO_STEPS],
     // can't solve this because we don't deal with inequalities yet
     // See: https://www.cymath.com/answer.php?q=(%20x%20)%2F(%202x%20%2B%207)%20%3E%3D%204
-    /*
     ['( x )/( 2x + 7) >= 4', NO_STEPS],
     ['y - x - 2 = 3*2', 'y = 8 + x'],
     ['2y - x - 2 = x', 'y = x + 1'],
@@ -112,7 +111,7 @@ describe('solveEquation for =', function () {
   ];
   tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
-/*
+
 describe('solveEquation for non = comparators', function() {
   const tests = [
     ['x + 2 > 3', 'x > 1'],
@@ -176,4 +175,3 @@ describe('solveEquation errors', function() {
   ];
   tests.forEach(t => testEquationError(t[0], t[1]));
 });
-*/

@@ -3,7 +3,9 @@ const ConstantFactors = require('../../lib/factor/ConstantFactors');
 const TestUtil = require('../TestUtil');
 
 function testPrimeFactors(input, output) {
-  TestUtil.testFunctionOutput(ConstantFactors.getPrimeFactors, input, output);
+  it(input + ' -> ' + output,  () => {
+    assert.deepEqual(ConstantFactors.getPrimeFactors(input), output);
+  });
 }
 
 describe('prime factors', function() {
@@ -24,7 +26,9 @@ describe('prime factors', function() {
 });
 
 function testFactorPairs(input, output) {
-  TestUtil.testFunctionOutput(ConstantFactors.getFactorPairs, input, output);
+  it(input + ' -> ' + output,  () => {
+    assert.deepEqual(ConstantFactors.getFactorPairs(input), output);
+  });
 }
 
 describe('factor pairs', function() {

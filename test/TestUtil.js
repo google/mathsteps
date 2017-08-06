@@ -14,7 +14,7 @@ TestUtil.parseAndFlatten = function (exprString) {
 
 // Tests a function that takes an input string and check its output
 TestUtil.testFunctionOutput = function (fn, input, output) {
-  it(input + ' -> ' + output,  () => {
+  it(print.ascii(input) + ' -> ' + output,  () => {
     assert.deepEqual(fn(input),output);
   });
 };
