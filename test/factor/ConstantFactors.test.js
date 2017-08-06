@@ -1,6 +1,6 @@
-const ConstantFactors = require('../../lib/factor/ConstantFactors');
+const assert = require('assert');
 
-const TestUtil = require('../TestUtil');
+const ConstantFactors = require('../../lib/factor/ConstantFactors');
 
 function testPrimeFactors(input, output) {
   it(input + ' -> ' + output,  () => {

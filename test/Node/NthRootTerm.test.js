@@ -1,5 +1,4 @@
 const NthRootTerm = require('../../lib/node/NthRootTerm');
-
 const TestUtil = require('../TestUtil');
 
 function testIsNthRootTerm(exprStr, isTerm) {
