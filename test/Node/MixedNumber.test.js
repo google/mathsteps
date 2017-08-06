@@ -24,7 +24,11 @@ function testGetDenominatorValue(input, output) {
   TestUtil.testFunctionOutput(MixedNumber.getDenominatorValue, input, output);
 }
 
-describe('isMixedNumber', function () {
+// TODO(porting): we can probably remove this - it's kinda weird and is only
+// here for a thing socratic needed. I don't think it makes sense to treat this
+// kind of string as a mixed number anyways.
+
+describe.skip('isMixedNumber', function () {
   const tests = [
     ['5(1)/(6)', true],
     ['19(2)/(3)', true],
@@ -36,7 +40,7 @@ describe('isMixedNumber', function () {
   tests.forEach(t => testIsMixedNumber(t[0], t[1]));
 });
 
-describe('isNegativeMixedNumber', function () {
+describe.skip('isNegativeMixedNumber', function () {
   const tests = [
     ['-1(7)/(8)', true],
     ['5(1)/(6)', false],
@@ -45,7 +49,7 @@ describe('isNegativeMixedNumber', function () {
   tests.forEach(t => testIsNegativeMixedNumber(t[0], t[1]));
 });
 
-describe('getWholeNumber', function () {
+describe.skip('getWholeNumber', function () {
   const tests = [
     ['5(1)/(6)', 5],
     ['19(2)/(3)', 19],
@@ -54,7 +58,7 @@ describe('getWholeNumber', function () {
   tests.forEach(t => testGetWholeNumberValue(t[0], t[1]));
 });
 
-describe('getNumerator', function () {
+describe.skip('getNumerator', function () {
   const tests = [
     ['5(1)/(6)', 1],
     ['19(2)/(3)', 2],
@@ -63,7 +67,7 @@ describe('getNumerator', function () {
   tests.forEach(t => testGetNumeratorValue(t[0], t[1]));
 });
 
-describe('getDenominator', function () {
+describe.skip('getDenominator', function () {
   const tests = [
     ['5(1)/(6)', 6],
     ['19(2)/(3)', 3],

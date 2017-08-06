@@ -15,7 +15,7 @@ describe('Node.Type works', function () {
   });
   it('10 constant', function () {
     assert.deepEqual(
-      Node.Type.isConstant(parse(10)),
+      Node.Type.isConstant(parse('10')),
       true);
   });
   it('-2 constant', function () {
@@ -55,7 +55,8 @@ describe('Node.Type works', function () {
   });
   it('abs(5) is abs function', function () {
     assert.deepEqual(
-      Node.Type.isFunction(parse('abs(5)'), 'abs'),
+      // TODO(math-parser): also support abs()
+      Node.Type.isFunction(parse('|5|'), 'abs'),
       true);
   });
   it('sqrt(5) is not abs function', function () {

@@ -96,8 +96,8 @@ describe('flattens nested functions', function () {
   const tests = [
     ['nthRoot(11)(x+y)',
       parse('nthRoot(11) * (x+y)')],
-    ['abs(3)(1+2)',
-      parse('abs(3) * (1+2)')],
+    ['|3|(1+2)',
+      parse('|3isMixedNumber| * (1+2)')],
     ['nthRoot(2)(nthRoot(18)+4*nthRoot(3))',
       parse('nthRoot(2) * (nthRoot(18)+4*nthRoot(3))')],
     ['nthRoot(6,3)(10+4x)',
