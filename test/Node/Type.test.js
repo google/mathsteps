@@ -35,7 +35,7 @@ describe('Node.Type works', function () {
   });
   it('2+2 operator with incorrect operator param', function () {
     assert.deepEqual(
-      Node.Type.isOperator(math.parse('2+2'), '-'),
+      Node.Type.isOperator(math.parse('2+2'), '/'),
       false);
   });
   it('-x not operator', function () {
