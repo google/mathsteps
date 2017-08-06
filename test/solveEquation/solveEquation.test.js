@@ -125,6 +125,7 @@ describe('solveEquation for non = comparators', function() {
 
 function testSolveConstantEquation(equationString, expectedChange, debug=false) {
   const steps = solveEquation(equationString, debug);
+  console.log(steps);
   const actualChange = steps[steps.length -1].changeType;
   it(equationString + ' -> ' + expectedChange, (done) => {
     assert.equal(actualChange, expectedChange);
