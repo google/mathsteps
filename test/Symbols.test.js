@@ -1,12 +1,12 @@
 const assert = require('assert');
-const math = require('mathjs');
+const {parse} = require('math-parser');
 
 const print = require('../lib/util/print');
 const Symbols = require('../lib/Symbols');
 
 function runTest(functionToTest, exprString, expectedOutput, symbolName) {
   it(exprString + ' -> ' + expectedOutput, function () {
-    const expression = math.parse(exprString);
+    const expression = parse(exprString);
     const foundSymbol = functionToTest(expression, symbolName);
     assert.deepEqual(
       print.ascii(foundSymbol),

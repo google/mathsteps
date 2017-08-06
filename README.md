@@ -28,6 +28,8 @@ steps.forEach(step => {
 });
 ```
 
+TODO(math-parser): I think print should be a function on the node so it's easier to print here, similar to toString - and it should support latex and ascii
+
 To solve an equation:
 ```js
 const steps = mathsteps.solveEquation('2x + 3x = 35');

@@ -1,4 +1,4 @@
-const math = require('mathjs');
+const {parse} = require('math-parser');
 
 const print = require('../../lib/util/print');
 const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens');
@@ -6,7 +6,7 @@ const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens'
 const TestUtil = require('../TestUtil');
 
 function testRemoveUnnecessaryParens(exprStr, outputStr) {
-  const input = removeUnnecessaryParens(math.parse(exprStr));
+  const input = removeUnnecessaryParens(parse(exprStr));
   TestUtil.testFunctionOutput(print.ascii, input, outputStr);
 }
 

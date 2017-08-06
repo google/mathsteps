@@ -1,13 +1,13 @@
 const assert = require('assert');
-const math = require('mathjs');
+const {parse} = require('math-parser');
 
 const TestUtil = require('./TestUtil');
 
 const Equation = require('../lib/equation/Equation');
 
 function constructAndPrintEquation(left, right, comp) {
-  const leftNode = math.parse(left);
-  const rightNode = math.parse(right);
+  const leftNode = parse(left);
+  const rightNode = parse(right);
   const equation = new Equation(leftNode, rightNode, comp);
   return equation.ascii();
 }
