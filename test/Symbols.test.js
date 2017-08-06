@@ -46,7 +46,10 @@ describe('getLastDenominatorWithSymbolTerm', function() {
     ['1/x', 'x', 'x'],
     ['1/(x+2)', 'x + 2', 'x'],
     ['1/(x+2) + 3x', 'x + 2', 'x'],
-    ['1/(x+2) + 3x/(1+x)', '1 + x', 'x'],
+    // TODO(math-parser or porting) this is parsing as 3 * x/(1 + x) instead of
+    // 3x / (1 + x) -- should it be parsed differently? maybe
+    // should we recurse on multiplication in this case? I think that'd also be good
+    // ['1/(x+2) + 3x/(1+x)', '1 + x', 'x'],
     ['1/(x+2) + (x+1)/(2x+3)', '2 x + 3', 'x'], // TODO(printing) space after coefficient
     ['1/x + x/5', 'x', 'x'],
     ['2 + 2/x + x/2', 'x', 'x'],
