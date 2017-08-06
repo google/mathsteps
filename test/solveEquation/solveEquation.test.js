@@ -166,7 +166,7 @@ describe('constant comparison support', function () {
 
 function testEquationError(equationString, debug=false) {
   it(equationString + ' throws error', (done) => {
-    assert.throws(() => solveEquation(equationString, debug),Error);
+    assert.throws(() => solveEquation(equationString, debug), Error);
     done();
   });
 }

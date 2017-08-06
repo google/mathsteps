@@ -3,7 +3,7 @@ const {parse} = require('math-parser');
 
 const checks = require('../../lib/checks');
 
-describe('arithmetic stepping', function () {
+describe('arithmetic stepping\n', function () {
   it('4 + sqrt(16) no support for sqrt', function () {
     assert.deepEqual(
       checks.hasUnsupportedNodes(parse('4 + sqrt(4)')),
@@ -22,9 +22,9 @@ describe('arithmetic stepping', function () {
       false);
   });
 
+  // TODO(porting): we can probably get rid of hasUnsupportedNodes
+  // and assume errors will just get thrown? idk
   it('nthRoot() with no args has no support', function () {
-    assert.deepEqual(
-      checks.hasUnsupportedNodes(parse('nthRoot()')),
-      true);
+    assert.throws(() => parse('nthRoot()'), TypeError)
   });
 });
