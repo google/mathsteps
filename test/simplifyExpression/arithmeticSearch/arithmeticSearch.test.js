@@ -11,8 +11,10 @@ describe('evaluate arithmeticSearch', function () {
     ['2+2', '4'],
     ['2*3*5', '30'],
     ['6*6', '36'],
-    ['9/4', '9/4'], //  does not divide
-    ['16 - 1953125', '-1953109'], // verify large negative number round correctly
+    // fractions that go to decimals don't divide
+    ['9/4', '9 / 4'], // TODO(printing): fraction without space
+    // verify large negative number round correctly
+    ['16 - 1953125', '-1953109'],
   ];
   tests.forEach(t => testArithmeticSearch(t[0], t[1]));
 });
