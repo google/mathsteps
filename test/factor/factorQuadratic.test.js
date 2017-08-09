@@ -77,10 +77,10 @@ describe('factorSumProductRule', function() {
         '(x - 1) * (x + 2)']
     ],
     ['-x^2 - 3x - 2',
-      ['x^2 + x + 2x + 2', // per factorQuadratic, negative is added back in at the end
-        '(x^2 + x) + (2x + 2)',
-        'x * (x + 1) + (2x + 2)',
-        'x * (x + 1) + 2 * (x + 1)',
+      ['-(x^2 + x + 2x + 2)', // per factorQuadratic, negative is added back in at the end
+        '-((x^2 + x) + (2x + 2))',
+        '-(x * (x + 1) + (2x + 2))',
+        '-(x * (x + 1) + 2 * (x + 1))',
         '-(x + 1) * (x + 2)']
     ],
     ['2x^2 + 5x + 3',
