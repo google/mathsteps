@@ -46,3 +46,64 @@ describe('factorQuadratic', function () {
   ];
   tests.forEach(t => testFactorQuadratic(t[0], t[1]));
 });
+
+function testFactorSumProductRuleSubsteps(exprString, outputList) {
+  const lastString = outputList[outputList.length - 1];
+  TestUtil.testSubsteps(factorQuadratic, exprString, outputList, lastString);
+}
+
+describe('factorSumProductRule', function() {
+  const tests = [
+    // sum product rule
+    ['x^2 + 3x + 2',
+      ['x^2 + x + 2x + 2',
+        '(x^2 + x) + (2x + 2)',
+        'x * (x + 1) + (2x + 2)',
+        'x * (x + 1) + 2 * (x + 1)',
+        '(x + 1) * (x + 2)']
+    ],
+    ['x^2 - 3x + 2',
+      ['x^2 - x - 2x + 2',
+        '(x^2 - x) + (-2x + 2)',
+        'x * (x - 1) + (-2x + 2)',
+        'x * (x - 1) - 2 * (x - 1)',
+        '(x - 1) * (x - 2)']
+    ],
+    ['x^2 + x - 2',
+      ['x^2 - x + 2x - 2',
+        '(x^2 - x) + (2x - 2)',
+        'x * (x - 1) + (2x - 2)',
+        'x * (x - 1) + 2 * (x - 1)',
+        '(x - 1) * (x + 2)']
+    ],
+    ['-x^2 - 3x - 2',
+      ['x^2 + x + 2x + 2', // per factorQuadratic, negative is added back in at the end
+        '(x^2 + x) + (2x + 2)',
+        'x * (x + 1) + (2x + 2)',
+        'x * (x + 1) + 2 * (x + 1)',
+        '-(x + 1) * (x + 2)']
+    ],
+    ['2x^2 + 5x + 3',
+      ['2x^2 + 2x + 3x + 3',
+        '(2x^2 + 2x) + (3x + 3)',
+        '2x * (x + 1) + (3x + 3)',
+        '2x * (x + 1) + 3 * (x + 1)',
+        '(x + 1) * (2x + 3)']
+    ],
+    ['2x^2 - 5x - 3',
+      ['2x^2 + x - 6x - 3',
+        '(2x^2 + x) + (-6x - 3)',
+        'x * (2x + 1) + (-6x - 3)',
+        'x * (2x + 1) - 3 * (2x + 1)',
+        '(2x + 1) * (x - 3)']
+    ],
+    ['2x^2 - 5x + 3',
+      ['2x^2 - 2x - 3x + 3',
+        '(2x^2 - 2x) + (-3x + 3)',
+        '2x * (x - 1) + (-3x + 3)',
+        '2x * (x - 1) - 3 * (x - 1)',
+        '(x - 1) * (2x - 3)']
+    ],
+  ];
+  tests.forEach(t => testFactorSumProductRuleSubsteps(t[0], t[1]));
+});
