@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "math-nodes": "^0.1.7",
-    "math-parser": "^0.10.5",
+    "math-parser": "^0.12.0",
     "math-rules": "^0.2.14",
     "math-traverse": "^0.2.2",
     "mathjs": "3.11.2"
@@ -14,8 +14,8 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.10.2",
-    "eslint-config-google": "^0.7.0",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
     "eslint-plugin-sort-requires": "^2.1.0",
     "mocha": "2.4.5"
   },

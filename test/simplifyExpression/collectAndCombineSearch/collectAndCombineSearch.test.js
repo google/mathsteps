@@ -21,9 +21,9 @@ describe('combineNthRoots multiplication', function() {
         '3 * nthRoot(x * x, 2) * nthRoot(x, 3)'],
     ],
     ['nthRoot(2x, 2) * nthRoot(2x, 2) * nthRoot(y, 4) * nthRoot(y^3, 4)',
-      ['(nthRoot(2 x, 2) * nthRoot(2 x, 2)) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
-        'nthRoot(2 x * 2 x, 2) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
-        'nthRoot(2 x * 2 x, 2) * nthRoot(y * y ^ 3, 4)'],
+      ['(nthRoot(2x, 2) * nthRoot(2x, 2)) * (nthRoot(y, 4) * nthRoot(y^3, 4))',
+        'nthRoot(2x * 2x, 2) * (nthRoot(y, 4) * nthRoot(y^3, 4))',
+        'nthRoot(2x * 2x, 2) * nthRoot(y * y ^ 3, 4)'],
     ],
     ['nthRoot(x) * nthRoot(x)',
       [],
@@ -35,7 +35,7 @@ describe('combineNthRoots multiplication', function() {
     ],
     ['nthRoot(5) * nthRoot(9x, 2)',
       [],
-      'nthRoot(5 * 9 x, 2)'
+      'nthRoot(5 * 9x, 2)'
     ]
   ];
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
@@ -67,7 +67,7 @@ describe('combinePolynomialTerms addition', function() {
   const tests = [
     ['x+x',
       ['1x + 1x',
-        '(1 + 1) * x',
+        '(1 + 1) x',
         '2x']
     ],
     ['4y^2 + 7y^2 + y^2',
@@ -78,10 +78,13 @@ describe('combinePolynomialTerms addition', function() {
     ['2x + 4x + y',
       ['(2x + 4x) + y',
         '6x + y'],
-      '6x + y'
     ],
   ];
-  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1]));
+  tests.forEach(t => {
+    const steps = t[1];
+    const outputStr = steps[steps.length - 1]
+    testCollectAndCombineSubsteps(t[0], steps, outputStr);
+  });
 });
 
 describe('combineNthRootTerms addition', function() {
@@ -101,7 +104,11 @@ describe('combineNthRootTerms addition', function() {
         '8 * nthRoot(5 y)'],
     ],
   ];
-  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1]));
+  tests.forEach(t => {
+    const steps = t[1];
+    const outputStr = steps[steps.length - 1]
+    testCollectAndCombineSubsteps(t[0], steps, outputStr);
+  });
 });
 
 describe('combineConstantPowerTerms multiplication', function() {
@@ -122,7 +129,11 @@ describe('combineConstantPowerTerms multiplication', function() {
         '3^5'],
     ],
   ];
-  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
+  tests.forEach(t => {
+    const steps = t[1];
+    const outputStr = steps[steps.length - 1]
+    testCollectAndCombineSubsteps(t[0], steps, outputStr);
+  });
 });
 
 describe('collectAndCombineSearch with no substeps', function () {

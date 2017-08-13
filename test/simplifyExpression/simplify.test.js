@@ -94,7 +94,7 @@ describe('distribution', function () {
       '-6x^2 * y^6 - 5x^2 * y^5 + 3x^2 * y^4'],
     ['(nthRoot(x, 2))^2', 'x'],
     ['(nthRoot(x, 2))^4', 'x^2'],
-    ['3 * (nthRoot(x, 2))^2', '3x'],
+    ['3 * (nthRoot(x, 2))^2', '3 * x'],
     ['(nthRoot(x, 2))^6 * (nthRoot(x, 3))^3', 'x^4'],
     ['(x - 2)^2', 'x^2 - 4x + 4'],
     ['(3x + 5)^2', '9x^2 + 30x + 25'],
@@ -105,7 +105,7 @@ describe('distribution', function () {
     // -> x * x -> x
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
-    ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
+    ['(nthRoot(x, 2))^3', 'nthRoot(x^3, 2)'],
     ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
     // TODO: expand power for base with multiplication
     //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
@@ -125,7 +125,7 @@ describe('fractions', function() {
     ['5/18 - 9/18', '-2/9'],
     ['9/18', '1/2'],
     ['x/(2/3) + 5', '3/2 x + 5'],
-    ['(2+x)/6', '1/3 + x / 6']
+    ['(2+x)/6', '1/3 + x/6']
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
@@ -142,7 +142,7 @@ describe('cancelling out', function() {
     ['(-x)/(x)', '-1'],
     ['(x)/(-x)', '-1'],
     ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
-    ['(1+2a)/a', '1 / a + 2'],
+    ['(1+2a)/a', '1/a + 2'],
     ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', '-x^2 + y'],
     ['6 / (2x^2)', '3 / (x^2)'],
   ];

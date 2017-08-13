@@ -5,8 +5,8 @@ const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens'
 
 const TestUtil = require('../TestUtil');
 
-function testRemoveUnnecessaryParens(inputString, outputStr) {
-  it(print.ascii(input) + ' -> ' + outputString,  () => {
+function testRemoveUnnecessaryParens(inputString, outputString) {
+  it(inputString + ' -> ' + outputString,  () => {
     const input = TestUtil.parseAndFlatten(inputString);
     assert.deepEqual(removeUnnecessaryParens(input), outputString);
   });

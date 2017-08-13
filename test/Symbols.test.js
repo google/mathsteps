@@ -17,14 +17,14 @@ function runTest(functionToTest, exprString, expectedOutput, symbolName) {
 
 describe('getLastSymbolTerm', function() {
   const tests = [
-    ['1/x', '1 / x', 'x'],
-    ['1/(3x)', '1 / (3 x)', 'x'], // TODO(printing): why does 3x have a space?
-    ['3x', '3 x', 'x'], // TODO(printing): why does 3x have a space?
-    ['x + 3x + 2', '3 x', 'x'], // TODO(printing): why does 3x have a space?
+    ['1/x', '1/x', 'x'],
+    ['1/(3x)', '1 / (3x)', 'x'],
+    ['3x', '3x', 'x'],
+    ['x + 3x + 2', '3x', 'x'],
     ['x/(x+3)', 'x / (x + 3)', 'x'],
     ['x/(x+3) + y', 'x / (x + 3)', 'x'],
     ['x/(x+3) + y + 3x', 'y', 'y'],
-    ['x/(x+3) + y + 3x + 1/2y', '1 / 2 y', 'y'], // TODO(printing): fraction without space thing
+    ['x/(x+3) + y + 3x + 1/2y', '1/2 y', 'y'],
   ];
 
   tests.forEach(t => runTest(Symbols.getLastSymbolTerm, t[0], t[1], t[2]));
@@ -32,8 +32,8 @@ describe('getLastSymbolTerm', function() {
 
 describe('getLastNonSymbolTerm', function() {
   const tests = [
-    ['4x^2 + 2x + 2/4', '2 / 4', 'x'], // TODO(printing): fraction without space thing
-    ['4x^2 + 2/4 + x', '2 / 4', 'x'], // TODO(printing): fraction without space thing
+    ['4x^2 + 2x + 2/4', '2/4', 'x'],
+    ['4x^2 + 2/4 + x', '2/4', 'x'],
     ['4x^2 + 2x + y', 'y', 'x'],
     ['4x^2', '4', 'x'],
   ];
@@ -50,11 +50,11 @@ describe('getLastDenominatorWithSymbolTerm', function() {
     // 3x / (1 + x) -- should it be parsed differently? maybe
     // should we recurse on multiplication in this case? I think that'd also be good
     // ['1/(x+2) + 3x/(1+x)', '1 + x', 'x'],
-    ['1/(x+2) + (x+1)/(2x+3)', '2 x + 3', 'x'], // TODO(printing) space after coefficient
+    ['1/(x+2) + (x+1)/(2x+3)', '2x + 3', 'x'],
     ['1/x + x/5', 'x', 'x'],
     ['2 + 2/x + x/2', 'x', 'x'],
     ['2 + 2/y + x/2', 'y', 'y'],
-    ['2y + 2/x + 3/(2y) + x/2', '2 y', 'y'], // TODO(printing) space after coefficient
+    ['2y + 2/x + 3/(2y) + x/2', '2y', 'y'],
   ];
 
   tests.forEach(t => runTest(Symbols.getLastDenominatorWithSymbolTerm, t[0], t[1], t[2]));
