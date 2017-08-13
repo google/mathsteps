@@ -26,28 +26,30 @@ describe('simplify (arithmetic)', function () {
 
 describe('collects and combines like terms', function() {
   const tests = [
-    ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
-    ['2x^2 * y * x * y^3', '2x^3 * y^4'],
+    // TODO(printing) no spaces for coefficients
+    ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5 x^3 - 8 x^2 + 6'],
+    ['2x^2 * y * x * y^3', '2 x^3 * y^4'],
     ['4y*3*5', '60y'],
-    ['(2x^2 - 4) + (4x^2 + 3)', '6x^2 - 1'],
-    ['(2x^1 + 4) + (4x^2 + 3)', '4x^2 + 2x + 7'],
+    ['(2x^2 - 4) + (4x^2 + 3)', '6 x^2 - 1'],
+    ['(2x^1 + 4) + (4x^2 + 3)', '4 x^2 + 2x + 7'],
     ['y * 2x * 10', '20x * y'],
     ['x^y * x^z', 'x^(y + z)'],
-    ['x^(3+y) + x^(3+y)+ 4', '2x^(3 + y) + 4'],
-    ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5x^3 - 8x^2 + 6'],
+    ['x^(3+y) + x^(3+y)+ 4', '2 x^(3 + y) + 4'],
+    ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5 x^3 - 8 x^2 + 6'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 
 describe('can simplify with division', function () {
+  // TODO(printing) no spaces for coefficients
   const tests = [
     ['2 * 4 / 5 * 10 + 3', '19'],
-    ['2x * 5x / 2', '5x^2'],
-    ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
+    ['2x * 5x / 2', '5 x^2'],
+    ['2x * 4x / 5 * 10 + 3', '16 x^2 + 3'],
     ['2x * 4x / 2 / 4', 'x^2'],
     ['2x * y / z * 10', '(20x * y) / z'],
-    ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
+    ['2x * 4x / 5 * 10 + 3', '16 x^2 + 3'],
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
     ['((2+x)(3+x))/(2+x)', '3 + x'],
@@ -73,32 +75,34 @@ describe('subtraction support', function() {
 });
 
 describe('support for more * and ( that come from latex conversion', function () {
+  // TODO(printing) no spaces for coefficients
   const tests = [
-    ['(3*x)*(4*x)', '12x^2'],
+    ['(3*x)*(4*x)', '12 x^2'],
     ['(12*z^(2))/27', '4/9 z^2'],
-    ['x^2 - 12x^2 + 5x^2 - 7', '-6x^2 - 7'],
-    ['-(12 x ^ 2)', '-12x^2']
+    ['x^2 - 12x^2 + 5x^2 - 7', '-6 x^2 - 7'],
+    ['-(12 x ^ 2)', '-12 x^2']
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
 
 describe('distribution', function () {
+  // TODO(printing) no spaces for coefficients
   const tests = [
-    ['(3*x)*(4*x)', '12x^2'],
-    ['(3+x)*(4+x)*(x+5)', 'x^3 + 12x^2 + 47x + 60'],
-    ['-2x^2 * (3x - 4)', '-6x^3 + 8x^2'],
-    ['x^2 - x^2*(12 + 5x) - 7', '-5x^3 - 11x^2 - 7'],
+    ['(3*x)*(4*x)', '12 x^2'],
+    ['(3+x)*(4+x)*(x+5)', 'x^3 + 12 x^2 + 47x + 60'],
+    ['-2x^2 * (3x - 4)', '-6 x^3 + 8 x^2'],
+    ['x^2 - x^2*(12 + 5x) - 7', '-5 x^3 - 11 x^2 - 7'],
     ['(5+x)*(x+3)', 'x^2 + 8x + 15'],
     ['(x-2)(x-4)', 'x^2 - 6x + 8'],
     ['- x*y^4 (6x * y^2 + 5x*y - 3x)',
-      '-6x^2 * y^6 - 5x^2 * y^5 + 3x^2 * y^4'],
+      '-6 x^2 * y^6 - 5 x^2 * y^5 + 3 x^2 * y^4'],
     ['(nthRoot(x, 2))^2', 'x'],
     ['(nthRoot(x, 2))^4', 'x^2'],
     ['3 * (nthRoot(x, 2))^2', '3 * x'],
     ['(nthRoot(x, 2))^6 * (nthRoot(x, 3))^3', 'x^4'],
     ['(x - 2)^2', 'x^2 - 4x + 4'],
-    ['(3x + 5)^2', '9x^2 + 30x + 25'],
-    ['(2x + 3)^2','4x^2 + 12x + 9'],
+    ['(3x + 5)^2', '9 x^2 + 30x + 25'],
+    ['(2x + 3)^2','4 x^2 + 12x + 9'],
     ['(x + 3 + 4)^2', 'x^2 + 14x + 49'],
     // TODO: ideally this can happen in one step
     // the current substeps are (nthRoot(x^2, 2))^2 -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
@@ -144,7 +148,7 @@ describe('cancelling out', function() {
     ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
     ['(1+2a)/a', '1/a + 2'],
     ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', '-x^2 + y'],
-    ['6 / (2x^2)', '3 / (x^2)'],
+    ['6 / (2x^2)', '3 / x^2'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
@@ -187,5 +191,5 @@ describe('handles unnecessary parens at root level', function() {
 });
 
 describe('keeping parens in important places, on printing', function() {
-  testSimplify('2 / (3x^2) + 5', '2 / (3x^2) + 5');
+  testSimplify('2 / (3x^2) + 5', '2 / (3 x^2) + 5'); // TODO(printing) no spaces for coefficients
 });

@@ -17,16 +17,16 @@ describe('cancel like terms', function () {
     ['(x^2 * y) / x', '(x^(2 - (1)) * y)'],
     ['2x^2 / (2x^2 * 5)', '1/5'],
     ['x / (x^2*y)', 'x^(1 - (2)) / y'],
-    ['(4x^2) / (5x^2)', '(4) / (5)'],
+    ['(4x^2) / (5x^2)', '4/5'],
     ['(2x+5)^8 / (2x+5)^2', '(2x + 5)^(8 - (2))'],
-    ['(4x^3) / (5x^2)', '(4x^(3 - (2))) / (5)'],
+    ['(4x^3) / (5x^2)', '(4 x^(3 - (2))) / 5'],
     ['-x / -x', '1'],
     ['2/ (4x)', '1 / (2x)'],
-    ['2/ (4x^2)', '1 / (2x^2)'],
+    ['2/ (4x^2)', '1 / (2 x^2)'], // TODO(printing) no spaces for coefficients
     ['2 a / a', '2'],
-    ['(35 * nthRoot (7)) / (5 * nthRoot(5))','(7 * nthRoot(7)) / nthRoot(5)'],
-    ['3/(9r^2)', '1 / (3r^2)'],
-    ['6/(2x)', '3 / (x)']
+    ['(35 * nthRoot (7)) / (5 * nthRoot(5, 2))','(7 * nthRoot(7, 2)) / nthRoot(5)'],
+    ['3/(9r^2)', '1 / (3 r^2)'], // TODO(printing) no spaces for coefficients
+    ['6/(2x)', '3/x']
   ];
 
   tests.forEach(t => testCancelLikeTerms(t[0], t[1]));
