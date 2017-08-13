@@ -21,7 +21,7 @@ function testLatexPrintStr(exprStr, outputStr) {
   });
 }
 
-function testPrintNode(node, outputStr) {
+function testPrintNodeToLatex(node, outputStr) {
   it(`tests printing ${outputStr}`,  () => {
     assert.deepEqual(print.latex(node), outputStr);
   });
@@ -50,7 +50,8 @@ describe.skip('print latex', function() {
   tests.forEach(t => testLatexPrintStr(t[0],t[1]));
 });
 
-describe('print with parenthesis', function () {
+// TODO(math-parser): expose latex printing
+describe.skip('print latex with parenthesis', function () {
   const tests = [
     [opNode('*', [
       opNode('+', [constNode(2), constNode(3)]),
@@ -65,5 +66,5 @@ describe('print with parenthesis', function () {
       symbolNode('x')
     ]), '(9 + 2) / x'],
   ];
-  tests.forEach(t => testPrintNode(t[0], t[1]));
+  tests.forEach(t => testPrintNodeToLatex(t[0], t[1]));
 });

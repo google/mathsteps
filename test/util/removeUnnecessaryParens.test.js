@@ -1,3 +1,4 @@
+const assert = require('assert');
 const {parse} = require('math-parser');
 
 const print = require('../../lib/util/print');
