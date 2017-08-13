@@ -23,7 +23,7 @@ describe('combineNthRoots multiplication', function() {
     ['nthRoot(2x, 2) * nthRoot(2x, 2) * nthRoot(y, 4) * nthRoot(y^3, 4)',
       ['(nthRoot(2x, 2) * nthRoot(2x, 2)) * (nthRoot(y, 4) * nthRoot(y^3, 4))',
         'nthRoot(2x * 2x, 2) * (nthRoot(y, 4) * nthRoot(y^3, 4))',
-        'nthRoot(2x * 2x, 2) * nthRoot(y * y ^ 3, 4)'],
+        'nthRoot(2x * 2x, 2) * nthRoot(y * y^3, 4)'],
     ],
     ['nthRoot(x) * nthRoot(x)',
       [],

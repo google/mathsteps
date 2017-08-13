@@ -74,7 +74,7 @@ describe('basic addition collect like terms, no exponents or coefficients', func
       'because 2^x is an \'other\''],
     ['z + 2*(y + x) + 4 + z', '(z + z) + 4 + 2 * (y + x)',
       ' 2*(y + x) is an \'other\' cause it has parens'],
-    ['nthRoot(2) + 100 + nthRoot(2)', '(nthRoot(2) + nthRoot(2)) + 100'],
+    ['nthRoot(2) + 100 + nthRoot(2)', '(nthRoot(2, 2) + nthRoot(2, 2)) + 100'],
     ['y + nthRoot(x, 2) + 4y + nthRoot(x, 2)', '(nthRoot(x, 2) + nthRoot(x, 2)) + (y + 4y)'],
     ['nthRoot(x, 2) + 2 + nthRoot(x, 2) + 5', '(nthRoot(x, 2) + nthRoot(x, 2)) + (2 + 5)'],
   ];
@@ -86,9 +86,9 @@ describe('collect like terms with exponents and coefficients', function() {
     ['x^2 + x + x^2 + x', '(x^2 + x^2) + (x + x)'],
     ['y^2 + 5 + y^2 + 5', '(y^2 + y^2) + (5 + 5)'],
     ['y + 5 + z^2', 'y + 5 + z^2'],
-    ['2x^2 + x + x^2 + 3x', '(2x^2 + x^2) + (x + 3x)'],
-    ['nthRoot(2)^3 + nthRoot(2)^3 - 6x', '(nthRoot(2)^3 + nthRoot(2)^3) - 6x'],
-    ['4x + 7 * nthRoot(11) - x - 2 * nthRoot(11)', '(7 * nthRoot(11) - 2 * nthRoot(11)) + (4x - x)'],
+    ['2x^2 + x + x^2 + 3x', '(2 x^2 + x^2) + (x + 3x)'], // TODO(printing) ideally it's 2x^2
+    ['nthRoot(2)^3 + nthRoot(2)^3 - 6x', '(nthRoot(2, 2)^3 + nthRoot(2, 2)^3) - 6x'],
+    ['4x + 7 * nthRoot(11) - x - 2 * nthRoot(11)', '(7 * nthRoot(11, 2) - 2 * nthRoot(11, 2)) + (4x - x)'],
   ];
   tests.forEach(t => testCollectLikeTerms(t[0], t[1], t[2]));
 });
@@ -109,7 +109,7 @@ describe('collect like terms for nthRoot multiplication', function() {
     ['nthRoot(x, 2) * nthRoot(x, 2)', 'nthRoot(x, 2) * nthRoot(x, 2)'],
     ['nthRoot(x, 2) * nthRoot(x, 2) * 3', '3 * (nthRoot(x, 2) * nthRoot(x, 2))'],
     ['nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 3)', '(nthRoot(x, 2) * nthRoot(x, 2)) * nthRoot(x, 3)'],
-    ['nthRoot(2x, 2) * nthRoot(2x, 2) * nthRoot(y, 4) * nthRoot(y^3, 4)', '(nthRoot(2 x, 2) * nthRoot(2 x, 2)) * (nthRoot(y, 4) * nthRoot(y^3, 4))'],
+    ['nthRoot(2x, 2) * nthRoot(2x, 2) * nthRoot(y, 4) * nthRoot(y^3, 4)', '(nthRoot(2x, 2) * nthRoot(2x, 2)) * (nthRoot(y, 4) * nthRoot(y^3, 4))'],
   ];
   tests.forEach(t => testCollectLikeTerms(t[0], t[1]));
 });

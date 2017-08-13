@@ -106,7 +106,7 @@ describe('distribution', function () {
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
     ['(nthRoot(x, 2))^3', 'nthRoot(x^3, 2)'],
-    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
+    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x^3, 2)'],
     // TODO: expand power for base with multiplication
     //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
   ];

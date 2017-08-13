@@ -38,6 +38,7 @@ describe('print asciimath', function () {
   tests.forEach(t => testPrintStr(t[0], t[1]));
 });
 
+// TODO(math-parser): expose latex printing
 describe.skip('print latex', function() {
   const tests = [
     ['2+3+4', '2+3+4'],
