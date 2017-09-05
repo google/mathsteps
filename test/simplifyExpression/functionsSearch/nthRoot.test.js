@@ -10,7 +10,7 @@ describe('simplify nthRoot', function () {
   const tests = [
     ['nthRoot(4)', '2'],
     ['nthRoot(8, 3)', '2'],
-    ['nthRoot(5 * 7)', 'nthRoot(5 * 7)'],
+    ['nthRoot(5 * 7)', 'nthRoot(5 * 7, 2)'],
     ['nthRoot(4, 3)', 'nthRoot(4, 3)'],
     ['nthRoot(12)', '2 * nthRoot(3, 2)'],
     ['nthRoot(36)', '6'],
