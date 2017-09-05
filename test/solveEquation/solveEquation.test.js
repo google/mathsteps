@@ -89,7 +89,7 @@ describe.skip('solveEquation difference of squares', function () {
     ['4x^2 - 81 = 0', 'x = [-9 / 2, 9 / 2]'],
     ['x^2 - 9 = 0', 'x = [-3, 3]'],
     ['16y^2 - 25 = 0', 'y = [-5 / 4, 5 / 4]'],
-    ];
+  ];
   tests.forEach(t => testSolve(t[0], t[1], t[2]));
 });
 
