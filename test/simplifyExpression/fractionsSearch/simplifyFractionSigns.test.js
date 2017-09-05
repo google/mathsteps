@@ -8,7 +8,7 @@ function testSimplifyFractionSigns(exprStr, outputStr) {
 
 describe('simplify signs', function() {
   const tests = [
-    ['-12x / -27', '12x / 27'],
+    ['(-12x) / -27', '(12x) / 27'], // TODO(math-parser) don't need parens
     ['x / -y', '-x / y'],
   ];
   tests.forEach(t => testSimplifyFractionSigns(t[0], t[1]));
