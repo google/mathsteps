@@ -30,12 +30,16 @@ TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBoolean
 };
 
 // Tests a simplification function
-TestUtil.testSimplification = function (simplifyingFunction, exprString,
-                                        expectedOutputString) {
+TestUtil.testSimplification = function (
+  simplifyingFunction, exprString, expectedOutputString, flattenOutput) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
     const inputNode = flatten(parse(exprString));
+    let outputNode = simplifyingFunction(inputNode).newNode;
+    if (flattenOutput) {
+      outputNode = flatten(outputNode);
+    }
     assert.deepEqual(
-      print.ascii(simplifyingFunction(inputNode).newNode),
+      print.ascii(outputNode),
       expectedOutputString);
   });
 };

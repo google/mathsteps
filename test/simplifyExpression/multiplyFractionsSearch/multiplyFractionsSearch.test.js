@@ -3,7 +3,7 @@ const multiplyFractionsSearch = require('../../../lib/simplifyExpression//multip
 const TestUtil = require('../../TestUtil');
 
 function testMultiplyFractionsSearch(exprString, outputStr) {
-  TestUtil.testSimplification(multiplyFractionsSearch, exprString, outputStr);
+  TestUtil.testSimplification(multiplyFractionsSearch, exprString, outputStr, true);
 }
 
 describe('multiplyFractions', function () {
@@ -18,9 +18,9 @@ describe('multiplyFractions', function () {
     ['-3/8 * 2/4', '(-3 * 2) / (8 * 4)'],
     ['(-1/2) * 4/5', '(-1 * 4) / (2 * 5)'],
     ['4 * (-1/x)', '(4 * -1) / x'],
-    ['x * 2y / x', '(x * 2y) / x'],
+    ['x * (2y) / x', '(x * 2y) / x'], // TODO(math-parser): 2y doesn't need parens
     ['x/z * 1/2', '(x * 1) / (z * 2)'],
-    ['(6y / x) * 4x', '(6y * 4x) / x'],
+    ['((6y) / x) * 4x', '(6y * 4x) / x'], // TODO(math-parser): 6y doesn't need parens
     ['2x * y / z * 10', '(2x * y * 10) / z'],
     ['-(1/2) * (1/2)', '(-1 * 1) / (2 * 2)'],
     ['x * -(1/x)', '(x * -1) / x'],

@@ -18,7 +18,7 @@ describe('cancel like terms', function () {
     // but also cancelling should be updated to deal with that case
     ['(2x^2 * 5) / (2x^2)', '5'], // these parens have to stay around 2x^2 to be parsed correctly - hopefully the parsing coefficient change fixes that
     ['(x^2 * y) / x', 'x^(2 - (1)) * y'],
-    ['2x^2 / (2x^2 * 5)', '1/5'],
+    ['(2x^2) / (2x^2 * 5)', '1/5'], // TODO(math-parser) temporary parens
     ['x / (x^2*y)', 'x^(1 - (2)) / y'],
     ['(4x^2) / (5x^2)', '4/5'],
     ['(2x+5)^8 / (2x+5)^2', '(2x + 5)^(8 - (2))'],
