@@ -33,8 +33,9 @@ TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBoolean
 TestUtil.testSimplification = function (simplifyingFunction, exprString,
                                         expectedOutputString) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
+    const inputNode = flatten(parse(exprString));
     assert.deepEqual(
-      print.ascii(simplifyingFunction(flatten(parse(exprString))).newNode),
+      print.ascii(simplifyingFunction(inputNode).newNode),
       expectedOutputString);
   });
 };
