@@ -7,14 +7,14 @@ const NO_STEPS = 'no-steps';
 
 function testSolve(equationString, outputStr, debug=false) {
   it(`${equationString} -> ${outputStr}`, () => {
-      const steps = solveEquation(equationString, debug);
-      let lastStep;
-      if (steps.length === 0) {
-        lastStep = NO_STEPS;
-      }
-      else {
-        lastStep = steps[steps.length -1].newEquation.ascii();
-      }
+    const steps = solveEquation(equationString, debug);
+    let lastStep;
+    if (steps.length === 0) {
+      lastStep = NO_STEPS;
+    }
+    else {
+      lastStep = steps[steps.length -1].newEquation.ascii();
+    }
     assert.equal(lastStep, outputStr);
   });
 }
@@ -150,7 +150,7 @@ describe.skip('Solve for roots before expanding, multiple solutions', function (
 
 // TODO: figure out what to do about errors from rounding midway through
 // this gives us 6.3995 when it should actually be 6.4 :(
-// ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']*/
+// ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
 
 describe('solveEquation for non = comparators', function() {
   const tests = [
