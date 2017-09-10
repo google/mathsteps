@@ -25,6 +25,6 @@ describe('arithmetic stepping\n', function () {
   // TODO(porting): we can probably get rid of hasUnsupportedNodes
   // and assume errors will just get thrown? idk
   it('nthRoot() with no args has no support', function () {
-    assert.throws(() => parse('nthRoot()'), TypeError)
+    assert.throws(() => parse('nthRoot()'), TypeError);
   });
 });

@@ -1,7 +1,4 @@
-const print = require('../lib/util/print');
-
 const Negative = require('../lib/Negative');
-
 const TestUtil = require('./TestUtil');
 
 function testNegate(inputString, outputString) {

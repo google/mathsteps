@@ -133,7 +133,7 @@ describe('combineConstantPowerTerms multiplication', function() {
   ];
   tests.forEach(t => {
     const steps = t[1];
-    const outputStr = steps[steps.length - 1]
+    const outputStr = steps[steps.length - 1];
     testCollectAndCombineSubsteps(t[0], steps, outputStr);
   });
 });

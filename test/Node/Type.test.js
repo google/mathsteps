@@ -3,7 +3,6 @@ const {parse} = require('math-parser');
 
 const Negative = require('../../lib/Negative');
 const Node = require('../../lib/node');
-const TestUtil = require('../TestUtil');
 
 const constNode = Node.Creator.constant;
 

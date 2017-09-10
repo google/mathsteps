@@ -21,7 +21,6 @@ function testFlatten(exprStr, afterNode, debug=false) {
 const opNode = Node.Creator.operator;
 const constNode = Node.Creator.constant;
 const symbolNode = Node.Creator.symbol;
-const parenNode = Node.Creator.parenthesis;
 
 describe('flattens + and *', function () {
   const tests = [
