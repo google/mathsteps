@@ -47,7 +47,7 @@ describe('can simplify with division', function () {
     ['2x * 5x / 2', '5 x^2'],
     ['2x * 4x / 5 * 10 + 3', '16 x^2 + 3'],
     ['2x * 4x / 2 / 4', 'x^2'],
-    ['2x * y / z * 10', '(20x * y) / z'],
+    ['2x * y / z * 10', '(20 * x * y) / z'],
     ['2x * 4x / 5 * 10 + 3', '16 x^2 + 3'],
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
@@ -94,7 +94,8 @@ describe('distribution', function () {
     ['(5+x)*(x+3)', 'x^2 + 8x + 15'],
     ['(x-2)(x-4)', 'x^2 - 6x + 8'],
     ['- x*y^4 (6x * y^2 + 5x*y - 3x)',
-      '-6 x^2 * y^6 - 5 x^2 * y^5 + 3 x^2 * y^4'],
+      '-6 * x^2 * y^6 - 5 * x^2 * y^5 + 3 * x^2 * y^4'],
+    // ideally  '-6 x^2 * y^6 - 5 x^2 * y^5 + 3 x^2 * y^4' but I'll look into this
     ['(nthRoot(x, 2))^2', 'x'],
     ['(nthRoot(x, 2))^4', 'x^2'],
     ['3 * (nthRoot(x, 2))^2', '3x'],
@@ -104,7 +105,9 @@ describe('distribution', function () {
     ['(2x + 3)^2','4 x^2 + 12x + 9'],
     ['(x + 3 + 4)^2', 'x^2 + 14x + 49'],
     // TODO: ideally this can happen in one step
-    // the current substeps are (nthRoot(x^2, 2))^2 -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
+    // the current substeps are
+    // (nthRoot(x^2, 2))^2
+    // -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
     // -> x * x -> x
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
@@ -144,7 +147,7 @@ describe('cancelling out', function() {
     ['( p ^ ( 2) + 1)/( p ^ ( 2) + 1)', '1'],
     ['(-x)/(x)', '-1'],
     ['(x)/(-x)', '-1'],
-    ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
+    ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2 * x * y^-3)^-2'],
     ['(1+2a)/a', '1/a + 2'],
     ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', '-x^2 + y'],
     ['6 / (2x^2)', '3 / x^2'],
