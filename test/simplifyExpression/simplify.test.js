@@ -28,18 +28,17 @@ describe('collects and combines like terms', function() {
   const tests = [
     // TODO(printing) no spaces for coefficients
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5 x^3 - 8 x^2 + 6'],
-    ['2x^2 * y * x * y^3', '2 x^3 * y^4'],
+    ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],
     ['4y*3*5', '60y'],
     ['(2x^2 - 4) + (4x^2 + 3)', '6 x^2 - 1'],
     ['(2x^1 + 4) + (4x^2 + 3)', '4 x^2 + 2x + 7'],
-    ['y * 2x * 10', '20x * y'],
+    ['y * 2x * 10', '20 * x * y'],
     ['x^y * x^z', 'x^(y + z)'],
     ['x^(3+y) + x^(3+y)+ 4', '2 x^(3 + y) + 4'],
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5 x^3 - 8 x^2 + 6'],
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });
-
 
 describe('can simplify with division', function () {
   // TODO(printing) no spaces for coefficients
@@ -98,7 +97,7 @@ describe('distribution', function () {
       '-6 x^2 * y^6 - 5 x^2 * y^5 + 3 x^2 * y^4'],
     ['(nthRoot(x, 2))^2', 'x'],
     ['(nthRoot(x, 2))^4', 'x^2'],
-    ['3 * (nthRoot(x, 2))^2', '3 * x'],
+    ['3 * (nthRoot(x, 2))^2', '3x'],
     ['(nthRoot(x, 2))^6 * (nthRoot(x, 3))^3', 'x^4'],
     ['(x - 2)^2', 'x^2 - 4x + 4'],
     ['(3x + 5)^2', '9 x^2 + 30x + 25'],
