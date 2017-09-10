@@ -51,7 +51,7 @@ describe('adding symbols without breaking things', function() {
 describe('collecting like terms within the context of the stepper', function() {
   const tests = [
     ['2+x+7', 'x + 9'],                           // substeps not tested here
-    ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],      // substeps not tested here
+    ['2x^2 * y * x * y^3', '2 x^3 y^4'],          // substeps not tested here
   ];
   tests.forEach(t => testOneStep(t[0], t[1]));
 });

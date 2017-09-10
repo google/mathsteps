@@ -28,11 +28,11 @@ describe('collects and combines like terms', function() {
   const tests = [
     // TODO(printing) no spaces for coefficients
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5 x^3 - 8 x^2 + 6'],
-    ['2x^2 * y * x * y^3', '2 * x^3 * y^4'],
+    ['2x^2 * y * x * y^3', '2 x^3 y^4'],
     ['4y*3*5', '60y'],
     ['(2x^2 - 4) + (4x^2 + 3)', '6 x^2 - 1'],
     ['(2x^1 + 4) + (4x^2 + 3)', '4 x^2 + 2x + 7'],
-    ['y * 2x * 10', '20 * x * y'],
+    ['y * 2x * 10', '20 x y'],
     ['x^y * x^z', 'x^(y + z)'],
     ['x^(3+y) + x^(3+y)+ 4', '2 x^(3 + y) + 4'],
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5 x^3 - 8 x^2 + 6'],
@@ -94,8 +94,7 @@ describe('distribution', function () {
     ['(5+x)*(x+3)', 'x^2 + 8x + 15'],
     ['(x-2)(x-4)', 'x^2 - 6x + 8'],
     ['- x*y^4 (6x * y^2 + 5x*y - 3x)',
-      '-6 * x^2 * y^6 - 5 * x^2 * y^5 + 3 * x^2 * y^4'],
-    // ideally  '-6 x^2 * y^6 - 5 x^2 * y^5 + 3 x^2 * y^4' but I'll look into this
+      '-6 x^2 y^6 - 5 x^2 y^5 + 3 x^2 y^4'],
     ['(nthRoot(x, 2))^2', 'x'],
     ['(nthRoot(x, 2))^4', 'x^2'],
     ['3 * (nthRoot(x, 2))^2', '3x'],
@@ -112,7 +111,7 @@ describe('distribution', function () {
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
     ['(nthRoot(x, 2))^3', 'nthRoot(x^3, 2)'],
-    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x^3, 2)'],
+    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 nthRoot(x^3, 2)'],
     // TODO: expand power for base with multiplication
     //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
   ];
@@ -147,7 +146,7 @@ describe('cancelling out', function() {
     ['( p ^ ( 2) + 1)/( p ^ ( 2) + 1)', '1'],
     ['(-x)/(x)', '-1'],
     ['(x)/(-x)', '-1'],
-    ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2 * x * y^-3)^-2'],
+    ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2 x y^-3)^-2'],
     ['(1+2a)/a', '1/a + 2'],
     ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', '-x^2 + y'],
     ['6 / (2x^2)', '3 / x^2'],
@@ -173,14 +172,14 @@ describe.skip('absolute value support', function() {
 describe('nthRoot support', function() {
   const tests = [
     ['nthRoot(4x, 2)', '2 * nthRoot(x, 2)'],
-    ['2 * nthRoot(4x, 2)', '4 * nthRoot(x, 2)'],
+    ['2 * nthRoot(4x, 2)', '4 nthRoot(x, 2)'],
     ['(x^3*y)/x^2 + nthRoot(4x, 2)', 'x * y + 2 * nthRoot(x, 2)'],
     ['2 + nthRoot(4)', '4'],
     ['x * nthRoot(x^4, 2)', 'x^3'],
     ['x * nthRoot(2 + 2, 3)', 'x * nthRoot(4, 3)'],
     ['x * nthRoot((2 + 2) * 2, 3)', '2x'],
     ['nthRoot(x * (2 + 3) * x, 2)', 'nthRoot(5, 2) * x'],
-    ['nthRoot(72)', '6 * nthRoot(2, 2)']
+    ['nthRoot(72)', '6 nthRoot(2, 2)']
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
 });

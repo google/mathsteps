@@ -82,7 +82,7 @@ describe('combinePolynomialTerms addition', function() {
   ];
   tests.forEach(t => {
     const steps = t[1];
-    const outputStr = steps[steps.length - 1]
+    const outputStr = steps[steps.length - 1];
     testCollectAndCombineSubsteps(t[0], steps, outputStr);
   });
 });
@@ -97,7 +97,7 @@ describe('combineNthRootTerms addition', function() {
         '2 nthRoot(x, 2)']
     ],
     ['4nthRoot(2)^2 + 7nthRoot(2)^2 + nthRoot(2)^2',
-      ['4 * nthRoot(2, 2)^2 + 7 * nthRoot(2, 2)^2 + 1 nthRoot(2, 2)^2',
+      ['4 nthRoot(2, 2)^2 + 7 nthRoot(2, 2)^2 + 1 nthRoot(2, 2)^2',
         '(4 + 7 + 1) nthRoot(2, 2)^2',
         '12 nthRoot(2, 2)^2']
     ],
@@ -108,7 +108,7 @@ describe('combineNthRootTerms addition', function() {
   ];
   tests.forEach(t => {
     const steps = t[1];
-    const outputStr = steps[steps.length - 1]
+    const outputStr = steps[steps.length - 1];
     testCollectAndCombineSubsteps(t[0], steps, outputStr);
   });
 });
