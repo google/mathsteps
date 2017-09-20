@@ -66,6 +66,20 @@ module.exports = {
         ],
         "strict": [
             "error"
+        ],
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "no-multiple-empty-lines": [
+            "error", 
+            {
+                "max": 2,
+                "maxEOF": 1
+            }
+        ],
+        "no-trailing-spaces": [
+            "error"
         ]
     }
 };
