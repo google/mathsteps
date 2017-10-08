@@ -27,6 +27,8 @@ describe('simplify nthRoot', function () {
     ['nthRoot(2 * 18 * x ^ 2, 2)', '2 * 3 * x'],
     ['nthRoot(x * x, 2)', 'x'],
     ['nthRoot(x * x * (2 + 3), 2)', 'x * nthRoot((2 + 3), 2)'],
+    ['nthRoot(64, 3)', '4'],
+    ['nthRoot(35937, 3)', '33'],
   ];
   tests.forEach(t => testNthRoot(t[0], t[1]));
 });
