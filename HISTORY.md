@@ -1,5 +1,36 @@
 # History
 
+
+## 2017-10-26, version 0.1.7
+
+There's been a lot of great changes since the last release, here are the main updates
+
+Functionality and Teaching Enhancements:
+
+- new pedagogy for multiply powers integers #153
+- exposing the factoring module and adding more coverage #148
+- simplify roots of any degree #183
+- more cases for cancelling terms #182
+- greatest common denominator substep #188
+- multiply nthRoots #189
+- multiply fractions with parenthesis #185
+- remove unnecessary parens before solving equations #205
+- multiply denominators with terms #88
+- Better sum-product factoring steps #210
+
+
+Bug Fixes
+
+- fix the check for perfect roots of a constant when there's roundoff error #224
+- large negtive number rounding #216
+
+Other:
+
+- (code structure) generalizing polynomial terms #190
+- latex printing for equations
+- added linting rules #222
+
+
 ## 2017-04-03, version 0.1.6
 
 updated mathjs to incorporate vulnerability patch #149
