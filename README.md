@@ -40,6 +40,8 @@ steps.forEach(step => {
 });
 ```
 
+(if you're using mathsteps v0.1.6 or lower, use `.print()` instead of `.ascii()`)
+
 To see all the change types:
 ```js
 const changes = mathsteps.ChangeTypes;
