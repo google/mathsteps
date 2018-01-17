@@ -52,7 +52,10 @@ describe('can simplify with division', function () {
     ['2x/4/3', '1/6 x'],
     ['((2+x)(3+x))/(2+x)', '3 + x'],
     ['(20 * x) / (5 * (40 * y))', 'x / (10y)'],
-    ['400 * z / ((20 * x) / (5 * (40 * y)))', '(4000y * z) / x']
+    ['400 * z / ((20 * x) / (5 * (40 * y)))', '(4000y * z) / x'],
+    ['20x / (40y)', 'x / (2y)'],
+    ['60x / (40y)', '3x / (2y)'],
+    ['4x / (2y)', '2x / y']
   ];
   tests.forEach(t => testSimplify(t[0], t[1], t[2]));
   // TODO: factor the numerator to cancel out with denominator
