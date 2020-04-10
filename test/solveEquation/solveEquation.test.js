@@ -96,7 +96,8 @@ describe('solveEquation for =', function () {
     ['(3 + x) / (x^2 + 3) = 1', 'x = [0, 1]'],
     ['6/x + 8/(2x) = 10', 'x = 1'],
     ['(x+1)=4', 'x = 3'],
-    ['((x)/(4))=4', 'x = 16']
+    ['((x)/(4))=4', 'x = 16'],
+    ['(2x-12)=(x+4)', 'x = 16']
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
