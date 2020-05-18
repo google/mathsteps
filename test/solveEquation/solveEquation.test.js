@@ -96,7 +96,9 @@ describe('solveEquation for =', function () {
     ['(3 + x) / (x^2 + 3) = 1', 'x = [0, 1]'],
     ['6/x + 8/(2x) = 10', 'x = 1'],
     ['(x+1)=4', 'x = 3'],
-    ['((x)/(4))=4', 'x = 16']
+    ['((x)/(4))=4', 'x = 16'],
+    ['x+y=x+y', '0 = 0'],
+    ['y + 2x = 14 + y', 'x = 7']
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
     // ['(x + y) (y + 2) = 0', 'y = -y'],
@@ -155,6 +157,7 @@ describe('constant comparison support', function () {
     ['1 <= 1', ChangeTypes.STATEMENT_IS_TRUE],
     ['2 <= 1', ChangeTypes.STATEMENT_IS_FALSE],
     ['1 <= 2', ChangeTypes.STATEMENT_IS_TRUE],
+    ['0 = 0', ChangeTypes.STATEMENT_IS_TRUE],
     ['( 1) = ( 14)', ChangeTypes.STATEMENT_IS_FALSE],
     // TODO: when we support fancy exponent and sqrt things
     // ['(1/64)^(-5/6) = 32', ChangeTypes.STATEMENT_IS_TRUE],
