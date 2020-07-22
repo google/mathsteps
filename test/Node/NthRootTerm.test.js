@@ -1,9 +1,9 @@
-const NthRootTerm = require('../../lib/node/NthRootTerm');
+const NthRootTerm = require('../../lib/node/NthRootTerm')
 
-const TestUtil = require('../TestUtil');
+const TestUtil = require('../TestUtil')
 
 function testIsNthRootTerm(exprStr, isTerm) {
-  TestUtil.testBooleanFunction(NthRootTerm.isNthRootTerm, exprStr, isTerm);
+  TestUtil.testBooleanFunction(NthRootTerm.isNthRootTerm, exprStr, isTerm)
 }
 
 describe('classifies nth root terms correctly', function() {
@@ -21,6 +21,6 @@ describe('classifies nth root terms correctly', function() {
     ['3', false],
     ['x', false],
     ['y^5', false],
-  ];
-  tests.forEach(t => testIsNthRootTerm(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testIsNthRootTerm(t[0], t[1]))
+})

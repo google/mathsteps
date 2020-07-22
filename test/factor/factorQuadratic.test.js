@@ -1,8 +1,8 @@
-const factorQuadratic = require('../../lib/factor/factorQuadratic');
-const TestUtil = require('../TestUtil');
+const factorQuadratic = require('../../lib/factor/factorQuadratic')
+const TestUtil = require('../TestUtil')
 
 function testFactorQuadratic(input, output) {
-  TestUtil.testSimplification(factorQuadratic, input, output);
+  TestUtil.testSimplification(factorQuadratic, input, output)
 }
 
 describe('factorQuadratic', function () {
@@ -43,13 +43,13 @@ describe('factorQuadratic', function () {
     // TODO: quadratic equation
     ['x^2 + 4x + 1', 'x^2 + 4x + 1'],
     ['x^2 - 3x + 1', 'x^2 - 3x + 1'],
-  ];
-  tests.forEach(t => testFactorQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorQuadratic(t[0], t[1]))
+})
 
 function testFactorSumProductRuleSubsteps(exprString, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  TestUtil.testSubsteps(factorQuadratic, exprString, outputList, lastString);
+  const lastString = outputList[outputList.length - 1]
+  TestUtil.testSubsteps(factorQuadratic, exprString, outputList, lastString)
 }
 
 describe('factorSumProductRule', function() {
@@ -105,6 +105,6 @@ describe('factorSumProductRule', function() {
         '2x * (x - 1) - 3 * (x - 1)',
         '(x - 1) * (2x - 3)']
     ],
-  ];
-  tests.forEach(t => testFactorSumProductRuleSubsteps(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorSumProductRuleSubsteps(t[0], t[1]))
+})

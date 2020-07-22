@@ -1,9 +1,9 @@
-const cancelLikeTerms = require('../../../lib/simplifyExpression/fractionsSearch/cancelLikeTerms');
+const cancelLikeTerms = require('../../../lib/simplifyExpression/fractionsSearch/cancelLikeTerms')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testCancelLikeTerms(exprStr, expectedStr) {
-  TestUtil.testSimplification(cancelLikeTerms, exprStr, expectedStr);
+  TestUtil.testSimplification(cancelLikeTerms, exprStr, expectedStr)
 }
 
 describe('cancel like terms', function () {
@@ -32,7 +32,7 @@ describe('cancel like terms', function () {
     ['20x / (40y)', 'x / (2y)'],
     ['60x / (40y)', '3x / (2y)'],
     ['4x / (2y)', '2x / (y)']
-  ];
+  ]
 
-  tests.forEach(t => testCancelLikeTerms(t[0], t[1]));
-});
+  tests.forEach(t => testCancelLikeTerms(t[0], t[1]))
+})

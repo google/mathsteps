@@ -1,10 +1,10 @@
 const convertMixedNumberToImproperFraction = require(
-  '../../../lib/simplifyExpression/basicsSearch/convertMixedNumberToImproperFraction');
+  '../../../lib/simplifyExpression/basicsSearch/convertMixedNumberToImproperFraction')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testConvertMixedNumberToImproperFraction(exprString, outputList, outputStr) {
-  TestUtil.testSubsteps(convertMixedNumberToImproperFraction, exprString, outputList, outputStr);
+  TestUtil.testSubsteps(convertMixedNumberToImproperFraction, exprString, outputList, outputStr)
 }
 
 describe('convertMixedNumberToImproperFraction', function() {
@@ -27,6 +27,6 @@ describe('convertMixedNumberToImproperFraction', function() {
         '-65/11'],
       '-65/11'
     ],
-  ];
-  tests.forEach(t => testConvertMixedNumberToImproperFraction(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testConvertMixedNumberToImproperFraction(t[0], t[1], t[2]))
+})
