@@ -1,0 +1,42 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "semi": ["error", "never"],
+    "quotes": ["error", "single"],
+    "no-console": "off",
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "no-unexpected-multiline": ["error"],
+    "no-tabs": ["error"],
+    "one-var-declaration-per-line": ["error"],
+    "space-infix-ops": ["error"],
+    "space-unary-ops": ["error"],
+    "spaced-comment": ["error"],
+    "switch-colon-spacing": ["error", {"after": true, "before": false}],
+    "unicode-bom": ["error", "never"],
+    "no-var": ["error"],
+    "no-unused-vars": ["error", { "args": "none" }],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxBOF": 1}],
+    "no-constant-condition": ["off"],
+    "no-fallthrough": ["error"],
+    "brace-style": ["error", "1tbs"],
+    "no-return-await": ["error"]
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "globals": {
+    "console": true,
+    "global": true,
+    "process": true,
+    "require": true,
+    "__dirname": true,
+    "exports": true,
+    "ArrayBuffer": true,
+    "DataView": true,
+    "setTimeout": true,
+    "document": true,
+    "Promise": true,
+    "Buffer": true,
+    "module": true
+  }
+}
