@@ -189,3 +189,138 @@ describe('handles unnecessary parens at root level', function() {
 describe('keeping parens in important places, on printing', function() {
   testSimplify('2 / (3x^2) + 5', '2 / (3x^2) + 5')
 })
+
+describe('kemu extensions', function() {
+  const tests = [
+    // Basic.
+    ['((2 pi)^2)/(4*pi)', 'pi'],
+    ['sqrt((2 pi) ^ 2 / (4 pi ^ 2))' , '1'],
+    ['(a*b*c*d)^2', 'a^2 * b^2 * c^2 * d^2'],
+    ['(4 pi^2)/(4*pi)', 'pi'],
+    ['sqrt(a)*sqrt(a)', 'a'],
+
+    // TODO: Temporary disabled due to missing context for pi.
+    // ['(2 * sqrt(pi))*(sqrt(((2 pi)^2)/(4*pi)))', '2pi'],
+
+    ['a*b*c*d', 'a * b * c * d'],
+    ['pi*((1/pi)^2)', '1 / pi'],
+    ['pi*1/pi^2', '1 / pi'],
+    ['x*a/x^2', 'a / x'],
+    ['(pi^2)^3', 'pi^6'],
+    ['x*(1/x)', '1'],
+    ['x*(a/x)', 'a'],
+    ['(a*x)*(b/x)', 'a * b'],
+    ['pi*((sqrt(2))^2)', '2pi'],
+    ['sqrt(x)^3', 'x^(3/2)'],
+    ['(2*pi)*sqrt(2)', '2pi * sqrt(2)'],
+    ['2 * pi * 1 / pi', '2'],
+    ['2 pi * 1 / x', '2pi / x'],
+    ['4 / (4pi)', '1 / pi'],
+    ['(x/a) * (b/x)', 'b / a'],
+    ['x*sqrt(pi) * sqrt(a)*3', '3x * sqrt(a * pi)'],
+    ['pi ^ -1', '1 / pi'],
+    ['x/(d*x*e)', '1 / (d * e)'],
+    ['pi * (1 / pi) ^ 2', '1 / pi'],
+    ['sqrt(1/pi)', '1 / sqrt(pi)'],
+    ['sqrt(x^2)', 'abs(x)'],
+    ['sqrt(x^6)', 'sqrt(x ^ 6)'],
+
+    // TODO: Temporary disabled due to missing context for pi.
+    // ['sqrt(pi^2)', 'pi'],
+    // ['sqrt(pi^6)', 'pi^3'],
+
+    ['2*5x^2 + sqrt(5)', '10x^2 + sqrt(5)'],
+    ['5^2-4*sqrt(2)*(-8)', '25 + (32 * sqrt(2))'], // TODO: 25 + 32 * sqrt(2)
+    ['2-3*sqrt(5)*(-4)', '2 + (12 * sqrt(5))'],    // TODO: 2 + 12 * sqrt(5)
+
+    // Sqrt from const (simple radicand).
+    ['sqrt(0)', '0'],
+    ['sqrt(1)', '1'],
+    ['sqrt(2)', 'sqrt(2)'],
+    ['sqrt(4)', '2'],
+    ['sqrt(8)', '2 * sqrt(2)'],
+    ['sqrt(245)', '7 * sqrt(5)'],
+    ['sqrt(352512)', '144 * sqrt(17)'],
+    ['sqrt(434957043)', '12041 * sqrt(3)'],
+
+    // Sqrt from const (complex radicand).
+    ['sqrt(2x)', 'sqrt(2 x)'],
+    ['sqrt(4x)', '2 * sqrt(x)'],
+    ['sqrt(12x)', '2 * sqrt(3 * x)'],
+    ['sqrt(434957043*x)', '12041 * sqrt(3 * x)'],
+    ['sqrt(x * 4 * y)', '2 * sqrt(x * y)'],
+    ['sqrt(x * 434957043 * y)', '12041 * sqrt(3 * x * y)'],
+
+    // Multiply order: Nothing changed
+    ['x', 'x'],
+    ['x y', 'x * y'],
+    ['3 x y', '3x * y'],
+
+    // Multiply order: Changed
+    ['y x', 'x * y'],
+    ['y z x a', 'a * x * y * z'],
+    ['y z * 4 * x a', '4a * x * y * z'],
+
+    // Collect like terms with mixed symbols (xy like)
+    ['x y + x y', '2x * y'],
+    ['2 x y + 3 x y', '5x * y'],
+
+    // Short multiplication formulas
+    ['(x + y)^2', 'x^2 + 2x * y + y^2'],
+    ['(x - y)^2', 'x^2 - 2x * y + y^2'],
+    ['(x + y)^3', 'x^3 + 3y * x^2 + 3x * y^2 + y^3'],
+    ['(x - y)^3', 'x^3 - 3y * x^2 + 3x * y^2 - y^3'],
+    ['(x + y)^10', 'x^10 + 10y * x^9 + 45x^8 * y^2 + 120x^7 * y^3 + 210x^6 * y^4 + 252x^5 * y^5 + 210x^4 * y^6 + 120x^3 * y^7 + 45x^2 * y^8 + 10x * y^9 + y^10'],
+    ['(x - y)^10', 'x^10 - 10y * x^9 + 45x^8 * y^2 - 120x^7 * y^3 + 210x^6 * y^4 - 252x^5 * y^5 + 210x^4 * y^6 - 120x^3 * y^7 + 45x^2 * y^8 - 10x * y^9 + y^10'],
+
+    // Short multiplication formulas: negative exponents.
+    ['(x + y)^0'    , '1'],
+    ['(x + y)^(-1)' , '1 / (x + y)'],
+    ['(x + y)^(-2)' , '1 / (x^2 + 2x * y + y^2)'],
+    ['(x + y)^(-10)', '1 / (x^10 + 10y * x^9 + 45x^8 * y^2 + 120x^7 * y^3 + 210x^6 * y^4 + 252x^5 * y^5 + 210x^4 * y^6 + 120x^3 * y^7 + 45x^2 * y^8 + 10x * y^9 + y^10)'],
+    ['(x - y)^(-10)', '1 / (x^10 - 10y * x^9 + 45x^8 * y^2 - 120x^7 * y^3 + 210x^6 * y^4 - 252x^5 * y^5 + 210x^4 * y^6 - 120x^3 * y^7 + 45x^2 * y^8 - 10x * y^9 + y^10)'],
+
+    // Kemu: Other.
+    ['a / ((b/c) * d)', 'a * c / (b * d)'],
+
+    // Trigonometric functions.
+    ['-sin(0)'       , '0'],
+    ['sin(pi/6)'     , '1/2'],
+    ['sin(pi/4)'     , 'sqrt(2) / 2'],
+    ['sin(pi/3)'     , 'sqrt(3) / 2'],
+    ['sin(pi/2)'     , '1'],
+    ['sin(pi)'       , '0'],
+    ['-sin(0*x)'     , '0'],
+    ['sin(-4 pi/24)' , '-1/2'],
+
+    ['cos(0)'    , '1'],
+    ['cos(pi/6)' , 'sqrt(3) / 2'],
+    ['cos(pi/4)' , 'sqrt(2) / 2'],
+    ['cos(pi/3)' , '1/2'],
+    ['cos(pi/2)' , '0'],
+    ['cos(pi)'   , '-1'],
+
+    ['tg(0)'     , '0'],
+    ['tg(pi/6)'  , 'sqrt(3) / 3'],
+    ['tg(pi/4)'  , '1'],
+    ['tg(pi/3)'  , 'sqrt(3)'],
+
+    ['ctg(pi/6)' , 'sqrt(3)'],
+    ['ctg(pi/4)' , '1'],
+    ['ctg(pi/3)' , 'sqrt(3) / 3'],
+    ['ctg(pi/2)' , '0'],
+
+    ['atan(0)'         , '0'],
+    ['atan(sqrt(3)/3)' , 'pi / 6'],
+    ['atan(1)'         , 'pi / 4'],
+    ['atan(sqrt(3))'   , 'pi / 3'],
+
+    ['sin(n)^2 + cos(n)^2' , '1'],
+    ['sin(-n)' , '-sin(n)'],
+    ['cos(-n)' , 'cos(n)'],
+    ['tg(-n)'  , '-tg(n)'],
+    ['ctg(-n)' , '-ctg(n)']
+  ]
+
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
