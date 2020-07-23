@@ -5,10 +5,10 @@ const print = require('../../lib/util/print')
 
 const simplify = require('../../lib/simplifyExpression/simplify')
 
-function testSimplify(exprStr, outputStr, debug = false) {
+function testSimplify(exprStr, outputStr, debug = false, ctx) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
-      print.ascii(simplify(math.parse(exprStr), debug)),
+      print.ascii(simplify(math.parse(exprStr), debug, ctx)),
       outputStr)
   })
 }
@@ -198,10 +198,7 @@ describe('kemu extensions', function() {
     ['(a*b*c*d)^2', 'a^2 * b^2 * c^2 * d^2'],
     ['(4 pi^2)/(4*pi)', 'pi'],
     ['sqrt(a)*sqrt(a)', 'a'],
-
-    // TODO: Temporary disabled due to missing context for pi.
-    // ['(2 * sqrt(pi))*(sqrt(((2 pi)^2)/(4*pi)))', '2pi'],
-
+    ['(2 * sqrt(pi))*(sqrt(((2 pi)^2)/(4*pi)))', '2pi'],
     ['a*b*c*d', 'a * b * c * d'],
     ['pi*((1/pi)^2)', '1 / pi'],
     ['pi*1/pi^2', '1 / pi'],
@@ -224,11 +221,8 @@ describe('kemu extensions', function() {
     ['sqrt(1/pi)', '1 / sqrt(pi)'],
     ['sqrt(x^2)', 'abs(x)'],
     ['sqrt(x^6)', 'sqrt(x ^ 6)'],
-
-    // TODO: Temporary disabled due to missing context for pi.
-    // ['sqrt(pi^2)', 'pi'],
-    // ['sqrt(pi^6)', 'pi^3'],
-
+    ['sqrt(pi^2)', 'pi'],
+    ['sqrt(pi^6)', 'pi^3'],
     ['2*5x^2 + sqrt(5)', '10x^2 + sqrt(5)'],
     ['5^2-4*sqrt(2)*(-8)', '25 + (32 * sqrt(2))'], // TODO: 25 + 32 * sqrt(2)
     ['2-3*sqrt(5)*(-4)', '2 + (12 * sqrt(5))'],    // TODO: 2 + 12 * sqrt(5)
@@ -280,7 +274,7 @@ describe('kemu extensions', function() {
     ['(x + y)^(-10)', '1 / (x^10 + 10y * x^9 + 45x^8 * y^2 + 120x^7 * y^3 + 210x^6 * y^4 + 252x^5 * y^5 + 210x^4 * y^6 + 120x^3 * y^7 + 45x^2 * y^8 + 10x * y^9 + y^10)'],
     ['(x - y)^(-10)', '1 / (x^10 - 10y * x^9 + 45x^8 * y^2 - 120x^7 * y^3 + 210x^6 * y^4 - 252x^5 * y^5 + 210x^4 * y^6 - 120x^3 * y^7 + 45x^2 * y^8 - 10x * y^9 + y^10)'],
 
-    // Kemu: Other.
+    // Other.
     ['a / ((b/c) * d)', 'a * c / (b * d)'],
 
     // Trigonometric functions.
@@ -322,5 +316,23 @@ describe('kemu extensions', function() {
     ['ctg(-n)' , '-ctg(n)']
   ]
 
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+  // Create fake symbolic context to handle domain for PI.
+  // We know that PI is positive constant.
+  // Possible improvement: default context if not set explicit.
+  const ctx = {
+    isNumerical: function() {
+      return false
+    },
+    isNodeNonNegative: function(node) {
+      let rv = false
+
+      if (node.name === 'pi') {
+        // We know that pi constant is non-negative.
+        rv = true
+      }
+      return rv
+    }
+  }
+
+  tests.forEach(t => testSimplify(t[0], t[1], t[2], ctx))
 })
