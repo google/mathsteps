@@ -1,5 +1,67 @@
 # History
 
+## 2020-07-23, version k1.0.0
+The first public version used internally in [Calculla](https://calculla.com) since 2017.
+This is the fork derived from **mathsteps 0.1.7** originaly created by **Evy Kassirer**.
+
+  ### General improvements
+  - Show parentheses remove as another step,
+  - Initial support for user delivered *context* (symbolic vs numerical),
+  - All constants are stored as **bignumber rational** in **symbolic mode** e.g. *986/100* instead of *9.86*,
+  - Values are presented as **bingumber decimals** in **numerical mode** e.g. *1.23* instead of *123/100*,
+  - Initial support for **domains** e.g. *sqrt(a)* gives *a* if **a is positive** and *|a|* in general case.
+    
+  ### New simplify steps:
+    
+  - KEMU_REDUCE - better *(a b c ...)/(d e f ...)* cancelation,
+  - KEMU_MULTIPLY_SQRTS - *sqrt(a) sqrt(b)* gives *sqrt(a b)*,
+  - KEMU_MULTIPLY_SQRTS_WITH_COMMON_ROOT - *sqrt(a) sqrt(a)* gives *a*,
+  - KEMU_POWER_FACTORS - *(a b c ...)^x* gives *ax bx cx ...*,
+  - KEMU_POWER_FRACTION - *(a/b)^x* gives *a^x / b^x*,
+  - KEMU_POWER_SQRT - *sqrt(a)^b* gives *a^(b/2)*,
+  - KEMU_SQRT_FROM_ZERO - *sqrt(0)* gives *0*,
+  - KEMU_SQRT_FROM_ONE - *sqrt(1)* gives *1*,
+  - KEMU_SQRT_FROM_POW - *sqrt(x^2)* gives *|x|* or *x* etc.,
+  - KEMU_SQRT_FROM_CONST - *sqrt(8)* gives *2 sqrt(2)* etc.
+  - KEMU_POWER_TO_MINUS_ONE - *(a/b)^-1* gives *b/a*,
+  - KEMU_POWER_TO_NEGATIVE_EXPONENT - *x^-a* gives *1/(x^a)* etc.,
+  - KEMU_MULTIPLY_EXPONENTS - *(a^x)^y* gives *a^(x y)*,
+  - KEMU_REMOVE_UNNEDED_PARENTHESIS - show parenthesis remove as another step,
+  - KEMU_REMOVE_FRACTION_WITH_UNIT_NUMERATOR - *(a 1)/x* gives *a/x*,
+  - KEMU_REMOVE_DOUBLE_FRACTION - *x/y/z* gives *x/(y*z)*,
+  - KEMU_NUMERICAL_SQRT - evaluate *sqrt(a)* as decimal (non-fraction) e.g. *sqrt(3)* gives *1.73205080756887729357...*,
+  - KEMU_NUMERICAL_DIV - evaluate *a/b* as decimal (non-fraction) e.g. *1/3* gives *0.3333333333333333333...*,
+  - KEMU_FACTOR_EXPRESSION_UNDER_ROOT - *sqrt(8)* gives *sqrt(4*2)* etc.,
+  - KEMU_DECIMAL_TO_FRACTION - *3.14* gives *314/100* etc.,
+
+  - KEMU_SHORT_MULTIPLICATION_AB2_ADD - *(a+b)^2* gives *a^2 + 2ab + b^2*,
+  - KEMU_SHORT_MULTIPLICATION_AB3_ADD - *(a+b)^3* gives *a^3 + 3a^2b + 3ab^2 + b^3*,
+  - KEMU_SHORT_MULTIPLICATION_ABN_ADD - general case for integer n: *(a+b)^n*,
+
+  - KEMU_SHORT_MULTIPLICATION_AB2_SUB - *(a-b)^2* gives *a^2 - 2ab + b^2*,
+  - KEMU_SHORT_MULTIPLICATION_AB3_SUB - *(a-b)^3* gives *a^3 − 3a^2b +3ab^2 − b^3*,
+  - KEMU_SHORT_MULTIPLICATION_ABN_SUB - general case for integer n: *(a-b)^n*,
+
+  - KEMU_FUNCTION_VALUE - evaluate of known function e.g. *sin(pi/2)* gives *1*,
+  - KEMU_PYTHAGOREAN_IDENTITY - *sin(x)^2 + sin(x)^y* gives *1*,
+  - KEMU_EVEN_FUNCTION_OF_NEGATIVE - *cos(-x)* gives *cos(x)* etc.,
+  - KEMU_ODD_FUNCTION_OF_NEGATIVE - *sin(-x)* gives *-sin(x)* etc.,
+  - KEMU_CONVERT_SIN_PER_COS_TO_TAN - *sin(x)/cos(x)* gives *tan(x)*,
+  - KEMU_CONVERT_COS_PER_SIN_TO_COT - *cos(x)/sin(x)* gives *cot(x)*,
+  - KEMU_CANCEL_INVERSE_FUNCTION - *atan(tan(x))* gives *x* etc..
+  
+  ### Internal mantain
+  - Get to work with *mathjs 7.1.0*,
+  - Adjusted code formatting,
+  - All constants are stored as *bignumber*,
+  - Possibility to write rules using *mathjs* notation directly (see [example](https://github.com/kemu-studio/mathsteps/blob/sync-with-calculla/lib/simplifyExpression/kemuCommonSearch/commonFunctions.js)), this is prefered way to add new rules if possible,
+  - Better args sorting for expression comparison,
+  - Better *flip-flop* detection (*a -> b -> a -> b -> a -> ...*),
+  - Cache results.
+
+# Original history up to 0.1.7
+All below entries are copied from original mathsteps 0.1.7 initiated by **Evy Kassirer**.
+Please visit https://github.com/socraticorg/mathsteps for more.
 
 ## 2017-10-26, version 0.1.7
 
