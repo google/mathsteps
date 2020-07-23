@@ -24,10 +24,19 @@ const opNode = Node.Creator.operator
 const constNode = Node.Creator.constant
 const symbolNode = Node.Creator.symbol
 const parenNode = Node.Creator.parenthesis
+const unaryMinusNode = Node.Creator.unaryMinus
+const nthRootNode = Node.Creator.nthRoot
+const absNode = Node.Creator.kemuCreateAbs
+
+const node2x = opNode('*', [constNode(2), symbolNode('x')], true)
+const node3x = opNode('*', [constNode(3), symbolNode('x')], true)
+const node4x = opNode('*', [constNode(4), symbolNode('x')], true)
+const node9x = opNode('*', [constNode(9), symbolNode('x')], true)
+const node3y = opNode('*', [constNode(3), symbolNode('y')], true)
 
 describe('flattens + and *', function () {
   const tests = [
-    ['2+2', math.parse('2+2')],
+    ['2+2', opNode('+', [constNode(2), constNode(2)])],
     ['2+2+7', opNode('+', [constNode(2), constNode(2), constNode(7)])],
     ['9*8*6+3+4',
       opNode('+', [
@@ -42,16 +51,32 @@ describe('flattens + and *', function () {
     // keeps the polynomial term
     ['9x*8*6+3+4',
       opNode('+', [
-        opNode('*', [math.parse('9x'), constNode(8), constNode(6)]),
+        opNode('*', [node9x, constNode(8), constNode(6)]),
         constNode(3),
         constNode(4)])],
+
     ['9x*8*6+3y^2+4',
       opNode('+', [
-        opNode('*', [math.parse('9x'), constNode(8), constNode(6)]),
-        math.parse('3y^2'),
-        constNode(4)])],
+        opNode('*', [node9x, constNode(8), constNode(6)]),
+        opNode('*', [constNode(3), opNode('^', [symbolNode('y'), constNode(2)])], true),
+        constNode(4)
+      ])
+    ],
+
     // doesn't flatten
-    ['2 x ^ (2 + 1) * y', math.parse('2 x ^ (2 + 1) * y')],
+    ['2 x ^ (2 + 1) * y',
+      opNode('*', [
+        opNode('*', [
+          constNode(2),
+          opNode('^', [
+            symbolNode('x'),
+            parenNode(opNode('+', [constNode(2), constNode(1)])),
+          ])
+        ], true),
+        symbolNode('y')
+      ])
+    ],
+
     ['2 x ^ (2 + 1 + 2) * y',
       opNode('*', [
         opNode('*', [constNode(2),
@@ -59,7 +84,8 @@ describe('flattens + and *', function () {
             opNode('+', [constNode(2), constNode(1), constNode(2)]))]),
         ], true), symbolNode('y')])
     ],
-    ['3x*4x', opNode('*', [math.parse('3x'), math.parse('4x')])]
+
+    ['3x*4x', opNode('*', [node3x, node4x])]
   ]
   tests.forEach(t => testFlatten(t[0], t[1]))
 })
@@ -69,15 +95,33 @@ describe('flattens division', function () {
     // groups x/4 and continues to flatten *
     ['2 * x / 4 * 6 ',
       opNode('*', [opNode('/', [
-        math.parse('2x'), math.parse('4')]), constNode(6)])],
+        node2x, constNode(4)]), constNode(6)])],
+
     ['2*3/4/5*6',
-      opNode('*', [constNode(2), math.parse('3/4/5'), constNode(6)])],
+      opNode('*', [
+        constNode(2),
+        opNode('/', [
+          opNode('/', [constNode(3), constNode(4)]),
+          constNode(5)
+        ]),
+        constNode(6)
+      ])
+    ],
+
     // combines coefficient with x
     ['x / (4 * x) / 8',
-      math.parse('x / (4x) / 8')],
+      opNode('/', [
+        opNode('/', [
+          symbolNode('x'),
+          parenNode(node4x)
+        ]),
+        constNode(8)
+      ])
+    ],
+
     ['2 x * 4 x / 8',
-      opNode('*', [math.parse('2x'), opNode(
-        '/', [math.parse('4x'), constNode(8)])])],
+      opNode('*', [node2x, opNode(
+        '/', [node4x, constNode(8)])])],
   ]
   tests.forEach(t => testFlatten(t[0], t[1]))
 })
@@ -87,9 +131,20 @@ describe('subtraction', function () {
     ['1 + 2 - 3 - 4 + 5',
       opNode('+', [
         constNode(1), constNode(2), constNode(-3), constNode(-4), constNode(5)])],
+
     ['x - 3', opNode('+', [symbolNode('x'), constNode(-3)])],
+
     ['x + 4 - (y+4)',
-      opNode('+', [symbolNode('x'), constNode(4), math.parse('-(y+4)')])],
+      opNode('+', [
+        symbolNode('x'),
+        constNode(4),
+        unaryMinusNode(
+          parenNode(
+            opNode('+', [symbolNode('y'), constNode(4)])
+          )
+        )
+      ])
+    ],
   ]
   tests.forEach(t => testFlatten(t[0], t[1]))
 })
@@ -97,13 +152,49 @@ describe('subtraction', function () {
 describe('flattens nested functions', function () {
   const tests = [
     ['nthRoot(11)(x+y)',
-      math.parse('nthRoot(11) * (x+y)')],
+      opNode('*', [
+        nthRootNode(constNode(11)),
+        parenNode(opNode('+', [symbolNode('x'), symbolNode('y')]))
+      ])
+
+      // math.parse('nthRoot(11) * (x+y)')
+    ],
+
     ['abs(3)(1+2)',
-      math.parse('abs(3) * (1+2)')],
+      opNode('*', [
+        absNode(constNode(3)),
+        parenNode(
+          opNode('+', [constNode(1), constNode(2)])
+        )
+      ])
+    ],
+
     ['nthRoot(2)(nthRoot(18)+4*nthRoot(3))',
-      math.parse('nthRoot(2) * (nthRoot(18)+4*nthRoot(3))')],
+      opNode('*', [
+        nthRootNode(constNode(2)),
+        parenNode(
+          opNode('+', [
+            nthRootNode(constNode(18)),
+            opNode('*', [
+              constNode(4),
+              nthRootNode(constNode(3))
+            ])
+          ])
+        )
+      ])
+    ],
+
     ['nthRoot(6,3)(10+4x)',
-      math.parse('nthRoot(6,3) * (10+4x)')]
+      opNode('*', [
+        nthRootNode(constNode(6), constNode(3)),
+        parenNode(
+          opNode('+', [
+            constNode(10),
+            node4x
+          ])
+        )
+      ])
+    ]
   ]
   tests.forEach(t => testFlatten(t[0], t[1]))
 })

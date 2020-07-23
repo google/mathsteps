@@ -51,11 +51,6 @@ describe('can simplify with division', function () {
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
     ['((2+x)(3+x))/(2+x)', '3 + x'],
-    ['(20 * x) / (5 * (40 * y))', 'x / (10y)'],
-    ['400 * z / ((20 * x) / (5 * (40 * y)))', '(4000y * z) / x'],
-    ['20x / (40y)', 'x / (2y)'],
-    ['60x / (40y)', '3x / (2y)'],
-    ['4x / (2y)', '2x / y']
   ]
   tests.forEach(t => testSimplify(t[0], t[1], t[2]))
   // TODO: factor the numerator to cancel out with denominator
@@ -136,7 +131,7 @@ describe('fractions', function() {
 })
 
 describe('floating point', function() {
-  testSimplify('1.983*10', '19.83')
+  testSimplify('1.983*10', '1983/100')
 })
 
 describe('cancelling out', function() {
@@ -146,7 +141,8 @@ describe('cancelling out', function() {
     ['( p ^ ( 2) + 1)/( p ^ ( 2) + 1)', '1'],
     ['(-x)/(x)', '-1'],
     ['(x)/(-x)', '-1'],
-    ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'],
+    /* KEMU OLD:   ['((2x^3 y^2)/(-x^2 y^5))^(-2)', '(-2x * y^-3)^-2'], */
+    /* KEMU NEW:*/ ['((2x^3 y^2)/(-x^2 y^5))^(-2)', 'y^6 / (4x^2)'],
     ['(1+2a)/a', '1 / a + 2'],
     ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', '-x^2 + y'],
     ['6 / (2x^2)', '3 / (x^2)'],
