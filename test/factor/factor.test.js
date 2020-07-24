@@ -32,4 +32,3 @@ describe('factor expressions', function () {
   ]
   tests.forEach(t => testFactor(t[0], t[1], t[2]))
 })
-

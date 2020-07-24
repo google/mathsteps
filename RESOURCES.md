@@ -1,9 +1,14 @@
-## Resources
+# Resources
 
 If you would like to add something to this list, please submit a pull request or email
-mathsteps@socratic.org
+y@calculla.com
 
-### Existing open source step-by-step solvers
+# Mathsteps in action
+
+If you would like to see this version of mathsteps in action go to [Calculla](https://calculla.com). Mathsteps
+is a core engine for displaying steps of all "symbolic calculations" on Calculla.
+
+# Existing open source step-by-step solvers
 
 - [PRESS PRolog Equation Solving System](https://github.com/maths/PRESS)
 
@@ -18,23 +23,23 @@ mathsteps@socratic.org
     code. (See below for more information on PRESS.)
 
 - [MathPiper](http://mathpiper.org)
-    
+
     A conventional computer algebra system that has been modified to support
     step-by-step mathematics. The step-by-step equation solver in MathPiper
     (which is based on PRESS) has not been officially released yet, so if you
     would like to experiment with it contact [Ted
-    Kosan](https://github.com/tkosan). 
-    
+    Kosan](https://github.com/tkosan).
+
     The following tutorial provides a brief explanation of how this equation
-    solver works: 
-    
+    solver works:
+
     - [Parsing and the Language of Expression Trees](http://patternmatics.org/temp_1/mathfuture/lesson4/)
 
     - [Tree Pattern Matching and Transformation Rules](http://patternmatics.org/temp_1/mathfuture/lesson5/)
 
     - [The Hidden Rules Mathematicians Use to Solve Elementary Algebra Equations](http://patternmatics.org/temp_1/mathfuture/lesson6/)
-    
-### Reading
+
+# Reading
 
 - [Michael Beason and the “MathXpert” system](https://www.helpwithmath.com/)
 - [Structure in algebra research paper](http://pat-thompson.net/PDFversions/1987StrucInAlg.pdf)
@@ -51,11 +56,11 @@ mathsteps@socratic.org
     field of artificial intelligence) stated that much of current AI research
     was years behind the AI research that was being done in the 1970s, and the
     PRESS research is a good example of this.
-    
+
     Most of Dr. Bundy's research papers are
-    available on his [research outputs website](http://www.research.ed.ac.uk/portal/en/persons/alan-bundy%28bfb547ed-a4df-4a6c-b1be-8ecd9b13419f%29/publications.html?pageSize=all&page=0). 
+    available on his [research outputs website](http://www.research.ed.ac.uk/portal/en/persons/alan-bundy%28bfb547ed-a4df-4a6c-b1be-8ecd9b13419f%29/publications.html?pageSize=all&page=0).
     The following papers are the ones on this website that are directly related to PRESS.
-    
+
     - [Analysing Mathematical Proofs (or Reading between the Lines)](http://www.research.ed.ac.uk/portal/en/publications/analysing-mathematical-proofs-or-reading-between-the-lines(73c17f1f-acc9-491a-a1b0-845149769bbe).html) 1975
     - [A treatise on elementary equation solving](http://www.research.ed.ac.uk/portal/en/publications/a-treatise-on-elementary-equation-solving(735e584b-8d45-41e5-b530-910ed2967844).html) 1979
     - [Using meta-level inference for selective application of multiple rewrite rule sets in algebraic manipulation](http://www.research.ed.ac.uk/portal/en/publications/using-metalevel-inference-for-selective-application-of-multiple-rewrite-rule-sets-in-algebraic-manipulation(aeed06b9-a6cc-4d57-8801-8a07bda98e95).html) 1981
@@ -66,7 +71,7 @@ mathsteps@socratic.org
     - [The Computer Modelling of Mathematical Reasoning (Book)](http://www.research.ed.ac.uk/portal/en/publications/the-computer-modelling-of-mathematical-reasoning(1ddb87c0-1de3-402b-9dce-986b72bf9a65).html) 1983
     - [Discovery and Reasoning in Mathematics](http://www.research.ed.ac.uk/portal/en/publications/discovery-and-reasoning-in-mathematics(cbc8b80d-90cb-4cf9-a5f9-1de6fd8c1bbc).html) 1985
 
-### Existing closed-source step-by-step solvers
+# Existing closed-source step-by-step solvers
 
 - PhotoMath for [iOS](https://itunes.apple.com/ca/app/photomath-camera-calculator/id919087726?mt=8)
   and [Android](https://play.google.com/store/apps/details?id=com.microblink.photomath&hl=en)
@@ -82,6 +87,6 @@ mathsteps@socratic.org
     is around 97 percent of the way to accumulating the remaining 95 percent
     automatically because it understands natural language.
 
-### Open source software related to step-by-step math
+# Open source software related to step-by-step math
 
 - [Expression tree structure app](http://patternmatics.org/test/expression_structure.html)

@@ -1,11 +1,8 @@
 {
   "name": "mathsteps",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Step by step math solutions",
   "main": "index.js",
-  "dependencies": {
-    "mathjs": "3.20.2"
-  },
   "engines": {
     "node": ">=6.0.0"
   },
@@ -23,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/socraticorg/mathsteps.git"
+    "url": "git+https://github.com/kemu-studio/mathsteps"
   },
   "keywords": [
     "math",
@@ -37,7 +34,10 @@
   "author": "Evy Kassirer",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/socraticorg/mathsteps/issues"
+    "url": "https://github.com/kemu-studio/mathsteps/issues"
   },
-  "homepage": "https://github.com/socraticorg/mathsteps#readme"
+  "homepage": "https://github.com/kemu-studio/mathsteps#readme",
+  "dependencies": {
+    "mathjs": "^7.1.0"
+  }
 }

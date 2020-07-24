@@ -1,5 +1,6 @@
 *swp
 node_modules
 *.log
+*.bak
 .DS_Store
 .idea

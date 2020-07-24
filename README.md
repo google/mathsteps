@@ -1,7 +1,11 @@
-## A step by step solver for math
+# Mathsteps - A step by step solver for math
 
 [![Join the chat at https://gitter.im/mathsteps-chat/Lobby](https://badges.gitter.im/mathsteps-chat/Lobby.svg)](https://gitter.im/mathsteps-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/socraticorg/mathsteps.svg?branch=master)](https://travis-ci.org/socraticorg/mathsteps)
+
+# Demo ![Calculla.com](https://calculla.com/g/calculla_logo_small_32.png)
+
+To see this version of mathsteps in action go to [calculla.com](https://calculla.com). For example it's used in [Sum of angles calculator](https://calculla.com/sum_of_angles_in_triangle), so you can put something like "1/3 pi" into alpha and beta angles and it will show you all steps needed to achieve "1/3 pi" result.
 
 ## Requirements
 
@@ -45,8 +49,6 @@ To see all the change types:
 const changes = mathsteps.ChangeTypes;
 ```
 
-
-
 ## Contributing
 
 Hi! If you're interested in working on this, that would be super awesome!
@@ -61,13 +63,13 @@ First clone the project from github:
 
 Install the project dependencies:
 
-    npm install
+    npm ci
 
 ## Test
 
 To execute tests for the library, install the project dependencies once:
 
-    npm install
+    npm ci
 
 Then, the tests can be executed:
 

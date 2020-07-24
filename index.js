@@ -1,5 +1,4 @@
 const ChangeTypes = require('./lib/ChangeTypes')
-const factor = require('./lib/factor')
 const Node = require('./lib/node')
 const stepThrough = require('./lib/simplifyExpression/stepThrough')
 const solveEquation = require('./lib/solveEquation')
@@ -205,7 +204,6 @@ function isOkAsSymbolicExpression(expressionAsText) {
 }
 
 module.exports = {
-  factor,
   simplifyExpression,
   solveEquation,
   ChangeTypes,
