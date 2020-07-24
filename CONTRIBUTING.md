@@ -1,6 +1,6 @@
 # Contributing to mathsteps
 
-#### 🎉 We're excited to have you helping out! Thank you so much for your time 🎉
+#### We're excited to have you helping out! Thank you so much for your time
 
 ## Contents
 
@@ -17,14 +17,13 @@
 - [Creating a pull request](#creating-a-pull-request)
 - [Testing](#testing)
 
-
 ## Before you get started
 
 ### Code of Conduct
 
 This project adheres to the Contributor Covenant
 [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to
-uphold this code. Please report unacceptable behavior to mathsteps@socratic.org
+uphold this code. Please report unacceptable behavior to y@calculla.com
 
 ### How (and why) we built mathsteps
 
@@ -82,7 +81,7 @@ To lint your code, run `npm run lint .`
 - **Contribute code!**
   We'd love to have more contributors working on this.
   Check out the section below with more information on how to contribute,
-  and feel free to email us at mathsteps@socratic.org with any questions!
+  and feel free to email us at y@calculla.com with any questions!
 
 ### Creating a pull request
 

@@ -1,18 +1,35 @@
 # History
 
 ## 2020-07-23, version k1.0.0
-The first public version used internally in [Calculla](https://calculla.com) since 2017.
+The first version published by [Calculla](https://calculla.com) team.
 This is the fork derived from **mathsteps 0.1.7** originaly created by **Evy Kassirer**.
 
+  ### Introduction from Calculla team
+  We've started using mathsteps experimentally in Calculla's code in 2017. After a while we've started adding small extensions as well as additional tests and automation. Our fork diverged more and more from original mathsteps code as we had our own ideas for improvements and we've made technical decisions which may not be in line with original authors way of thinking (e.g. we've introduced *bignumber* for constants accuracy). Also, the original project looks a bit abandoned.
+
+  With all this in mind, we've decided that instead of putting effort to merge back to original repo, we're gonna publish our changes as fork. If that works and current state persists, we're gonna move to separate repository (non-forked one) to avoid confusions. Also we added "k" to the version numbering to clearly state that is not exactly original versioning of mathsteps.
+
+  TLDR:
+  - this is diverged version of mathsteps, called kmathsteps
+  - version is now k1.0.0
+  - we will release it as separate npm package (soon)
+
+  #### Special thanks
+  Special thanks to:
+  - the team that actually built original mathsteps - we really like and appreciate your work
+  - Sylwester Wysocki (dzik-at-ke.mu) for his hard work pushing this forward
+
   ### General improvements
-  - Show parentheses remove as another step,
-  - Initial support for user delivered *context* (symbolic vs numerical),
+  - Show parentheses removal as separate step,
+  - Initial support for user delivered **context** (symbolic vs numerical),
   - All constants are stored as **bignumber rational** in **symbolic mode** e.g. *986/100* instead of *9.86*,
   - Values are presented as **bingumber decimals** in **numerical mode** e.g. *1.23* instead of *123/100*,
   - Initial support for **domains** e.g. *sqrt(a)* gives *a* if **a is positive** and *|a|* in general case.
-    
+
   ### New simplify steps:
-    
+
+  *NOTE: we are going to clean up all "kemu" references from this code in next few chunks of changes. This was added initially to clearly distinguish the orignal code from our extensions, but is no longer needed.*
+
   - KEMU_REDUCE - better *(a b c ...)/(d e f ...)* cancelation,
   - KEMU_MULTIPLY_SQRTS - *sqrt(a) sqrt(b)* gives *sqrt(a b)*,
   - KEMU_MULTIPLY_SQRTS_WITH_COMMON_ROOT - *sqrt(a) sqrt(a)* gives *a*,
@@ -49,19 +66,19 @@ This is the fork derived from **mathsteps 0.1.7** originaly created by **Evy Kas
   - KEMU_CONVERT_SIN_PER_COS_TO_TAN - *sin(x)/cos(x)* gives *tan(x)*,
   - KEMU_CONVERT_COS_PER_SIN_TO_COT - *cos(x)/sin(x)* gives *cot(x)*,
   - KEMU_CANCEL_INVERSE_FUNCTION - *atan(tan(x))* gives *x* etc..
-  
-  ### Internal mantain
-  - Get to work with *mathjs 7.1.0*,
-  - Adjusted code formatting,
+
+  ### Internal maintenance
+  - Adjusted to work with *mathjs 7.1.0*,
+  - Improved code formatting,
   - All constants are stored as *bignumber*,
-  - Possibility to write rules using *mathjs* notation directly (see [example](https://github.com/kemu-studio/mathsteps/blob/sync-with-calculla/lib/simplifyExpression/kemuCommonSearch/commonFunctions.js)), this is prefered way to add new rules if possible,
+  - Ability to write rules using *mathjs* notation directly (see [example](https://github.com/kemu-studio/mathsteps/blob/sync-with-calculla/lib/simplifyExpression/kemuCommonSearch/commonFunctions.js)), this is prefered way to add new rules if possible,
   - Better args sorting for expression comparison,
   - Better *flip-flop* detection (*a -> b -> a -> b -> a -> ...*),
-  - Cache results.
+  - Results caching,
 
-# Original history up to 0.1.7
-All below entries are copied from original mathsteps 0.1.7 initiated by **Evy Kassirer**.
-Please visit https://github.com/socraticorg/mathsteps for more.
+# Original history of math-steps up to 0.1.7
+All history entries below have been copied from *original mathsteps 0.1.7* initiated by **Evy Kassirer**.
+Please visit https://github.com/google/mathsteps for more.
 
 ## 2017-10-26, version 0.1.7
 
