@@ -175,6 +175,7 @@ describe('constant comparison support', function () {
     ['2 <= 1', ChangeTypes.STATEMENT_IS_FALSE],
     ['1 <= 2', ChangeTypes.STATEMENT_IS_TRUE],
     ['( 1) = ( 14)', ChangeTypes.STATEMENT_IS_FALSE],
+    ['0 = 0', ChangeTypes.STATEMENT_IS_TRUE],
     // TODO: when we support fancy exponent and sqrt things
     // ['(1/64)^(-5/6) = 32', ChangeTypes.STATEMENT_IS_TRUE],
     // With variables that cancel
