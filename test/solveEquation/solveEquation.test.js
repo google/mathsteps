@@ -115,9 +115,7 @@ describe('solveEquation for =', function () {
     // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
     // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
     // ['x^2 = -2x - 1', 'x = -1'],
-    // TODO: figure out what to do about errors from rounding midway through
-    // this gives us 6.3995 when it should actually be 6.4 :(
-    // ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 6.4']
+    ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 32/5']
   ]
   tests.forEach(t => testSolve(t[0], t[1], t[2]))
 })
