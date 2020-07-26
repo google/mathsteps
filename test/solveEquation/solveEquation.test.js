@@ -22,8 +22,8 @@ function testSolve(equationString, outputStr, debug = false) {
 
 describe('solveEquation for =', function () {
   const tests = [
-    // can't solve this because two symbols: g and x -- so there's no steps
-    ['g *( x ) = ( x - 4) ^ ( 2) - 3', NO_STEPS],
+    ['g *( x ) = ( x - 4) ^ ( 2) - 3', 'g = x - 8 + 13 / x'],
+
     // can't solve this because we don't deal with inequalities yet
     // See: https://www.cymath.com/answer.php?q=(%20x%20)%2F(%202x%20%2B%207)%20%3E%3D%204
     ['( x )/( 2x + 7) >= 4', NO_STEPS],
@@ -87,6 +87,7 @@ describe('solveEquation for =', function () {
     ['0 = x * x + (x + x) + 1', 'x = [-1, -1]'],
     ['(x^3 / x) + (3x - x) + 1 = 0', 'x = [-1, -1]'],
     ['0 = (x^3 / x) + (3x - x) + 1', 'x = [-1, -1]'],
+
     // Solve for roots before expanding
     ['2^7 (x + 2) = 0', 'x = -2'],
     ['(x + y) (x + 2) = 0', 'x = [-y, -2]'],
@@ -112,14 +113,14 @@ describe('solveEquation for =', function () {
     ['x+y=x+y', '0 = 0'],
     ['y + 2x = 14 + y', 'x = 7'],
     ['((1)/(2+1)) = ((1)/(3))', '1/3 = 1/3'],
-    ['-((1)/(3)) = ((-1)/(3))', '-(1/3) = -1/3'],
+    ['-((1)/(3)) = ((-1)/(3))', '-1/3 = -1/3'],
     ['-(x/2)=3', 'x = -6'],
     ['44x=2.74', 'x = 137/2200'],
 
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
-    // ['(x + y) (y + 2) = 0', 'y = -y'],
-    // ['((x-2)^2) = 0', 'NO_STEPS'],
+    // ['((x-2)^2) = 0', 'x = 2'],
+    // ['(x + y) (y + 2) = 0', 'x = [-y, -2]'],
     // ['x * x (x - 5)^2 = 0', 'NO_STEPS'],
     // ['x^6 - x', NO_STEPS],
     // ['4x^2 - 25y^2', ''],
@@ -194,7 +195,6 @@ function testEquationError(equationString, debug = false) {
 }
 
 describe('solveEquation errors', function() {
-  const tests = [
-  ]
+  const tests = []
   tests.forEach(t => testEquationError(t[0], t[1]))
 })
