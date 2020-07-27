@@ -1,3 +1,6 @@
+// TODO: Review implementetion from branch 'division'
+// It seems much cleaner than original one.
+
 const assert = require('assert')
 const math = require('mathjs')
 

@@ -21,6 +21,23 @@ function testOneStep(exprStr, outputStr, debug = false) {
     console.log(print.ascii(nodeStatus.newNode));
   }
   it(exprStr + ' -> ' + outputStr, function () {
+    // -------------------------------------------------------------------------
+    // Better logs from branch 'division'
+    const steps = simplifyExpression(exprStr)
+    if (!steps.length) {
+      return exprStr
+    }
+    const nodeStatus = steps[0]
+    if (debug) {
+      if (!nodeStatus.changeType) {
+        throw Error('missing or bad change type')
+      }
+      // eslint-disable-next-line
+      console.log(nodeStatus.changeType);
+      // eslint-disable-next-line
+      console.log(print(nodeStatus.newNode));
+    }
+    // -------------------------------------------------------------------------
     assert.deepEqual(
       print.ascii(nodeStatus.newNode),
       outputStr)
