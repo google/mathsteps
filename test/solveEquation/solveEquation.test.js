@@ -48,6 +48,12 @@ describe('solveEquation for =', function () {
     ['2 - 4x = x', 'x = 2/5'],
     ['9x + 4 - 3 = 2x', 'x = -1/7'],
     ['9x + 4 - 3 = -2x', 'x = -1/11'],
+
+    // TODO: Temporary disabled during merge.
+    // 2 test cases from al_distribute_over_mult
+    //['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '2x^6 - x^4 - 50x^2 = -25'],
+    //['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
+
     ['5x + (1/2)x = 27 ', 'x = 54/11'],
     /* Temporary disabled due to breaking changes in mathjs.
        negate(2x/3) gives -2/3x when mathjs@4.0.0 or later is used.
@@ -61,6 +67,10 @@ describe('solveEquation for =', function () {
     ['x/(2/3) = 1', 'x = 2/3'],
     ['(x+1)/3 = 4', 'x = 11'],
     ['2(x+3)/3 = 2', 'x = 0'],
+
+    // 1 test case from al_distribute_over_mult
+    ['( u )/( 0.3) = 4u + 6.28', 'u = -50/471'],
+
     ['- q - 4.36= ( 2.2q )/( 1.8)', 'q = -981/500'],
     ['5x^2 - 5x - 30 = 0', 'x = [-2, 3]'],
     ['x^2 + 3x + 2 = 0', 'x = [-1, -2]'],
@@ -97,6 +107,10 @@ describe('solveEquation for =', function () {
     ['x^2 = 0', 'x = [0, 0]'],
     ['x^(2) = 0', 'x = [0, 0]'],
     ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
+
+    // 1 test case from al_distribute_over_mult
+    ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 32/5'],
+
     ['2/x = 1', 'x = 2'],
     ['2/(4x) = 1', 'x = 1/2'],
     ['2/(8 - 4x) = 1/2', 'x = 1'],
