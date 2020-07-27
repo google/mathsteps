@@ -105,13 +105,18 @@ describe('distribution', function () {
     // the current substeps are (nthRoot(x^2, 2))^2 -> nthRoot(x^2, 2) * nthRoot(x^2, 2)
     // -> x * x -> x
 
+    // -------------------------------------------------------------------------
     // Cases from al_distribute_over_mult
     // Expanding negative exponents
     ['(x y)^-1', '1 / (x * y)'],
     ['(x y z)^-a', '1 / (x^a * y^a * z^a)'],
     // Distributing exponents to base
     ['(x y)^2', 'x^2 * y^2'],
-    ['(x y)^(2x)' ,'x^2 * x * y^2 * x'],
+
+    // TODO: Is original result correct?
+    // ['(x y)^(2x)' ,'x^2 * x * y^2 * x'],
+    ['(x y)^(2x)' ,'x^(2x) * y^(2x)'],
+
     ['((x + 1) y)^2', 'x^2 * y^2 + 2x * y^2 + y^2'],
     ['(2x * y * z)^2', '4x^2 * y^2 * z^2'],
     ['(2x^2 * 3y^2)^2', '36x^4 * y^4'],
@@ -132,6 +137,7 @@ describe('distribution', function () {
     ['(nthRoot(x, 2) * nthRoot(x, 3))^2', 'x^5 / 3'],
     ['nthRoot(x, 2)^(1/2)', 'x^1 / 4'],
     ['(nthRoot(x^2, 2)^2 * nthRoot(x, 3)^3)^2', 'x^6'],
+    // -------------------------------------------------------------------------
 
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
