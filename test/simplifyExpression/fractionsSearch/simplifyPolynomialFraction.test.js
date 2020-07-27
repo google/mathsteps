@@ -1,9 +1,9 @@
-const simplifyPolynomialFraction = require('../../../lib/simplifyExpression/fractionsSearch/simplifyPolynomialFraction');
+const simplifyPolynomialFraction = require('../../../lib/simplifyExpression/fractionsSearch/simplifyPolynomialFraction')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testSimplifyPolynomialFraction(exprStr, outputStr) {
-  TestUtil.testSimplification(simplifyPolynomialFraction, exprStr, outputStr);
+  TestUtil.testSimplification(simplifyPolynomialFraction, exprStr, outputStr)
 }
 
 describe('simplifyPolynomialFraction', function() {
@@ -15,6 +15,6 @@ describe('simplifyPolynomialFraction', function() {
     ['-y/-1', 'y'],
     ['12z^2/27', '4/9 z^2'],
     ['1.6x / 1.6', 'x'],
-  ];
-  tests.forEach(t => testSimplifyPolynomialFraction(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testSimplifyPolynomialFraction(t[0], t[1]))
+})

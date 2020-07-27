@@ -1,10 +1,10 @@
-const evaluateConstantSum = require('../../../lib/simplifyExpression/collectAndCombineSearch/evaluateConstantSum');
+const evaluateConstantSum = require('../../../lib/simplifyExpression/collectAndCombineSearch/evaluateConstantSum')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testEvaluateConstantSum(exprString, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  TestUtil.testSubsteps(evaluateConstantSum, exprString, outputList, lastString);
+  const lastString = outputList[outputList.length - 1]
+  TestUtil.testSubsteps(evaluateConstantSum, exprString, outputList, lastString)
 }
 
 describe('evaluateConstantSum', function () {
@@ -28,6 +28,6 @@ describe('evaluateConstantSum', function () {
         '11 + 1',
         '12']
     ],
-  ];
-  tests.forEach(t => testEvaluateConstantSum(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testEvaluateConstantSum(t[0], t[1]))
+})

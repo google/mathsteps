@@ -1,10 +1,10 @@
-const addConstantFractions = require('../../../lib/simplifyExpression/fractionsSearch/addConstantFractions');
+const addConstantFractions = require('../../../lib/simplifyExpression/fractionsSearch/addConstantFractions')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testAddConstantFractions(exprString, outputList) {
-  const lastString = outputList[outputList.length - 1];
-  TestUtil.testSubsteps(addConstantFractions, exprString, outputList, lastString);
+  const lastString = outputList[outputList.length - 1]
+  TestUtil.testSubsteps(addConstantFractions, exprString, outputList, lastString)
 }
 
 describe('addConstantFractions', function () {
@@ -33,6 +33,6 @@ describe('addConstantFractions', function () {
         '0/5',
         '0']
     ],
-  ];
-  tests.forEach(t => testAddConstantFractions(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testAddConstantFractions(t[0], t[1]))
+})
