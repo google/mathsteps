@@ -32,8 +32,8 @@ describe('print asciimath', function () {
     ['2+3+4', '2 + 3 + 4'],
     ['2 + (4 - x) + - 4', '2 + (4 - x) - 4'],
     // TODO(math-parser or porting): standardize spacing for printing
-//    ['2/3 x^2', '2/3 x^2'],
-//    ['-2/3', '-2/3'],
+    //    ['2/3 x^2', '2/3 x^2'],
+    //    ['-2/3', '-2/3'],
   ];
   tests.forEach(t => testPrintStr(t[0], t[1]));
 });

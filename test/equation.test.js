@@ -37,7 +37,7 @@ function testEquationConstructor(left, right, comp, output) {
 
 describe('Equation constructor', () => {
   const tests = [
-//    ['2x^2 + x', '4', '=', '2x^2 + x = 4'], TODO(printing)
+    //    ['2x^2 + x', '4', '=', '2x^2 + x = 4'], TODO(printing)
     ['x^2 + 2x + 2', '0', '>=', 'x^2 + 2x + 2 >= 0'],
     ['2x - 1', '0', '<=', '2x - 1 <= 0']
   ];

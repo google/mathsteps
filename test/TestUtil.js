@@ -46,7 +46,7 @@ TestUtil.testSimplification = function (
 
 // Test the substeps in the expression
 TestUtil.testSubsteps = function (fn, exprString, outputList,
-                                    outputStr) {
+  outputStr) {
   it(exprString + ' -> ' + outputStr, () => {
     const status = fn(flatten(parse(exprString)));
     const substeps = status.substeps;
