@@ -1,21 +1,20 @@
-const assert = require('assert');
-const factor = require('../../lib/factor');
-const print = require('../../lib/util/print');
+const assert = require('assert')
+const factor = require('../../lib/factor')
+const print = require('../../lib/util/print')
 
-const NO_STEPS = 'no-steps';
+const NO_STEPS = 'no-steps'
 
-function testFactor(expressionString, outputStr, debug=false) {
+function testFactor(expressionString, outputStr, debug = false) {
   it(expressionString + ' -> ' + outputStr, () => {
-    const steps = factor(expressionString, debug);
-    let lastStep;
+    const steps = factor(expressionString, debug)
+    let lastStep
     if (steps.length === 0) {
-      lastStep = NO_STEPS;
+      lastStep = NO_STEPS
+    } else {
+      lastStep = print.ascii(steps[steps.length - 1].newNode)
     }
-    else {
-      lastStep = print.ascii(steps[steps.length -1].newNode);
-    }
-    assert.equal(lastStep, outputStr);
-  });
+    assert.equal(lastStep, outputStr)
+  })
 }
 
 describe('factor expressions', function () {
@@ -29,7 +28,7 @@ describe('factor expressions', function () {
     ['x^3 + x^2 + x + 1', NO_STEPS],
     ['1 + 2', NO_STEPS],
     ['x + 2', NO_STEPS],
-  ];
-  tests.forEach(t => testFactor(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testFactor(t[0], t[1], t[2]))
+})
 

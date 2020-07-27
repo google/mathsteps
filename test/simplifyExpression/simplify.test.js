@@ -1,16 +1,16 @@
-const assert = require('assert');
-const {parse} = require('math-parser');
+const assert = require('assert')
+const {parse} = require('math-parser')
 
-const print = require('../../lib/util/print');
+const print = require('../../lib/util/print')
 
-const simplify = require('../../lib/simplifyExpression/simplify');
+const simplify = require('../../lib/simplifyExpression/simplify')
 
-function testSimplify(exprStr, outputStr, debug=false) {
+function testSimplify(exprStr, outputStr, debug = false) {
   it(exprStr + ' -> ' + outputStr, function () {
     assert.deepEqual(
       print.ascii(simplify(parse(exprStr), debug)),
-      outputStr);
-  });
+      outputStr)
+  })
 }
 
 describe('simplify (arithmetic)', function () {
@@ -20,9 +20,9 @@ describe('simplify (arithmetic)', function () {
     ['5*(2+2)*10', '200'],
     ['(2+(2)+7)', '11'],
     ['(8-2) * 2^2 * (1+1) / (4 /2) / 5', '24/5'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('collects and combines like terms', function() {
   const tests = [
@@ -36,9 +36,9 @@ describe('collects and combines like terms', function() {
     ['x^y * x^z', 'x^(y + z)'],
     ['x^(3+y) + x^(3+y)+ 4', '2 x^(3 + y) + 4'],
     ['x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6', '5 x^3 - 8 x^2 + 6'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('can simplify with division', function () {
   // TODO(printing) no spaces for coefficients
@@ -52,11 +52,11 @@ describe('can simplify with division', function () {
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
     ['((2+x)(3+x))/(2+x)', '3 + x'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
   // TODO: factor the numerator to cancel out with denominator
   // e.g. (x^2 - 3 + 2)/(x-2) -> (x-1)
-});
+})
 
 describe('subtraction support', function() {
   const tests = [
@@ -69,9 +69,9 @@ describe('subtraction support', function() {
     ['-(2*x) * -(2 + 2)', '8x'],
     ['(x-4)-5', 'x - 9'],
     ['5-x-4', '-x + 1'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('support for more * and ( that come from latex conversion', function () {
   // TODO(printing) no spaces for coefficients
@@ -80,9 +80,9 @@ describe('support for more * and ( that come from latex conversion', function ()
     ['(12*z^(2))/27', '4/9 z^2'],
     ['x^2 - 12x^2 + 5x^2 - 7', '-6 x^2 - 7'],
     ['-(12 x ^ 2)', '-12 x^2']
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('distribution', function () {
   // TODO(printing) no spaces for coefficients
@@ -113,10 +113,10 @@ describe('distribution', function () {
     ['(nthRoot(x, 2))^3', 'nthRoot(x^3, 2)'],
     ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 nthRoot(x^3, 2)'],
     // TODO: expand power for base with multiplication
-    //['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+    // ['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('fractions', function() {
   const tests = [
@@ -131,13 +131,13 @@ describe('fractions', function() {
     ['9/18', '1/2'],
     ['x/(2/3) + 5', '3/2 x + 5'],
     ['(2+x)/6', '1/3 + x/6']
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('floating point', function() {
-  testSimplify('1.983*10', '19.83');
-});
+  testSimplify('1.983*10', '19.83')
+})
 
 describe('cancelling out', function() {
   const tests = [
@@ -150,9 +150,9 @@ describe('cancelling out', function() {
     ['(1+2a)/a', '1/a + 2'],
     ['(x ^ 4 * y + -(x ^ 2 * y ^ 2)) / (-x ^ 2 * y)', '-x^2 + y'],
     ['6 / (2x^2)', '3 / x^2'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 // TODO(math-parser): support abs()
 describe.skip('absolute value support', function() {
@@ -165,9 +165,9 @@ describe.skip('absolute value support', function() {
     // handle parens around abs()
     ['( abs( -3) )/(3)', '1'],
     ['- abs( -40)', '-40'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('nthRoot support', function() {
   const tests = [
@@ -180,18 +180,18 @@ describe('nthRoot support', function() {
     ['x * nthRoot((2 + 2) * 2, 3)', '2x'],
     ['nthRoot(x * (2 + 3) * x, 2)', 'nthRoot(5, 2) * x'],
     ['nthRoot(72)', '6 nthRoot(2, 2)']
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('handles unnecessary parens at root level', function() {
   const tests = [
     ['(x+(y))', 'x + y'],
     ['((x+y) + ((z^3)))', 'x + y + z^3'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], t[2]))
+})
 
 describe('keeping parens in important places, on printing', function() {
-  testSimplify('2 / (3x^2) + 5', '2 / (3 x^2) + 5'); // TODO(printing) no spaces for coefficients
-});
+  testSimplify('2 / (3x^2) + 5', '2 / (3 x^2) + 5') // TODO(printing) no spaces for coefficients
+})

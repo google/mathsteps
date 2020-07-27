@@ -1,22 +1,21 @@
-const assert = require('assert');
+const assert = require('assert')
 
-const ChangeTypes = require('../../lib/ChangeTypes');
-const solveEquation = require('../../lib/solveEquation');
+const ChangeTypes = require('../../lib/ChangeTypes')
+const solveEquation = require('../../lib/solveEquation')
 
-const NO_STEPS = 'no-steps';
+const NO_STEPS = 'no-steps'
 
-function testSolve(equationString, outputStr, debug=false) {
+function testSolve(equationString, outputStr, debug = false) {
   it(`${equationString} -> ${outputStr}`, () => {
-    const steps = solveEquation(equationString, debug);
-    let lastStep;
+    const steps = solveEquation(equationString, debug)
+    let lastStep
     if (steps.length === 0) {
-      lastStep = NO_STEPS;
+      lastStep = NO_STEPS
+    } else {
+      lastStep = steps[steps.length - 1].newEquation.ascii()
     }
-    else {
-      lastStep = steps[steps.length -1].newEquation.ascii();
-    }
-    assert.equal(lastStep, outputStr);
-  });
+    assert.equal(lastStep, outputStr)
+  })
 }
 
 describe('solveEquation equalities', function () {
@@ -54,9 +53,9 @@ describe('solveEquation equalities', function () {
     ['(x+1)/3 = 4', 'x = 11'],
     ['2(x+3)/3 = 2', 'x = 0'],
     ['- q - 4.36= ( 2.2q )/( 1.8)', 'q = -1.962'],
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
 // TODO(porting) find a way to represent lists
 describe.skip('solveEquation equalities with multiple solutions', function () {
@@ -67,9 +66,9 @@ describe.skip('solveEquation equalities with multiple solutions', function () {
     ['x^2 + 2x - 15 = 0', 'x = [3, -5]'],
     ['x^2 + 2x = 0', 'x = [0, -2]'],
     ['x^2 - 4 = 0', 'x = [-2, 2]'],
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
 // TODO(porting) find a way to represent lists
 describe.skip('solveEquation perfect square', function () {
@@ -79,9 +78,9 @@ describe.skip('solveEquation perfect square', function () {
     ['x^2 - 6x + 9 = 0', 'x = [3, 3]'],
     ['(x + 4)^2 = 0', 'x = [-4, -4]'],
     ['(x - 5)^2 = 0', 'x = [5, 5]'],
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
 // TODO(porting) find a way to represent lists
 describe.skip('solveEquation difference of squares', function () {
@@ -89,9 +88,9 @@ describe.skip('solveEquation difference of squares', function () {
     ['4x^2 - 81 = 0', 'x = [-9 / 2, 9 / 2]'],
     ['x^2 - 9 = 0', 'x = [-3, 3]'],
     ['16y^2 - 25 = 0', 'y = [-5 / 4, 5 / 4]'],
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
 // TODO(porting) find a way to represent lists
 describe.skip('solveEquation edge cases', function () {
@@ -105,9 +104,9 @@ describe.skip('solveEquation edge cases', function () {
     ['0 = x * x + (x + x) + 1', 'x = [-1, -1]'],
     ['(x^3 / x) + (3x - x) + 1 = 0', 'x = [-1, -1]'],
     ['0 = (x^3 / x) + (3x - x) + 1', 'x = [-1, -1]'],
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
 describe('Solve for roots before expanding', function () {
   const tests = [
@@ -119,9 +118,9 @@ describe('Solve for roots before expanding', function () {
     ['2/(8 - 4x) = 1/2', 'x = 1'],
     ['2/(1 + 1 + 4x) = 1/3', 'x = 1'],
     ['6/x + 8/(2x) = 10', 'x = 1'],
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
 // TODO(porting) find a way to represent lists
 describe.skip('Solve for roots before expanding, multiple solutions', function () {
@@ -132,9 +131,9 @@ describe.skip('Solve for roots before expanding, multiple solutions', function (
     ['x^2 = 0', 'x = [0, 0]'],
     ['x^(2) = 0', 'x = [0, 0]'],
     ['(3 + x) / (x^2 + 3) = 1', 'x = [0, 1]'],
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
 // TODO: fix these cases, fail because lack of factoring support, for complex #s,
 // for taking the sqrt of both sides, etc
@@ -159,17 +158,17 @@ describe('solveEquation for non = comparators', function() {
     ['-x > 1', 'x < -1'],
     ['2 - x < 3', 'x > -1'],
     ['9.5j / 6+ 5.5j >= 3( 5j - 2)', 'j <= 0.7579']
-  ];
-  tests.forEach(t => testSolve(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolve(t[0], t[1], t[2]))
+})
 
-function testSolveConstantEquation(equationString, expectedChange, debug=false) {
+function testSolveConstantEquation(equationString, expectedChange, debug = false) {
   it(equationString + ' -> ' + expectedChange, (done) => {
-    const steps = solveEquation(equationString, debug);
-    const actualChange = steps[steps.length -1].changeType;
-    assert.equal(actualChange, expectedChange);
-    done();
-  });
+    const steps = solveEquation(equationString, debug)
+    const actualChange = steps[steps.length - 1].changeType
+    assert.equal(actualChange, expectedChange)
+    done()
+  })
 }
 
 describe('constant comparison support', function () {
@@ -199,19 +198,19 @@ describe('constant comparison support', function () {
     ['( r )/( ( r ) ) = ( 1)/( 10)', ChangeTypes.STATEMENT_IS_FALSE],
     ['5 + (x - 5) = x', ChangeTypes.STATEMENT_IS_TRUE],
     ['4x - 4= 4x', ChangeTypes.STATEMENT_IS_FALSE],
-  ];
-  tests.forEach(t => testSolveConstantEquation(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testSolveConstantEquation(t[0], t[1], t[2]))
+})
 
-function testEquationError(equationString, debug=false) {
+function testEquationError(equationString, debug = false) {
   it(equationString + ' throws error', (done) => {
-    assert.throws(() => solveEquation(equationString, debug), Error);
-    done();
-  });
+    assert.throws(() => solveEquation(equationString, debug), Error)
+    done()
+  })
 }
 
 describe('solveEquation errors', function() {
   const tests = [
-  ];
-  tests.forEach(t => testEquationError(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testEquationError(t[0], t[1]))
+})

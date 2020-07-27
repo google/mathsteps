@@ -1,15 +1,15 @@
-const assert = require('assert');
+const assert = require('assert')
 
-const print = require('../../lib/util/print');
-const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens');
+const print = require('../../lib/util/print')
+const removeUnnecessaryParens = require('../../lib/util/removeUnnecessaryParens')
 
-const TestUtil = require('../TestUtil');
+const TestUtil = require('../TestUtil')
 
 function testRemoveUnnecessaryParens(inputString, outputString) {
   it(inputString + ' -> ' + outputString,  () => {
-    const input = TestUtil.parseAndFlatten(inputString);
-    assert.deepEqual(print.ascii(removeUnnecessaryParens(input)), outputString);
-  });
+    const input = TestUtil.parseAndFlatten(inputString)
+    assert.deepEqual(print.ascii(removeUnnecessaryParens(input)), outputString)
+  })
 }
 
 // parens are a different thing with the new parse tree - revisit this later
@@ -28,6 +28,6 @@ describe.skip('removeUnnecessaryParens', function () {
     ['(x+4) - (12 + x)', 'x + 4 - (12 + x)'],
     ['(2x)^2', '(2x)^2'],
     ['((4+x)-5)^(2)', '(4 + x - 5)^2'],
-  ];
-  tests.forEach(t => testRemoveUnnecessaryParens(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testRemoveUnnecessaryParens(t[0], t[1]))
+})

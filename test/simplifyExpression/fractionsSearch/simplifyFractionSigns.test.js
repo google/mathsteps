@@ -1,15 +1,15 @@
-const simplifyFractionSigns = require('../../../lib/simplifyExpression/fractionsSearch/simplifyFractionSigns');
+const simplifyFractionSigns = require('../../../lib/simplifyExpression/fractionsSearch/simplifyFractionSigns')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testSimplifyFractionSigns(exprStr, outputStr) {
-  TestUtil.testSimplification(simplifyFractionSigns, exprStr, outputStr);
+  TestUtil.testSimplification(simplifyFractionSigns, exprStr, outputStr)
 }
 
 describe('simplify signs', function() {
   const tests = [
     ['(-12x) / -27', '(12x) / 27'], // TODO(math-parser) don't need parens
     ['x / -y', '-x / y'],
-  ];
-  tests.forEach(t => testSimplifyFractionSigns(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testSimplifyFractionSigns(t[0], t[1]))
+})

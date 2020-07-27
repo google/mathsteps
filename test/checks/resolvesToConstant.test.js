@@ -1,9 +1,9 @@
-const checks = require('../../lib/checks');
+const checks = require('../../lib/checks')
 
-const TestUtil = require('../TestUtil');
+const TestUtil = require('../TestUtil')
 
 function testResolvesToConstant(exprString, resolves) {
-  TestUtil.testBooleanFunction(checks.resolvesToConstant, exprString, resolves);
+  TestUtil.testBooleanFunction(checks.resolvesToConstant, exprString, resolves)
 }
 
 describe('resolvesToConstant', function () {
@@ -13,6 +13,6 @@ describe('resolvesToConstant', function () {
     ['((2^2 + 4)) * 7 / 8', true],
     ['2 * 3^x', false],
     ['-(2) * -3', true],
-  ];
-  tests.forEach(t => testResolvesToConstant(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testResolvesToConstant(t[0], t[1]))
+})

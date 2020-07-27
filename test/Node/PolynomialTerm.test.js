@@ -1,9 +1,9 @@
-const PolynomialTerm = require('../../lib/node/PolynomialTerm');
+const PolynomialTerm = require('../../lib/node/PolynomialTerm')
 
-const TestUtil = require('../TestUtil');
+const TestUtil = require('../TestUtil')
 
 function testIsPolynomialTerm(exprStr, isTerm) {
-  TestUtil.testBooleanFunction(PolynomialTerm.isPolynomialTerm, exprStr, isTerm);
+  TestUtil.testBooleanFunction(PolynomialTerm.isPolynomialTerm, exprStr, isTerm)
 }
 
 describe('classifies polynomial terms correctly', function() {
@@ -16,9 +16,9 @@ describe('classifies polynomial terms correctly', function() {
     ['3', false],
     ['2^5', false],
     ['x*y^5', false],
-  ];
-  tests.forEach(t => testIsPolynomialTerm(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testIsPolynomialTerm(t[0], t[1]))
+})
 
 // TODO(math-parser or porting): the node structure is different in mathjs
 // and math-parser here, which is causing it to not follow the logic for
@@ -28,6 +28,6 @@ describe.skip('classifies polynomial terms with fraction coefficeientsy', functi
   const tests = [
     ['5y/3', true],
     ['-12y^5/-3', true],
-  ];
-  tests.forEach(t => testIsPolynomialTerm(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testIsPolynomialTerm(t[0], t[1]))
+})

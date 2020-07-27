@@ -1,8 +1,8 @@
-const factorQuadratic = require('../../lib/factor/factorQuadratic');
-const TestUtil = require('../TestUtil');
+const factorQuadratic = require('../../lib/factor/factorQuadratic')
+const TestUtil = require('../TestUtil')
 
 function testFactorQuadratic(input, output) {
-  TestUtil.testSimplification(factorQuadratic, input, output);
+  TestUtil.testSimplification(factorQuadratic, input, output)
 }
 
 describe('factorQuadratic no change', function () {
@@ -14,9 +14,9 @@ describe('factorQuadratic no change', function () {
     ['x^2 + 4', 'x^2 + 4'],
     ['x^2 + 4 + 2^x', 'x^2 + 4 + 2^x'],
     ['-x^2 - 1', '-x^2 - 1'],
-  ];
-  tests.forEach(t => testFactorQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorQuadratic(t[0], t[1]))
+})
 
 describe('factorQuadratic factor symbol', function () {
   const tests = [
@@ -24,9 +24,9 @@ describe('factorQuadratic factor symbol', function () {
     ['-x^2 - 2x', '-x (x + 2)'],
     ['x^2 - 3x', 'x (x - 3)'],
     ['2x^2 + 4x', '(2x) (x + 2)'], // TODO(math-parser printing) 2x doesn't need parens
-  ];
-  tests.forEach(t => testFactorQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorQuadratic(t[0], t[1]))
+})
 
 describe('factorQuadratic difference of squares', function () {
   const tests = [
@@ -35,9 +35,9 @@ describe('factorQuadratic difference of squares', function () {
     ['4x^2 - 9', '(2x + 3) (2x - 3)'],
     ['4x^2 - 16', '4 ((x + 2) (x - 2))'],      // TODO(printing and porting) don't need extra parens
     ['-4x^2 + 16', '-4 ((x + 2) (x - 2))'],    // ... also should this be flattened somewhere? so do we still need flatten?
-  ];
-  tests.forEach(t => testFactorQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorQuadratic(t[0], t[1]))
+})
 
 describe('factorQuadratic perfect square', function () {
   const tests = [
@@ -46,9 +46,9 @@ describe('factorQuadratic perfect square', function () {
     ['-x^2 - 2x - 1', '-(x + 1)^2'],
     ['4x^2 + 4x + 1', '(2x + 1)^2'],
     ['12x^2 + 12x + 3', '3 (2x + 1)^2'],
-  ];
-  tests.forEach(t => testFactorQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorQuadratic(t[0], t[1]))
+})
 
 describe('factorQuadratic sum product rule', function () {
   const tests = [
@@ -59,14 +59,14 @@ describe('factorQuadratic sum product rule', function () {
     ['2x^2 + 5x + 3','(x + 1) (2x + 3)'],
     ['2x^2 - 5x - 3','(2x + 1) (x - 3)'],
     ['2x^2 - 5x + 3','(x - 1) (2x - 3)'],
-  ];
-  tests.forEach(t => testFactorQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorQuadratic(t[0], t[1]))
+})
 
 describe('factorQuadratic TODO quadratic equation (no change now)', function () {
   const tests = [
     ['x^2 + 4x + 1', 'x^2 + 4x + 1'],
     ['x^2 - 3x + 1', 'x^2 - 3x + 1'],
-  ];
-  tests.forEach(t => testFactorQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testFactorQuadratic(t[0], t[1]))
+})

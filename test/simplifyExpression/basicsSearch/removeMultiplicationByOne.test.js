@@ -1,6 +1,6 @@
-const removeMultiplicationByOne = require('../../../lib/simplifyExpression/basicsSearch/removeMultiplicationByOne');
+const removeMultiplicationByOne = require('../../../lib/simplifyExpression/basicsSearch/removeMultiplicationByOne')
 
-const testSimplify = require('./testSimplify');
+const testSimplify = require('./testSimplify')
 
 describe('removeMultiplicationByOne', function() {
   const tests = [
@@ -8,6 +8,6 @@ describe('removeMultiplicationByOne', function() {
     ['1x', 'x'],
     ['1*z^2', 'z^2'],
     ['2*1*z^2', '2 * z^2'],
-  ];
-  tests.forEach(t => testSimplify(t[0], t[1], removeMultiplicationByOne));
-});
+  ]
+  tests.forEach(t => testSimplify(t[0], t[1], removeMultiplicationByOne))
+})

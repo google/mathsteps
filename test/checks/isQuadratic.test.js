@@ -1,8 +1,8 @@
-const checks = require('../../lib/checks');
-const TestUtil = require('../TestUtil');
+const checks = require('../../lib/checks')
+const TestUtil = require('../TestUtil')
 
 function testIsQuadratic(input, output) {
-  TestUtil.testBooleanFunction(checks.isQuadratic, input, output);
+  TestUtil.testBooleanFunction(checks.isQuadratic, input, output)
 }
 
 describe('isQuadratic', function () {
@@ -23,6 +23,6 @@ describe('isQuadratic', function () {
     ['x^2 + 4 + 2^x', false],
     ['x^2 + 4 + 2y', false],
     ['y^2 + 4 + 2x', false],
-  ];
-  tests.forEach(t => testIsQuadratic(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testIsQuadratic(t[0], t[1]))
+})

@@ -1,13 +1,13 @@
-const collectAndCombineSearch = require('../../../lib/simplifyExpression/collectAndCombineSearch');
+const collectAndCombineSearch = require('../../../lib/simplifyExpression/collectAndCombineSearch')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testCollectAndCombineSubsteps(exprString, outputList, outputStr) {
-  TestUtil.testSubsteps(collectAndCombineSearch, exprString, outputList, outputStr);
+  TestUtil.testSubsteps(collectAndCombineSearch, exprString, outputList, outputStr)
 }
 
 function testSimpleCollectAndCombineSearch(exprString, outputStr) {
-  TestUtil.testSimplification(collectAndCombineSearch, exprString, outputStr);
+  TestUtil.testSimplification(collectAndCombineSearch, exprString, outputStr)
 }
 
 describe('combineNthRoots multiplication', function() {
@@ -37,9 +37,9 @@ describe('combineNthRoots multiplication', function() {
       [],
       'nthRoot(5 * 9x, 2)'
     ]
-  ];
-  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]))
+})
 
 describe('combinePolynomialTerms multiplication', function() {
   const tests = [
@@ -59,9 +59,9 @@ describe('combinePolynomialTerms multiplication', function() {
         '10 * x^4'],
       '10 x^4' // TODO(printing) no spaces for coefficients
     ],
-  ];
-  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]));
-});
+  ]
+  tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]))
+})
 
 describe('combinePolynomialTerms addition', function() {
   const tests = [
@@ -79,13 +79,13 @@ describe('combinePolynomialTerms addition', function() {
       ['(2x + 4x) + y',
         '6x + y'],
     ],
-  ];
+  ]
   tests.forEach(t => {
-    const steps = t[1];
-    const outputStr = steps[steps.length - 1];
-    testCollectAndCombineSubsteps(t[0], steps, outputStr);
-  });
-});
+    const steps = t[1]
+    const outputStr = steps[steps.length - 1]
+    testCollectAndCombineSubsteps(t[0], steps, outputStr)
+  })
+})
 
 describe('combineNthRootTerms addition', function() {
   // TODO(printing) should we add spaces back in for functions?
@@ -105,13 +105,13 @@ describe('combineNthRootTerms addition', function() {
       ['(10 - 2) nthRoot(5y, 2)',
         '8 nthRoot(5y, 2)'],
     ],
-  ];
+  ]
   tests.forEach(t => {
-    const steps = t[1];
-    const outputStr = steps[steps.length - 1];
-    testCollectAndCombineSubsteps(t[0], steps, outputStr);
-  });
-});
+    const steps = t[1]
+    const outputStr = steps[steps.length - 1]
+    testCollectAndCombineSubsteps(t[0], steps, outputStr)
+  })
+})
 
 describe('combineConstantPowerTerms multiplication', function() {
   const tests = [
@@ -130,13 +130,13 @@ describe('combineConstantPowerTerms multiplication', function() {
         '3^(3 + 1 + 1)',
         '3^5'],
     ],
-  ];
+  ]
   tests.forEach(t => {
-    const steps = t[1];
-    const outputStr = steps[steps.length - 1];
-    testCollectAndCombineSubsteps(t[0], steps, outputStr);
-  });
-});
+    const steps = t[1]
+    const outputStr = steps[steps.length - 1]
+    testCollectAndCombineSubsteps(t[0], steps, outputStr)
+  })
+})
 
 describe('collectAndCombineSearch with no substeps', function () {
   const tests = [
@@ -147,14 +147,14 @@ describe('collectAndCombineSearch with no substeps', function () {
     ['x * x^2 * x', 'x^4'],
     ['3*nthRoot(11) - 2*nthRoot(11)', '1 nthRoot(11, 2)'],
     ['nthRoot(xy) + 2x + nthRoot(xy) + 5x', '2 nthRoot(xy, 2) + 7x'],
-  ];
-  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]))
+})
 
 describe('collect and multiply like terms', function() {
   const tests = [
     ['10^3 * 10^2', '10^5'],
     ['2^4 * 2 * 2^4 * 2', '2^10']
-  ];
-  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testSimpleCollectAndCombineSearch(t[0], t[1]))
+})
