@@ -90,6 +90,9 @@ describe('distribute with fractions', function () {
 
 describe('expand base', function () {
   const tests = [
+    // One case from al_distribute_over_mult
+    ['(nthRoot(x, 2))^4', 'x^(1/2 * 4)'],
+
     ['(nthRoot(x, 2))^2','nthRoot(x, 2) * nthRoot(x, 2)'],
     ['(nthRoot(x, 2))^3','nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
     ['3 * (nthRoot(x, 2))^4', '3 * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
@@ -104,6 +107,66 @@ describe('expand base', function () {
     ['(x + 1)^(2x)', '(x + 1)^(2x)'],
     ['(x + 1)^(1/2)', '(x + 1)^(1/2)'],
     ['(x + 1)^2.5', '(x + 1)^2.5'],
+
+    // One case from al_distribute_over_mult
+    ['1 / (x + 1)^x', '1 / ((x + 1)^x)']
+  ]
+
+  tests.forEach(t => testDistribute(t[0], t[1]))
+})
+
+describe('distribute negative exponent', function () {
+  const tests = [
+    ['(x y)^-1', '1 / ((x * y)^1)'],
+    ['(x y)^-x', '1 / ((x * y)^x)'],
+    ['(x y)^(-2x^2)','1 / ((x * y)^(2x^2))'],
+    ['(x y)^(-(x + 1))', '1 / ((x * y)^((x + 1)))'],
+  ]
+
+  tests.forEach(t => testDistribute(t[0], t[1]))
+})
+
+describe('distribute exponent', function () {
+  const tests = [
+    // When terms are polynomialTerms
+    ['(x^2 y^2)^2', 'x^(2 * 2) * y^(2 * 2)',],
+    ['(x y)^2', 'x^2 * y^2'],
+    ['(x y z)^2', 'x^2 * y^2 * z^2'],
+    ['(x^2 y z^2)^2', 'x^(2 * 2) * y^2 * z^(2 * 2)'],
+    ['(x^2)^2', 'x^(2 * 2)'],
+    // When terms have coefficients
+    ['(2x y)^2', '2^2 * x^2 * y^2'],
+    ['(2x^2 * 3y^2)^2', '2^2 * x^(2 * 2) * 3^2 * y^(2 * 2)'],
+    ['(x^2 * 3x * y^2)^3', 'x^(2 * 3) * 3^3 * x^3 * y^(2 * 3)'],
+    // When terms are polynomials or power nodes
+    ['((x + 1)^2 (x + 1)^2)^2', '(x + 1)^(2 * 2) * (x + 1)^(2 * 2)'],
+    ['((x + y)^3 * (x + 1))^3', '(x + y)^(3 * 3) * (x + 1)^3'],
+    ['((x + 1) (y + 1) (z + 1))^2', '(x + 1)^2 * (y + 1)^2 * (z + 1)^2'],
+    // When terms are division nodes
+    ['(x/y)^2', 'x^2 / (y^2)'],
+    ['(2/3)^2', '2^2 / (3^2)'],
+    ['(-5/6)^2', '-5^2 / (6^2)'],
+    ['((-5x)/7)^3', '(-5x)^3 / (7^3)'],
+    ['((2x)/y)^3', '(2x)^3 / (y^3)'],
+    ['((4x)/(5y))^3', '(4x)^3 / ((5y)^3)'],
+    // Combination of terms
+    ['(2x * (x + 1))^2', '2^2 * x^2 * (x + 1)^2'],
+    ['((x + 1) * 2y^2 * 2)^2', '(x + 1)^2 * 2^2 * y^(2 * 2) * 2^2'],
+    // Works for decimal exponents too
+    ['(x^2 y)^2.5', 'x^(2 * 2.5) * y^2.5'],
+    ['((x + 1) x^2)^2.2', '(x + 1)^2.2 * x^(2 * 2.2)'],
+    // Convert nthRoot to exponent form
+    ['nthRoot(x, 2)^3', 'x^(1/2 * 3)'],
+    ['nthRoot(x, 2)^2', 'x^1'],
+    ['nthRoot(x, 3)^2', 'x^(1/3 * 2)'],
+    ['nthRoot(x^2, 2)^(1/2)', 'x^2^(1/2 * 1/2)'],
+    // Multiplying nthRoots
+    ['(nthRoot(x, 2) * nthRoot(x, 3))^2', 'nthRoot(x, 2)^2 * nthRoot(x, 3)^2'],
+    ['(nthRoot(x, 2)^2 * nthRoot(x, 2))^2', 'nthRoot(x, 2)^(2 * 2) * nthRoot(x, 2)^2'],
+    // Does not change
+    ['2^2', '2^2'],
+    ['x^2', 'x^2'],
+    ['x', 'x'],
   ]
 
   tests.forEach(t => testDistribute(t[0], t[1]))

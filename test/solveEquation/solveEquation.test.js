@@ -51,8 +51,8 @@ describe('solveEquation for =', function () {
 
     // TODO: Temporary disabled during merge.
     // 2 test cases from al_distribute_over_mult
-    //['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '2x^6 - x^4 - 50x^2 = -25'],
-    //['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
+    // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '2x^6 - x^4 - 50x^2 = -25'],
+    // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
 
     ['5x + (1/2)x = 27 ', 'x = 54/11'],
     /* Temporary disabled due to breaking changes in mathjs.
