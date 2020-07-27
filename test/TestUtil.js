@@ -24,7 +24,7 @@ TestUtil.testBooleanFunction = function (simplifier, exprString, expectedBoolean
 
 // Tests a simplification function
 TestUtil.testSimplification = function (simplifyingFunction, exprString,
-                                        expectedOutputString) {
+  expectedOutputString) {
   it (exprString + ' -> ' + expectedOutputString,  () => {
     assert.deepEqual(
       print(simplifyingFunction(flatten(math.parse(exprString))).newNode),
@@ -34,7 +34,7 @@ TestUtil.testSimplification = function (simplifyingFunction, exprString,
 
 // Test the substeps in the expression
 TestUtil.testSubsteps = function (fn, exprString, outputList,
-                                    outputStr) {
+  outputStr) {
   it(exprString + ' -> ' + outputStr, () => {
     const status = fn(flatten(math.parse(exprString)));
     const substeps = status.substeps;
