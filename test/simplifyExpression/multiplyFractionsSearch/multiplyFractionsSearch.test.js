@@ -1,9 +1,9 @@
-const multiplyFractionsSearch = require('../../../lib/simplifyExpression//multiplyFractionsSearch');
+const multiplyFractionsSearch = require('../../../lib/simplifyExpression//multiplyFractionsSearch')
 
-const TestUtil = require('../../TestUtil');
+const TestUtil = require('../../TestUtil')
 
 function testMultiplyFractionsSearch(exprString, outputStr) {
-  TestUtil.testSimplification(multiplyFractionsSearch, exprString, outputStr);
+  TestUtil.testSimplification(multiplyFractionsSearch, exprString, outputStr)
 }
 
 describe('multiplyFractions', function () {
@@ -25,6 +25,6 @@ describe('multiplyFractions', function () {
     ['-(1/2) * (1/2)', '(-1 * 1) / (2 * 2)'],
     ['x * -(1/x)', '(x * -1) / x'],
     ['-(5/y) * -(x/y)', '(-5 * -x) / (y * y)'],
-  ];
-  tests.forEach(t => testMultiplyFractionsSearch(t[0], t[1]));
-});
+  ]
+  tests.forEach(t => testMultiplyFractionsSearch(t[0], t[1]))
+})
