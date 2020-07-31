@@ -131,10 +131,13 @@ describe('expand base', function () {
 
 describe('distribute negative exponent', function () {
   const tests = [
+    // -------------------------------------------------------------------------
+    // Cases from al_distribute_over_mult
     ['(x y)^-1', '1 / ((x * y)^1)'],
     ['(x y)^-x', '1 / ((x * y)^x)'],
     ['(x y)^(-2x^2)','1 / ((x * y)^(2x^2))'],
     ['(x y)^(-(x + 1))', '1 / ((x * y)^((x + 1)))'],
+    // -------------------------------------------------------------------------
   ]
 
   tests.forEach(t => testDistribute(t[0], t[1]))
@@ -142,6 +145,8 @@ describe('distribute negative exponent', function () {
 
 describe('distribute exponent', function () {
   const tests = [
+    // -------------------------------------------------------------------------
+    // Cases from al_distribute_over_mult
     // When terms are polynomialTerms
     ['(x^2 y^2)^2', 'x^(2 * 2) * y^(2 * 2)',],
     ['(x y)^2', 'x^2 * y^2'],
@@ -181,6 +186,7 @@ describe('distribute exponent', function () {
     ['2^2', '2^2'],
     ['x^2', 'x^2'],
     ['x', 'x'],
+    // -------------------------------------------------------------------------
   ]
 
   tests.forEach(t => testDistribute(t[0], t[1]))
