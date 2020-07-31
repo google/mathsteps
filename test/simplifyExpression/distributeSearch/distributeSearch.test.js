@@ -90,9 +90,9 @@ describe('distribute with fractions', function () {
 
 describe('expand base', function () {
   const tests = [
-  	// One case from al_distribute_over_mult
-  	['(nthRoot(x, 2))^4', 'x^(1/2 * 4)'],
-  	
+    // One case from al_distribute_over_mult
+    ['(nthRoot(x, 2))^4', 'x^(1/2 * 4)'],
+
     ['(nthRoot(x, 2))^2','nthRoot(x, 2) * nthRoot(x, 2)'],
     ['(nthRoot(x, 2))^3','nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
     ['3 * (nthRoot(x, 2))^4', '3 * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
@@ -107,7 +107,7 @@ describe('expand base', function () {
     ['(x + 1)^(2x)', '(x + 1)^(2x)'],
     ['(x + 1)^(1/2)', '(x + 1)^(1/2)'],
     ['(x + 1)^2.5', '(x + 1)^2.5'],
-    
+
     // One case from al_distribute_over_mult
     ['1 / (x + 1)^x', '1 / ((x + 1)^x)']
   ]
@@ -117,10 +117,13 @@ describe('expand base', function () {
 
 describe('distribute negative exponent', function () {
   const tests = [
+    // -------------------------------------------------------------------------
+    // Cases from al_distribute_over_mult
     ['(x y)^-1', '1 / ((x * y)^1)'],
     ['(x y)^-x', '1 / ((x * y)^x)'],
     ['(x y)^(-2x^2)','1 / ((x * y)^(2x^2))'],
     ['(x y)^(-(x + 1))', '1 / ((x * y)^((x + 1)))'],
+    // -------------------------------------------------------------------------
   ]
 
   tests.forEach(t => testDistribute(t[0], t[1]))
@@ -128,6 +131,8 @@ describe('distribute negative exponent', function () {
 
 describe('distribute exponent', function () {
   const tests = [
+    // -------------------------------------------------------------------------
+    // Cases from al_distribute_over_mult
     // When terms are polynomialTerms
     ['(x^2 y^2)^2', 'x^(2 * 2) * y^(2 * 2)',],
     ['(x y)^2', 'x^2 * y^2'],
@@ -167,6 +172,7 @@ describe('distribute exponent', function () {
     ['2^2', '2^2'],
     ['x^2', 'x^2'],
     ['x', 'x'],
+    // -------------------------------------------------------------------------
   ]
 
   tests.forEach(t => testDistribute(t[0], t[1]))
