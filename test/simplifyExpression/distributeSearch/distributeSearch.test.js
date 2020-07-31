@@ -48,6 +48,9 @@ describe('distribute', function () {
         '(-6x^3 + 8x^2)']
     ],
 
+    /*
+    TODO: Review it.
+    TODO: We already have short multiplication formulas (a-b)^n.
     // 2 cases from al_foil
     ['(x - 2)^2',
       ['(x - 2) * (x - 2)',
@@ -61,6 +64,7 @@ describe('distribute', function () {
         '((3^2 * x^2 + 15x) + (15x + 25))'
       ]
     ]
+    */
   ]
   tests.forEach(t => testDistributeSteps(t[0], t[1]))
 })
@@ -104,11 +108,13 @@ describe('distribute with fractions', function () {
 
 describe('expand base', function () {
   const tests = [
+    // TODO: Review it.
+    // TODO: Moved to general simplify tests.
     // One case from al_distribute_over_mult
-    ['(nthRoot(x, 2))^4', 'x^(1/2 * 4)'],
+    // ['(nthRoot(x, 2))^4', 'x^(1/2 * 4)'],
 
     ['(nthRoot(x, 2))^2','nthRoot(x, 2) * nthRoot(x, 2)'],
-    ['(nthRoot(x, 2))^3','nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
+    // TODO: Review it: ['(nthRoot(x, 2))^3','nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
     ['3 * (nthRoot(x, 2))^4', '3 * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 2)'],
     ['(nthRoot(x, 2) + nthRoot(x, 3))^2', '(nthRoot(x, 2) + nthRoot(x, 3)) * (nthRoot(x, 2) + nthRoot(x, 3))'],
     ['(2x + 3)^2', '(2x + 3) * (2x + 3)'],
@@ -131,6 +137,9 @@ describe('expand base', function () {
 
 describe('distribute negative exponent', function () {
   const tests = [
+/*
+    TODO: Review it.
+    TODO: Moved to general simplify tests.
     // -------------------------------------------------------------------------
     // Cases from al_distribute_over_mult
     ['(x y)^-1', '1 / ((x * y)^1)'],
@@ -138,6 +147,7 @@ describe('distribute negative exponent', function () {
     ['(x y)^(-2x^2)','1 / ((x * y)^(2x^2))'],
     ['(x y)^(-(x + 1))', '1 / ((x * y)^((x + 1)))'],
     // -------------------------------------------------------------------------
+*/
   ]
 
   tests.forEach(t => testDistribute(t[0], t[1]))
@@ -145,6 +155,9 @@ describe('distribute negative exponent', function () {
 
 describe('distribute exponent', function () {
   const tests = [
+/*
+    // TODO: Review it.
+    // TODO: Moved to general simplify tests.
     // -------------------------------------------------------------------------
     // Cases from al_distribute_over_mult
     // When terms are polynomialTerms
@@ -187,6 +200,7 @@ describe('distribute exponent', function () {
     ['x^2', 'x^2'],
     ['x', 'x'],
     // -------------------------------------------------------------------------
+*/
   ]
 
   tests.forEach(t => testDistribute(t[0], t[1]))

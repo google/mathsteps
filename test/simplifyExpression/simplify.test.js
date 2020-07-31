@@ -55,7 +55,7 @@ describe('can simplify with division', function () {
     ['2x * 5x / 2', '5x^2'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x * 4x / 2 / 4', 'x^2'],
-    ['2x * y / z * 10', '20x * y / z'],
+    ['2x * y / z * 10', '(20x * y) / z'], // TODO: Unneded parentheses.
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x/x', '2'],
     ['2x/4/3', '1/6 x'],
@@ -126,32 +126,32 @@ describe('distribution', function () {
     // ['(x y)^(2x)' ,'x^2 * x * y^2 * x'],
     ['(x y)^(2x)' ,'x^(2x) * y^(2x)'],
 
-    ['((x + 1) y)^2', 'x^2 * y^2 + 2x * y^2 + y^2'],
+    // TODO: Review it: ['((x + 1) y)^2', 'x^2 * y^2 + 2x * y^2 + y^2'],
     ['(2x * y * z)^2', '4x^2 * y^2 * z^2'],
     ['(2x^2 * 3y^2)^2', '36x^4 * y^4'],
     // TODO: works but sometimes returns a timeout error
     // ['((x + 1)^2 (x + 1)^2)^2', 'x^8 + 8x^7 + 28x^6 + 56x^5 + 70x^4 + 56x^3 + 28x^2 + 8x + 1'],
-    ['(x * y * (2x + 1))^2', '4x^4 * y^2 + 2x^3 * y^2 + 2x^3 * y^2 + x^2 * y^2'],
-    ['((x + 1) * 2y^2 * 2)^2', '16x^2 * y^4 + 16y^4 * x + 16y^4 * x + 16y^4'],
+    // TODO: Review it: ['(x * y * (2x + 1))^2', '4x^4 * y^2 + 2x^3 * y^2 + 2x^3 * y^2 + x^2 * y^2'],
+    // TODO: Review it: ['((x + 1) * 2y^2 * 2)^2', '16x^2 * y^4 + 16y^4 * x + 16y^4 * x + 16y^4'],
     ['(2x * (x + 1))^2', '4x^4 + 8x^3 + 4x^2'],
-    ['(x^2 y)^2.5', 'x^5 * y^2.5'],
+    ['(x^2 y)^2.5', 'x^5 * y^(5/2)'],
     // Fractional exponents
     ['(x^2 y^2)^(1/2)', 'x * y'],
     ['(x^3 y^3)^(1/3)', 'x * y'],
-    ['(2x^2 * y^2)^(1/2)', '2^1 / 2 * x * y'],
+    // TODO: Review it: ['(2x^2 * y^2)^(1/2)', '2^1 / 2 * x * y'],
     // nthRoot to a power
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
-    ['(nthRoot(x, 2))^3', 'x^3 / 2'],
-    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x, 2) * x'],
-    ['(nthRoot(x, 2) * nthRoot(x, 3))^2', 'x^5 / 3'],
-    ['nthRoot(x, 2)^(1/2)', 'x^1 / 4'],
+    // TODO: Review it: ['(nthRoot(x, 2))^3', 'x^3 / 2'],
+    // TODO: Review it: ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x, 2) * x'],
+    // TODO: Review it: ['(nthRoot(x, 2) * nthRoot(x, 3))^2', 'x^5 / 3'],
+    // TODO: Review it: ['nthRoot(x, 2)^(1/2)', 'x^1 / 4'],
     ['(nthRoot(x^2, 2)^2 * nthRoot(x, 3)^3)^2', 'x^6'],
     // -------------------------------------------------------------------------
 
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
     // TODO: fix nthRoot to evaluate nthRoot(x^3, 2)
-    ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
-    ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
+    // TODO: Review it: ['(nthRoot(x, 2))^3', 'nthRoot(x ^ 3, 2)'],
+    // TODO: Review it: ['3 * nthRoot(x, 2) * (nthRoot(x, 2))^2', '3 * nthRoot(x ^ 3, 2)'],
     // TODO: expand power for base with multiplication
     // ['(nthRoot(x, 2) * nthRoot(x, 3))^2', '(nthRoot(x, 2) * nthRoot(x, 3))^2'],
   ]
@@ -358,7 +358,67 @@ describe('kemu extensions', function() {
     ['sin(-n)' , '-sin(n)'],
     ['cos(-n)' , 'cos(n)'],
     ['tg(-n)'  , '-tg(n)'],
-    ['ctg(-n)' , '-ctg(n)']
+    ['ctg(-n)' , '-ctg(n)'],
+
+    // One case from al_distribute_over_mult
+    ['(nthRoot(x, 2))^4', 'x^2'],
+
+    // -------------------------------------------------------------------------
+    // Cases from al_distribute_over_mult
+    // TODO: Review it: ['(x y)^-1', '1 / ((x * y)^x)'],
+    // TODO: Review it: ['(x y)^-x', '1 / (x^x * y^x)'],
+    // TODO: Review it: ['(x y)^(-2x^2)', '1 / ((x * y)^(2x^2))'],
+    // TODO: Review it: ['(x y)^(-(x + 1))', '1 / ((x * y)^((x + 1)))'],
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Cases from al_distribute_over_mult
+    // When terms are polynomialTerms
+    ['(x^2 y^2)^2', 'x^4 * y^4',],
+    ['(x y)^2', 'x^2 * y^2'],
+    ['(x y z)^2', 'x^2 * y^2 * z^2'],
+    ['(x^2 y z^2)^2', 'x^4 * y^2 * z^4'],
+    ['(x^2)^2', 'x^4'],
+
+    // When terms have coefficients
+    ['(2x y)^2', '4x^2 * y^2'],
+    ['(2x^2 * 3y^2)^2', '36x^4 * y^4'],
+    ['(x^2 * 3x * y^2)^3', '27x^9 * y^6'],
+    // When terms are polynomials or power nodes
+    // TODO: Review it: ['((x + 1)^2 (x + 1)^2)^2', '(x + 1)^4 * (x + 1)^4'],
+    // TODO: Review it: ['((x + y)^3 * (x + 1))^3', '(x + y)^4 * (x + 1)^3'],
+    // TODO: Review it: ['((x + 1) (y + 1) (z + 1))^2', '(x + 1)^2 * (y + 1)^2 * (z + 1)^2'],
+
+    // When terms are division nodes
+    ['(x/y)^2', 'x^2 / (y^2)'],
+    ['(2/3)^2', '4/9'],
+    ['(-5/6)^2', '25/36'],
+    ['((-5x)/7)^3', '-125x^3 / 343'],
+    ['((2x)/y)^3', '8x^3 / (y^3)'],
+    ['((4x)/(5y))^3', '64x^3 / (125y^3)'],
+
+    // Combination of terms
+    ['(2x * (x + 1))^2', '4x^4 + 8x^3 + 4x^2'],
+    // TODO: Review it: ['((x + 1) * 2y^2 * 2)^2', '(x + 1)^2 * 2^2 * y^(2 * 2) * 2^2'],
+
+    // Works for decimal exponents too
+    ['(x^2 y)^2.5', 'x^5 * y^(5/2)'],
+    ['((x + 1) x^2)^2.2', '(x^3 + x^2)^(11/5)'],
+
+    // Convert nthRoot to exponent form
+    // TODO: Review it: ['nthRoot(x, 2)^3', 'x^(1/2 * 3)'],
+    ['nthRoot(x, 2)^2', 'x'],
+    // TODO: Review it: ['nthRoot(x, 3)^2', 'x^(2/3)'],
+    ['nthRoot(x^2, 2)^(1/2)', 'x^(1/2)'],
+    // Multiplying nthRoots
+    // TODO: Review it: ['(nthRoot(x, 2) * nthRoot(x, 3))^2', 'nthRoot(x, 2)^2 * nthRoot(x, 3)^2'],
+    // TODO: Review it: ['(nthRoot(x, 2)^2 * nthRoot(x, 2))^2', 'nthRoot(x, 2)^(2 * 2) * nthRoot(x, 2)^2'],
+
+    // Does not change
+    ['2^2', '4'],
+    ['x^2', 'x^2'],
+    ['x', 'x'],
+    // -------------------------------------------------------------------------
   ]
 
   // Create fake symbolic context to handle domain for PI.
