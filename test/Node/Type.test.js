@@ -137,7 +137,6 @@ describe('isFraction', function () {
 // Tests imported from al_mixed_numbers
 describe('isMixedNumber', function () {
   // Tests imported from al_mixed_numbers
-  // TODO: Review it.
   const tests = [
     ['5(1/6)'],
     ['2(2/3)'],
