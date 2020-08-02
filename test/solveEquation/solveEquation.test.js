@@ -68,10 +68,7 @@ describe('solveEquation for =', function () {
     ['x/(2/3) = 1', 'x = 2/3'],
     ['(x+1)/3 = 4', 'x = 11'],
     ['2(x+3)/3 = 2', 'x = 0'],
-    // TODO: Review it: ['( u )/( 0.3) = 4u + 6.28', 'u = -9.42'],
-
-    // 1 test case from al_distribute_over_mult
-    // TODO: Review it: ['( u )/( 0.3) = 4u + 6.28', 'u = -50/471'],
+    // TODO: Bad result: ['( u )/( 0.3) = 4u + 6.28', 'u = -9.42'],
 
     ['- q - 4.36= ( 2.2q )/( 1.8)', 'q = -981/500'],
     ['5x^2 - 5x - 30 = 0', 'x = [-2, 3]'],
