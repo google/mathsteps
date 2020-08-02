@@ -47,11 +47,5 @@ describe('cancel like terms', function () {
     ['6/(2x)', '3 / (x)']
   ]
 
-  tests.forEach(t => {
-    const before = t[0]
-    const after = t[1]
-    it(before + ' -> ' + after, function () {
-      testCancelLikeTerms(before, after)
-    })
-  })
+  tests.forEach(t => testCancelLikeTerms(t[0], t[1]))
 })
