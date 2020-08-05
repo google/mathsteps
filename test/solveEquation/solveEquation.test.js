@@ -52,8 +52,8 @@ describe('solveEquation for =', function () {
     // TODO: Temporary disabled during merge.
     // TODO: They're uncommented on al_foil.
     // 2 test cases from al_distribute_over_mult
-    // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '2x^6 - x^4 - 50x^2 = -25'],
-    // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
+    // TODO: Crash: ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', '2x^6 - x^4 - 50x^2 = -25'],
+    // TODO: Crash: ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
 
     ['5x + (1/2)x = 27 ', 'x = 54/11'],
     /* Temporary disabled due to breaking changes in mathjs.
@@ -62,9 +62,9 @@ describe('solveEquation for =', function () {
     ['2x/3 = 2x - 4 ', 'x = 3'],
     ['(-2/3)x + 3/7 = 1/2', 'x = -3/28'],
     */
-    ['-9/4v + 4/5 = 7/8 ', 'v = -1/30'],
+    ['-9/4v + 4/5 = 7/8', 'v = -1/30'],
     // TODO: update test once we have root support
-    // TODO: Review it: ['x^2 - 2 = 0', 'x^2 = 2'],
+    // TODO: Partial result: ['x^2 - 2 = 0', 'x^2 = 2'],
     ['x/(2/3) = 1', 'x = 2/3'],
     ['(x+1)/3 = 4', 'x = 11'],
     ['2(x+3)/3 = 2', 'x = 0'],
@@ -111,18 +111,17 @@ describe('solveEquation for =', function () {
     // Cases from al_more_roots
     // Nth root support
     // TODO: + or - for sqrt roots
-    // TODO: Review it: ['x^2 - 2 = 0', 'x = nthRoot(2, 2)'],
-    // TODO: Review it: ['x^2 = 1', 'x = 1'],
-    // TODO: Review it: ['x^3 - 3 = 0', 'x = nthRoot(3, 3)'],
+    // TODO: Partial result: ['x^2 - 2 = 0', 'x = nthRoot(2, 2)'],
+    // TODO: Crash: ['x^2 = 1', 'x = 1'],
+    // TODO: Partial result: ['x^3 - 3 = 0', 'x = nthRoot(3, 3)'],
     // TODO: Crash ['(x^2 - 2) (x^2 - 5) = 0', 'x = [nthRoot(2, 2), nthRoot(5, 2)]'],
     // TODO: Crash ['(x^2 + 2) (x^3 - 7) = 0', 'x = [nthRoot(-2, 2), nthRoot(7, 3)]'],
-    // TODO: Review it: ['x^2 + 1 = 0', 'x = nthRoot(-1, 2)'],
-    // TODO: Review it: ['(y + 1)^2 = 1', 'y = 0'],
-    // TODO: Review it: ['(y + 1)^3 = 8', 'y = 1'],
-    // TODO: Review it: ['(2x + 1)^3 = 1', 'x = 0'],
-    // TODO: Review it: ['(3x + 2)^2 = 2', 'x = nthRoot(2, 2) / 3 - 2/3'],
-    // TODO: fix this
-    // ['(3x + 2)^2 + 2 = 1']
+    // TODO: Partial result: ['x^2 + 1 = 0', 'x = nthRoot(-1, 2)'],
+    // TODO: Crash: ['(y + 1)^2 = 1', 'y = 0'],
+    // TODO: Partial result: ['(y + 1)^3 = 8', 'y = 1'],
+    // TODO: Partial result: ['(2x + 1)^3 = 1', 'x = 0'],
+    // TODO: Crash: ['(3x + 2)^2 = 2', 'x = nthRoot(2, 2) / 3 - 2/3'],
+    // TODO: Crash: ['(3x + 2)^2 + 2 = 1']
     // -------------------------------------------------------------------------
 
     // 1 test case from al_distribute_over_mult
@@ -150,16 +149,19 @@ describe('solveEquation for =', function () {
 
     // TODO: fix these cases, fail because lack of factoring support, for complex #s,
     // for taking the sqrt of both sides, etc
-    // ['((x-2)^2) = 0', 'x = 2'],
-    // ['(x + y) (y + 2) = 0', 'x = [-y, -2]'],
-    // ['x * x (x - 5)^2 = 0', 'NO_STEPS'],
-    // ['x^6 - x', NO_STEPS],
-    // ['4x^2 - 25y^2', ''],
-    // ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', ''],
-    // ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
-    // ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
-    // ['x^2 = -2x - 1', 'x = -1'],
+    // Possible improvement: Skip repeated solutions.
+    ['((x-2)^2) = 0', 'x = [2, 2]'],
+    // TODO: x vs y: ['(x + y) (y + 2) = 0', 'x = [-y, -2]'],
+    // TODO: No steps: ['x * x (x - 5)^2 = 0', NO_STEPS],
+    // TODO: No steps: ['x^6 - x', NO_STEPS],
+
+    // TODO: No steps: ['4x^2 - 25y^2', ''],
+    ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', 'x = [-1, -1, -1, -2]'],
+    // TODO: Crash: ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', ''],
+    // TODO: Crash: ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
+    // TODO: Crash: ['x^2 = -2x - 1', 'x = -1'],
     ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 32/5']
+
   ]
 
   tests.forEach((t) => {
@@ -211,8 +213,7 @@ describe('constant comparison support', function () {
     ['1 <= 2', ChangeTypes.STATEMENT_IS_TRUE],
     ['( 1) = ( 14)', ChangeTypes.STATEMENT_IS_FALSE],
     ['0 = 0', ChangeTypes.STATEMENT_IS_TRUE],
-    // TODO: when we support fancy exponent and sqrt things
-    // ['(1/64)^(-5/6) = 32', ChangeTypes.STATEMENT_IS_TRUE],
+    ['(1/64)^(-5/6) = 32', ChangeTypes.STATEMENT_IS_TRUE],
     // With variables that cancel
     ['( r )/( ( r ) ) = ( 1)/( 10)', ChangeTypes.STATEMENT_IS_FALSE],
     ['5 + (x - 5) = x', ChangeTypes.STATEMENT_IS_TRUE],
