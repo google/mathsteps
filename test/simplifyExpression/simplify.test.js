@@ -135,7 +135,7 @@ describe('distribution', function () {
     // Fractional exponents
     ['(x^2 y^2)^(1/2)', 'x * y'],
     ['(x^3 y^3)^(1/3)', 'x * y'],
-    ['(2x^2 * y^2)^(1/2)', 'x * y * 2^(1/2)'],
+    ['(2x^2 * y^2)^(1/2)', 'x * y * nthRoot(2, 2)'],
 
     // nthRoot to a power
     ['(nthRoot(x, 2) * nthRoot(x, 2))^2', 'x^2'],
@@ -311,6 +311,10 @@ describe('kemu extensions', function() {
 
     // Other.
     ['a / ((b/c) * d)', 'a * c / (b * d)'],
+    ['1/x - 1/x', '0'],
+    ['1/x + 1/x', '2 / x'],
+    ['1/x + 2/x', '3 / x'],
+    ['2/x - 1/x', '1 / x'],
 
     // Trigonometric functions.
     ['-sin(0)'       , '0'],
