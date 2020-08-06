@@ -22,7 +22,7 @@ describe('factor expressions', function () {
   const tests = [
     ['x^2', NO_STEPS],
     ['x^2 + 2x', 'x * (x + 2)'],
-    ['x^2 - 4', '(x + 2) * (x - 2)'],
+    ['x^2 - 4', '(x + nthRoot(4, 2)) * (x - nthRoot(4, 2))'],
     ['x^2 + 4', NO_STEPS],
     ['x^2 + 2x + 1', '(x + 1)^2'],
     ['x^2 + 3x + 2', '(x + 1) * (x + 2)'],
