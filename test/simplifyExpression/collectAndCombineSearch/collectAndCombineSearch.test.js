@@ -14,28 +14,28 @@ describe('combineNthRoots multiplication', function() {
   const tests = [
     ['nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 3)',
       ['(nthRoot(x, 2) * nthRoot(x, 2)) * nthRoot(x, 3)',
-        'nthRoot(x * x, 2) * nthRoot(x, 3)'],
+        'sqrt(x * x) * nthRoot(x, 3)'],
     ],
     ['nthRoot(x, 2) * nthRoot(x, 2) * nthRoot(x, 3) * 3',
       ['3 * (nthRoot(x, 2) * nthRoot(x, 2)) * nthRoot(x, 3)',
-        '3 * nthRoot(x * x, 2) * nthRoot(x, 3)'],
+        '3 * sqrt(x * x) * nthRoot(x, 3)'],
     ],
     ['nthRoot(2x, 2) * nthRoot(2x, 2) * nthRoot(y, 4) * nthRoot(y^3, 4)',
       ['(nthRoot(2 x, 2) * nthRoot(2 x, 2)) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
-        'nthRoot(2 x * 2 x, 2) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
-        'nthRoot(2 x * 2 x, 2) * nthRoot(y * y ^ 3, 4)'],
+        'sqrt(2 x * 2 x) * (nthRoot(y, 4) * nthRoot(y ^ 3, 4))',
+        'sqrt(2 x * 2 x) * nthRoot(y * y ^ 3, 4)'],
     ],
     ['nthRoot(x) * nthRoot(x)',
       [],
-      'nthRoot(x * x, 2)'
+      'sqrt(x * x)'
     ],
     ['nthRoot(3) * nthRoot(3)',
       [],
-      'nthRoot(3 * 3, 2)'
+      'sqrt(3 * 3)'
     ],
-    ['nthRoot(5) * nthRoot(9x, 2)',
+    ['nthRoot(5) * sqrt(9x)',
       [],
-      'nthRoot(5 * 9 x, 2)'
+      'sqrt(5 * 9 x)'
     ]
   ]
   tests.forEach(t => testCollectAndCombineSubsteps(t[0], t[1], t[2]))
@@ -127,9 +127,9 @@ describe('combineConstantPowerTerms multiplication', function() {
 
 describe('collectAndCombineSearch with no substeps', function () {
   const tests = [
-    ['nthRoot(x, 2) * nthRoot(x, 2)', 'nthRoot(x * x, 2)'],
-    ['-nthRoot(x, 2) * nthRoot(x, 2)', '-1 * nthRoot(x * x, 2)'],
-    ['-nthRoot(x, 2) * -nthRoot(x, 2)', '1 * nthRoot(x * x, 2)'],
+    ['nthRoot(x, 2) * nthRoot(x, 2)', 'sqrt(x * x)'],
+    ['-nthRoot(x, 2) * nthRoot(x, 2)', '-1 * sqrt(x * x)'],
+    ['-nthRoot(x, 2) * -nthRoot(x, 2)', '1 * sqrt(x * x)'],
     ['2x + 4x + x', '7x'],
     ['x * x^2 * x', 'x^4'],
     ['3*nthRoot(11) - 2*nthRoot(11)', '1 * nthRoot(11)'],
