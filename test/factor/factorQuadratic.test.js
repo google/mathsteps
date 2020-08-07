@@ -45,7 +45,7 @@ describe('factorQuadratic', function () {
     ['2x^2 - 5x - 3','(2x + 1) * (x - 3)'],
     ['2x^2 - 5x + 3','(x - 1) * (2x - 3)'],
 
-    // TODO: quadratic equation
+    // quadratic equation
     ['x^2 + 4x + 1', 'x^2 + 4x + 1'],
     ['x^2 - 3x + 1', 'x^2 - 3x + 1'],
   ]

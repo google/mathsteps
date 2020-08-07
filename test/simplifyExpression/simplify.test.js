@@ -58,7 +58,7 @@ describe('can simplify with division', function () {
     ['2x * y / z * 10', '(20x * y) / z'],
     ['2x * 4x / 5 * 10 + 3', '16x^2 + 3'],
     ['2x/x', '2'],
-    ['2x/4/3', '1/6 x'],
+    ['2x/4/3', '1/6*x'],
     ['((2+x)(3+x))/(2+x)', '3 + x'],
   ]
   tests.forEach(t => testSimplify(t[0], t[1], t[2]))
@@ -84,7 +84,7 @@ describe('subtraction support', function() {
 describe('support for more * and ( that come from latex conversion', function () {
   const tests = [
     ['(3*x)*(4*x)', '12x^2'],
-    ['(12*z^(2))/27', '4/9 z^2'],
+    ['(12*z^(2))/27', '4/9*z^2'],
     ['x^2 - 12x^2 + 5x^2 - 7', '-6x^2 - 7'],
     ['-(12 x ^ 2)', '-12x^2']
   ]
@@ -151,8 +151,8 @@ describe('distribution', function () {
 
 describe('fractions', function() {
   const tests = [
-    ['5x + (1/2)x', '11/2 x'],
-    ['x + x/2', '3/2 x'],
+    ['5x + (1/2)x', '11/2*x'],
+    ['x + x/2', '3/2*x'],
     ['1 + 1/2', '3/2'],
     ['2 + 5/2 + 3', '15/2'],
     ['9/18-5/18', '2/9'],
@@ -160,7 +160,7 @@ describe('fractions', function() {
     ['(2 / x) * x', '2'],
     ['5/18 - 9/18', '-2/9'],
     ['9/18', '1/2'],
-    ['x/(2/3) + 5', '3/2 x + 5'],
+    ['x/(2/3) + 5', '3/2*x + 5'],
     ['(2+x)/6', '1/3 + x / 6']
   ]
   tests.forEach(t => testSimplify(t[0], t[1], t[2]))
@@ -190,7 +190,7 @@ describe('absolute value support', function() {
     ['(x^3*y)/x^2 + abs(-5)', 'x * y + 5'],
     ['-6 + -5 - abs(-4) + -10 - 3 abs(-4)', '-37'],
     ['5*abs((2+2))*10', '200'],
-    ['5x + (1/abs(-2))x', '11/2 x'],
+    ['5x + (1/abs(-2))x', '11/2*x'],
     ['abs(5/18-abs(9/-18))', '2/9'],
     // handle parens around abs()
     ['( abs( -3) )/(3)', '1'],

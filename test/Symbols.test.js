@@ -24,7 +24,7 @@ describe('getLastSymbolTerm', function() {
     ['x/(x+3)', 'x / (x + 3)', 'x'],
     ['x/(x+3) + y', 'x / (x + 3)', 'x'],
     ['x/(x+3) + y + 3x', 'y', 'y'],
-    ['x/(x+3) + y + 3x + 1/2y', '1/2 y', 'y'],
+    ['x/(x+3) + y + 3x + 1/2y', '1/2*y', 'y'],
   ]
 
   tests.forEach(t => runTest(Symbols.getLastSymbolTerm, t[0], t[1], t[2]))
