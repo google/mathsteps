@@ -154,7 +154,7 @@ describe('subtraction', function () {
 
 describe('flattens nested functions', function () {
   const tests = [
-    ['nthRoot(11)(x+y)',
+    ['sqrt(11)(x+y)',
       opNode('*', [
         nthRootNode(constNode(11)),
         parenNode(opNode('+', [symbolNode('x'), symbolNode('y')]))
@@ -172,7 +172,7 @@ describe('flattens nested functions', function () {
       ])
     ],
 
-    ['nthRoot(2)(nthRoot(18)+4*nthRoot(3))',
+    ['sqrt(2)(sqrt(18)+4*sqrt(3))',
       opNode('*', [
         nthRootNode(constNode(2)),
         parenNode(
