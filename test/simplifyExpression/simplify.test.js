@@ -275,10 +275,10 @@ describe('kemu extensions', function() {
     // Sqrt from const (complex radicand).
     ['sqrt(2x)', 'sqrt(2 x)'],
     ['sqrt(4x)', '2 * sqrt(x)'],
-    ['sqrt(12x)', '2 * sqrt(3 * x)'],
-    ['sqrt(434957043*x)', '12041 * sqrt(3 * x)'],
+    ['sqrt(12x)', '2 * sqrt(3 x)'],
+    ['sqrt(434957043*x)', '12041 * sqrt(3 x)'],
     ['sqrt(x * 4 * y)', '2 * sqrt(x * y)'],
-    ['sqrt(x * 434957043 * y)', '12041 * sqrt(3 * x * y)'],
+    ['sqrt(x * 434957043 * y)', '12041 * sqrt(3 x * y)'],
 
     // Multiply order: Nothing changed
     ['x', 'x'],
