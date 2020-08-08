@@ -111,7 +111,7 @@ describe('solveEquation for =', function () {
     ['x^3 - 3 = 0', 'x = [nthRoot(3, 3), nthRoot(3, 3), nthRoot(3, 3)]'],
     ['(x^2 - 2) (x^2 - 5) = 0', 'x = [-nthRoot(2, 2), nthRoot(2, 2), -nthRoot(5, 2), nthRoot(5, 2)]'],
     ['(x^2 + 2) (x^3 - 7) = 0', 'x = [nthRoot(7, 3), nthRoot(7, 3), nthRoot(7, 3)]'],
-    ['x^2 + 1 = 0', 'x = [-sqrt(-1), sqrt(-1)]'],
+    ['x^2 + 1 = 0', 'x = []'], // No real solutions
     // TODO: ['(y + 1)^2 = 1', 'y = 0'],
     // TODO: ['(y + 1)^3 = 8', 'y = 1'],
     // TODO: ['(2x + 1)^3 = 1', 'x = 0'],
@@ -149,8 +149,7 @@ describe('solveEquation for =', function () {
     // TODO: x vs y: ['(x + y) (y + 2) = 0', 'x = [-y, -2]'],
     // TODO: No steps: ['x * x (x - 5)^2 = 0', NO_STEPS],
     ['x^6 - x = 0', 'x = [0, 1]'],
-
-    ['4x^2 - 25y^2', 'x = [-(5 y / 2), 5 y / 2]'],
+    ['4x^2 - 25y^2 = 0', 'x = [-5 / 2 * y, 5 y / 2]'],
     ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', 'x = [-1, -1, -1, -2]'],
     ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', 'x = [-1 / sqrt(2), 1 / sqrt(2), -nthRoot(5, 2), nthRoot(5, 2)]'],
     // TODO: Too many steps: ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
@@ -170,9 +169,7 @@ describe('solveEquation for non = comparators', function() {
     ['2x < 6', 'x < 3'],
     ['-x > 1', 'x < -1'],
     ['2 - x < 3', 'x > -1'],
-    /* TODO: Fails with too long or too many steps error.
-    ['9.5j / 6+ 5.5j >= 3( 5j - 2)', 'j <= 0.7578947368421052312465373961218850001457938474995789412297327369']
-    */
+    ['9.5j / 6+ 5.5j >= 3( 5j - 2)', 'j <= 72/95']
   ]
   tests.forEach(t => testSolve(t[0], t[1], t[2]))
 })
