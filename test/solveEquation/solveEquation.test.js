@@ -147,7 +147,11 @@ describe('solveEquation for =', function () {
     // Possible improvement: Skip repeated solutions.
     ['((x-2)^2) = 0', 'x = [2, 2]'],
     // TODO: x vs y: ['(x + y) (y + 2) = 0', 'x = [-y, -2]'],
-    // TODO: No steps: ['x * x (x - 5)^2 = 0', NO_STEPS],
+
+    // Possible improvement: don't treat x (...) as function call?
+    // Possible improvement: x (x - 5) vs x  * (x - 5)
+    ['x * x * (x - 5)^2 = 0', 'x = [0, 0, 5, 5]'],
+
     ['x^6 - x = 0', 'x = [0, 1]'],
     ['4x^2 - 25y^2 = 0', 'x = [-5 / 2 * y, 5 y / 2]'],
     ['(x^2 + 2x + 1) (x^2 + 3x + 2) = 0', 'x = [-1, -1, -1, -2]'],
