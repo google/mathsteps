@@ -112,11 +112,11 @@ describe('solveEquation for =', function () {
     ['(x^2 - 2) (x^2 - 5) = 0', 'x = [-nthRoot(2, 2), nthRoot(2, 2), -nthRoot(5, 2), nthRoot(5, 2)]'],
     ['(x^2 + 2) (x^3 - 7) = 0', 'x = [nthRoot(7, 3), nthRoot(7, 3), nthRoot(7, 3)]'],
     ['x^2 + 1 = 0', 'x = []'], // No real solutions
-    // TODO: ['(y + 1)^2 = 1', 'y = 0'],
+    ['(y + 1)^2 = 1', 'y = [0, -2]'],
     ['(y + 1)^3 = 8', 'y = 1'],
     ['(2x + 1)^3 = 1', 'x = 0'],
-    // TODO: ['(3x + 2)^2 = 2', 'x = nthRoot(2, 2) / 3 - 2/3'],
-    // TODO: ['(3x + 2)^2 + 2 = 1']
+    ['(3x + 2)^2 = 2', 'x = [sqrt(2) / 3 + -2 / 3, -sqrt(2) / 3 + -2 / 3]'],
+    // TODO: Too many steps: ['(3x + 2)^2 + 2 = 1']
     // -------------------------------------------------------------------------
 
     // 1 test case from al_distribute_over_mult
@@ -142,8 +142,6 @@ describe('solveEquation for =', function () {
     ['-(x/2)=3', 'x = -6'],
     ['44x=2.74', 'x = 137/2200'],
 
-    // TODO: fix these cases, fail because lack of factoring support, for complex #s,
-    // for taking the sqrt of both sides, etc
     // Possible improvement: Skip repeated solutions.
     ['((x-2)^2) = 0', 'x = [2, 2]'],
     // TODO: x vs y: ['(x + y) (y + 2) = 0', 'x = [-y, -2]'],
@@ -159,7 +157,6 @@ describe('solveEquation for =', function () {
     // TODO: Too many steps: ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', ''],
     ['x^2 = -2x - 1', 'x = [-1, -1]'],
     ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 32/5']
-
   ]
 
   tests.forEach((t) => {
