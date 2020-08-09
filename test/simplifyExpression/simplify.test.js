@@ -14,7 +14,8 @@ function testSimplify(exprStr, outputStr, debug = false, ctx) {
 }
 
 describe('simplify (basics)', function () {
-  // Cases from branch 'division'
+  // Imported from https://github.com/google/mathsteps/tree/division.
+  // Thanks to Anthony Liang (https://github.com/aliang8)
   const tests = [
     ['x + 0', 'x'],
     ['2 * 0 * x', '0'],
@@ -114,6 +115,7 @@ describe('distribution', function () {
 
     // -------------------------------------------------------------------------
     // Cases from al_distribute_over_mult
+    // Thanks to Anthony Liang (https://github.com/aliang8)
     // Originaly live in distribute tests.
     // Expanding negative exponents
     ['(x y)^-1', '1 / (x * y)'],
@@ -356,6 +358,7 @@ describe('kemu extensions', function() {
 
     // -------------------------------------------------------------------------
     // Cases from al_distribute_over_mult
+    // Thanks to Anthony Liang (https://github.com/aliang8)
     // Originaly lived in distribute tests.
     ['(nthRoot(x, 2))^4', 'x^2'],
     ['(x y)^-1', '1 / (x * y)'],

@@ -46,10 +46,9 @@ describe('solveEquation for =', function () {
     ['9x + 4 - 3 = 2x', 'x = -1/7'],
     ['9x + 4 - 3 = -2x', 'x = -1/11'],
 
-    // TODO: Temporary disabled during merge.
-    // TODO: They're uncommented on al_foil.
     // 2 test cases from al_distribute_over_mult
     ['(2x^2 - 1)(x^2 - 5)(x^2 + 5) = 0', 'x = [-1 / sqrt(2), 1 / sqrt(2), -nthRoot(5, 2), nthRoot(5, 2)]'],
+    // Possible improvement: Fallback to generic delta scheme (-b^2/4ac) ?
     // TODO: Partial result: ['(-x ^ 2 - 4x + 2)(-3x^2 - 6x + 3) = 0', '3x^4 + 18x^3 + 15x^2 - 24x = -6'],
 
     ['5x + (1/2)x = 27 ', 'x = 54/11'],
@@ -69,16 +68,19 @@ describe('solveEquation for =', function () {
     ['x^2 + 2x - 15 = 0', 'x = [3, -5]'],
     ['x^2 + 2x = 0', 'x = [0, -2]'],
     ['x^2 - 4 = 0', 'x = [-2, 2]'],
+
     // Perfect square
     ['x^2 + 2x + 1 = 0', 'x = [-1, -1]'],
     ['x^2 + 4x + 4 = 0', 'x = [-2, -2]'],
     ['x^2 - 6x + 9 = 0', 'x = [3, 3]'],
     ['(x + 4)^2 = 0', 'x = [-4, -4]'],
     ['(x - 5)^2 = 0', 'x = [5, 5]'],
+
     // Difference of squares
     ['4x^2 - 81 = 0', 'x = [-9 / 2, 9 / 2]'],
     ['x^2 - 9 = 0', 'x = [-3, 3]'],
     ['16y^2 - 25 = 0', 'y = [-5 / 4, 5 / 4]'],
+
     // Some weird edge cases (we only support a leading term with coeff 1)
     ['x * x + 12x + 36 = 0', 'x = [-6, -6]'],
     ['x * x - 2x + 1 = 0', 'x = [1, 1]'],
@@ -100,7 +102,8 @@ describe('solveEquation for =', function () {
     ['(x+2)^2 -x^2 = 4(x+1)', '4 = 4'],
 
     // -------------------------------------------------------------------------
-    // Cases from al_more_roots
+    // Imported from https://github.com/google/mathsteps/tree/al_more_roots
+    // Thanks to Anthony Liang (https://github.com/aliang8)
     // Nth root support
     ['x^2 - 2 = 0', 'x = [-nthRoot(2, 2), nthRoot(2, 2)]'],
     ['x^2 - 1 = 0', 'x = [-1, 1]'],
@@ -116,7 +119,8 @@ describe('solveEquation for =', function () {
     // TODO: Too many steps: ['(3x + 2)^2 + 2 = 1']
     // -------------------------------------------------------------------------
 
-    // 1 test case from al_distribute_over_mult
+    // 1 test case from https://github.com/google/mathsteps/tree/al_distribute_over_mult
+    // Thanks to Lili Dworkin (https://github.com/ldworkin)
     ['x - 3.4= ( x - 2.5)/( 1.3)', 'x = 32/5'],
 
     ['2/x = 1', 'x = 2'],
@@ -127,10 +131,12 @@ describe('solveEquation for =', function () {
     ['6/x + 8/(2x) = 10', 'x = 1'],
 
     // Imported from https://github.com/florisdf/mathsteps/blob/master/test/solveEquation/solveEquation.test.js
+    // Thanks to Floris (https://github.com/florisdf)
     ['(x+1)=4', 'x = 3'],
     ['((x)/(4))=4', 'x = 16'],
 
     // Imported from: https://github.com/GabrielMahan/mathsteps/blob/master/test/solveEquation/solveEquation.test.js
+    // Thanks to Gabriel Mahan (https://github.com/GabrielMahan)
     ['(2x-12)=(x+4)', 'x = 16'],
     ['x+y=x+y', '0 = 0'],
     ['y + 2x = 14 + y', 'x = 7'],
