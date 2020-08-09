@@ -146,8 +146,8 @@ describe('solveEquation for =', function () {
     ['44x=2.74', 'x = 137/2200'],
 
     // Possible improvement: Possibility to point unknown variable directly?
-    ['(x + y) (y + 2) = 0', 'x = -y'],      // Solve for x (first found symbol)
-    ['(y + x) (y + 2) = 0', 'y = [-x, -2]', // Solve for y (first found symbol)
+    ['(x + y) (y + 2) = 0', 'x = -y'],       // Solve for x (first found symbol)
+    ['(y + x) (y + 2) = 0', 'y = [-x, -2]'], // Solve for y (first found symbol)
 
     // Possible improvement: Skip repeated solutions.
     ['((x-2)^2) = 0', 'x = [2, 2]'],
