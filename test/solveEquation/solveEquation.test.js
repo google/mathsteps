@@ -38,10 +38,7 @@ describe('solveEquation for =', function () {
     ['5x/2 + 2 = 3x/2 + 10', 'x = 8'],
     ['2x - 1 = -x', 'x = 1/3'],
     ['2 - x = -4 + x', 'x = 3'],
-    /* Temporary disabled due to breaking changes in mathjs.
-       negate(2x/3) gives -2/3x when mathjs@4.0.0 or later is used.
     ['2x/3 = 2', 'x = 3'],
-    */
     ['2x - 3 = x', 'x = 3'],
     ['8 - 2a = a + 3 - 1', 'a = 2'],
     ['2 - x = 4', 'x = -2'],
@@ -115,7 +112,7 @@ describe('solveEquation for =', function () {
     ['(y + 1)^2 = 1', 'y = [0, -2]'],
     ['(y + 1)^3 = 8', 'y = 1'],
     ['(2x + 1)^3 = 1', 'x = 0'],
-    ['(3x + 2)^2 = 2', 'x = [sqrt(2) / 3 + -2 / 3, -sqrt(2) / 3 + -2 / 3]'],
+    ['(3x + 2)^2 = 2', 'x = [sqrt(2) / 3 - 2 / 3, -sqrt(2) / 3 - 2 / 3]'],
     // TODO: Too many steps: ['(3x + 2)^2 + 2 = 1']
     // -------------------------------------------------------------------------
 
@@ -142,9 +139,12 @@ describe('solveEquation for =', function () {
     ['-(x/2)=3', 'x = -6'],
     ['44x=2.74', 'x = 137/2200'],
 
+    // Possible improvement: Possibility to point unknown variable directly?
+    ['(x + y) (y + 2) = 0', 'x = -y'],      // Solve for x (first found symbol)
+    ['(y + x) (y + 2) = 0', 'y = [-x, -2]', // Solve for y (first found symbol)
+
     // Possible improvement: Skip repeated solutions.
     ['((x-2)^2) = 0', 'x = [2, 2]'],
-    // TODO: x vs y: ['(x + y) (y + 2) = 0', 'x = [-y, -2]'],
 
     // Possible improvement: don't treat x (...) as function call?
     // Possible improvement: x (x - 5) vs x  * (x - 5)
