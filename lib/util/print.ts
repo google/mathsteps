@@ -3,11 +3,13 @@ import { NodeCreator } from "../node/Creator";
 import { NodeType } from "../node/NodeType";
 import { flattenOperands } from "./flattenOperands";
 
-// Prints an expression node in asciimath
-// If showPlusMinus is true, print + - (e.g. 2 + -3)
-// If it's false (the default) 2 + -3 would print as 2 - 3
-// (The + - is needed to support the conversion of subtraction to addition of
-// negative terms. See flattenOperands for more details if you're curious.)
+/**
+ * Prints an expression node in asciimath
+ * If showPlusMinus is true, print + - (e.g. 2 + -3)
+ * If it's false (the default) 2 + -3 would print as 2 - 3
+ * (The + - is needed to support the conversion of subtraction to addition of
+ * negative terms. See flattenOperands for more details if you're curious.)
+ * */
 export function printAscii(node, showPlusMinus = false) {
   node = flattenOperands(node.cloneDeep());
 
@@ -21,6 +23,7 @@ export function printAscii(node, showPlusMinus = false) {
 export function printTreeTraversal(node, parentNode = undefined) {
   if (PolynomialTerm.isPolynomialTerm(node)) {
     const polyTerm = new PolynomialTerm(node);
+
     // This is so we don't print 2/3 x^2 as 2 / 3x^2
     // Still print x/2 as x/2 and not 1/2 x though
     if (polyTerm.hasFractionCoeff() && node.op !== "/") {
@@ -114,9 +117,11 @@ export function printTreeTraversal(node, parentNode = undefined) {
   }
 }
 
-// Prints an expression node in LaTeX
-// (The + - is needed to support the conversion of subtraction to addition of
-// negative terms. See flattenOperands for more details if you're curious.)
+/**
+ * Prints an expression node in LaTeX
+ * (The + - is needed to support the conversion of subtraction to addition of
+ * negative terms. See flattenOperands for more details if you're curious.)
+ * */
 export function printLatex(node, showPlusMinus = false) {
   let nodeTex = node.toTex({ implicit: "hide" });
 

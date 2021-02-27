@@ -6,45 +6,49 @@ import { NodeCreator } from "../node/Creator";
 import { NodeMixedNumber } from "../node/MixedNumber";
 import { PolynomialTerm } from "../node/PolynomialTerm";
 
-/*
-Background:
+/**
+ * Background:
+ *
+ *   Expression trees are commonly parsed as binary trees, and mathjs does this too.
+ *   That means that a mathjs expression tree likely looks like:
+ *   http://collegelabs.co/clabs/nld/images/524px-Expression_Tree.svg.png
+ *
+ *     e.g. 2+2+2 is parsed by mathjs as 2 + 2+2 (a plus node with children 2 and 2+2)
+ * However...
+ * 1. This is more complicated than needed. 2+2+2 is the same as 2+(2+2)
+ * 2. To collect like terms, we actually *need* it to be flat. e.g. with 2x+(2+2x),
+ * there's no easy way to know that there are two 2x's to collect without
+ * running up and down the tree. If we flatten to 2x+2+2x, it becomes a lot
+ * easier to collect like terms to (2x+2x) + 2, which would then be combined to
+ * 4x + 2
+ * The purpose of flatteOperands is to flatten the tree in this way.
+ *
+ *   e.g. an expression that is grouped in the tree like
+ * (2 + ((4 * ((1 + 2) + (3 + 4))) * 8))
+ * should be flattened to look like:
+ *   (2 + (4 * (1 + 2 + 3 + 4) * 8))
+ *
+ * Subtraction and division are also flattened, though that gets a bit more
+ * complicated and you may as well start reading through the code if you're
+ * interested in how that works
+ * */
 
-Expression trees are commonly parsed as binary trees, and mathjs does this too.
-That means that a mathjs expression tree likely looks like:
-http://collegelabs.co/clabs/nld/images/524px-Expression_Tree.svg.png
-
-e.g. 2+2+2 is parsed by mathjs as 2 + 2+2 (a plus node with children 2 and 2+2)
-However...
-1. This is more complicated than needed. 2+2+2 is the same as 2+(2+2)
-2. To collect like terms, we actually *need* it to be flat. e.g. with 2x+(2+2x),
-   there's no easy way to know that there are two 2x's to collect without
-   running up and down the tree. If we flatten to 2x+2+2x, it becomes a lot
-   easier to collect like terms to (2x+2x) + 2, which would then be combined to
-   4x + 2
-The purpose of flatteOperands is to flatten the tree in this way.
-
-e.g. an expression that is grouped in the tree like
-(2 + ((4 * ((1 + 2) + (3 + 4))) * 8))
-should be flattened to look like:
-(2 + (4 * (1 + 2 + 3 + 4) * 8))
-
-Subtraction and division are also flattened, though that gets a bit more
-complicated and you may as well start reading through the code if you're
-interested in how that works
-*/
-
-// Flattens the tree accross the same operation (just + and * for now)
-// e.g. 2+2+2 is parsed by mathjs as 2+(2+2), but this would change that to
-// 2+2+2, ie one + node that has three children.
-// Input: an expression tree
-// Output: the expression tree updated with flattened operations
+/**
+ * Flattens the tree accross the same operation (just + and * for now)
+ * e.g. 2+2+2 is parsed by mathjs as 2+(2+2), but this would change that to
+ * 2+2+2, ie one + node that has three children.
+ * Input: an expression tree
+ * Output: the expression tree updated with flattened operations
+ * */
 export function flattenOperands(node) {
-  // If the node is a mixed number, do not perform any flattening
-  // -- Flattening will take out the implicit multiplication, and so
-  //    it will be impossible to tell if the node is a mixed number or
-  //    if it is legitimate multiplication
-  // -- Converting fractions happens before any other simplification step,
-  //    so the tree *will* get flattened before any other changes happen
+  /**
+   * If the node is a mixed number, do not perform any flattening
+   * -- Flattening will take out the implicit multiplication, and so
+   *    it will be impossible to tell if the node is a mixed number or
+   *    if it is legitimate multiplication
+   * -- Converting fractions happens before any other simplification step,
+   *    so the tree *will* get flattened before any other changes happen
+   * */
   if (NodeMixedNumber.isMixedNumber(node)) {
     return node;
   }
@@ -118,12 +122,14 @@ export function flattenOperands(node) {
   }
 }
 
-// Flattens operations (see flattenOperands docstring) for an operator node
-// with an operation type that can be flattened. Currently * + / are supported.
-// Returns the updated, flattened node.
-// NOTE: the returned node will be of operation type `parentOp`, regardless of
-// the operation type of `node`, unless `node` wasn't changed
-// e.g. 2 * 3 / 4 would be * of 2 and 3/4, but 2/3 would stay 2/3 and division
+/**
+ * Flattens operations (see flattenOperands docstring) for an operator node
+ * with an operation type that can be flattened. Currently * + / are supported.
+ * Returns the updated, flattened node.
+ * NOTE: the returned node will be of operation type `parentOp`, regardless of
+ * the operation type of `node`, unless `node` wasn't changed
+ * e.g. 2 * 3 / 4 would be * of 2 and 3/4, but 2/3 would stay 2/3 and division
+ * */
 function flattenSupportedOperation(node, parentOp) {
   // First get the list of operands that this operator operates on.
   // e.g. 2 + 3 + 4 + 5 is stored as (((2 + 3) + 4) + 5) in the tree and we
@@ -166,11 +172,13 @@ function flattenSupportedOperation(node, parentOp) {
   return node;
 }
 
-// Recursively finds the operands under `parentOp` in the input tree `node`.
-// The input tree `node` will always have a parent that is an operation
-// of type `op`.
-// Op is a string e.g. '+' or '*'
-// returns the list of all the node operated on by `parentOp`
+/**
+ * Recursively finds the operands under `parentOp` in the input tree `node`.
+ * The input tree `node` will always have a parent that is an operation
+ * of type `op`.
+ * Op is a string e.g. '+' or '*'
+ * returns the list of all the node operated on by `parentOp`
+ * */
 function getOperands(node, parentOp) {
   // We can only recurse on operations of type op.
   // If the node is not an operator node or of the right operation type,
@@ -230,15 +238,17 @@ function getOperands(node, parentOp) {
   }
 }
 
-// Return true iff node is a candidate for simplifying to a polynomial
-// term. This function is a helper function for getOperands.
-// Context: Usually we'd flatten 2*2*x to a multiplication node with 3 children
-// (2, 2, and x) but if we got 2*2x, we want to keep 2x together.
-// 2*2*x (a tree stored in two levels because initially nodes only have two
-// children) in the flattening process should be turned into 2*2x instead of
-// 2*2*x (which has three children).
-// So this function would return true for the input 2*2x, if it was stored as
-// an expression tree with root node * and children 2*2 and x
+/**
+ * Return true iff node is a candidate for simplifying to a polynomial
+ * term. This function is a helper function for getOperands.
+ * Context: Usually we'd flatten 2*2*x to a multiplication node with 3 children
+ * (2, 2, and x) but if we got 2*2x, we want to keep 2x together.
+ * 2*2*x (a tree stored in two levels because initially nodes only have two
+ * children) in the flattening process should be turned into 2*2x instead of
+ * 2*2*x (which has three children).
+ * So this function would return true for the input 2*2x, if it was stored as
+ * an expression tree with root node * and children 2*2 and x
+ * */
 function isPolynomialTermMultiplication(node) {
   // This concept only applies when we're flattening multiplication operations
   if (node.op !== "*") {
@@ -259,10 +269,12 @@ function isPolynomialTermMultiplication(node) {
   }
 }
 
-// Takes a node that might represent a multiplication with a polynomial term
-// and flattens it appropriately so the coefficient and symbol are grouped
-// together. Returns a new list of operands from this node that should be
-// multiplied together.
+/**
+ * Takes a node that might represent a multiplication with a polynomial term
+ * and flattens it appropriately so the coefficient and symbol are grouped
+ * together. Returns a new list of operands from this node that should be
+ * multiplied together.
+ * */
 function maybeFlattenPolynomialTerm(node) {
   // We recurse on the left side of the tree to find operands so far
   const operands = getOperands(node.args[0], "*");
@@ -291,11 +303,13 @@ function maybeFlattenPolynomialTerm(node) {
   return operands;
 }
 
-// Takes a division node and returns a list of operands
-// If there is multiplication in the numerator, the operands returned
-// are to be multiplied together. Otherwise, a list of length one with
-// just the division node is returned. getOperands might change the
-// operator accordingly.
+/**
+ * Takes a division node and returns a list of operands
+ * If there is multiplication in the numerator, the operands returned
+ * are to be multiplied together. Otherwise, a list of length one with
+ * just the division node is returned. getOperands might change the
+ * operator accordingly.
+ * */
 function flattenDivision(node) {
   // We recurse on the left side of the tree to find operands so far
   // Flattening division is always considered part of a bigger picture
@@ -320,10 +334,12 @@ function flattenDivision(node) {
   return operands;
 }
 
-// Returns true if there is a * node nested in some division, with no other
-// operators or parentheses between them.
-// e.g. returns true: 2*3/4, 2 / 5 / 6 * 7 / 8
-// e.g. returns false: 3/4/5, ((3*2) - 5) / 7, (2*5)/6
+/**
+ * Returns true if there is a * node nested in some division, with no other
+ * operators or parentheses between them.
+ * e.g. returns true: 2*3/4, 2 / 5 / 6 * 7 / 8
+ * e.g. returns false: 3/4/5, ((3*2) - 5) / 7, (2*5)/6
+ * */
 function hasMultiplicationBesideDivision(node) {
   if (!NodeType.isOperator(node)) {
     return false;

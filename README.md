@@ -1,16 +1,18 @@
-## Work in progress
+# Work in progress
 
 This is work in progress and not ready to be used.
 
 What has been achieved so far:
 - Porting https://github.com/google/mathsteps to TypeScript!
 
+# Why Mathsteps
+Mathsteps aims to provide step-by-step instructions like a tutor would give them to a student.
 
 ## Requirements
 
 Mathsteps requires Node version > 6.0.0
 
-## Usage
+## Usage Example
 
 To install mathsteps using npm:
 
@@ -43,13 +45,43 @@ steps.forEach(step => {
 });
 ```
 
-(if you're using mathsteps v0.1.6 or lower, use `.print()` instead of `.ascii()`)
-
 To see all the change types:
 ```js
 const changes = mathsteps.ChangeTypes;
 ```
 
+## Which syntax is mathsteps expecting?
+
+[Asciimath](http://asciimath.org/)
+
+
+
+
+
+# Simplify Expression
+Simplifying Expressions.
+
+## What can mathsteps simplifyExpression do?
+
+
+## What can't mathsteps simplifyExpression do?
+
+
+
+# Solve Equation
+Solving equations.
+
+## What can mathsteps solveEquation do?
+- Solve linear equations with one variable
+- Solve for y in linear equations with x and y as variables.
+- Solve binomic equation
+- Some inequalities (e.g. "x + 2 > 3" to "x > 1")
+- Constant comparison (e.g. "1 = 2" to ChangeTypes.STATEMENT_IS_FALSE)
+
+## What can't mathsteps solveEquation do?
+- Expressions with multiple variables other than y and x
+- Some inequalities (e.g. "( x )/( 2x + 7) >= 4")
+- Calculate square root of x^2, so result will stay e.g. x^2=2
 
 
 ## Contributing
