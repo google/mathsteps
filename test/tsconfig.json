@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2015",
+    "declaration": true,
+    "outDir": "./dist",
+    "sourceMap": true
+  },
+  "typeRoots": [
+    "../node_modules"
+  ],
+  "types": [
+    "jasmine"
+  ],
+  "include": [
+    "./**/*.ts",
+    "../lib/**/*.ts"
+  ]
+}

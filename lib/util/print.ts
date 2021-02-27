@@ -1,0 +1,129 @@
+import { PolynomialTerm } from "../node/PolynomialTerm";
+import { NodeCreator } from "../node/Creator";
+import { NodeType } from "../node/NodeType";
+import { flattenOperands } from "./flattenOperands";
+
+// Prints an expression node in asciimath
+// If showPlusMinus is true, print + - (e.g. 2 + -3)
+// If it's false (the default) 2 + -3 would print as 2 - 3
+// (The + - is needed to support the conversion of subtraction to addition of
+// negative terms. See flattenOperands for more details if you're curious.)
+export function printAscii(node, showPlusMinus = false) {
+  node = flattenOperands(node.cloneDeep());
+
+  let string = printTreeTraversal(node);
+  if (!showPlusMinus) {
+    string = string.replace(/\s*?\+\s*?\-\s*?/g, " - ");
+  }
+  return string;
+}
+
+export function printTreeTraversal(node, parentNode = undefined) {
+  if (PolynomialTerm.isPolynomialTerm(node)) {
+    const polyTerm = new PolynomialTerm(node);
+    // This is so we don't print 2/3 x^2 as 2 / 3x^2
+    // Still print x/2 as x/2 and not 1/2 x though
+    if (polyTerm.hasFractionCoeff() && node.op !== "/") {
+      const coeffTerm = polyTerm.getCoeffNode();
+      const coeffStr = printTreeTraversal(coeffTerm);
+
+      const nonCoeffTerm = NodeCreator.polynomialTerm(
+        polyTerm.getSymbolNode(),
+        polyTerm.exponent,
+        null
+      );
+      const nonCoeffStr = printTreeTraversal(nonCoeffTerm);
+
+      return `${coeffStr} ${nonCoeffStr}`;
+    }
+  }
+
+  if (NodeType.isIntegerFraction(node)) {
+    return `${node.args[0]}/${node.args[1]}`;
+  }
+
+  if (NodeType.isOperator(node)) {
+    if (node.op === "/" && NodeType.isOperator(node.args[1])) {
+      return `${printTreeTraversal(node.args[0])} / (${printTreeTraversal(
+        node.args[1]
+      )})`;
+    }
+
+    let opString = "";
+
+    switch (node.op) {
+      case "+":
+      case "-":
+        // add space between operator and operands
+        opString = ` ${node.op} `;
+        break;
+      case "*":
+        if (node.implicit) {
+          break;
+        }
+        opString = ` ${node.op} `;
+        break;
+      case "/":
+        // no space for constant fraction divisions (slightly easier to read)
+        if (NodeType.isConstantFraction(node, true)) {
+          opString = `${node.op}`;
+        } else {
+          opString = ` ${node.op} `;
+        }
+        break;
+      case "^":
+        // no space for exponents
+        opString = `${node.op}`;
+        break;
+    }
+
+    let str = node.args
+      .map((arg) => printTreeTraversal(arg, node))
+      .join(opString);
+
+    // Need to add parens around any [+, -] operation
+    // nested in [/, *, ^] operation
+    // Check #120, #126 issues for more details.
+    // { "/" [{ "+" ["x", "2"] }, "2"] } -> (x + 2) / 2.
+    if (
+      parentNode &&
+      NodeType.isOperator(parentNode) &&
+      node.op &&
+      parentNode.op &&
+      "*/^".indexOf(parentNode.op) >= 0 &&
+      "+-".indexOf(node.op) >= 0
+    ) {
+      str = `(${str})`;
+    }
+
+    return str;
+  } else if (NodeType.isParenthesis(node)) {
+    return `(${printTreeTraversal(node.content)})`;
+  } else if (NodeType.isUnaryMinus(node)) {
+    if (
+      NodeType.isOperator(node.args[0]) &&
+      "*/^".indexOf(node.args[0].op) === -1 &&
+      !PolynomialTerm.isPolynomialTerm(node)
+    ) {
+      return `-(${printTreeTraversal(node.args[0])})`;
+    } else {
+      return `-${printTreeTraversal(node.args[0])}`;
+    }
+  } else {
+    return node.toString();
+  }
+}
+
+// Prints an expression node in LaTeX
+// (The + - is needed to support the conversion of subtraction to addition of
+// negative terms. See flattenOperands for more details if you're curious.)
+export function printLatex(node, showPlusMinus = false) {
+  let nodeTex = node.toTex({ implicit: "hide" });
+
+  if (!showPlusMinus) {
+    // Replaces '+ -' with '-'
+    nodeTex = nodeTex.replace(/\s*?\+\s*?\-\s*?/g, " - ");
+  }
+
+  return nodeTex;
+}

@@ -1,28 +1,35 @@
 {
-  "name": "mathsteps",
-  "version": "0.2.0",
+  "name": "@taskbase/mathsteps",
+  "version": "1.0.0",
   "description": "Step by step math solutions",
-  "main": "index.js",
-  "dependencies": {
-    "mathjs": "3.11.2"
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=6.0.0"
   },
   "devDependencies": {
+    "@types/assert": "^1.5.4",
+    "@types/jasmine": "^3.6.4",
+    "@types/mathjs": "^6.0.11",
     "eslint": "^3.10.2",
     "eslint-config-google": "^0.7.0",
     "eslint-plugin-sort-requires": "^2.1.0",
-    "mocha": "2.4.5"
+    "mathjs": "3.11.2",
+    "mocha": "2.4.5",
+    "prettier": "2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
   },
   "scripts": {
     "lint": "node_modules/.bin/eslint .",
-    "test": "node_modules/.bin/mocha --recursive",
-    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit"
+    "test": "npx tsc --project test/tsconfig.json && npx mocha --recursive",
+    "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit",
+    "prettify": "prettier --write \"lib/**/*.ts\"",
+    "prettify-tests": "prettier --write \"test/**/*.ts\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/socraticorg/mathsteps.git"
+    "url": "git+https://github.com/taskbase/mathsteps.git"
   },
   "keywords": [
     "math",
@@ -33,10 +40,11 @@
     "algebra",
     "system"
   ],
-  "author": "Evy Kassirer",
+  "author": "Taskbase",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/socraticorg/mathsteps/issues"
+    "url": "https://github.com/taskbase/mathsteps/issues"
   },
-  "homepage": "https://github.com/socraticorg/mathsteps#readme"
+  "homepage": "https://github.com/taskbase/mathsteps#readme",
+  "dependencies": {}
 }

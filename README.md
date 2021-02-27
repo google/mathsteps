@@ -1,9 +1,10 @@
-## A step by step solver for math
+## Work in progress
 
-[![Join the chat at https://gitter.im/mathsteps-chat/Lobby](https://badges.gitter.im/mathsteps-chat/Lobby.svg)](https://gitter.im/mathsteps-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/socraticorg/mathsteps.svg?branch=master)](https://travis-ci.org/socraticorg/mathsteps)
+This is work in progress and not ready to be used.
 
-https://www.youtube.com/watch?v=iCrargw1rrM
+What has been achieved so far:
+- Porting https://github.com/google/mathsteps to TypeScript!
+
 
 ## Requirements
 
@@ -13,7 +14,9 @@ Mathsteps requires Node version > 6.0.0
 
 To install mathsteps using npm:
 
-    npm install mathsteps
+   (Coming)
+
+    npm install @taskbase/mathsteps
 
 ```js
 const mathsteps = require('mathsteps');
@@ -74,3 +77,6 @@ To execute tests for the library, install the project dependencies once:
 Then, the tests can be executed:
 
     npm test
+
+## Attribution
+Based on google/mathsteps
