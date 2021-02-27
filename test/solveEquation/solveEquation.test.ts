@@ -20,7 +20,6 @@ function testSolve(equationString, outputStr, debug = false) {
 
 describe("solveEquation for =", function () {
   const tests = [
-
     // can't solve this because two symbols: g and x -- so there's no steps
     ["g *( x ) = ( x - 4) ^ ( 2) - 3", NO_STEPS],
 

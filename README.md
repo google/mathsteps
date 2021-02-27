@@ -1,11 +1,11 @@
-# Work in progress
+## Work in progress
 
 This is work in progress and not ready to be used.
 
 What has been achieved so far:
 - Porting https://github.com/google/mathsteps to TypeScript!
 
-# Why Mathsteps
+## Why Mathsteps
 Mathsteps aims to provide step-by-step instructions like a tutor would give them to a student.
 
 ## Requirements
@@ -58,57 +58,69 @@ const changes = mathsteps.ChangeTypes;
 
 
 
-# Simplify Expression
-Simplifying Expressions.
+## Simplify Expression
+Simplifying Expressions
 
-## What can mathsteps simplifyExpression do?
+### What can mathsteps simplifyExpression do?
+- arithmetic simplification: `["(2+2)*5", "20"]`
+- collect and combines like terms: `["x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6", "5x^3 - 8x^2 + 6"]`
+- simplify with division: `["(20 * x) / (5 * (40 * y))", "x / (10y)"]`
+- deal with fractions: `["2(x+3)/3", "2x / 3 + 2"]`
+- cancelling out: `["(1+2a)/a", "1 / a + 2"]`
+- deal with absolute values: `["(x^3*y)/x^2 + abs(-5)", "x * y + 5"]`
+- deal with nth roots: `["x * nthRoot(x^4, 2)", "x^3"]`
+
+unsure:
+- deal with higher order polynomials: ?
+
+### What can't mathsteps simplifyExpression do?
+- 
 
 
-## What can't mathsteps simplifyExpression do?
-
-
-
-# Solve Equation
+## Solve Equation
 Solving equations.
 
-## What can mathsteps solveEquation do?
+### What can solveEquation do?
 - Solve linear equations with one variable
 - Solve for y in linear equations with x and y as variables.
 - Solve binomic equation
 - Some inequalities (e.g. "x + 2 > 3" to "x > 1")
 - Constant comparison (e.g. "1 = 2" to ChangeTypes.STATEMENT_IS_FALSE)
 
-## What can't mathsteps solveEquation do?
+### What can't solveEquation do?
 - Expressions with multiple variables other than y and x
 - Some inequalities (e.g. "( x )/( 2x + 7) >= 4")
 - Calculate square root of x^2, so result will stay e.g. x^2=2
 
 
-## Contributing
-
-Hi! If you're interested in working on this, that would be super awesome!
-Learn more here: [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## Build
 
 First clone the project from github:
 
-    git clone https://github.com/socraticorg/mathsteps.git
-    cd mathsteps
+```
+git clone https://github.com/taskbase/mathsteps.git
+cd mathsteps
+```
 
 Install the project dependencies:
 
-    npm install
+```
+npm ci
+```
 
 ## Test
 
-To execute tests for the library, install the project dependencies once:
+To execute tests for the library, install the project dependencies:
 
-    npm install
+```
+npm ci
+```
 
 Then, the tests can be executed:
 
-    npm test
+```
+npm test
+```
 
 ## Attribution
 Based on google/mathsteps
