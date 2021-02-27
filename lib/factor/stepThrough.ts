@@ -6,9 +6,11 @@ import { printAscii } from "../util/print";
 import { hasUnsupportedNodes } from "../checks/hasUnsupportedNodes";
 import { isQuadratic } from "../checks/isQuadratic";
 
-// Given a mathjs expression node, steps through factoring the expression.
-// Currently only supports factoring quadratics.
-// Returns a list of details about each step.
+/**
+ * Given a mathjs expression node, steps through factoring the expression.
+ * Currently only supports factoring quadratics.
+ * Returns a list of details about each step.
+ * */
 export function stepThrough(node, debug = false) {
   if (debug) {
     // eslint-disable-next-line

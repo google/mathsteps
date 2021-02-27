@@ -1,8 +1,10 @@
 import * as math from "mathjs";
 import { printAscii, printLatex } from "../util/print";
 
-// This represents an equation, made up of the leftNode (LHS), the
-// rightNode (RHS) and a comparator (=, <, >, <=, or >=)
+/**
+ * This represents an equation, made up of the leftNode (LHS), the
+ * rightNode (RHS) and a comparator (=, <, >, <=, or >=)
+ * */
 export class Equation {
   constructor(public leftNode, public rightNode, public comparator) {
     this.leftNode = leftNode;

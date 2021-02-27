@@ -1,11 +1,13 @@
-// Returns true if the nodes are terms that can be added together.
-// The nodes need to have the same base and exponent
-// e.g. 2x + 5x, 6x^2 + x^2, nthRoot(4,2) + nthRoot(4,2)
 import { NodeType } from "../node/NodeType";
 import { Term } from "../node/Term";
 import { NthRootTerm } from "../node/NthRootTerm";
 import { PolynomialTerm } from "../node/PolynomialTerm";
 
+/**
+ * Returns true if the nodes are terms that can be added together.
+ * The nodes need to have the same base and exponent
+ * e.g. 2x + 5x, 6x^2 + x^2, nthRoot(4,2) + nthRoot(4,2)
+ * */
 export function canAddLikeTermNodes(node, termSubclass) {
   if (!NodeType.isOperator(node, "+")) {
     return false;
@@ -34,7 +36,9 @@ export function canAddLikeTermNodes(node, termSubclass) {
   });
 }
 
-// Returns true if the nodes are nth roots that can be added together
+/**
+ * Returns true if the nodes are nth roots that can be added together
+ * */
 export function canAddLikeTermNthRootNodes(node) {
   return canAddLikeTermNodes(node, NthRootTerm);
 }

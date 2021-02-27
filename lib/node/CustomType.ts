@@ -4,8 +4,10 @@ import { NodeType } from "./NodeType";
 import { MathNode } from "mathjs";
 
 class NodeCustomTypeImpl {
-  // Returns true if `node` belongs to the type specified by boolean `isTypeFunc`.
-  // If `allowUnaryMinus/allowParens` is true, we allow for the node to be nested.
+  /**
+   * Returns true if `node` belongs to the type specified by boolean `isTypeFunc`.
+   * If `allowUnaryMinus/allowParens` is true, we allow for the node to be nested.
+   * */
   isType(
     node: MathNode,
     isTypeFunc,
@@ -33,11 +35,13 @@ class NodeCustomTypeImpl {
     return false;
   }
 
-  // Returns `node` if `node` belongs to the type specified by boolean `isTypeFunc`.
-  // If `allowUnaryMinus/allowParens` is true, we check for an inner node of this type.
-  // `moveUnaryMinus` should be defined if `allowUnaryMinus` is true, and should
-  // move the unaryMinus into the inside of the type
-  // e.g. for fractions, this function will negate the numerator
+  /**
+   * Returns `node` if `node` belongs to the type specified by boolean `isTypeFunc`.
+   * If `allowUnaryMinus/allowParens` is true, we check for an inner node of this type.
+   * `moveUnaryMinus` should be defined if `allowUnaryMinus` is true, and should
+   * move the unaryMinus into the inside of the type
+   * e.g. for fractions, this function will negate the numerator
+   * */
   getType(
     node: MathNode,
     isTypeFunc,

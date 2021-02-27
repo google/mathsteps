@@ -24,16 +24,18 @@ const FACTOR_FUNCTIONS = [
   factorSumProductRule,
 ];
 
-// Given a node, will check if it's in the form of a quadratic equation
-// `ax^2 + bx + c`, and
-// if it is, will factor it using one of the following rules:
-//    - Factor out the symbol e.g. x^2 + 2x -> x(x + 2)
-//    - Difference of squares e.g. x^2 - 4 -> (x+2)(x-2)
-//    - Perfect square e.g. x^2 + 2x + 1 -> (x+1)^2
-//    - Sum/product rule e.g. x^2 + 3x + 2 -> (x+1)(x+2)
-//    - TODO: quadratic formula
-//        requires us simplify the following only within the parens:
-//        a(x - (-b + sqrt(b^2 - 4ac)) / 2a)(x - (-b - sqrt(b^2 - 4ac)) / 2a)
+/**
+ * Given a node, will check if it's in the form of a quadratic equation
+ * `ax^2 + bx + c`, and
+ * if it is, will factor it using one of the following rules:
+ *    - Factor out the symbol e.g. x^2 + 2x -> x(x + 2)
+ *    - Difference of squares e.g. x^2 - 4 -> (x+2)(x-2)
+ *    - Perfect square e.g. x^2 + 2x + 1 -> (x+1)^2
+ *    - Sum/product rule e.g. x^2 + 3x + 2 -> (x+1)(x+2)
+ *    - TODO: quadratic formula
+ *        requires us simplify the following only within the parens:
+ *        a(x - (-b + sqrt(b^2 - 4ac)) / 2a)(x - (-b - sqrt(b^2 - 4ac)) / 2a)
+ * */
 export function factorQuadratic(node) {
   // get a, b and c
   let symbol,
@@ -113,9 +115,11 @@ function factorSymbol(node, symbol, aValue, bValue, cValue, negate) {
   return NodeStatus.nodeChanged(ChangeTypes.FACTOR_SYMBOL, node, newNode);
 }
 
-// Will factor the node if it's in the form of ax^2 - c, and the aValue
-// and cValue are perfect squares
-// e.g. 4x^2 - 4 -> (2x + 2)(2x - 2)
+/**
+ * Will factor the node if it's in the form of ax^2 - c, and the aValue
+ * and cValue are perfect squares
+ * e.g. 4x^2 - 4 -> (2x + 2)(2x - 2)
+ * */
 function factorDifferenceOfSquares(
   node,
   symbol,
@@ -177,9 +181,11 @@ function factorDifferenceOfSquares(
   return NodeStatus.noChange(node);
 }
 
-// Will factor the node if it's in the form of ax^2 + bx + c, where a and c
-// are perfect squares and b = 2*sqrt(a)*sqrt(c)
-// e.g. x^2 + 2x + 1 -> (x + 1)^2
+/**
+ * Will factor the node if it's in the form of ax^2 + bx + c, where a and c
+ * are perfect squares and b = 2*sqrt(a)*sqrt(c)
+ * e.g. x^2 + 2x + 1 -> (x + 1)^2
+ * */
 function factorPerfectSquare(node, symbol, aValue, bValue, cValue, negate) {
   // check if perfect square: (i) a and c squares, (ii) b = 2*sqrt(a)*sqrt(c)
   if (!bValue || !cValue) {
@@ -236,10 +242,12 @@ function factorPerfectSquare(node, symbol, aValue, bValue, cValue, negate) {
   return NodeStatus.noChange(node);
 }
 
-// Will factor the node if it's in the form of ax^2 + bx + c, by
-// applying the sum product rule: finding factors of a*c that add up to b.
-// e.g. x^2 + 3x + 2 -> (x + 1)(x + 2) or
-// or   2x^2 + 5x + 3 -> (2x - 1)(x + 3)
+/**
+ * Will factor the node if it's in the form of ax^2 + bx + c, by
+ * applying the sum product rule: finding factors of a*c that add up to b.
+ * e.g. x^2 + 3x + 2 -> (x + 1)(x + 2) or
+ * or   2x^2 + 5x + 3 -> (2x - 1)(x + 3)
+ * */
 function factorSumProductRule(node, symbol, aValue, bValue, cValue, negate) {
   let newNode;
 

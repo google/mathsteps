@@ -1,9 +1,10 @@
-// Returns true if the node is a constant or can eventually be resolved to
-// a constant.
-// e.g. 2, 2+4, (2+4)^2 would all return true. x + 4 would return false
-
 import { NodeType } from "../node/NodeType";
 
+/**
+ * Returns true if the node is a constant or can eventually be resolved to
+ * a constant.
+ * e.g. 2, 2+4, (2+4)^2 would all return true. x + 4 would return false
+ * */
 export function resolvesToConstant(node) {
   if (NodeType.isOperator(node) || NodeType.isFunction(node)) {
     return node.args.every((child) => resolvesToConstant(child));

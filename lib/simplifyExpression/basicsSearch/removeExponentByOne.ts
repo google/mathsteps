@@ -2,8 +2,10 @@ import { ChangeTypes } from "../../ChangeTypes";
 import { NodeType } from "../../node/NodeType";
 import { NodeStatus } from "../../node/NodeStatus";
 
-// If `node` is of the form x^1, reduces it to a node of the form x.
-// Returns a Status object.
+/**
+ * If `node` is of the form x^1, reduces it to a node of the form x.
+ * Returns a Status object.
+ * */
 export function removeExponentByOne(node) {
   if (
     node.op === "^" && // exponent of anything

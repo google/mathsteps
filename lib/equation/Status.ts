@@ -2,10 +2,12 @@ import { ChangeTypes } from "../ChangeTypes";
 import { NodeStatus } from "../node/NodeStatus";
 import { Equation } from "./Equation";
 
-// This represents the current equation we're solving.
-// As we move step by step, an equation might be updated. Functions return this
-// status object to pass on the updated equation and information on if/how it was
-// changed.
+/**
+ * This represents the current equation we're solving.
+ * As we move step by step, an equation might be updated. Functions return this
+ * status object to pass on the updated equation and information on if/how it was
+ * changed.
+ * */
 export class EquationStatus {
   constructor(
     private changeType,

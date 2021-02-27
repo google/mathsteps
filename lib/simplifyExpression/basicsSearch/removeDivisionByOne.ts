@@ -4,8 +4,10 @@ import { NodeStatus } from "../../node/NodeStatus";
 import { NodeType } from "../../node/NodeType";
 import { NodeCreator } from "../../node/Creator";
 
-// If `node` is a division operation of something by 1 or -1, we can remove the
-// denominator. Returns a Status object.
+/**
+ * If `node` is a division operation of something by 1 or -1, we can remove the
+ * denominator. Returns a Status object.
+ * */
 export function removeDivisionByOne(node) {
   if (node.op !== "/") {
     return NodeStatus.noChange(node);

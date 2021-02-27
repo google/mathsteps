@@ -1,6 +1,7 @@
-// This module deals with getting constant factors, including prime factors
-// and factor pairs of a number
-
+/**
+ * This module deals with getting constant factors, including prime factors
+ * and factor pairs of a number
+ * */
 class ConstantFactorsImpl {
   // Given a number, will return all the prime factors of that number as a list
   // sorted from smallest to largest

@@ -3,8 +3,10 @@ import { NodeType } from "../../node/NodeType";
 import { NodeStatus } from "../../node/NodeStatus";
 import { resolvesToConstant } from "../../checks/resolvesToConstant";
 
-// If `node` is of the form 1^x, reduces it to a node of the form 1.
-// Returns a Status object.
+/**
+ * If `node` is of the form 1^x, reduces it to a node of the form 1.
+ * Returns a Status object.
+ * */
 export function removeExponentBaseOne(node) {
   if (
     node.op === "^" && // an exponent with

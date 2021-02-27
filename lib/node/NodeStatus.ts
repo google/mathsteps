@@ -42,15 +42,19 @@ export class NodeStatus {
     return node;
   }
 
-  // A wrapper around the Status constructor for the case where node hasn't
-  // been changed.
+  /**
+   * A wrapper around the Status constructor for the case where node hasn't
+   * been changed.
+   * */
   static noChange(node) {
     return new NodeStatus(ChangeTypes.NO_CHANGE, null, node);
   }
 
-  // A wrapper around the Status constructor for the case of a change
-  // that is happening at the level of oldNode + newNode
-  // e.g. 2 + 2 --> 4 (an addition node becomes a constant node)
+  /**
+   * A wrapper around the Status constructor for the case of a change
+   * that is happening at the level of oldNode + newNode
+   * e.g. 2 + 2 --> 4 (an addition node becomes a constant node)
+   * */
   static nodeChanged(
     changeType,
     oldNode,
@@ -66,10 +70,12 @@ export class NodeStatus {
     return new NodeStatus(changeType, oldNode, newNode, steps);
   }
 
-  // A wrapper around the Status constructor for the case where there was
-  // a change that happened deeper `node`'s tree, and `node`'s children must be
-  // updated to have the newNode/oldNode metadata (changeGroups)
-  // e.g. (2 + 2) + x --> 4 + x has to update the left argument
+  /**
+   * A wrapper around the Status constructor for the case where there was
+   * a change that happened deeper `node`'s tree, and `node`'s children must be
+   * updated to have the newNode/oldNode metadata (changeGroups)
+   * e.g. (2 + 2) + x --> 4 + x has to update the left argument
+   * */
   static childChanged(node, childStatus, childArgIndex = null) {
     const oldNode = node.cloneDeep();
     const newNode = node.cloneDeep();

@@ -1,7 +1,7 @@
-/*
+/**
  * Performs simpifications that are more basic and overaching like (...)^0 => 1
  * These are always the first simplifications that are attempted.
- */
+ * */
 
 import { TreeSearch } from "../../TreeSearch";
 
@@ -60,7 +60,9 @@ const SIMPLIFICATION_FUNCTIONS = [
 
 export const basicsSearch = TreeSearch.preOrder(basics);
 
-// Look for basic step(s) to perform on a node. Returns a Status object.
+/**
+ * Look for basic step(s) to perform on a node. Returns a Status object.
+ * */
 function basics(node) {
   for (let i = 0; i < SIMPLIFICATION_FUNCTIONS.length; i++) {
     const nodeStatus = SIMPLIFICATION_FUNCTIONS[i](node);

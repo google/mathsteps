@@ -4,8 +4,10 @@ import { NodeStatus } from "../../node/NodeStatus";
 import { PolynomialTerm } from "../../node/PolynomialTerm";
 import { NodeCreator } from "../../node/Creator";
 
-// If `node` is a multiplication node with 0 as one of its operands,
-// reduce the node to 0. Returns a Status object.
+/**
+ * If `node` is a multiplication node with 0 as one of its operands,
+ * reduce the node to 0. Returns a Status object.
+ * */
 export function reduceMultiplicationByZero(node) {
   if (node.op !== "*") {
     return NodeStatus.noChange(node);

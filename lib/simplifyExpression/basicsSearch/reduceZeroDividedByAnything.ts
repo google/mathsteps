@@ -2,8 +2,10 @@ import { ChangeTypes } from "../../ChangeTypes";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeCreator } from "../../node/Creator";
 
-// If `node` is a fraction with 0 as the numerator, reduce the node to 0.
-// Returns a Status object.
+/**
+ * If `node` is a fraction with 0 as the numerator, reduce the node to 0.
+ * Returns a Status object.
+ * */
 export function reduceZeroDividedByAnything(node) {
   if (node.op !== "/") {
     return NodeStatus.noChange(node);

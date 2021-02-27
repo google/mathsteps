@@ -4,9 +4,11 @@ import {
 } from "../simplifyExpression/collectAndCombineSearch/ConstantOrConstantPower";
 import { NodeType } from "../node/NodeType";
 
-// Returns true if node is a multiplication of constant power nodes
-// where you can combine their exponents, e.g. 10^2 * 10^4 * 10 can become 10^7.
-// The node can either be on form c^n or c, as long as c is the same for all.
+/**
+ * Returns true if node is a multiplication of constant power nodes
+ * where you can combine their exponents, e.g. 10^2 * 10^4 * 10 can become 10^7.
+ * The node can either be on form c^n or c, as long as c is the same for all.
+ */
 export function canMultiplyLikeTermConstantNodes(node) {
   if (!NodeType.isOperator(node) || node.op !== "*") {
     return false;

@@ -3,12 +3,14 @@ import { NodeType } from "./NodeType";
 import { StepNode } from "./StepNode";
 
 export class NodeMixedNumberImpl {
-  // Returns true if `node` is a mixed number
-  // e.g. 2 1/2, 19 2/3
-  // Right now mathjs cannot parse the above examples;
-  // instead it expects the input to look like e.g. 2(1)/(2),
-  // which is division with implicit multiplication in the numerator
-  // TODO: Add better support for mixed numbers in the future
+  /**
+   * Returns true if `node` is a mixed number
+   * e.g. 2 1/2, 19 2/3
+   * Right now mathjs cannot parse the above examples;
+   * instead it expects the input to look like e.g. 2(1)/(2),
+   * which is division with implicit multiplication in the numerator
+   * TODO: Add better support for mixed numbers in the future
+   * */
   isMixedNumber(node: StepNode) {
     if (!NodeType.isOperator(node, "/")) {
       return false;
@@ -58,11 +60,13 @@ export class NodeMixedNumberImpl {
     return true;
   }
 
-  // Returns true if the mixed number is negative,
-  // in which case we have to ignore the negative while converting to an
-  // improper fraction, and instead we negate the whole thing at the end
-  // e.g. -1 2/3 !== ((-1 * 3) + 2)/3 = -1/3
-  //      -1 2/3 == -((1 * 3) + 2)/3 = -5/2
+  /**
+   * Returns true if the mixed number is negative,
+   * in which case we have to ignore the negative while converting to an
+   * improper fraction, and instead we negate the whole thing at the end
+   * e.g. -1 2/3 !== ((-1 * 3) + 2)/3 = -1/3
+   *      -1 2/3 == -((1 * 3) + 2)/3 = -5/2
+   * */
   isNegativeMixedNumber = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");
@@ -71,9 +75,11 @@ export class NodeMixedNumberImpl {
     return NodeType.isUnaryMinus(node.args[0].args[0]);
   };
 
-  // Get the whole number part of a mixed number
-  // e.g. 1 2/3 -> 1
-  // Negatives are ignored; e.g. -1 2/3 -> 1
+  /**
+   * Get the whole number part of a mixed number
+   * e.g. 1 2/3 -> 1
+   * Negatives are ignored; e.g. -1 2/3 -> 1
+   * */
   getWholeNumberValue = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");
@@ -86,8 +92,10 @@ export class NodeMixedNumberImpl {
     return parseInt(wholeNumberNode.value);
   };
 
-  // Get the numerator part of a mixed number
-  // e.g. 1 2/3 -> 2
+  /**
+   * Get the numerator part of a mixed number
+   * e.g. 1 2/3 -> 2
+   * */
   getNumeratorValue = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");
@@ -100,8 +108,10 @@ export class NodeMixedNumberImpl {
     return parseInt(numeratorNode.value);
   };
 
-  // Get the denominator part of a mixed number
-  // e.g. 1 2/3 -> 3
+  /**
+   * Get the denominator part of a mixed number
+   * e.g. 1 2/3 -> 3
+   * */
   getDenominatorValue = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");

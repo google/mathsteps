@@ -5,13 +5,17 @@ import { TreeSearch } from "../../TreeSearch";
 import { NodeCreator } from "../../node/Creator";
 import { NodeStatus } from "../../node/NodeStatus";
 
-// Searches through the tree, prioritizing deeper nodes, and evaluates
-// arithmetic (e.g. 2+2 or 3*5*2) on an operation node if possible.
-// Returns a Status object.
+/**
+ * Searches through the tree, prioritizing deeper nodes, and evaluates
+ * arithmetic (e.g. 2+2 or 3*5*2) on an operation node if possible.
+ * Returns a Status object.
+ * */
 export const arithmeticSearch = TreeSearch.postOrder(arithmetic);
 
-// evaluates arithmetic (e.g. 2+2 or 3*5*2) on an operation node.
-// Returns a Status object.
+/**
+ * evaluates arithmetic (e.g. 2+2 or 3*5*2) on an operation node.
+ * Returns a Status object.
+ * */
 function arithmetic(node) {
   if (!NodeType.isOperator(node)) {
     return NodeStatus.noChange(node);
@@ -52,8 +56,10 @@ function arithmetic(node) {
   }
 }
 
-// Evaluates a math expression to a constant, e.g. 3+4 -> 7 and rounds if
-// necessary
+/**
+ * Evaluates a math expression to a constant, e.g. 3+4 -> 7 and rounds if
+ * necessary
+ * */
 function evaluateAndRound(node) {
   let result = evaluate(node);
   if (Math.abs(result) < 1) {

@@ -2,8 +2,10 @@ import { ChangeTypes } from "../../ChangeTypes";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeType } from "../../node/NodeType";
 
-// If `node` is an addition node with 0 as one of its operands,
-// remove 0 from the operands list. Returns a Status object.
+/**
+ * If `node` is an addition node with 0 as one of its operands,
+ * remove 0 from the operands list. Returns a Status object.
+ * */
 export function removeAdditionOfZero(node) {
   if (node.op !== "+") {
     return NodeStatus.noChange(node);

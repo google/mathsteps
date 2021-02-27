@@ -1,9 +1,10 @@
 import { resolvesToConstant } from "./resolvesToConstant";
 import { NodeType } from "../node/NodeType";
-/*
-  Return true if the equation is of the form factor * factor = 0 or factor^power = 0
-  // e.g (x - 2)^2 = 0, x(x + 2)(x - 2) = 0
-*/
+
+/**
+ * Return true if the equation is of the form factor * factor = 0 or factor^power = 0
+ * e.g (x - 2)^2 = 0, x(x + 2)(x - 2) = 0
+ */
 export function canFindRoots(equation) {
   const left = equation.leftNode;
   const right = equation.rightNode;

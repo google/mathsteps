@@ -2,8 +2,10 @@ import { NodeType } from "../node/NodeType";
 import { Symbols } from "../Symbols";
 import { PolynomialTerm } from "../node/PolynomialTerm";
 
-// Given a node, will determine if the expression is in the form of a quadratic
-// e.g. `x^2 + 2x + 1` OR `x^2 - 1` but not `x^3 + x^2 + x + 1`
+/**
+ * Given a node, will determine if the expression is in the form of a quadratic
+ * e.g. `x^2 + 2x + 1` OR `x^2 - 1` but not `x^3 + x^2 + x + 1`
+ * */
 export function isQuadratic(node) {
   if (!NodeType.isOperator(node, "+")) {
     return false;
@@ -46,8 +48,10 @@ export function isQuadratic(node) {
   return true;
 }
 
-// Given a degree, returns a function that checks if a node
-// is a polynomial term of the given degree.
+/**
+ * Given a degree, returns a function that checks if a node
+ * is a polynomial term of the given degree.
+ * */
 function isPolynomialTermOfDegree(degree) {
   return function (node) {
     if (PolynomialTerm.isPolynomialTerm(node)) {

@@ -1,8 +1,10 @@
-// Returns true if the nodes are symbolic terms with the same symbol and no
-// coefficients.
 import { NodeType } from "../node/NodeType";
 import { PolynomialTerm } from "../node/PolynomialTerm";
 
+/**
+ * Returns true if the nodes are symbolic terms with the same symbol and no
+ * coefficients.
+ * */
 export function canMultiplyLikeTermPolynomialNodes(node) {
   if (!NodeType.isOperator(node) || node.op !== "*") {
     return false;
@@ -22,6 +24,7 @@ export function canMultiplyLikeTermPolynomialNodes(node) {
 
   const firstTerm = polynomialTermList[0];
   const restTerms = polynomialTermList.slice(1);
+
   // they're considered like terms if they have the same symbol name
   return restTerms.every(
     (term) => firstTerm.getSymbolName() === term.getSymbolName()

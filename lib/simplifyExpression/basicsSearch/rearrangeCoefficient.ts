@@ -4,9 +4,11 @@ import { PolynomialTerm } from "../../node/PolynomialTerm";
 import { NodeCreator } from "../../node/Creator";
 import { canRearrangeCoefficient } from "../../checks/canRearrangeCoefficient";
 
-// Rearranges something of the form x * 5 to be 5x, ie putting the coefficient
-// in the right place.
-// Returns a Status object
+/**
+ * Rearranges something of the form x * 5 to be 5x, ie putting the coefficient
+ * in the right place.
+ * Returns a Status object
+ * */
 export function rearrangeCoefficient(node) {
   if (!canRearrangeCoefficient(node)) {
     return NodeStatus.noChange(node);

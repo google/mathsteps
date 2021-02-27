@@ -3,9 +3,11 @@ import { NodeMixedNumber } from "../../node/MixedNumber";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeCreator } from "../../node/Creator";
 
-// Converts a mixed number to an improper fraction
-// e.g. 1 2/3 -> 5/3
-// All comments in the function are based on this example
+/**
+ * Converts a mixed number to an improper fraction
+ * e.g. 1 2/3 -> 5/3
+ * All comments in the function are based on this example
+ * */
 export function convertMixedNumberToImproperFraction(node) {
   if (!NodeMixedNumber.isMixedNumber(node)) {
     return NodeStatus.noChange(node);
@@ -65,8 +67,10 @@ export function convertMixedNumberToImproperFraction(node) {
   );
 }
 
-// Convert a mixed number to an unsimplified proper fraction
-// e.g. 1 2/3 -> ((1 * 3) + 2) / 3
+/**
+ * Convert a mixed number to an unsimplified proper fraction
+ * e.g. 1 2/3 -> ((1 * 3) + 2) / 3
+ * */
 function convertToUnsimplifiedImproperFraction(
   oldNode,
   wholeNumber,
@@ -109,8 +113,10 @@ function convertToUnsimplifiedImproperFraction(
   );
 }
 
-// Simplify multiplication in the numerator of an improper fraction
-// e.g. ((1 * 3) + 2) / 3 -> (3 + 2) / 3
+/**
+ * Simplify multiplication in the numerator of an improper fraction
+ * e.g. ((1 * 3) + 2) / 3 -> (3 + 2) / 3
+ * */
 function simplifyMultiplicationInImproperFraction(
   oldNode,
   wholeNumber,
@@ -144,8 +150,10 @@ function simplifyMultiplicationInImproperFraction(
   );
 }
 
-// Simplify addition in the numerator of an improper fraction
-// e.g. (3 + 2) / 3 -> 5/3
+/**
+ * Simplify addition in the numerator of an improper fraction
+ * e.g. (3 + 2) / 3 -> 5/3
+ * */
 function simplifyAdditionInImproperFraction(
   oldNode,
   wholeNumber,

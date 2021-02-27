@@ -2,8 +2,10 @@ import { ChangeTypes } from "../../ChangeTypes";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeType } from "../../node/NodeType";
 
-// If `node` is a multiplication node with 1 as one of its operands,
-// remove 1 from the operands list. Returns a Status object.
+/**
+ * If `node` is a multiplication node with 1 as one of its operands,
+ * remove 1 from the operands list. Returns a Status object.
+ * */
 export function removeMultiplicationByOne(node) {
   if (node.op !== "*") {
     return NodeStatus.noChange(node);

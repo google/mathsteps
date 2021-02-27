@@ -1,8 +1,8 @@
-/*
-  Functions to generate any mathJS node supported by the stepper
-  see http://mathjs.org/docs/expressions/expression_trees.html#nodes for more
-  information on nodes in mathJS
-*/
+/**
+ * Functions to generate any mathJS node supported by the stepper
+ * see http://mathjs.org/docs/expressions/expression_trees.html#nodes for more
+ * information on nodes in mathJS
+ * */
 
 import * as math from "mathjs";
 import { NodeType } from "./NodeType";

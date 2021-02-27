@@ -1,6 +1,7 @@
 /**
  * For determining the type of a mathJS node.
  * */
+
 import { MathNode } from "mathjs";
 
 class NodeTypeImpl {
@@ -17,7 +18,9 @@ class NodeTypeImpl {
     return node.type === NodeTypeEnum.PARENTHESIS_NODE;
   }
 
-  // FIXME DRN: a bit a mess that it's once static once not...
+  /**
+   * OPTIMIZE: it is a mess that this method is duplicated for static and non static use
+   * */
   isUnaryMinus = (node) => {
     return node.type === NodeTypeEnum.OPERATOR_NODE && node.fn === "unaryMinus";
   };

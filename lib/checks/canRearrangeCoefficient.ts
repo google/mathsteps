@@ -1,8 +1,10 @@
 import { NodeType } from "../node/NodeType";
 import { PolynomialTerm } from "../node/PolynomialTerm";
 
-// Returns true if the expression is a multiplication between a constant
-// and polynomial without a coefficient.
+/**
+ * Returns true if the expression is a multiplication between a constant
+ * and polynomial without a coefficient.
+ * */
 export function canRearrangeCoefficient(node) {
   // implicit multiplication doesn't count as multiplication here, since it
   // represents a single term.

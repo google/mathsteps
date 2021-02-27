@@ -3,10 +3,12 @@ import { Negative } from "../../Negative";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeType } from "../../node/NodeType";
 
-// If `node` is a multiplication node with -1 as one of its operands,
-// and a non constant as the next operand, remove -1 from the operands
-// list and make the next term have a unary minus.
-// Returns a Status object.
+/**
+ * If `node` is a multiplication node with -1 as one of its operands,
+ * and a non constant as the next operand, remove -1 from the operands
+ * list and make the next term have a unary minus.
+ * Returns a Status object.
+ * */
 export function removeMultiplicationByNegativeOne(node) {
   if (node.op !== "*") {
     return NodeStatus.noChange(node);
