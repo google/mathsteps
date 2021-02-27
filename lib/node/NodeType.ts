@@ -1,10 +1,9 @@
 /**
  * For determining the type of a mathJS node.
  * */
-import {MathNode} from 'mathjs';
+import { MathNode } from "mathjs";
 
 class NodeTypeImpl {
-
   isOperator(node: MathNode, operator = null) {
     return (
       node.type === NodeTypeEnum.OPERATOR_NODE &&
@@ -21,11 +20,11 @@ class NodeTypeImpl {
   // FIXME DRN: a bit a mess that it's once static once not...
   isUnaryMinus = (node) => {
     return node.type === NodeTypeEnum.OPERATOR_NODE && node.fn === "unaryMinus";
-  }
+  };
 
   static isUnaryMinus = (node) => {
     return node.type === NodeTypeEnum.OPERATOR_NODE && node.fn === "unaryMinus";
-  }
+  };
 
   isFunction(node, functionName = null) {
     if (node.type !== NodeTypeEnum.FUNCTION_NODE) {
@@ -60,7 +59,7 @@ class NodeTypeImpl {
     } else {
       return false;
     }
-  }
+  };
 
   isConstantFraction(node, allowUnaryMinus = false) {
     if (this.isOperator(node, "/")) {
@@ -99,16 +98,15 @@ class NodeTypeImpl {
       Number.isInteger(parseFloat(numerator.value)) &&
       Number.isInteger(parseFloat(denominator.value))
     );
-  }
+  };
 }
 
 export const NodeType = new NodeTypeImpl();
-
 
 export enum NodeTypeEnum {
   CONSTANT_NODE = "ConstantNode",
   SYMBOL_NODE = "SymbolNode",
   FUNCTION_NODE = "FunctionNode",
   OPERATOR_NODE = "OperatorNode",
-  PARENTHESIS_NODE = "ParenthesisNode"
+  PARENTHESIS_NODE = "ParenthesisNode",
 }

@@ -1,4 +1,4 @@
-import {MathNode} from 'mathjs';
+import { MathNode } from "mathjs";
 
 /**
  * Extension of the mathjs MathNode, because that doesn't seem to contain all fields

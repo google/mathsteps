@@ -4,7 +4,11 @@ import { simplify } from "../../lib/simplifyExpression/simplify";
 import assert = require("assert");
 import { printAscii } from "../../lib/util/print";
 
-function testSimplify(inputString: string, expectedOutputString: string, debug = false) {
+function testSimplify(
+  inputString: string,
+  expectedOutputString: string,
+  debug = false
+) {
   it(inputString + " -> " + expectedOutputString, function () {
     assert.deepEqual(
       printAscii(simplify(math.parse(inputString), debug)),

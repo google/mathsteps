@@ -13,7 +13,6 @@ import { printAscii } from "../../util/print";
  * Evaluate nthRoot() function.
  * */
 export function nthRoot(node): NodeStatus {
-
   if (!NodeType.isFunction(node, "nthRoot")) {
     return NodeStatus.noChange(node);
   }

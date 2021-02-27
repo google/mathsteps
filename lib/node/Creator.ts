@@ -8,15 +8,22 @@ import * as math from "mathjs";
 import { NodeType } from "./NodeType";
 
 class NodeCreatorClass {
-
   operator(op, args, implicit = false) {
     switch (op) {
       case "+":
         return new (math.expression as any).node.OperatorNode("+", "add", args);
       case "-":
-        return new (math.expression as any).node.OperatorNode("-", "subtract", args);
+        return new (math.expression as any).node.OperatorNode(
+          "-",
+          "subtract",
+          args
+        );
       case "/":
-        return new (math.expression as any).node.OperatorNode("/", "divide", args);
+        return new (math.expression as any).node.OperatorNode(
+          "/",
+          "divide",
+          args
+        );
       case "*":
         return new (math.expression as any).node.OperatorNode(
           "*",
@@ -34,7 +41,9 @@ class NodeCreatorClass {
   // In almost all cases, use Negative.negate (with naive = true) to add a
   // unary minus to your node, rather than calling this constructor directly
   unaryMinus(content) {
-    return new (math.expression as any).node.OperatorNode("-", "unaryMinus", [content]);
+    return new (math.expression as any).node.OperatorNode("-", "unaryMinus", [
+      content,
+    ]);
   }
 
   constant(val) {
@@ -88,7 +97,6 @@ class NodeCreatorClass {
       rootNode,
     ]);
   }
-
 }
 
 export const NodeCreator = new NodeCreatorClass();

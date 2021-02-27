@@ -1,13 +1,17 @@
 import { Negative } from "../Negative";
 import { NodeCreator } from "./Creator";
 import { NodeType } from "./NodeType";
-import {MathNode} from 'mathjs';
+import { MathNode } from "mathjs";
 
 class NodeCustomTypeImpl {
-
   // Returns true if `node` belongs to the type specified by boolean `isTypeFunc`.
   // If `allowUnaryMinus/allowParens` is true, we allow for the node to be nested.
-  isType(node: MathNode, isTypeFunc, allowUnaryMinus = true, allowParens = true) {
+  isType(
+    node: MathNode,
+    isTypeFunc,
+    allowUnaryMinus = true,
+    allowParens = true
+  ) {
     if (isTypeFunc(node)) {
       return true;
     } else if (allowUnaryMinus && NodeType.isUnaryMinus(node)) {
@@ -41,7 +45,6 @@ class NodeCustomTypeImpl {
     allowParens = true,
     moveUnaryMinus = undefined
   ): MathNode {
-
     if (allowUnaryMinus === true && moveUnaryMinus === undefined) {
       throw Error("Error in `getType`: moveUnaryMinus is undefined");
     }

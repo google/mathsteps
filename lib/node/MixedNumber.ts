@@ -1,6 +1,6 @@
-import {Negative} from '../Negative';
-import {NodeType} from './NodeType';
-import {StepNode} from './StepNode';
+import { Negative } from "../Negative";
+import { NodeType } from "./NodeType";
+import { StepNode } from "./StepNode";
 
 export class NodeMixedNumberImpl {
   // Returns true if `node` is a mixed number
@@ -10,7 +10,7 @@ export class NodeMixedNumberImpl {
   // which is division with implicit multiplication in the numerator
   // TODO: Add better support for mixed numbers in the future
   isMixedNumber(node: StepNode) {
-    if (!NodeType.isOperator(node, '/')) {
+    if (!NodeType.isOperator(node, "/")) {
       return false;
     }
 
@@ -24,7 +24,7 @@ export class NodeMixedNumberImpl {
     // check for implicit multiplication between two constants in the numerator
     // first can be wrapped in unary minus
     // second one can be optionally wrapped in parenthesis
-    if (!(NodeType.isOperator(numerator, '*') && numerator.implicit)) {
+    if (!(NodeType.isOperator(numerator, "*") && numerator.implicit)) {
       return false;
     }
 
@@ -65,7 +65,7 @@ export class NodeMixedNumberImpl {
   //      -1 2/3 == -((1 * 3) + 2)/3 = -5/2
   isNegativeMixedNumber = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
-      throw Error('Expected a mixed number');
+      throw Error("Expected a mixed number");
     }
 
     return NodeType.isUnaryMinus(node.args[0].args[0]);
@@ -76,7 +76,7 @@ export class NodeMixedNumberImpl {
   // Negatives are ignored; e.g. -1 2/3 -> 1
   getWholeNumberValue = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
-      throw Error('Expected a mixed number');
+      throw Error("Expected a mixed number");
     }
 
     const wholeNumberNode = NodeType.isUnaryMinus(node.args[0].args[0])
@@ -90,7 +90,7 @@ export class NodeMixedNumberImpl {
   // e.g. 1 2/3 -> 2
   getNumeratorValue = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
-      throw Error('Expected a mixed number');
+      throw Error("Expected a mixed number");
     }
 
     const numeratorNode = NodeType.isParenthesis(node.args[0].args[1])
@@ -104,7 +104,7 @@ export class NodeMixedNumberImpl {
   // e.g. 1 2/3 -> 3
   getDenominatorValue = (node: StepNode) => {
     if (!this.isMixedNumber(node)) {
-      throw Error('Expected a mixed number');
+      throw Error("Expected a mixed number");
     }
 
     const denominatorNode = NodeType.isParenthesis(node.args[1])
