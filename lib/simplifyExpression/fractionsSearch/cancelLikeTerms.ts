@@ -336,7 +336,7 @@ function cancelTerms(numerator, denominator) {
     let newCoeff = coeff.cloneDeep();
     const reduceStatus = divideByGCD(frac);
 
-    if (!reduceStatus.hasChanged()) {
+    if (!reduceStatus.hasChanged) {
       return new CancelOutStatus(numerator, denominator, false);
     }
 
@@ -358,7 +358,7 @@ function cancelTerms(numerator, denominator) {
   if (NodeType.isConstant(numerator) && NodeType.isConstant(denominator)) {
     const frac = NodeCreator.operator("/", [numerator, denominator]);
     const reduceStatus = divideByGCD(frac);
-    if (!reduceStatus.hasChanged()) {
+    if (!reduceStatus.hasChanged) {
       return new CancelOutStatus(numerator, denominator, false);
     }
     if (NodeType.isConstant(reduceStatus.newNode)) {
@@ -412,7 +412,7 @@ function cancelCoeffs(numerator, denominator) {
 
   const reduceStatus = divideByGCD(frac);
 
-  if (!reduceStatus.hasChanged()) {
+  if (!reduceStatus.hasChanged) {
     return new CancelOutStatus(numerator, denominator, false);
   }
 

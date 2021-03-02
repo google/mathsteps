@@ -6,7 +6,7 @@ export function search(simplificationFunction, node, preOrder) {
 
   if (preOrder) {
     status = simplificationFunction(node);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       return status;
     }
   }
@@ -15,20 +15,20 @@ export function search(simplificationFunction, node, preOrder) {
     return NodeStatus.noChange(node);
   } else if (NodeType.isUnaryMinus(node)) {
     status = search(simplificationFunction, node.args[0], preOrder);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       return NodeStatus.childChanged(node, status);
     }
   } else if (NodeType.isOperator(node) || NodeType.isFunction(node)) {
     for (let i = 0; i < node.args.length; i++) {
       const child = node.args[i];
       const childNodeStatus = search(simplificationFunction, child, preOrder);
-      if (childNodeStatus.hasChanged()) {
+      if (childNodeStatus.hasChanged) {
         return NodeStatus.childChanged(node, childNodeStatus, i);
       }
     }
   } else if (NodeType.isParenthesis(node)) {
     status = search(simplificationFunction, node.content, preOrder);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       return NodeStatus.childChanged(node, status);
     }
   } else {

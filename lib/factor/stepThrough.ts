@@ -26,7 +26,7 @@ export function stepThrough(node, debug = false) {
   node = removeUnnecessaryParens(node, true);
   if (isQuadratic(node)) {
     const nodeStatus = factorQuadratic(node);
-    if (nodeStatus.hasChanged()) {
+    if (nodeStatus.hasChanged) {
       steps.push(nodeStatus);
     }
   }

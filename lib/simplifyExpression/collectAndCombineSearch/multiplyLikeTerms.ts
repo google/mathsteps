@@ -23,26 +23,26 @@ export function multiplyLikeTerms(node, polynomialOnly = false) {
 
   if (!polynomialOnly && !canMultiplyLikeTermConstantNodes(node)) {
     status = arithmeticSearch(node);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       status.changeType = ChangeTypes.MULTIPLY_COEFFICIENTS;
       return status;
     }
 
     status = multiplyFractionsSearch(node);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       status.changeType = ChangeTypes.MULTIPLY_COEFFICIENTS;
       return status;
     }
   }
 
   status = multiplyPolynomialTerms(node);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     status.changeType = ChangeTypes.MULTIPLY_COEFFICIENTS;
     return status;
   }
 
   status = multiplyNthRoots(node);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     return status;
   }
 
@@ -93,7 +93,7 @@ function multiplyPolynomialTerms(node) {
   // (this step only happens under certain conditions and later steps might
   // happen even if step 1 does not)
   let status = addOneExponent(newNode);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     substeps.push(status);
     newNode = NodeStatus.resetChangeGroups(status.newNode);
   }
@@ -116,7 +116,7 @@ function multiplyPolynomialTerms(node) {
   // TODO: handle fractions, combining and collecting like terms, etc, here
   const exponentSum = newNode.args[1].content;
   const sumStatus = arithmeticSearch(exponentSum);
-  if (sumStatus.hasChanged()) {
+  if (sumStatus.hasChanged) {
     status = NodeStatus.childChanged(newNode, sumStatus, 1);
     substeps.push(status);
     newNode = NodeStatus.resetChangeGroups(status.newNode);

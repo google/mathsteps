@@ -20,18 +20,18 @@ export function addLikeTerms(node, polynomialOnly = false) {
 
   if (!polynomialOnly) {
     status = evaluateConstantSum(node);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       return status;
     }
   }
 
   status = addLikePolynomialTerms(node);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     return status;
   }
 
   status = addLikeNthRootTerms(node);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     return status;
   }
 
@@ -70,7 +70,7 @@ function addLikeTermNodes(node, termSubclass, changeType) {
   // (this step only happens under certain conditions and later steps might
   // happen even if step 1 does not)
   let status = addPositiveOneCoefficient(newNode, termSubclass);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     substeps.push(status);
     newNode = NodeStatus.resetChangeGroups(status.newNode);
   }
@@ -79,7 +79,7 @@ function addLikeTermNodes(node, termSubclass, changeType) {
   // (this step only happens under certain conditions and later steps might
   // happen even if step 2 does not)
   status = addNegativeOneCoefficient(newNode, termSubclass);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     substeps.push(status);
     newNode = NodeStatus.resetChangeGroups(status.newNode);
   }

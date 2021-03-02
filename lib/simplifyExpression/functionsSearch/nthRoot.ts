@@ -96,21 +96,21 @@ function nthRootMultiplication(node) {
   if (NodeType.isConstant(rootNode) && !Negative.isNegative(rootNode)) {
     // Step 1A
     status = factorMultiplicands(newNode);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       substeps.push(status);
       newNode = NodeStatus.resetChangeGroups(status.newNode);
     }
 
     // Step 1B
     status = groupTermsByRoot(newNode);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       substeps.push(status);
       newNode = NodeStatus.resetChangeGroups(status.newNode);
     }
 
     // Step 1C
     status = convertMultiplicationToExponent(newNode);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       substeps.push(status);
       newNode = NodeStatus.resetChangeGroups(status.newNode);
       if (newNode.args[0].op === "^") {
@@ -134,13 +134,13 @@ function nthRootMultiplication(node) {
 
   // Step 2B
   status = evaluateNthRootForChildren(newNode);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     substeps.push(status);
     newNode = NodeStatus.resetChangeGroups(status.newNode);
 
     // Step 2C
     status = combineRoots(newNode);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       substeps.push(status);
       newNode = NodeStatus.resetChangeGroups(status.newNode);
     }
@@ -355,7 +355,7 @@ function evaluateNthRootForChildren(node) {
   for (let i = 0; i < newNode.args.length; i++) {
     const child = newNode.args[i];
     const childNodeStatus = nthRoot(child);
-    if (childNodeStatus.hasChanged()) {
+    if (childNodeStatus.hasChanged) {
       newNode.args[i] = childNodeStatus.newNode;
       substeps.push(NodeStatus.childChanged(newNode, childNodeStatus, i));
     }
@@ -461,7 +461,7 @@ function nthRootConstant(node) {
 
       // run nthRoot on the new node
       const nodeStatus = nthRootMultiplication(newNode);
-      if (nodeStatus.hasChanged()) {
+      if (nodeStatus.hasChanged) {
         substeps = substeps.concat(nodeStatus.substeps);
         newNode = nodeStatus.newNode;
 

@@ -185,7 +185,7 @@ function distributeAndSimplifyMultiplication(node) {
     // and the new node will be 3*(14+7x)*(3+x)*(4+x) with 4 children.
     if (NodeType.isOperator(newNode, "*")) {
       const childStatus = simplifyWithParens(newNode.args[i]);
-      if (childStatus.hasChanged()) {
+      if (childStatus.hasChanged) {
         status = NodeStatus.childChanged(newNode, childStatus, i);
         substeps.push(status);
         newNode = NodeStatus.resetChangeGroups(status.newNode);
@@ -196,7 +196,7 @@ function distributeAndSimplifyMultiplication(node) {
     // Now we can just simplify it.
     else if (NodeType.isParenthesis(newNode)) {
       status = simplifyWithParens(newNode);
-      if (status.hasChanged()) {
+      if (status.hasChanged) {
         substeps.push(status);
         newNode = NodeStatus.resetChangeGroups(status.newNode);
       }
@@ -303,7 +303,7 @@ function simplifyWithParens(node) {
   }
 
   const status = simplify(node.content);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     return NodeStatus.childChanged(node, status);
   } else {
     return NodeStatus.noChange(node);
@@ -327,7 +327,7 @@ function simplify(node) {
   for (let i = 0; i < newNode.args.length; i++) {
     for (let j = 0; j < simplifyFunctions.length; j++) {
       const childStatus = simplifyFunctions[j](newNode.args[i]);
-      if (childStatus.hasChanged()) {
+      if (childStatus.hasChanged) {
         const status = NodeStatus.childChanged(newNode, childStatus, i);
         substeps.push(status);
         newNode = NodeStatus.resetChangeGroups(status.newNode);

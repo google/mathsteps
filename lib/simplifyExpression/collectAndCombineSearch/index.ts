@@ -26,7 +26,7 @@ export const collectAndCombineSearch = TreeSearch.postOrder(
 function collectAndCombineLikeTerms(node) {
   if (node.op === "+") {
     const status = collectAndCombineOperation(node);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       return status;
     }
     // we might also be able to just combine if they're all the same term
@@ -39,7 +39,7 @@ function collectAndCombineLikeTerms(node) {
       return multiplyLikeTerms(node, true);
     }
     const status = collectAndCombineOperation(node);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       // make sure there's no * between the coefficient and the symbol part
       status.newNode.implicit = true;
       return status;
@@ -58,7 +58,7 @@ function collectAndCombineOperation(node) {
   let substeps = [];
 
   const status = LikeTermCollector.collectLikeTerms(node.cloneDeep());
-  if (!status.hasChanged()) {
+  if (!status.hasChanged) {
     return status;
   }
 
@@ -100,7 +100,7 @@ function combineLikeTerms(node) {
     }
     child = child.content;
     const childStatus = termCollectorFunctions[newNode.op](child);
-    if (childStatus.hasChanged()) {
+    if (childStatus.hasChanged) {
       const status = NodeStatus.childChanged(newNode, childStatus, i);
       steps.push(status);
       newNode = NodeStatus.resetChangeGroups(status.newNode);

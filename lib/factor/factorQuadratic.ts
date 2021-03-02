@@ -82,7 +82,7 @@ export function factorQuadratic(node) {
       cValue,
       negate
     );
-    if (nodeStatus.hasChanged()) {
+    if (nodeStatus.hasChanged) {
       return nodeStatus;
     }
   }

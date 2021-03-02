@@ -10,6 +10,11 @@ import { MathNode } from "mathjs";
  * Status(node) creates a Status object that signals no change
  * */
 export class NodeStatus {
+
+  get hasChanged() {
+    return this.changeType !== ChangeTypes.NO_CHANGE;
+  }
+
   constructor(
     public changeType,
     private oldNode,
@@ -27,10 +32,6 @@ export class NodeStatus {
     this.oldNode = oldNode;
     this.newNode = newNode;
     this.substeps = substeps;
-  }
-
-  hasChanged() {
-    return this.changeType !== ChangeTypes.NO_CHANGE;
   }
 
   static resetChangeGroups(node) {

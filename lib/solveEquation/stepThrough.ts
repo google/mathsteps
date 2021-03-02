@@ -123,7 +123,7 @@ export function stepThrough(leftNode, rightNode, comparator, debug = false) {
       }
     }
 
-    if (equationStatus.hasChanged()) {
+    if (equationStatus.hasChanged) {
       if (equationStatus.newEquation.ascii().length > 300) {
         // eslint-disable-next-line
         throw Error(
@@ -149,7 +149,7 @@ export function stepThrough(leftNode, rightNode, comparator, debug = false) {
       );
       return [];
     }
-  } while (equationStatus.hasChanged());
+  } while (equationStatus.hasChanged);
 
   return steps;
 }
@@ -326,7 +326,7 @@ function step(equation, symbolName) {
   for (let i = 0; i < solveFunctions.length; i++) {
     const equationStatus = solveFunctions[i](equation, symbolName);
 
-    if (equationStatus.hasChanged()) {
+    if (equationStatus.hasChanged) {
       return equationStatus;
     }
   }

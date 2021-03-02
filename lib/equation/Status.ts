@@ -9,6 +9,11 @@ import { Equation } from "./Equation";
  * changed.
  * */
 export class EquationStatus {
+
+  get hasChanged() {
+    return this.changeType !== ChangeTypes.NO_CHANGE;
+  }
+
   constructor(
     private changeType,
     private oldEquation,
@@ -26,10 +31,6 @@ export class EquationStatus {
     this.oldEquation = oldEquation;
     this.newEquation = newEquation;
     this.substeps = substeps;
-  }
-
-  hasChanged() {
-    return this.changeType !== ChangeTypes.NO_CHANGE;
   }
 
   // A wrapper around the Status constructor for the case where equation

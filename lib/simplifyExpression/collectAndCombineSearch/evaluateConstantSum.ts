@@ -28,7 +28,7 @@ export function evaluateConstantSum(node) {
   ];
   for (let i = 0; i < summingFunctions.length; i++) {
     const status = summingFunctions[i](node);
-    if (status.hasChanged()) {
+    if (status.hasChanged) {
       if (NodeType.isConstantOrConstantFraction(status.newNode)) {
         return status;
       }

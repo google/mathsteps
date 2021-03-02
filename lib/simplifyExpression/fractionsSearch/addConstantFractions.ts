@@ -63,14 +63,14 @@ export function addConstantFractions(node: MathNode): NodeStatus {
 
   // 2C. If the numerator is 0, simplify to just 0
   status = reduceNumerator(newNode);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     substeps.push(status);
     newNode = NodeStatus.resetChangeGroups(status.newNode);
   }
 
   // 2D. If we can simplify the fraction, do so
   status = divideByGCD(newNode);
-  if (status.hasChanged()) {
+  if (status.hasChanged) {
     substeps.push(status);
     newNode = NodeStatus.resetChangeGroups(status.newNode);
   }

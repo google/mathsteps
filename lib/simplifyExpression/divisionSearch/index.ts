@@ -14,12 +14,12 @@ function division(node) {
   }
   // e.g. 2/(x/6) => 2 * 6/x
   let nodeStatus = multiplyByInverse(node);
-  if (nodeStatus.hasChanged()) {
+  if (nodeStatus.hasChanged) {
     return nodeStatus;
   }
   // e.g. 2/x/6 -> 2/(x*6)
   nodeStatus = simplifyDivisionChain(node);
-  if (nodeStatus.hasChanged()) {
+  if (nodeStatus.hasChanged) {
     return nodeStatus;
   }
   return NodeStatus.noChange(node);

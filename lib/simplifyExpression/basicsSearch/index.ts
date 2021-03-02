@@ -66,7 +66,7 @@ export const basicsSearch = TreeSearch.preOrder(basics);
 function basics(node) {
   for (let i = 0; i < SIMPLIFICATION_FUNCTIONS.length; i++) {
     const nodeStatus = SIMPLIFICATION_FUNCTIONS[i](node);
-    if (nodeStatus.hasChanged()) {
+    if (nodeStatus.hasChanged) {
       return nodeStatus;
     } else {
       node = nodeStatus.newNode;

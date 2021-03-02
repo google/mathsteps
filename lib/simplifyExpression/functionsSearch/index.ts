@@ -19,7 +19,7 @@ function functions(node) {
 
   for (let i = 0; i < FUNCTIONS.length; i++) {
     const nodeStatus = FUNCTIONS[i](node);
-    if (nodeStatus.hasChanged()) {
+    if (nodeStatus.hasChanged) {
       return nodeStatus;
     }
   }

@@ -28,7 +28,7 @@ export function simplifyPolynomialFraction(node: MathNode): NodeStatus {
   for (let i = 0; i < coefficientSimplifications.length; i++) {
     const coefficientFraction = polyNode.getCoeffNode(); // a division node
     const newCoeffStatus = coefficientSimplifications[i](coefficientFraction);
-    if (newCoeffStatus.hasChanged()) {
+    if (newCoeffStatus.hasChanged) {
       // we need to reset change groups because we're creating a new node
       let newCoeff = NodeStatus.resetChangeGroups(newCoeffStatus.newNode);
       if (newCoeff.value === "1") {

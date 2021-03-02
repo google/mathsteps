@@ -37,7 +37,7 @@ export function stepThrough(node, debug = false) {
 
   // Now, step through the math expression until nothing changes
   nodeStatus = step(node);
-  while (nodeStatus.hasChanged()) {
+  while (nodeStatus.hasChanged) {
     if (debug) {
       logSteps(nodeStatus);
     }
@@ -106,7 +106,7 @@ function step(node) {
     // a step. Remove unnecessary parens, in case one a step results in more
     // parens than needed.
     node = removeUnnecessaryParens(nodeStatus.newNode, true);
-    if (nodeStatus.hasChanged()) {
+    if (nodeStatus.hasChanged) {
       node = flattenOperands(node);
       nodeStatus.newNode = node.cloneDeep();
       return nodeStatus;
