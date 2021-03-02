@@ -24,7 +24,7 @@ describe("mixed cases", () => {
     // ["(a^2+2*a+1)/(a+1)", "a+1"] not working
   ];
   tests.forEach((t) => testSimplify(t[0], t[1]));
-})
+});
 
 describe("simplify (arithmetic)", () => {
   const tests = [

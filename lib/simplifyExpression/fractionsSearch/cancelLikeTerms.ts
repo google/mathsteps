@@ -7,6 +7,7 @@ import { NodeStatus } from "../../node/NodeStatus";
 import { NodeCreator } from "../../node/Creator";
 import { printAscii } from "../../util/print";
 import { PolynomialTerm } from "../../node/PolynomialTerm";
+import {StepNode} from '../../node/StepNode';
 
 // Used for cancelTerms to return a (possibly updated) numerator and denominator
 class CancelOutStatus {
@@ -24,7 +25,7 @@ class CancelOutStatus {
 // Cancels like terms in a fraction node
 // e.g. (2x^2 * 5) / 2x^2 => 5 / 1
 // Returns a Status object
-export function cancelLikeTerms(node) {
+export function cancelLikeTerms(node: StepNode): NodeStatus {
   if (!NodeType.isOperator(node) || node.op !== "/") {
     return NodeStatus.noChange(node);
   }

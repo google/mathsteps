@@ -3,6 +3,7 @@ import { PolynomialTerm } from "../node/PolynomialTerm";
 import { LikeTermCollector } from "../simplifyExpression/collectAndCombineSearch/LikeTermCollector";
 import { resolvesToConstant } from "../checks/resolvesToConstant";
 import { canSimplifyPolynomialTerms } from "../checks/canSimplifyPolynomialTerms";
+import {StepNode} from '../node/StepNode';
 
 // Removes any parenthesis around nodes that can't be resolved further.
 // Input must be a top level expression.
@@ -25,7 +26,7 @@ export function removeUnnecessaryParens(node, rootNode = false) {
 // it doesn't change the value of the expression. Returns a node.
 // NOTE: after this function is called, every parenthesis node in the
 // tree should always have an operator node or unary minus as its child.
-function removeUnnecessaryParensSearch(node) {
+function removeUnnecessaryParensSearch(node: StepNode): StepNode {
   if (NodeType.isOperator(node)) {
     return removeUnnecessaryParensInOperatorNode(node);
   } else if (NodeType.isFunction(node)) {

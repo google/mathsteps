@@ -1,6 +1,6 @@
 import * as math from "mathjs";
 import { stepThrough } from "./stepThrough";
-import {emptyResponse} from '../util/empty-response';
+import { emptyResponse } from "../util/empty-response";
 
 export function factorString(expressionString, debug = false) {
   try {

@@ -43,21 +43,27 @@ export function search(simplificationFunction, node, preOrder) {
 }
 
 class TreeSearchImpl {
-  // Returns a function that performs a preorder search on the tree for the given
-  // simplification function
+
+  /**
+   * Returns a function that performs a preorder search on the tree for the given
+   * simplification function
+   * */
   preOrder(simplificationFunction) {
     return function (node) {
       return search(simplificationFunction, node, true);
     };
   }
 
-  // Returns a function that performs a postorder search on the tree for the given
-  // simplification function
+  /**
+   * Returns a function that performs a postorder search on the tree for the given
+   * simplification function
+   * */
   postOrder(simplificationFunction) {
     return function (node) {
       return search(simplificationFunction, node, false);
     };
   }
+
 }
 
 export const TreeSearch = new TreeSearchImpl();

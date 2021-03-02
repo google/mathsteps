@@ -13,7 +13,6 @@ import { isQuadratic } from "../checks/isQuadratic";
  * */
 export function stepThrough(node, debug = false) {
   if (debug) {
-    // eslint-disable-next-line
     console.log("\n\nFactoring: " + printAscii(node, false));
   }
 
@@ -21,13 +20,12 @@ export function stepThrough(node, debug = false) {
     return [];
   }
 
-  let nodeStatus;
   const steps = [];
 
   node = flattenOperands(node);
   node = removeUnnecessaryParens(node, true);
   if (isQuadratic(node)) {
-    nodeStatus = factorQuadratic(node);
+    const nodeStatus = factorQuadratic(node);
     if (nodeStatus.hasChanged()) {
       steps.push(nodeStatus);
     }

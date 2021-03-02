@@ -1,5 +1,6 @@
 import { ChangeTypes } from "../ChangeTypes";
 import { NodeType } from "./NodeType";
+import {StepNode} from './StepNode';
 
 /**
  * This represents the current (sub)expression we're simplifying.
@@ -46,7 +47,7 @@ export class NodeStatus {
    * A wrapper around the Status constructor for the case where node hasn't
    * been changed.
    * */
-  static noChange(node) {
+  static noChange(node: StepNode) {
     return new NodeStatus(ChangeTypes.NO_CHANGE, null, node);
   }
 

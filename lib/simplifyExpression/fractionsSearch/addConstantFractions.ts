@@ -6,6 +6,7 @@ import { evaluate } from "../../util/evaluate";
 import { NodeType } from "../../node/NodeType";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeCreator } from "../../node/Creator";
+import {StepNode} from '../../node/StepNode';
 
 // Adds constant fractions -- can start from either step 1 or 2
 // 1A. Find the LCD if denominators are different and multiplies to make
@@ -15,7 +16,7 @@ import { NodeCreator } from "../../node/Creator";
 // 2A. Combines numerators, e.g. 4/6 + 4/6 ->  e.g. 2/5 + 4/5 --> (2+4)/5
 // 2B. Adds numerators together, e.g. (2+4)/5 -> 6/5
 // Returns a Status object with substeps
-export function addConstantFractions(node) {
+export function addConstantFractions(node: StepNode): NodeStatus {
   let newNode = node.cloneDeep();
 
   if (!NodeType.isOperator(node) || node.op !== "+") {

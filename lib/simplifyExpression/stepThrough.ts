@@ -14,7 +14,7 @@ import { arithmeticSearch } from "./arithmeticSearch/ArithmeticSearch";
 import { functionsSearch } from "./functionsSearch";
 import { fractionsSearch } from "./fractionsSearch";
 import { basicsSearch } from "./basicsSearch";
-import {emptyResponse} from '../util/empty-response';
+import { emptyResponse } from "../util/empty-response";
 
 // Given a mathjs expression node, steps through simplifying the expression.
 // Returns a list of details about each step.

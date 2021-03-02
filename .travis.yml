@@ -4,5 +4,4 @@ node_js:
 notifications:
   email: false
 script:
-  - npm run lint
   - npm test

@@ -18,8 +18,11 @@ import { simplifyPolynomialFraction } from "./simplifyPolynomialFraction";
 import { cancelLikeTerms } from "./cancelLikeTerms";
 import { simplifyFractionSigns } from "./simplifyFractionSigns";
 import { NodeStatus } from "../../node/NodeStatus";
+import {factorString} from '../../factor/FactorString';
+import {StepNode} from '../../node/StepNode';
 
-const SIMPLIFICATION_FUNCTIONS = [
+const SIMPLIFICATION_FUNCTIONS: ReadonlyArray<(node: StepNode) => NodeStatus> = [
+
   // e.g. 2/3 + 5/6
   addConstantFractions,
 
