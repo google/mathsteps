@@ -14,6 +14,7 @@ import { arithmeticSearch } from "./arithmeticSearch/ArithmeticSearch";
 import { functionsSearch } from "./functionsSearch";
 import { fractionsSearch } from "./fractionsSearch";
 import { basicsSearch } from "./basicsSearch";
+import {emptyResponse} from '../util/empty-response';
 
 // Given a mathjs expression node, steps through simplifying the expression.
 // Returns a list of details about each step.
@@ -24,7 +25,7 @@ export function stepThrough(node, debug = false) {
   }
 
   if (hasUnsupportedNodes(node)) {
-    return [];
+    return emptyResponse();
   }
 
   let nodeStatus;
@@ -32,7 +33,7 @@ export function stepThrough(node, debug = false) {
 
   const originalExpressionStr = printAscii(node);
   const MAX_STEP_COUNT = 20;
-  let iters = 0;
+  let iterations = 0;
 
   // Now, step through the math expression until nothing changes
   nodeStatus = step(node);
@@ -45,7 +46,7 @@ export function stepThrough(node, debug = false) {
     node = NodeStatus.resetChangeGroups(nodeStatus.newNode);
     nodeStatus = step(node);
 
-    if (iters++ === MAX_STEP_COUNT) {
+    if (iterations++ === MAX_STEP_COUNT) {
       // eslint-disable-next-line
       console.error(
         "Math error: Potential infinite loop for expression: " +

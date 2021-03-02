@@ -2,8 +2,12 @@
 
 This is work in progress and not ready to be used.
 
-What has been achieved so far:
-- Porting https://github.com/google/mathsteps to TypeScript!
+## TODOs
+- Fix usage of factoring for simplification
+- Throw error instead of returning empty array?
+
+## Done (compared to https://github.com/google/mathsteps)
+- Port to TypeScript!
 
 ## Why Mathsteps
 Mathsteps aims to provide step-by-step instructions like a tutor would give them to a student.

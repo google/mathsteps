@@ -1,16 +1,16 @@
 import * as math from "mathjs";
 import { stepThrough } from "./stepThrough";
+import {emptyResponse} from '../util/empty-response';
 
 export function factorString(expressionString, debug = false) {
-  let node;
   try {
-    node = math.parse(expressionString);
+    const node = math.parse(expressionString);
+    if (node != null) {
+      return stepThrough(node, debug);
+    } else {
+      return emptyResponse();
+    }
   } catch (err) {
-    return [];
+    return emptyResponse();
   }
-
-  if (node) {
-    return stepThrough(node, debug);
-  }
-  return [];
 }

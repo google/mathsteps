@@ -18,6 +18,13 @@ function testSolve(equationString, outputStr, debug = false) {
   });
 }
 
+describe("mixed cases", () => {
+  const tests = [
+    ["3(x+2)=12", "x = 2"]
+  ];
+  tests.forEach((t) => testSolve(t[0], t[1]));
+})
+
 describe("solveEquation for =", function () {
   const tests = [
     // can't solve this because two symbols: g and x -- so there's no steps

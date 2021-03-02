@@ -9,7 +9,7 @@ function testSimplify(
   expectedOutputString: string,
   debug = false
 ) {
-  it(inputString + " -> " + expectedOutputString, function () {
+  it(inputString + " -> " + expectedOutputString, () => {
     assert.deepEqual(
       printAscii(simplify(math.parse(inputString), debug)),
       expectedOutputString
@@ -17,7 +17,16 @@ function testSimplify(
   });
 }
 
-describe("simplify (arithmetic)", function () {
+describe("mixed cases", () => {
+  const tests = [
+    // ["(1/x+1/y)/(1/x-1/y)", "y+x/y-x"] not working
+    // ["(7x/8b) / (14x/10b^2)", "5b/8"] not working
+    // ["(a^2+2*a+1)/(a+1)", "a+1"] not working
+  ];
+  tests.forEach((t) => testSimplify(t[0], t[1]));
+})
+
+describe("simplify (arithmetic)", () => {
   const tests = [
     ["(2+2)*5", "20"],
     ["(8+(-4))*5", "20"],
@@ -28,7 +37,7 @@ describe("simplify (arithmetic)", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("collects and combines like terms", function () {
+describe("collects and combines like terms", () => {
   const tests = [
     ["x^2 + 3x*(-4x) + 5x^3 + 3x^2 + 6", "5x^3 - 8x^2 + 6"],
     ["2x^2 * y * x * y^3", "2x^3 * y^4"],
@@ -43,7 +52,7 @@ describe("collects and combines like terms", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("can simplify with division", function () {
+describe("can simplify with division", () => {
   const tests = [
     ["2 * 4 / 5 * 10 + 3", "19"],
     ["2x * 5x / 2", "5x^2"],
@@ -65,7 +74,7 @@ describe("can simplify with division", function () {
   // e.g. (x^2 - 3 + 2)/(x-2) -> (x-1)
 });
 
-describe("subtraction support", function () {
+describe("subtraction support", () => {
   const tests = [
     ["-(-(2+3))", "5"],
     ["-(-5)", "5"],
@@ -80,7 +89,7 @@ describe("subtraction support", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("support for more * and ( that come from latex conversion", function () {
+describe("support for more * and ( that come from latex conversion", () => {
   const tests = [
     ["(3*x)*(4*x)", "12x^2"],
     ["(12*z^(2))/27", "4/9 z^2"],
@@ -90,7 +99,7 @@ describe("support for more * and ( that come from latex conversion", function ()
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("distribution", function () {
+describe("distribution", () => {
   const tests = [
     ["(3*x)*(4*x)", "12x^2"],
     ["(3+x)*(4+x)*(x+5)", "x^3 + 12x^2 + 47x + 60"],
@@ -120,7 +129,7 @@ describe("distribution", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("fractions", function () {
+describe("fractions", () => {
   const tests = [
     ["5x + (1/2)x", "11/2 x"],
     ["x + x/2", "3/2 x"],
@@ -137,11 +146,11 @@ describe("fractions", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("floating point", function () {
+describe("floating point", () => {
   testSimplify("1.983*10", "19.83");
 });
 
-describe("cancelling out", function () {
+describe("cancelling out", () => {
   const tests = [
     ["(x^3*y)/x^2 + 5", "x * y + 5"],
     ["(x^(2)+y^(2))/(5x-6x) + 5", "-x - y^2 / x + 5"],
@@ -156,7 +165,7 @@ describe("cancelling out", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("absolute value support", function () {
+describe("absolute value support", () => {
   const tests = [
     ["(x^3*y)/x^2 + abs(-5)", "x * y + 5"],
     ["-6 + -5 - abs(-4) + -10 - 3 abs(-4)", "-37"],
@@ -170,7 +179,7 @@ describe("absolute value support", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("nthRoot support", function () {
+describe("nthRoot support", () => {
   const tests = [
     ["nthRoot(4x, 2)", "2 * nthRoot(x, 2)"],
     ["2 * nthRoot(4x, 2)", "4 * nthRoot(x, 2)"],
@@ -184,7 +193,7 @@ describe("nthRoot support", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("handles unnecessary parens at root level", function () {
+describe("handles unnecessary parens at root level", () => {
   const tests = [
     ["(x+(y))", "x + y"],
     ["((x+y) + ((z^3)))", "x + y + z^3"],
@@ -192,6 +201,6 @@ describe("handles unnecessary parens at root level", function () {
   tests.forEach((t) => testSimplify(t[0], t[1]));
 });
 
-describe("keeping parens in important places, on printing", function () {
+describe("keeping parens in important places, on printing", () => {
   testSimplify("2 / (3x^2) + 5", "2 / (3x^2) + 5");
 });
