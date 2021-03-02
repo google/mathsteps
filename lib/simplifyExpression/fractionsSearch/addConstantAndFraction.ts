@@ -5,14 +5,14 @@ import { evaluate } from "../../util/evaluate";
 import { NodeType } from "../../node/NodeType";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeCreator } from "../../node/Creator";
-import {StepNode} from '../../node/StepNode';
+import { MathNode } from "mathjs";
 
 // Adds a constant to a fraction by:
 // - collapsing the fraction to decimal if the constant is not an integer
 //   e.g. 5.3 + 1/2 -> 5.3 + 0.2
 // - turning the constant into a fraction with the same denominator if it is
 //   an integer, e.g. 5 + 1/2 -> 10/2 + 1/2
-export function addConstantAndFraction(node: StepNode): NodeStatus {
+export function addConstantAndFraction(node: MathNode): NodeStatus {
   if (!NodeType.isOperator(node) || node.op !== "+" || node.args.length !== 2) {
     return NodeStatus.noChange(node);
   }

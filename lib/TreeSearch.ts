@@ -43,7 +43,6 @@ export function search(simplificationFunction, node, preOrder) {
 }
 
 class TreeSearchImpl {
-
   /**
    * Returns a function that performs a preorder search on the tree for the given
    * simplification function
@@ -63,7 +62,6 @@ class TreeSearchImpl {
       return search(simplificationFunction, node, false);
     };
   }
-
 }
 
 export const TreeSearch = new TreeSearchImpl();

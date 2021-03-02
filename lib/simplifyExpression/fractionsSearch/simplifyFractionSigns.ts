@@ -3,7 +3,7 @@ import { Negative } from "../../Negative";
 import { NodeType } from "../../node/NodeType";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeCreator } from "../../node/Creator";
-import {StepNode} from '../../node/StepNode';
+import { MathNode } from "mathjs";
 
 // Simplifies negative signs if possible
 // e.g. -1/-3 --> 1/3   4/-5 --> -4/5
@@ -11,7 +11,7 @@ import {StepNode} from '../../node/StepNode';
 // Note that our goal is for the denominator to always be positive. If it
 // isn't, we can simplify signs.
 // Returns a Status object
-export function simplifyFractionSigns(node: StepNode): NodeStatus {
+export function simplifyFractionSigns(node: MathNode): NodeStatus {
   if (!NodeType.isOperator(node) || node.op !== "/") {
     return NodeStatus.noChange(node);
   }

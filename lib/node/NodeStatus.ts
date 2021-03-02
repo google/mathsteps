@@ -1,6 +1,6 @@
 import { ChangeTypes } from "../ChangeTypes";
 import { NodeType } from "./NodeType";
-import {StepNode} from './StepNode';
+import { MathNode } from "mathjs";
 
 /**
  * This represents the current (sub)expression we're simplifying.
@@ -47,7 +47,7 @@ export class NodeStatus {
    * A wrapper around the Status constructor for the case where node hasn't
    * been changed.
    * */
-  static noChange(node: StepNode) {
+  static noChange(node: MathNode) {
     return new NodeStatus(ChangeTypes.NO_CHANGE, null, node);
   }
 

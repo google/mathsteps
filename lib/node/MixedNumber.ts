@@ -1,6 +1,6 @@
 import { Negative } from "../Negative";
 import { NodeType } from "./NodeType";
-import { StepNode } from "./StepNode";
+import { MathNode } from "mathjs";
 
 export class NodeMixedNumberImpl {
   /**
@@ -11,7 +11,7 @@ export class NodeMixedNumberImpl {
    * which is division with implicit multiplication in the numerator
    * TODO: Add better support for mixed numbers in the future
    * */
-  isMixedNumber(node: StepNode) {
+  isMixedNumber(node: MathNode) {
     if (!NodeType.isOperator(node, "/")) {
       return false;
     }
@@ -26,7 +26,7 @@ export class NodeMixedNumberImpl {
     // check for implicit multiplication between two constants in the numerator
     // first can be wrapped in unary minus
     // second one can be optionally wrapped in parenthesis
-    if (!(NodeType.isOperator(numerator, "*") && numerator.implicit)) {
+    if (!(NodeType.isOperator(numerator, "*") && (numerator as any).implicit)) {
       return false;
     }
 
@@ -67,7 +67,7 @@ export class NodeMixedNumberImpl {
    * e.g. -1 2/3 !== ((-1 * 3) + 2)/3 = -1/3
    *      -1 2/3 == -((1 * 3) + 2)/3 = -5/2
    * */
-  isNegativeMixedNumber = (node: StepNode) => {
+  isNegativeMixedNumber = (node: MathNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");
     }
@@ -80,7 +80,7 @@ export class NodeMixedNumberImpl {
    * e.g. 1 2/3 -> 1
    * Negatives are ignored; e.g. -1 2/3 -> 1
    * */
-  getWholeNumberValue = (node: StepNode) => {
+  getWholeNumberValue = (node: MathNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");
     }
@@ -96,7 +96,7 @@ export class NodeMixedNumberImpl {
    * Get the numerator part of a mixed number
    * e.g. 1 2/3 -> 2
    * */
-  getNumeratorValue = (node: StepNode) => {
+  getNumeratorValue = (node: MathNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");
     }
@@ -112,7 +112,7 @@ export class NodeMixedNumberImpl {
    * Get the denominator part of a mixed number
    * e.g. 1 2/3 -> 3
    * */
-  getDenominatorValue = (node: StepNode) => {
+  getDenominatorValue = (node: MathNode) => {
     if (!this.isMixedNumber(node)) {
       throw Error("Expected a mixed number");
     }

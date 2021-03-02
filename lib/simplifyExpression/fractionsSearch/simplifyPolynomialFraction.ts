@@ -3,14 +3,14 @@ import { PolynomialTerm } from "../../node/PolynomialTerm";
 import { NodeStatus } from "../../node/NodeStatus";
 import { NodeCreator } from "../../node/Creator";
 import { arithmeticSearch } from "../arithmeticSearch/ArithmeticSearch";
-import {StepNode} from '../../node/StepNode';
+import { MathNode } from "mathjs";
 
 // Simplifies a polynomial term with a fraction as its coefficients.
 // e.g. 2x/4 --> x/2    10x/5 --> 2x
 // Also simplified negative signs
 // e.g. -y/-3 --> y/3   4x/-5 --> -4x/5
 // returns the new simplified node in a Status object
-export function simplifyPolynomialFraction(node: StepNode): NodeStatus {
+export function simplifyPolynomialFraction(node: MathNode): NodeStatus {
   if (!PolynomialTerm.isPolynomialTerm(node)) {
     return NodeStatus.noChange(node);
   }
