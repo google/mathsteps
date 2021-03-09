@@ -9,7 +9,6 @@ import { Equation } from "./Equation";
  * changed.
  * */
 export class EquationStatus {
-
   get hasChanged() {
     return this.changeType !== ChangeTypes.NO_CHANGE;
   }

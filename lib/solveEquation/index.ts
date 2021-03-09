@@ -2,7 +2,7 @@ import * as math from "mathjs";
 
 import { stepThrough } from "./stepThrough";
 
-export function solveEquationString(equationString, debug = false) {
+export function solveEquation(equationString, debug = false) {
   const comparators = ["<=", ">=", "=", "<", ">"];
 
   for (let i = 0; i < comparators.length; i++) {

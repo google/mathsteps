@@ -1,11 +1,11 @@
 import { ChangeTypes } from "../../lib/ChangeTypes";
-import { solveEquationString } from "../../lib/solveEquation";
+import { solveEquation } from "../../lib/solveEquation";
 import assert = require("assert");
 
 const NO_STEPS = "no-steps";
 
 function testSolve(equationString, outputStr, debug = false) {
-  const steps = solveEquationString(equationString, debug);
+  const steps = solveEquation(equationString, debug);
   let lastStep;
   if (steps.length === 0) {
     lastStep = NO_STEPS;
@@ -142,7 +142,7 @@ function testSolveConstantEquation(
   expectedChange,
   debug = false
 ) {
-  const steps = solveEquationString(equationString, debug);
+  const steps = solveEquation(equationString, debug);
   const actualChange = steps[steps.length - 1].changeType;
   it(equationString + " -> " + expectedChange, (done) => {
     assert.equal(actualChange, expectedChange);
@@ -183,7 +183,7 @@ describe("constant comparison support", function () {
 
 function testEquationError(equationString, debug = false) {
   it(equationString + " throws error", (done) => {
-    assert.throws(() => solveEquationString(equationString, debug), Error);
+    assert.throws(() => solveEquation(equationString, debug), Error);
     done();
   });
 }

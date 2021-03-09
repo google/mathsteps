@@ -10,7 +10,6 @@ import { MathNode } from "mathjs";
  * Status(node) creates a Status object that signals no change
  * */
 export class NodeStatus {
-
   get hasChanged() {
     return this.changeType !== ChangeTypes.NO_CHANGE;
   }
