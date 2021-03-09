@@ -2,7 +2,7 @@ import * as math from "mathjs";
 
 import { TestUtil } from "./TestUtil";
 
-import { Equation } from "../lib/equation/Equation";
+import { Equation } from "../lib/src/equation/Equation";
 import assert = require("assert");
 
 function constructAndPrintEquation(left, right, comp) {

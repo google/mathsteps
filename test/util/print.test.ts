@@ -1,8 +1,8 @@
 import * as math from "mathjs";
 
 import { TestUtil } from "../TestUtil";
-import { NodeCreator } from "../../lib/node/Creator";
-import { printAscii, printLatex } from "../../lib/util/print";
+import { NodeCreator } from "../../lib/src/node/Creator";
+import { printAscii, printLatex } from "../../lib/src/util/print";
 
 // to create nodes, for testing
 const opNode = NodeCreator.operator;

@@ -1,4 +1,4 @@
-import { simplifyFractionSigns } from "../../../lib/simplifyExpression/fractionsSearch/simplifyFractionSigns";
+import { simplifyFractionSigns } from "../../../lib/src/simplifyExpression/fractionsSearch/simplifyFractionSigns";
 
 import { TestUtil } from "../../TestUtil";
 

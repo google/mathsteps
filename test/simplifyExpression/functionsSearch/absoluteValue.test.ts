@@ -1,4 +1,4 @@
-import { absoluteValue } from "../../../lib/simplifyExpression/functionsSearch/absoluteValue";
+import { absoluteValue } from "../../../lib/src/simplifyExpression/functionsSearch/absoluteValue";
 
 import { TestUtil } from "../../TestUtil";
 

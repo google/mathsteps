@@ -1,4 +1,4 @@
-import { PolynomialTerm } from "../../lib/node/PolynomialTerm";
+import { PolynomialTerm } from "../../lib/src/node/PolynomialTerm";
 
 import { TestUtil } from "../TestUtil";
 

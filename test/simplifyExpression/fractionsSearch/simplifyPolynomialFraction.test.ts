@@ -1,4 +1,4 @@
-import { simplifyPolynomialFraction } from "../../../lib/simplifyExpression/fractionsSearch/simplifyPolynomialFraction";
+import { simplifyPolynomialFraction } from "../../../lib/src/simplifyExpression/fractionsSearch/simplifyPolynomialFraction";
 
 import { TestUtil } from "../../TestUtil";
 

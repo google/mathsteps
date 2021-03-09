@@ -1,5 +1,5 @@
-import { ChangeTypes } from "../../lib/ChangeTypes";
-import { solveEquation } from "../../lib/solveEquation";
+import { ChangeTypes } from "../../lib/src/ChangeTypes";
+import { solveEquation } from "../../lib/src/solveEquation";
 import assert = require("assert");
 
 const NO_STEPS = "no-steps";

@@ -1,9 +1,9 @@
 import * as math from "mathjs";
-import { Negative } from "../../lib/Negative";
+import { Negative } from "../../lib/src/Negative";
 import { TestUtil } from "../TestUtil";
-import { NodeType } from "../../lib/node/NodeType";
-import { NodeCreator } from "../../lib/node/Creator";
-import { NodeCustomType } from "../../lib/node/CustomType";
+import { NodeType } from "../../lib/src/node/NodeType";
+import { NodeCreator } from "../../lib/src/node/Creator";
+import { NodeCustomType } from "../../lib/src/node/CustomType";
 import assert = require("assert");
 
 const constNode = NodeCreator.constant;

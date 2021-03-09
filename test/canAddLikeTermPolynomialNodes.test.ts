@@ -1,5 +1,5 @@
 import { TestUtil } from "./TestUtil";
-import { canAddLikeTermPolynomialNodes } from "../lib/checks/canAddLikeTerms";
+import { canAddLikeTermPolynomialNodes } from "../lib/src/checks/canAddLikeTerms";
 
 function testCanBeAdded(expr, addable) {
   TestUtil.testBooleanFunction(canAddLikeTermPolynomialNodes, expr, addable);

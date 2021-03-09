@@ -1,4 +1,4 @@
-import { appendToArrayInObject } from "../../lib/util/Util";
+import { appendToArrayInObject } from "../../lib/src/util/Util";
 import assert = require("assert");
 
 describe("appendToArrayInObject", function () {

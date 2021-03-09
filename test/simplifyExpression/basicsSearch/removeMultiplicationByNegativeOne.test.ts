@@ -1,4 +1,4 @@
-import { removeMultiplicationByNegativeOne } from "../../../lib/simplifyExpression/basicsSearch/removeMultiplicationByNegativeOne";
+import { removeMultiplicationByNegativeOne } from "../../../lib/src/simplifyExpression/basicsSearch/removeMultiplicationByNegativeOne";
 
 import { testSimplify } from "./testSimplify";
 

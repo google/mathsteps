@@ -1,6 +1,6 @@
-import { printAscii } from "../../lib/util/print";
+import { printAscii } from "../../lib/src/util/print";
 import assert = require("assert");
-import { factorString } from "../../lib/factor/FactorString";
+import { factorString } from "../../lib/src/factor/FactorString";
 
 const NO_STEPS = "no-steps";
 

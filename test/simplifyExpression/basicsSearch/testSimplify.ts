@@ -1,5 +1,5 @@
 import assert = require("assert");
-import { printAscii } from "../../../lib/util/print";
+import { printAscii } from "../../../lib/src/util/print";
 import { TestUtil } from "../../TestUtil";
 
 export function testSimplify(exprStr, outputStr, simplifyOperation) {

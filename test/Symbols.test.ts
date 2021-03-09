@@ -1,8 +1,8 @@
 import * as math from "mathjs";
 
-import { Symbols } from "../lib/Symbols";
+import { Symbols } from "../lib/src/Symbols";
 import assert = require("assert");
-import { printAscii } from "../lib/util/print";
+import { printAscii } from "../lib/src/util/print";
 
 function runTest(functionToTest, exprString, expectedOutput, symbolName) {
   it(exprString + " -> " + expectedOutput, function () {

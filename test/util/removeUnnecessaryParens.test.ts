@@ -1,7 +1,7 @@
 import * as math from "mathjs";
 
-import { printAscii } from "../../lib/util/print";
-import { removeUnnecessaryParens } from "../../lib/util/removeUnnecessaryParens";
+import { printAscii } from "../../lib/src/util/print";
+import { removeUnnecessaryParens } from "../../lib/src/util/removeUnnecessaryParens";
 
 import { TestUtil } from "../TestUtil";
 

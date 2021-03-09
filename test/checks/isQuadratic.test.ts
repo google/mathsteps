@@ -1,5 +1,5 @@
 import { TestUtil } from "../TestUtil";
-import { isQuadratic } from "../../lib/checks/isQuadratic";
+import { isQuadratic } from "../../lib/src/checks/isQuadratic";
 
 function testIsQuadratic(input, output) {
   TestUtil.testBooleanFunction(isQuadratic, input, output);

@@ -1,4 +1,4 @@
-import { evaluateConstantSum } from "../../../lib/simplifyExpression/collectAndCombineSearch/evaluateConstantSum";
+import { evaluateConstantSum } from "../../../lib/src/simplifyExpression/collectAndCombineSearch/evaluateConstantSum";
 
 import { TestUtil } from "../../TestUtil";
 

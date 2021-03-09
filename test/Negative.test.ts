@@ -1,6 +1,6 @@
-import { printAscii } from "../lib/util/print";
+import { printAscii } from "../lib/src/util/print";
 
-import { Negative } from "../lib/Negative";
+import { Negative } from "../lib/src/Negative";
 
 import { TestUtil } from "./TestUtil";
 

@@ -1,5 +1,5 @@
 import { TestUtil } from "../TestUtil";
-import { resolvesToConstant } from "../../lib/checks/resolvesToConstant";
+import { resolvesToConstant } from "../../lib/src/checks/resolvesToConstant";
 
 function testResolvesToConstant(exprString, resolves) {
   TestUtil.testBooleanFunction(resolvesToConstant, exprString, resolves);

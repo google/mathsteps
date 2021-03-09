@@ -1,4 +1,4 @@
-import { ConstantFactors } from "../../lib/factor/ConstantFactors";
+import { ConstantFactors } from "../../lib/src/factor/ConstantFactors";
 
 import { TestUtil } from "../TestUtil";
 

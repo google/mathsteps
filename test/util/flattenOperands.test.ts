@@ -1,9 +1,9 @@
 import * as math from "mathjs";
 
 import { TestUtil } from "../TestUtil";
-import { printAscii } from "../../lib/util/print";
+import { printAscii } from "../../lib/src/util/print";
 import assert = require("assert");
-import { NodeCreator } from "../../lib/node/Creator";
+import { NodeCreator } from "../../lib/src/node/Creator";
 
 function testFlatten(exprStr, afterNode, debug = false) {
   const flattened = TestUtil.parseAndFlatten(exprStr);

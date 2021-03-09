@@ -1,4 +1,4 @@
-import { NthRootTerm } from "../../lib/node/NthRootTerm";
+import { NthRootTerm } from "../../lib/src/node/NthRootTerm";
 
 import { TestUtil } from "../TestUtil";
 

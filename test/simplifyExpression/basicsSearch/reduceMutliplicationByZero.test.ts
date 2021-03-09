@@ -1,4 +1,4 @@
-import { reduceMultiplicationByZero } from "../../../lib/simplifyExpression/basicsSearch/reduceMultiplicationByZero";
+import { reduceMultiplicationByZero } from "../../../lib/src/simplifyExpression/basicsSearch/reduceMultiplicationByZero";
 
 import { testSimplify } from "./testSimplify";
 

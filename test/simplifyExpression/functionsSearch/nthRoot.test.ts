@@ -1,5 +1,5 @@
 import { TestUtil } from "../../TestUtil";
-import { nthRoot } from "../../../lib/simplifyExpression/functionsSearch/nthRoot";
+import { nthRoot } from "../../../lib/src/simplifyExpression/functionsSearch/nthRoot";
 
 function testNthRoot(exprString, outputStr) {
   TestUtil.testSimplification(nthRoot, exprString, outputStr);

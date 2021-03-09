@@ -1,0 +1,32 @@
+{
+  "name": "@taskbase/mathsteps",
+  "version": "1.0.0-beta.1",
+  "description": "Step by step math solutions",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taskbase/mathsteps.git"
+  },
+  "keywords": [
+    "math",
+    "steps",
+    "algebra",
+    "cas",
+    "computer",
+    "algebra",
+    "system"
+  ],
+  "author": "Taskbase",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/taskbase/mathsteps/issues"
+  },
+  "homepage": "https://github.com/taskbase/mathsteps#readme",
+  "dependencies": {
+    "mathjs": "3.11.2"
+  }
+}

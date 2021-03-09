@@ -1,4 +1,4 @@
-import { collectAndCombineSearch } from "../../../lib/simplifyExpression/collectAndCombineSearch";
+import { collectAndCombineSearch } from "../../../lib/src/simplifyExpression/collectAndCombineSearch";
 
 import { TestUtil } from "../../TestUtil";
 

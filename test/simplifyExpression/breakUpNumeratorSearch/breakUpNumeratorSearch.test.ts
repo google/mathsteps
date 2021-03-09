@@ -1,4 +1,4 @@
-import { breakUpNumeratorSearch } from "../../../lib/simplifyExpression/breakUpNumeratorSearch";
+import { breakUpNumeratorSearch } from "../../../lib/src/simplifyExpression/breakUpNumeratorSearch";
 
 import { TestUtil } from "../../TestUtil";
 

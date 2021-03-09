@@ -1,5 +1,5 @@
 import * as math from "mathjs";
-import { hasUnsupportedNodes } from "../../lib/checks/hasUnsupportedNodes";
+import { hasUnsupportedNodes } from "../../lib/src/checks/hasUnsupportedNodes";
 import assert = require("assert");
 
 describe("arithmetic stepping", function () {

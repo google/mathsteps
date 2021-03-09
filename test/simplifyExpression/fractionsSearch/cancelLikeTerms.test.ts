@@ -1,4 +1,4 @@
-import { cancelLikeTerms } from "../../../lib/simplifyExpression/fractionsSearch/cancelLikeTerms";
+import { cancelLikeTerms } from "../../../lib/src/simplifyExpression/fractionsSearch/cancelLikeTerms";
 
 import { TestUtil } from "../../TestUtil";
 

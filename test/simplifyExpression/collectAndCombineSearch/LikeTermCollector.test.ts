@@ -1,7 +1,7 @@
-import { LikeTermCollector } from "../../../lib/simplifyExpression/collectAndCombineSearch/LikeTermCollector";
+import { LikeTermCollector } from "../../../lib/src/simplifyExpression/collectAndCombineSearch/LikeTermCollector";
 
 import { TestUtil } from "../../TestUtil";
-import { printAscii } from "../../../lib/util/print";
+import { printAscii } from "../../../lib/src/util/print";
 import assert = require("assert");
 
 function testCollectLikeTerms(

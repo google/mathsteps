@@ -1,4 +1,4 @@
-import { addConstantFractions } from "../../../lib/simplifyExpression/fractionsSearch/addConstantFractions";
+import { addConstantFractions } from "../../../lib/src/simplifyExpression/fractionsSearch/addConstantFractions";
 
 import { TestUtil } from "../../TestUtil";
 

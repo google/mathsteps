@@ -1,7 +1,7 @@
-import { printAscii } from "../../lib/util/print";
+import { printAscii } from "../../lib/src/util/print";
 
-import { ChangeTypes } from "../../lib/ChangeTypes";
-import { simplifyExpression } from "../../lib/simplifyExpression";
+import { ChangeTypes } from "../../lib/src/ChangeTypes";
+import { simplifyExpression } from "../../lib/src/simplifyExpression";
 import assert = require("assert");
 
 function testOneStep(exprStr, outputStr, debug = false) {

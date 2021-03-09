@@ -1,4 +1,4 @@
-import { removeDivisionByOne } from "../../../lib/simplifyExpression/basicsSearch/removeDivisionByOne";
+import { removeDivisionByOne } from "../../../lib/src/simplifyExpression/basicsSearch/removeDivisionByOne";
 
 import { testSimplify } from "./testSimplify";
 

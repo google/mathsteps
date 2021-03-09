@@ -1,14 +1,17 @@
 {
-  "name": "@taskbase/mathsteps",
-  "version": "1.0.0",
-  "description": "Step by step math solutions",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "@taskbase/mathsteps-repo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Repository of mathsteps lib",
   "scripts": {
+    "build": "npm run test && cd lib && tsc && cp ./package.json ../dist",
     "test": "npx tsc --project test/tsconfig.json && npx mocha --recursive",
     "setup-hooks": "ln -s ../../scripts/git-hooks/pre-commit.sh .git/hooks/pre-commit",
     "prettify": "prettier --write \"lib/**/*.ts\"",
-    "prettify-tests": "prettier --write \"test/**/*.ts\""
+    "prettify-tests": "prettier --write \"test/**/*.ts\"",
+    "publish-lib": "npm run build && cd dist && npm publish --access=public",
+    "publish-beta": "npm run build && cd dist && npm publish --tag beta --access=public",
+    "publish-dryrun": "npm run build && cd dist && npm publish --dry-run --access=public"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -20,11 +23,11 @@
     "eslint": "^3.10.2",
     "eslint-config-google": "^0.7.0",
     "eslint-plugin-sort-requires": "^2.1.0",
-    "mathjs": "3.11.2",
     "mocha": "2.4.5",
     "prettier": "2.2.1",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.2",
+    "mathjs": "3.11.2"
   },
   "repository": {
     "type": "git",

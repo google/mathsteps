@@ -1,4 +1,4 @@
-import { simplifyDoubleUnaryMinus } from "../../../lib/simplifyExpression/basicsSearch/simplifyDoubleUnaryMinus";
+import { simplifyDoubleUnaryMinus } from "../../../lib/src/simplifyExpression/basicsSearch/simplifyDoubleUnaryMinus";
 
 import { testSimplify } from "./testSimplify";
 

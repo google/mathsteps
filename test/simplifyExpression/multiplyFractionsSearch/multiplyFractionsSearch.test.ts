@@ -1,4 +1,4 @@
-import { multiplyFractionsSearch } from "../../../lib/simplifyExpression//multiplyFractionsSearch";
+import { multiplyFractionsSearch } from "../../../lib/src/simplifyExpression//multiplyFractionsSearch";
 
 import { TestUtil } from "../../TestUtil";
 

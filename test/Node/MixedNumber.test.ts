@@ -1,5 +1,5 @@
 import { TestUtil } from "../TestUtil";
-import { NodeMixedNumber } from "../../lib/node/MixedNumber";
+import { NodeMixedNumber } from "../../lib/src/node/MixedNumber";
 
 function testIsMixedNumber(input, output) {
   TestUtil.testBooleanFunction(NodeMixedNumber.isMixedNumber, input, output);

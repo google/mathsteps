@@ -1,4 +1,4 @@
-import { factorQuadratic } from "../../lib/factor/factorQuadratic";
+import { factorQuadratic } from "../../lib/src/factor/factorQuadratic";
 import { TestUtil } from "../TestUtil";
 
 function testFactorQuadratic(input, output) {

@@ -1,5 +1,5 @@
 import { TestUtil } from "../../TestUtil";
-import { arithmeticSearch } from "../../../lib/simplifyExpression/arithmeticSearch/ArithmeticSearch";
+import { arithmeticSearch } from "../../../lib/src/simplifyExpression/arithmeticSearch/ArithmeticSearch";
 
 function testArithmeticSearch(exprStr, outputStr) {
   TestUtil.testSimplification(arithmeticSearch, exprStr, outputStr);

@@ -1,5 +1,5 @@
 import { TestUtil } from "../../TestUtil";
-import { convertMixedNumberToImproperFraction } from "../../../lib/simplifyExpression/basicsSearch/convertMixedNumberToImproperFraction";
+import { convertMixedNumberToImproperFraction } from "../../../lib/src/simplifyExpression/basicsSearch/convertMixedNumberToImproperFraction";
 
 function testConvertMixedNumberToImproperFraction(
   exprString,

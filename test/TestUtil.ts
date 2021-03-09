@@ -1,7 +1,7 @@
 import * as math from "mathjs";
 
-import { flattenOperands } from "../lib/util/flattenOperands";
-import { printAscii } from "../lib/util/print";
+import { flattenOperands } from "../lib/src/util/flattenOperands";
+import { printAscii } from "../lib/src/util/print";
 import assert = require("assert");
 
 // TestUtil contains helper methods to share code across tests

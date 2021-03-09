@@ -1,4 +1,4 @@
-import { divisionSearch } from "../../../lib/simplifyExpression/divisionSearch";
+import { divisionSearch } from "../../../lib/src/simplifyExpression/divisionSearch";
 
 import { TestUtil } from "../../TestUtil";
 

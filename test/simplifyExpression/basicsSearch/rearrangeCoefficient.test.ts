@@ -1,4 +1,4 @@
-import { rearrangeCoefficient } from "../../../lib/simplifyExpression/basicsSearch/rearrangeCoefficient";
+import { rearrangeCoefficient } from "../../../lib/src/simplifyExpression/basicsSearch/rearrangeCoefficient";
 
 import { testSimplify } from "./testSimplify";
 

@@ -1,4 +1,4 @@
-import { removeExponentByOne } from "../../../lib/simplifyExpression/basicsSearch/removeExponentByOne";
+import { removeExponentByOne } from "../../../lib/src/simplifyExpression/basicsSearch/removeExponentByOne";
 
 import { testSimplify } from "./testSimplify";
 

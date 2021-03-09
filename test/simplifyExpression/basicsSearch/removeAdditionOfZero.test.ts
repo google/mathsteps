@@ -1,4 +1,4 @@
-import { removeAdditionOfZero } from "../../../lib/simplifyExpression/basicsSearch/removeAdditionOfZero";
+import { removeAdditionOfZero } from "../../../lib/src/simplifyExpression/basicsSearch/removeAdditionOfZero";
 
 import { testSimplify } from "./testSimplify";
 

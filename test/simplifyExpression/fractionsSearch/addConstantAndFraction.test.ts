@@ -1,4 +1,4 @@
-import { addConstantAndFraction } from "../../../lib/simplifyExpression/fractionsSearch/addConstantAndFraction";
+import { addConstantAndFraction } from "../../../lib/src/simplifyExpression/fractionsSearch/addConstantAndFraction";
 
 import { TestUtil } from "../../TestUtil";
 

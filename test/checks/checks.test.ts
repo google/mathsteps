@@ -1,5 +1,5 @@
 import { TestUtil } from "../TestUtil";
-import { canSimplifyPolynomialTerms } from "../../lib/checks/canSimplifyPolynomialTerms";
+import { canSimplifyPolynomialTerms } from "../../lib/src/checks/canSimplifyPolynomialTerms";
 
 function testCanCombine(exprStr, canCombine) {
   TestUtil.testBooleanFunction(canSimplifyPolynomialTerms, exprStr, canCombine);

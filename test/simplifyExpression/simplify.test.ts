@@ -1,8 +1,8 @@
 import * as math from "mathjs";
 
-import { simplify } from "../../lib/simplifyExpression/simplify";
+import { simplify } from "../../lib/src/simplifyExpression/simplify";
 import assert = require("assert");
-import { printAscii } from "../../lib/util/print";
+import { printAscii } from "../../lib/src/util/print";
 
 function testSimplify(
   inputString: string,

@@ -1,4 +1,4 @@
-import { distributeSearch } from "../../../lib/simplifyExpression/distributeSearch";
+import { distributeSearch } from "../../../lib/src/simplifyExpression/distributeSearch";
 
 import { TestUtil } from "../../TestUtil";
 

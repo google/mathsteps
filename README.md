@@ -110,7 +110,13 @@ Install the project dependencies:
 
 ```
 npm ci
+cd lib && npm ci && cd ..
+cd example-consumer && npm ci && cd ..
 ```
+
+## Publish version
+
+See scripts in `package.json`.
 
 ## Test
 

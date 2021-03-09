@@ -1,4 +1,4 @@
-import { divideByGCD } from "../../../lib/simplifyExpression/fractionsSearch/divideByGCD";
+import { divideByGCD } from "../../../lib/src/simplifyExpression/fractionsSearch/divideByGCD";
 
 import { TestUtil } from "../../TestUtil";
 

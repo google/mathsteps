@@ -1,4 +1,4 @@
-import { reduceZeroDividedByAnything } from "../../../lib/simplifyExpression/basicsSearch/reduceZeroDividedByAnything";
+import { reduceZeroDividedByAnything } from "../../../lib/src/simplifyExpression/basicsSearch/reduceZeroDividedByAnything";
 
 import { testSimplify } from "./testSimplify";
 
