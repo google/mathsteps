@@ -1,13 +1,4 @@
-## Work in progress
-
-This is work in progress and not ready to be used.
-
-## TODOs
-- Fix usage of factoring for simplification
-- Throw error instead of returning empty array?
-
-## Done (compared to https://github.com/google/mathsteps)
-- Port to TypeScript!
+<img alt="npm badge" src="https://img.shields.io/npm/v/@taskbase/mathsteps">
 
 ## Why Mathsteps
 Mathsteps aims to provide step-by-step instructions like a tutor would give them to a student.
@@ -132,5 +123,13 @@ Then, the tests can be executed:
 npm test
 ```
 
+## TODOs
+- Fix usage of factoring for simplification
+- Throw error instead of returning empty array?
+
+### Done (compared to https://github.com/google/mathsteps)
+- Port to TypeScript!
+
 ## Attribution
 Based on google/mathsteps
+
