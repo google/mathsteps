@@ -14,8 +14,14 @@ export class Equation {
 
   // Prints an Equation properly using the print module
   ascii(showPlusMinus = false) {
+    console.log(`============`);
+    console.log(JSON.stringify(this.leftNode));
+    console.log(JSON.stringify(this.rightNode));
+    console.log(`============`);
+
     const leftSide = printAscii(this.leftNode, showPlusMinus);
     const rightSide = printAscii(this.rightNode, showPlusMinus);
+
     const comparator = this.comparator;
 
     return `${leftSide} ${comparator} ${rightSide}`;
@@ -45,6 +51,7 @@ export class Equation {
         "Expected two sides of an equation using comparator: " + comparator
       );
     }
+
     const leftNode = math.parse(sides[0]);
     const rightNode = math.parse(sides[1]);
 

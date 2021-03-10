@@ -46,6 +46,10 @@ export function printTreeTraversal(node, parentNode = undefined) {
   }
 
   if (NodeType.isOperator(node)) {
+    if (node.op === "*" && node.args[0].value === 0) {
+      return `0`;
+    }
+
     if (node.op === "/" && NodeType.isOperator(node.args[1])) {
       return `${printTreeTraversal(node.args[0])} / (${printTreeTraversal(
         node.args[1]

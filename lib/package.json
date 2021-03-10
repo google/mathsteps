@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/taskbase/mathsteps#readme",
   "dependencies": {
-    "mathjs": "3.11.2"
+    "mathjs": "^9.2.0"
   }
 }

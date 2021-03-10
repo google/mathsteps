@@ -5,5 +5,5 @@
  * */
 export function evaluate(node) {
   // TODO: once we swap in math-parser, call its evaluate function instead
-  return node.eval();
+  return node.evaluate();
 }

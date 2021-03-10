@@ -11,28 +11,15 @@ class NodeCreatorClass {
   operator(op, args, implicit = false) {
     switch (op) {
       case "+":
-        return new (math.expression as any).node.OperatorNode("+", "add", args);
+        return new (math as any).OperatorNode("+", "add", args);
       case "-":
-        return new (math.expression as any).node.OperatorNode(
-          "-",
-          "subtract",
-          args
-        );
+        return new (math as any).OperatorNode("-", "subtract", args);
       case "/":
-        return new (math.expression as any).node.OperatorNode(
-          "/",
-          "divide",
-          args
-        );
+        return new (math as any).OperatorNode("/", "divide", args);
       case "*":
-        return new (math.expression as any).node.OperatorNode(
-          "*",
-          "multiply",
-          args,
-          implicit
-        );
+        return new (math as any).OperatorNode("*", "multiply", args, implicit);
       case "^":
-        return new (math.expression as any).node.OperatorNode("^", "pow", args);
+        return new (math as any).OperatorNode("^", "pow", args);
       default:
         throw Error("Unsupported operation: " + op);
     }
@@ -41,25 +28,23 @@ class NodeCreatorClass {
   // In almost all cases, use Negative.negate (with naive = true) to add a
   // unary minus to your node, rather than calling this constructor directly
   unaryMinus(content) {
-    return new (math.expression as any).node.OperatorNode("-", "unaryMinus", [
-      content,
-    ]);
+    return new (math as any).OperatorNode("-", "unaryMinus", [content]);
   }
 
   constant(val) {
-    return new (math.expression as any).node.ConstantNode(val);
+    return new (math as any).ConstantNode(val);
   }
 
   symbol(name) {
-    return new (math.expression as any).node.SymbolNode(name);
+    return new (math as any).SymbolNode(name);
   }
 
   parenthesis(content) {
-    return new (math.expression as any).node.ParenthesisNode(content);
+    return new (math as any).ParenthesisNode(content);
   }
 
   list(content) {
-    return new (math.expression as any).node.ArrayNode(content);
+    return new (math as any).ArrayNode(content);
   }
 
   // exponent might be null, which means there's no exponent node.
@@ -92,10 +77,7 @@ class NodeCreatorClass {
   // Given a root value and a radicand (what is under the radical)
   nthRoot(radicandNode, rootNode) {
     const symbol = NodeCreator.symbol("nthRoot");
-    return new (math.expression as any).node.FunctionNode(symbol, [
-      radicandNode,
-      rootNode,
-    ]);
+    return new (math as any).FunctionNode(symbol, [radicandNode, rootNode]);
   }
 }
 

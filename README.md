@@ -126,6 +126,7 @@ npm test
 ## TODOs
 - Fix usage of factoring for simplification
 - Throw error instead of returning empty array?
+- update to latest mathjs
 
 ### Done (compared to https://github.com/google/mathsteps)
 - Port to TypeScript!
